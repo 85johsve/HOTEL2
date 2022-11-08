@@ -11,9 +11,18 @@ class RoomManager
       return availableRooms ;
     }
 
-    public void BookRoom()
+    public Room BookRoom(int number)
     {
-
+        Room bookingRoom = null;
+       foreach(Room room in ShowAvailableRoom())
+       {
+          if (room.RoomID == number )
+          {
+            bookingRoom=room;
+            return bookingRoom;
+          }
+       }
+       return null;
     }
 
      public void AddRoom()
