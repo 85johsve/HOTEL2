@@ -92,10 +92,13 @@ Transaction
 DataBase Quaries:
 [x] List of Rooms
 
- "SELECT customer_id,customer_fname,customer_lname,customer_phone,customer_email,customer_city,customer_country,counstomer_address FROM customers;"
+"SELECT room_id,roomType_name,roomStatus_name,room_price FROM ;"
 
 [] List of employee Tina
+
 [] List of Customer Jessica
+ "SELECT customer_id,customer_fname,customer_lname,customer_phone,customer_email,customer_city,customer_country,counstomer_address FROM customers;"
+
 [] Join tables  get List of Transaction (Tina)
 [] Join tables get List of Reservations (johan)
 [] List of Reviews                        SELECT * FROM `reviews`;
