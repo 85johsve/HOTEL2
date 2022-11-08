@@ -92,15 +92,17 @@ Transaction
 DataBase Quaries:
 [x] List of Rooms
 
- "SELECT customer_id,customer_fname,customer_lname,customer_phone,customer_email,customer_city,customer_country,counstomer_address FROM customers;"
+"SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.rommStatus_id=roomstatus.roomStatus_id) ;"
 
 [] List of employee Tina
 
-[] List of Customer Jessica
+[x] List of Customer Jessica
+
+ "SELECT customer_id,customer_fname,customer_lname,customer_phone,customer_email,customer_city,customer_country,counstomer_address FROM customers;"
 
 [] Join tables  get List of Transaction (Tina)
 
-[] Join tables get List of Reservations (johan)
+[x] Join tables get List of Reservations (johan)
 
 SELECT reservations.reservation_id, reservations.date_in, reservations.date_out, employees.employee_fname, reservations.room_id, customers.customer_fname, customers.customer_lname
 FROM reservations
@@ -108,7 +110,9 @@ INNER JOIN customers ON reservations.customer_id = customers.customer_id
 INNER JOIN employees ON reservations.employee_id = employees.employee_id;
 
 
-[] List of Reviews                        SELECT * FROM `reviews`;
+[x] List of Reviews                       
+
+ SELECT * FROM `reviews`;
 
 
 NOTES:
