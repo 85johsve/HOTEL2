@@ -95,10 +95,10 @@ DataBase Quaries:
  "SELECT customer_id,customer_fname,customer_lname,customer_phone,customer_email,customer_city,customer_country,counstomer_address FROM customers;"
 
 [] List of employee Tina
-[] List of Customer
+[] List of Customer Jessica
 [] Join tables  get List of Transaction (Tina)
-[] Join tables get List of Reservations
-[] List of Reviews
+[] Join tables get List of Reservations (johan)
+[] List of Reviews                        SELECT * FROM `reviews`;
 
 
 NOTES:
