@@ -92,7 +92,7 @@ Transaction
 DataBase Quaries:
 [x] List of Rooms
 [] List of employee Tina
-[] List of Customer
+[] List of Customer Jessica
 [] Join tables  get List of Transaction (Tina)
 [] Join tables get List of Reservations (johan)
 [] List of Reviews                        SELECT * FROM `reviews`;
