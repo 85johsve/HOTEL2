@@ -90,11 +90,11 @@ Transaction
 
 
 DataBase Quaries:
-[x] List of Rooms
+[x] List of Rooms(Tina)
 
 "SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.rommStatus_id=roomstatus.roomStatus_id) ;"
 
-[] List of employee Tina
+[] List of employee (Tina)
 
 [] List of Customer Jessica
  "SELECT customer_id,customer_fname,customer_lname,customer_phone,customer_email,customer_city,customer_country,counstomer_address FROM customers;"
