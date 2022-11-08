@@ -1,6 +1,6 @@
 using Dapper;
 using MySqlConnector;
-class Databse
+class Database
 {
       MySqlConnection connection;
 
