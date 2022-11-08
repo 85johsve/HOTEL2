@@ -88,6 +88,16 @@ Transaction
 
 
 
+
+DataBase Quaries:
+[] List of Rooms
+[] List of employee
+[] List of Customer
+[] Join tables  get List of Transaction
+[] Join tables get List of Reservations
+[] List of Reviews
+
+
 NOTES:
 TimeSpan
 DateOnly
