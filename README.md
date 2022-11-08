@@ -91,6 +91,9 @@ Transaction
 
 DataBase Quaries:
 [x] List of Rooms
+
+ "SELECT customer_id,customer_fname,customer_lname,customer_phone,customer_email,customer_city,customer_country,counstomer_address FROM customers;"
+
 [] List of employee Tina
 [] List of Customer
 [] Join tables  get List of Transaction (Tina)
