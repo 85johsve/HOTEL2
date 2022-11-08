@@ -95,7 +95,7 @@ DataBase Quaries:
 [] List of Customer Jessica
 [] Join tables  get List of Transaction (Tina)
 [] Join tables get List of Reservations
-[] List of Reviews
+[] List of Reviews                        SELECT * FROM `reviews`;
 
 
 NOTES:
