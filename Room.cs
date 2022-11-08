@@ -6,6 +6,7 @@ public class Room
     public int RoomTypeID { get; set; }
     public int RoomStatusID { get; set; }
     public double RoomPrice { get; set; }
+    // need a Enum RoomStatus= CheckIn, CheckOut seem as table ? 
 
     public Room(int roomID, int roomTypeID, int roomStatusID, double roomPrice)
     {

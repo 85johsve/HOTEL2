@@ -38,22 +38,53 @@ Classes:
 UI:
 Program
 Menu
-ConsoleApp
 
-Logik:
-Booking
-Checkin
-User(Base class)
-Customer(:User)
-Staff(:User)
-Database
-Enum
-Idatabase
-Product(Base class)
-OtherProducts(:Product)
-Room(:Product)
+LOGIK:
+
+Reservations
+[] Booking
+[] CheckingIN
+[] CheckOut
+
+Customer
+[]Register Customer
+[] LogIn
+
+Staff
+[]LogIn
+
+
+Database/IDatabase
+[]Connections, and get all data
+
+Enum :
+[]Meny Enum
+[]Room Type Enum
+[]Job Title Enum
+[]Room Status Enum
+[]Review score Enum
+
+//OtherProduct? Seperat Class Put on later?
+
+
+Room
+[] Constructor
+
+RoomManager
+[]Add Room
+[]Remove Room
+[]ShowAvailable Room
+[]Book Room
+
+
 Review
+[]Write Reviews
+[]Read Reviews
+[]tar bort
+
 Transaction
+[]Print Receipt
+[]Payment
 
 
 
