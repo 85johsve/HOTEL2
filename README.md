@@ -90,10 +90,10 @@ Transaction
 
 
 DataBase Quaries:
-[] List of Rooms
-[] List of employee
+[x] List of Rooms
+[] List of employee Tina
 [] List of Customer
-[] Join tables  get List of Transaction
+[] Join tables  get List of Transaction (Tina)
 [] Join tables get List of Reservations
 [] List of Reviews
 
