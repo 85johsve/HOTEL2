@@ -2,6 +2,11 @@ class RoomManager
 {
      private List<Room> rooms ;
 
+     public RoomManager()
+     {
+        // get list from database?
+     }
+
 
    
 
@@ -25,13 +30,13 @@ class RoomManager
        return null;
     }
 
-     public void AddRoom()
+     public void AddRoom(Room newRoom)
     {
-
+       rooms.Add(newRoom);
     }
 
-    public void RemoveRoom()
+    public void RemoveRoom(Room removeRoom)
     {
-
+       rooms.Remove(removeRoom);
     }
 }
