@@ -4,8 +4,8 @@ class RoomData : Database
 {
     Database roomdb = new Database();
     MySqlConnection connection;
-    string roomToUpdate;
-    string newRoomStatus;
+    // string roomToUpdate;
+    // string newRoomStatus;
 
 
     public RoomData()

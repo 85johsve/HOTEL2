@@ -8,10 +8,6 @@ class RoomManager
     private List<Room> rooms;
      RoomData newRoomData= new();
 
-    public RoomManager()
-    {
-        // get list from database?
-    }
     
     public List<Room> ShowAllRooms()
     {
@@ -24,7 +20,7 @@ class RoomManager
         List<Room> availableRooms = new();
         foreach (Room room in newRoomData.GetRoomList())
         {
-            if (room.roomStatus_name == "CheckOut")// this Available need to be changed to Enum later
+            if (room.roomStatus_name == "CheckOut")
             {
                 availableRooms.Add(room);
             }
@@ -33,7 +29,7 @@ class RoomManager
     }
 
 
-     public void AddRoom(int roomID,int typeID, int statusID, double price)   //needs to update DB 
+     public void AddRoom(int roomID,int typeID, int statusID, double price)   
 
     {
           
@@ -57,7 +53,7 @@ class RoomManager
 
   
 
-    public void RemoveRoom(int idNumber)     //needs to update DB directly /j
+    public void RemoveRoom(int idNumber)    
     {
         newRoomData.DeleteRoom( idNumber);
     }
