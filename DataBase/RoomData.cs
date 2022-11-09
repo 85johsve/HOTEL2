@@ -23,7 +23,7 @@ class RoomData : Database
 
     public void UpdateRoomStatus(string roomToUpdate, string newRoomStatus)
     {
-        var updateRoom = connection.Query<Room> ($"UPDATE `rooms` SET `roomStatus_id`={newRoomStatus} WHERE `room_id` = {roomToUpdate};");
+        var updateRoom = connection.Query<Room> ($"UPDATE rooms SET roomStatus_id={newRoomStatus} WHERE room_id = {roomToUpdate};");
 
     }
 

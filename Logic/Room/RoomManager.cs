@@ -32,7 +32,9 @@ class RoomManager
         return availableRooms;
     }
 
-     public Room AddRoom(int id, int typeID, int statusID, double price)   //needs to update DB directly /j
+
+     public Room AddRoom(int id, int typeID, int statusID, double price)   //needs to update DB 
+
     {
           Room insertRoom = new ();
         
