@@ -7,7 +7,7 @@ class Reservation
         Room bookingRoom = null;
         foreach (Room room in roomManager.ShowAvailableRoom())
         {
-            if (room.RoomID == number)
+            if (room.room_id == number)
             {
                 bookingRoom = room;
                 return bookingRoom;

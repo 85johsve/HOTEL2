@@ -18,7 +18,7 @@ class RoomManager
         List<Room> availableRooms = new();
         foreach (Room room in newDatabase.GetRoomList())
         {
-            if (room.RoomStatusID ==2)// this Available need to be changed to Enum later
+            if (room.roomStatus_name == "CheckOut")// this Available need to be changed to Enum later
             {
                 availableRooms.Add(room);
             }

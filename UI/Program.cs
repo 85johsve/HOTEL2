@@ -3,7 +3,7 @@ using MySqlConnector;
 internal class Program
 {
     Database newDatabase = new Database();
-    RoomManager roomManager = new();
+    static RoomManager roomManager = new();
     static IDataBase db = new Database();
 
 
@@ -31,7 +31,7 @@ internal class Program
 
         int employeeID = GetID();
 
-        if (employeeID != 1 || employeeID != 2 || employeeID != 3) //Hämta från databasen
+        // if (employeeID != 1 || employeeID != 2 || employeeID != 3) //Hämta från databasen
         {
             Console.WriteLine("ID not recognized! Try again");
         }
@@ -48,8 +48,12 @@ internal class Program
             switch (choice)
             {
                 case MenuChoiceStaff.ShowRoom:
-                    Console.WriteLine("Show available rooms");
-                   // db.ShowAvailableRoom();     //RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
+                //    foreach (var item in roomManager.ShowAvailableRoom())
+                //    {
+                //     Console.WriteLine(item);
+                //    }
+              Console.WriteLine (roomManager.ShowAvailableRoom());   
+                 //RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
                     break;
 
                 case MenuChoiceStaff.CheckIn:

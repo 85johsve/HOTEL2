@@ -14,8 +14,9 @@ class Database:IDataBase
 
      public List<Room> GetRoomList()
   {
-    var rooms=connection.Query<Room>("SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.rommStatus_id=roomstatus.roomStatus_id) ;").ToList();
+    var rooms = connection.Query<Room>("SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.rommStatus_id=roomstatus.roomStatus_id) ;").ToList();
     return rooms;
+    
   }   
 
    public List<Customer> GetCustomerList()
