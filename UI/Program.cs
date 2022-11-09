@@ -4,7 +4,7 @@ internal class Program
 {
     Database newDatabase = new Database();
     RoomManager roomManager = new();
-    IDataBase db = new Database();
+    static IDataBase db = new Database();
 
 
     private static void Main(string[] args)
@@ -28,7 +28,7 @@ internal class Program
     static void Employee()
     {
         Console.Clear();
-        //using (var connection = new MySqlConnection("Server=localhost;Database=videoteket;Uid=Tina;Pwd=123456;"))
+
         int employeeID = GetID();
 
         if (employeeID != 1 || employeeID != 2 || employeeID != 3) //Hämta från databasen
@@ -49,7 +49,7 @@ internal class Program
             {
                 case MenuChoiceStaff.ShowRoom:
                     Console.WriteLine("Show available rooms");
-                    db.ShowAvailableRoom();     //RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
+                   // db.ShowAvailableRoom();     //RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
                     break;
 
                 case MenuChoiceStaff.CheckIn:
