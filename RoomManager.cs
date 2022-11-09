@@ -6,6 +6,7 @@ using MySqlConnector;
 class RoomManager
 {
     private List<Room> rooms;
+     Database newDatabase = new Database();
 
     public RoomManager()
     {
@@ -15,7 +16,7 @@ class RoomManager
     public List<Room> ShowAvailableRoom()
     {
         List<Room> availableRooms = new();
-        foreach (Room room in rooms)
+        foreach (Room room in newDatabase.GetRoomList())
         {
             if (room.RoomStatusID ==2)// this Available need to be changed to Enum later
             {

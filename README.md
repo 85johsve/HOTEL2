@@ -98,7 +98,7 @@ DataBase Quaries:
 
 [x] List of Customer Jessica
 
- "SELECT customer_id,customer_fname,customer_lname,customer_phone,customer_email,customer_city,customer_country,counstomer_address FROM customers;"
+ "SELECT customer_id,customer_fname,customer_lname,customer_phone,customer_email,customer_city,customer_country,customer_address FROM customers;"
 
 [] Join tables  get List of Transaction (Tina)
 

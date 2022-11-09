@@ -2,10 +2,17 @@
 using MySqlConnector;
 internal class Program
 {
+    Database newDatabase = new Database();
+    RoomManager roomManager = new();
+    IDataBase db = new Database();
+
+
     private static void Main(string[] args)
     {
-        Database newDatabase = new Database();
-        var database = new Database();
+         Database newDatabase = new Database();
+          RoomManager roomManager = new();
+          IDataBase db = new Database();
+        
 
         Console.WriteLine("Employee Press [1]\nCustomer Press [2]");
         string answer = Console.ReadLine();
@@ -37,11 +44,12 @@ internal class Program
             Console.WriteLine("Select one of the options:");
             int input = int.Parse(Console.ReadLine());
             MenuChoiceStaff choice = (MenuChoiceStaff)input;
-
+            
             switch (choice)
             {
                 case MenuChoiceStaff.ShowRoom:
-                    Console.WriteLine("Show available rooms");//RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
+                    Console.WriteLine("Show available rooms");
+                    db.ShowAvailableRoom();     //RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
                     break;
 
                 case MenuChoiceStaff.CheckIn:
