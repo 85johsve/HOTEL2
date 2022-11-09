@@ -32,13 +32,16 @@ class RoomManager
         return availableRooms;
     }
 
-     public void AddRoom(int id, int typeID, int statusID, double price)   //needs to update DB directly /j
+     public Room AddRoom(int id, int typeID, int statusID, double price)   //needs to update DB directly /j
     {
-        
+          Room insertRoom = new ();
         
             newRoomData.InsertRoom (id, typeID, statusID, price);
-        
+           
+
+        return insertRoom;
     }
+}
 
     // public List<Room> AddRooms(int id1, int typeID1, int statusID1,double price1)   //needs to update DB directly /j
     // {
@@ -55,8 +58,8 @@ class RoomManager
 
 
 
-    public void RemoveRoom(int number)     //needs to update DB directly /j
-    {
-        rooms.Remove(newRoomData.DeleteRoom(int number));
-    }
-}
+//     public void RemoveRoom(int number)     //needs to update DB directly /j
+//     {
+//         rooms.Remove(newRoomData.DeleteRoom(int number));
+//     }
+// }

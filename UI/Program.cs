@@ -66,7 +66,16 @@ internal class Program
                     break;
 
                 case MenuChoiceStaff.AddRoom:
-                    Console.WriteLine("Add/Remove Rooms");
+                    Console.WriteLine("room Id: ");
+                    int id = int.Parse(Console.ReadLine());
+                     Console.WriteLine("TYPE ID: ");
+                     int id2 = int.Parse(Console.ReadLine());
+                      Console.WriteLine("STATUS ID");
+                      int id3 = int.Parse(Console.ReadLine());
+                       Console.WriteLine("price");
+                       double p = double.Parse(Console.ReadLine());
+                    
+                    roomManager.AddRoom(id,id2,id3,p);
                     break;
 
                 case MenuChoiceStaff.Receipt:

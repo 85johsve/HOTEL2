@@ -31,7 +31,9 @@ class RoomData : Database
   public void InsertRoom(int id, int typeID, int statusID, double price)
   {
     
-  var InsertRoom = connection.Query<Room> ("INSERT INTO `rooms`(`room_id`, `roomType_id`, `roomStatus_id`, `room_price`) VALUES ('id','typeID','statusID','price')");
+    
+  var insertRoom = connection.Query<Room> ($"INSERT INTO rooms (room_id, roomType_id, roomStatus_id, room_price) VALUES ({id},{typeID},{statusID},{price})");
+  
   
   }
   public void DeleteRoom(int roomID)
