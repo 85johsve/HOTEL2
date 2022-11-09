@@ -93,6 +93,8 @@ DataBase Quaries:
 [x] List of Rooms(Tina)
 
 "SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.rommStatus_id=roomstatus.roomStatus_id) ;"
+[]"INSERT INTO `rooms`(`room_id`, `roomType_id`, `roomStatus_id`, `room_price`) VALUES ('roomID','roomType','roomStatusID','roomPrice')"
+[]"INSERT INTO `rooms`(`room_id`, `roomType_id`, `roomStatus_id`, `room_price`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')"
 
 [] List of employee (Tina)
 
