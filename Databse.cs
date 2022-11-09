@@ -8,7 +8,7 @@ class Database
 
     public Database()
     {
-        connection = new MySqlConnection(("Server=localhost;Database=videoteket;Uid=Tina;Pwd=123456;"));
+        connection = new MySqlConnection(("Server=localhost;Database=Hotelmg;Uid=Tina;Pwd=123456;"));
         
     }
 
