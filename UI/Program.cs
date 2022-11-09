@@ -65,18 +65,23 @@ internal class Program
                     Console.WriteLine("Check in/Check out");
                     break;
 
-                case MenuChoiceStaff.AddRoom:
+                case MenuChoiceStaff.AddRoom: // and also RemoveRoom()
                     Console.WriteLine("room Id: ");
-                    int id = int.Parse(Console.ReadLine());
-                     Console.WriteLine("TYPE ID: ");
-                     int id2 = int.Parse(Console.ReadLine());
-                      Console.WriteLine("STATUS ID");
-                      int id3 = int.Parse(Console.ReadLine());
-                       Console.WriteLine("price");
-                       double p = double.Parse(Console.ReadLine());
-                    
-                    roomManager.AddRoom(id,id2,id3,p);
+                    int id1 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("TYPE ID: ");
+                    int id2 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("STATUS ID");
+                    int id3 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("price");
+                    double p = double.Parse(Console.ReadLine());
+                    roomManager.AddRoom(id1, id2, id3, p);
                     break;
+                case MenuChoiceStaff.RemoveRoom:
+
+                     Console.WriteLine("room Id: ");
+                     int id = int.Parse(Console.ReadLine());
+                     roomManager.RemoveRoom(id);
+                     break;
 
                 case MenuChoiceStaff.Receipt:
                     Console.WriteLine("Print Receipt");

@@ -38,7 +38,7 @@ class RoomData : Database
   }
   public void DeleteRoom(int number)
   {
-    var r=new{ room_id=number};
-    var DeleteRoom = connection.Query<Room>("DELETE FROM `rooms` WHERE room_id = @number");
+
+    var DeleteRoom = connection.Query<Room>($"DELETE FROM `rooms` WHERE room_id = {number}");
   }
 }

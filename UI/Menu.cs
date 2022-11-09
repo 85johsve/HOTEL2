@@ -4,6 +4,7 @@
         ShowRoom=1,
         CheckIn,
         AddRoom,
+        RemoveRoom,
         Receipt,
         Update,
         Quit,
