@@ -119,6 +119,10 @@ INNER JOIN employees ON reservations.employee_id = employees.employee_id;
 Admin class? We call RoomManager class and Login here.
 Maybe we should have a Product base class, so we can add other products besides room int the futrue. 
 
+[ ] Update room status
+
+UPDATE `rooms` SET `roomStatus_id`='1' WHERE `room_id` = 1001
+
 NOTES:
 TimeSpan
 DateOnly
