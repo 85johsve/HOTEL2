@@ -6,7 +6,6 @@ using MySqlConnector;
 class RoomManager
 {
     private List<Room> rooms;
-     Database newDatabase = new Database();
      RoomData newRoomData= new();
 
     public RoomManager()
@@ -33,17 +32,17 @@ class RoomManager
         return availableRooms;
     }
 
-    public List<Room> Add(int id1, int typeID1, int statusID1,double price1)   //needs to update DB directly /j
+    public List<Room> AddRooms(int id1, int typeID1, int statusID1,double price1)   //needs to update DB directly /j
     {
-        List<Room> rooms=new();
+        List<Room> AddRooms=new();
         bool input = true;
         while (input)
         {
         
-             rooms.Add(newRoomData.AddRoom('int id1','int typeID1','statusID','price'));
+             rooms.Add(newRoomData.InsertRoom ('int id1','int typeID1','statusID','price'));
         }
 
-       return rooms;
+       return AddRooms;
     }
 
 
