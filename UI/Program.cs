@@ -4,14 +4,14 @@ internal class Program
 {
     static Database newDatabase = new Database();
     static RoomManager roomManager = new();
-    static IDataBase db = new Database();
+    
 
 
     private static void Main(string[] args)
     {
          Database newDatabase = new Database();
           RoomManager roomManager = new();
-          IDataBase db = new Database();
+          
         
 
         Console.WriteLine("Employee Press [1]\nCustomer Press [2]");
@@ -48,6 +48,12 @@ internal class Program
             switch (choice)
             {
                 case MenuChoiceStaff.ShowRoom:
+                 Console.WriteLine("All rooms!");
+                 foreach (var item in roomManager.ShowAllRooms())
+                   {
+                    Console.WriteLine(item);
+                   }
+                   Console.WriteLine("Available rooms!");
                    foreach (var item in roomManager.ShowAvailableRoom())
                    {
                     Console.WriteLine(item);
