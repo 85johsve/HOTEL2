@@ -22,89 +22,101 @@ internal class Program
     {
         Console.Clear();
         //using (var connection = new MySqlConnection("Server=localhost;Database=videoteket;Uid=Tina;Pwd=123456;"))
-        Console.WriteLine("Please enter your employee ID: "); //For-loop i<3?
-        string employeeID = Console.ReadLine();
-         
-        if (employeeID != "1" || employeeID != "2" || employeeID !="3") //Hämta från databasen
+        int employeeID = GetID();
+
+        if (employeeID != 1 || employeeID != 2 || employeeID != 3) //Hämta från databasen
         {
-            Console.WriteLine("ID not recognized! Try again");   
+            Console.WriteLine("ID not recognized! Try again");
         }
-        
-        if (employeeID == "1" || employeeID == "2" || employeeID =="3") //Hämta från databasen
+
+        if (employeeID == 1 || employeeID == 2 || employeeID == 3) //Hämta från databasen
         {
-            foreach ( string c in Enum.GetNames(typeof (MenuChoiceStaff )) )
-            Console.WriteLine( "{0,-11}= {1}", c, Enum.Format( typeof (MenuChoiceStaff ) , Enum.Parse(typeof (MenuChoiceStaff ) , c), "d"));
+            foreach (string c in Enum.GetNames(typeof(MenuChoiceStaff)))
+                Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceStaff), Enum.Parse(typeof(MenuChoiceStaff), c), "d"));
 
             Console.WriteLine("Select one of the options:");
-            int input =int.Parse(Console.ReadLine ());
-            MenuChoiceStaff choice=(MenuChoiceStaff )input ;
+            int input = int.Parse(Console.ReadLine());
+            MenuChoiceStaff choice = (MenuChoiceStaff)input;
 
             switch (choice)
             {
                 case MenuChoiceStaff.ShowRoom:
-                Console.WriteLine("Show available rooms");//RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
-                break;
+                    Console.WriteLine("Show available rooms");//RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
+                    break;
 
                 case MenuChoiceStaff.CheckIn:
-                Console.WriteLine ("Check in/Check out");
-                break;
+                    Console.WriteLine("Check in/Check out");
+                    break;
 
                 case MenuChoiceStaff.AddRoom:
-                Console.WriteLine ("Add/Remove Rooms");
-                break;
+                    Console.WriteLine("Add/Remove Rooms");
+                    break;
 
                 case MenuChoiceStaff.Receipt:
-                Console.WriteLine ("Print Receipt");
-                break;
+                    Console.WriteLine("Print Receipt");
+                    break;
 
                 case MenuChoiceStaff.Quit:
-                Console.WriteLine ("Quit");
-                break;
+                    Console.WriteLine("Quit");
+                    break;
 
                 default:
-                break;
+                    break;
             }
         }
-        else         
+        else
             Console.WriteLine("No ID identified!");
-        
+
     }
+
     static void Customer()
     {
-        foreach ( string c in Enum.GetNames(typeof (MenuChoiceCustomer )) )
-        Console.WriteLine( "{0,-11}= {1}", c, Enum.Format( typeof (MenuChoiceCustomer ) , Enum.Parse(typeof (MenuChoiceCustomer ) , c), "d"));
+        foreach (string c in Enum.GetNames(typeof(MenuChoiceCustomer)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceCustomer), Enum.Parse(typeof(MenuChoiceCustomer), c), "d"));
+        GetCustomerInput();
 
+    }
+
+    private static void GetCustomerInput()
+    {
         Console.WriteLine("Select one of the options:");
-        int CustomerInput =int.Parse(Console.ReadLine ());
-        MenuChoiceCustomer CustomerChoice=(MenuChoiceCustomer )CustomerInput;
+        int CustomerInput = int.Parse(Console.ReadLine());
+        MenuChoiceCustomer CustomerChoice = (MenuChoiceCustomer)CustomerInput;
 
 
         switch (CustomerChoice)
         {
             case MenuChoiceCustomer.ViewRoom:
-            Console.WriteLine ("View Available Rooms");
-            break;
+                Console.WriteLine("View Available Rooms");
+                break;
 
             case MenuChoiceCustomer.ViewReviews:
-            Console.WriteLine ("View Reviews");
-            break;
+                Console.WriteLine("View Reviews");
+                break;
 
             case MenuChoiceCustomer.BookRoom:
-            Console.WriteLine ("Book Room");
-            break;
+                Console.WriteLine("Book Room");
+                break;
 
             case MenuChoiceCustomer.WriteReview:
-            Console.WriteLine ("Write Review");
-            break;
+                Console.WriteLine("Write Review");
+                break;
 
             case MenuChoiceCustomer.Quit:
-            Console.WriteLine ("Quit");
-            break;
+                Console.WriteLine("Quit");
+                break;
 
 
             default:
-            break;
+                break;
         }
+    }
+
+    private static int GetID()
+    {
+        Console.WriteLine("Please enter your ID: "); //For-loop i<3?
+        int employeeID = int.Parse(Console.ReadLine());
+        return employeeID;
     }
     // static void Login()
     // {
@@ -112,7 +124,7 @@ internal class Program
     //     {
     //     Console.WriteLine("Please enter your employee ID: "); //For-loop i<3?
     //     string employeeID = Console.ReadLine();
-         
+
     //     if (employeeID != "1" || employeeID != "2" || employeeID !="3") //Hämta från databasen
     //     {
     //         Console.WriteLine("ID not recognized! Try again");   

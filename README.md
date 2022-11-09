@@ -114,6 +114,8 @@ INNER JOIN employees ON reservations.employee_id = employees.employee_id;
 
  SELECT * FROM `reviews`;
 
+Admin class? We call RoomManager class and Login here.
+Maybe we should have a Product base class, so we can add other products besides room int the futrue. 
 
 NOTES:
 TimeSpan

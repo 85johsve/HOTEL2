@@ -25,20 +25,6 @@ class RoomManager
         return availableRooms;
     }
 
-    public Room BookRoom(int number)
-    {
-        Room bookingRoom = null;
-        foreach (Room room in ShowAvailableRoom())
-        {
-            if (room.RoomID == number)
-            {
-                bookingRoom = room;
-                return bookingRoom;
-            }
-        }
-        return null;
-    }
-
     public void AddRoom(Room newRoom)
     {
         rooms.Add(newRoom);
