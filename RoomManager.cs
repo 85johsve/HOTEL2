@@ -1,3 +1,8 @@
+using Dapper;
+using MySqlConnector;
+
+// dotnet add package dapper
+// dotnet add package mysqlconnector
 class RoomManager
 {
     private List<Room> rooms;
