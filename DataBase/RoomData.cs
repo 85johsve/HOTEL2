@@ -18,11 +18,11 @@ class RoomData:Database
     return rooms;
     
   }   
-  
-  public void AddRoom(int id, int typeID, int statusID, double price)
+
+  public void InsertRoom(int id, int typeID, int statusID, double price)
   {
     
-  var addRoom = connection.Query<Room> ("INSERT INTO `rooms`(`room_id`, `roomType_id`, `roomStatus_id`, `room_price`) VALUES ('id','typeID','statusID','price')");
+  var InsertRoom = connection.Query<Room> ("INSERT INTO `rooms`(`room_id`, `roomType_id`, `roomStatus_id`, `room_price`) VALUES ('id','typeID','statusID','price')");
   
   }
 }
