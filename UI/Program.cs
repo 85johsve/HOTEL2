@@ -2,7 +2,7 @@
 using MySqlConnector;
 internal class Program
 {
-    Database newDatabase = new Database();
+    static Database newDatabase = new Database();
     static RoomManager roomManager = new();
     static IDataBase db = new Database();
 
@@ -48,11 +48,11 @@ internal class Program
             switch (choice)
             {
                 case MenuChoiceStaff.ShowRoom:
-                //    foreach (var item in roomManager.ShowAvailableRoom())
-                //    {
-                //     Console.WriteLine(item);
-                //    }
-              Console.WriteLine (roomManager.ShowAvailableRoom());   
+                   foreach (var item in roomManager.ShowAvailableRoom())
+                   {
+                    Console.WriteLine(item);
+                   }
+             // Console.WriteLine (newDatabase.GetRoomList());   
                  //RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
                     break;
 
