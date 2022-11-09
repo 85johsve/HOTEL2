@@ -5,6 +5,7 @@
         CheckIn,
         AddRoom,
         Receipt,
+        Update,
         Quit,
     }
     public enum MenuChoiceCustomer

@@ -4,15 +4,14 @@ internal class Program
 {
     static Database newDatabase = new Database();
     static RoomManager roomManager = new();
-    
 
 
     private static void Main(string[] args)
     {
-         Database newDatabase = new Database();
-          RoomManager roomManager = new();
-          
-        
+        Database newDatabase = new Database();
+        RoomManager roomManager = new();
+
+
 
         Console.WriteLine("Employee Press [1]\nCustomer Press [2]");
         string answer = Console.ReadLine();
@@ -44,22 +43,22 @@ internal class Program
             Console.WriteLine("Select one of the options:");
             int input = int.Parse(Console.ReadLine());
             MenuChoiceStaff choice = (MenuChoiceStaff)input;
-            
+
             switch (choice)
             {
                 case MenuChoiceStaff.ShowRoom:
-                 Console.WriteLine("All rooms!");
-                 foreach (var item in roomManager.ShowAllRooms())
-                   {
-                    Console.WriteLine(item);
-                   }
-                   Console.WriteLine("Available rooms!");
-                   foreach (var item in roomManager.ShowAvailableRoom())
-                   {
-                    Console.WriteLine(item);
-                   }
-             // Console.WriteLine (newDatabase.GetRoomList());   
-                 //RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
+                    Console.WriteLine("All rooms!");
+                    foreach (var item in roomManager.ShowAllRooms())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine("Available rooms!");
+                    foreach (var item in roomManager.ShowAvailableRoom())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    // Console.WriteLine (newDatabase.GetRoomList());   
+                    //RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
                     break;
 
                 case MenuChoiceStaff.CheckIn:
@@ -72,6 +71,19 @@ internal class Program
 
                 case MenuChoiceStaff.Receipt:
                     Console.WriteLine("Print Receipt");
+                    break;
+
+                case MenuChoiceStaff.Update:
+                    Console.WriteLine("Update room status");
+                    foreach (var item in roomManager.ShowAllRooms())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine("Choose room to update: ");
+                    string roomToUpdate = Console.ReadLine();
+                    Console.WriteLine("Choose room status: \n [1] checked in \n [2] check out \n [3] reserved \n [4] not in use");
+                    string newRoomStatus = Console.ReadLine();
+
                     break;
 
                 case MenuChoiceStaff.Quit:
