@@ -92,15 +92,23 @@ Transaction
 DataBase Quaries:
 [x] List of Rooms(Tina)
 
-"SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.rommStatus_id=roomstatus.roomStatus_id) ;"
+"SELECT room_id,roomType_name,roomStatus_name,room_price 
+FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) 
+INNER JOIN roomstatus ON rooms.rommStatus_id=roomstatus.roomStatus_id) ;"
 
-[] List of employee (Tina)
-
+[x] List of employee (Tina)
+ SELECT * FROM employees
 [x] List of Customer Jessica
 
  "SELECT customer_id,customer_fname,customer_lname,customer_phone,customer_email,customer_city,customer_country,customer_address FROM customers;"
 
 [] Join tables  get List of Transaction (Tina)
+SELECT transaction_id,room_id,room_Type, room_price,customer_fname,customer_lname,transaction_date,
+employee_id,payment_id,payment_amount,bankInfor
+FROM((((transactions INNER JOIN reservations ON transactions.reservation_id = reservations.reservation_id)
+                   INNER JOIN rooms ON rooms.room_id = reservations.room_id)
+                   INNER JOIN customers ON transactions.customer_id=customers.customer_id)
+                   INNER JOIN payment ON payment.customer_id = transactions.customer_id)
 
 [x] Join tables get List of Reservations (johan)
 
