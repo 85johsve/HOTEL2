@@ -21,7 +21,7 @@ internal class Program
     static void Employee()
     {
         Console.Clear();
-        //using (var connection = new MySqlConnection("Server=localhost;Database=videoteket;Uid=Tina;Pwd=123456;"))
+
         int employeeID = GetID();
 
         if (employeeID != 1 || employeeID != 2 || employeeID != 3) //Hämta från databasen
