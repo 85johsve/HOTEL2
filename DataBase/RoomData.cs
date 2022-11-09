@@ -1,17 +1,30 @@
 using Dapper;
 using MySqlConnector;
-class RoomData:Database
+class RoomData : Database
 {
     Database roomdb = new Database();
     MySqlConnection connection;
-    
+    string roomToUpdate;
+    string newRoomStatus;
 
-     public RoomData()
+
+    public RoomData()
     {
         connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
-        
+
     }
 
+    public List<Room> GetRoomList()
+    {
+        var rooms = connection.Query<Room>("SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.roomStatus_id=roomstatus.roomStatus_id) ;").ToList();
+        return rooms;
+
+    }
+
+    public void UpdateRoomStatus(string roomToUpdate, string newRoomStatus)
+    {
+        var updateRoom = connection.Query<Room> ($"UPDATE `rooms` SET `roomStatus_id`={newRoomStatus} WHERE `room_id` = {roomToUpdate};");
+    }
      public List<Room> GetRoomList()
   {
     var rooms = connection.Query<Room>("SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.roomStatus_id=roomstatus.roomStatus_id) ;").ToList();

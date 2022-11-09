@@ -33,17 +33,9 @@ class RoomManager
         return availableRooms;
     }
 
-    public List<Room> Add(int id1, int typeID1, int statusID1,double price1)   //needs to update DB directly /j
+    public void AddRoom(Room newRoom)   //needs to update DB directly /j
     {
-        List<Room> rooms=new();
-        bool input = true;
-        while (input)
-        {
-        
-             rooms.Add(newRoomData.AddRoom('int id1','int typeID1','statusID','price'));
-        }
-
-       return rooms;
+        rooms.Add(newRoom);
     }
 
 
