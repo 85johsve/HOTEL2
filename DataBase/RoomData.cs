@@ -25,4 +25,8 @@ class RoomData:Database
   var addRoom = connection.Query<Room> ("INSERT INTO `rooms`(`room_id`, `roomType_id`, `roomStatus_id`, `room_price`) VALUES ('id','typeID','statusID','price')");
   
   }
+  public void DeleteRoom(int roomID)
+  {
+    var DeleteRoom = connection.Query<Room>("DELETE FROM `rooms` WHERE room_id = number");
+  }
 }

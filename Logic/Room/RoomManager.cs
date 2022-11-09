@@ -48,8 +48,8 @@ class RoomManager
 
 
 
-    public void RemoveRoom(Room removeRoom)     //needs to update DB directly /j
+    public void RemoveRoom(int number)     //needs to update DB directly /j
     {
-        rooms.Remove(removeRoom);
+        rooms.Remove(newRoomData.DeleteRoom(int number));
     }
 }
