@@ -25,12 +25,12 @@ class RoomManager
         return availableRooms;
     }
 
-    public void AddRoom(Room newRoom)
+    public void AddRoom(Room newRoom)   //needs to update DB directly /j
     {
         rooms.Add(newRoom);
     }
 
-    public void RemoveRoom(Room removeRoom)
+    public void RemoveRoom(Room removeRoom)     //needs to update DB directly /j
     {
         rooms.Remove(removeRoom);
     }
