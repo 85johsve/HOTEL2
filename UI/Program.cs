@@ -74,7 +74,8 @@ internal class Program
                     int id3 = int.Parse(Console.ReadLine());
                     Console.WriteLine("price");
                     double p = double.Parse(Console.ReadLine());
-                    roomManager.AddRoom(id1, id2, id3, p);
+                     roomManager.AddRoom(id1, id2, id3, p);
+                    
                     break;
                 case MenuChoiceStaff.RemoveRoom:
 

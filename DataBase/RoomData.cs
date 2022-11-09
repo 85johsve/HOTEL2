@@ -30,15 +30,26 @@ class RoomData : Database
 
   public void InsertRoom(int id, int typeID, int statusID, double price)
   {
-    
+//     var r = new DynamicParameters();
+//     r.Add("@room_id",0,System.Data.DbType.Int32,System.Data.ParameterDirection.Output);
+//     r.Add("@roomType_id",typeID);
+//     r.Add("@roomStatus_id",statusID);
+//     r.Add("@room_price",price);
+//    string sql=$@"INSERT INTO rooms (roomType_id, roomStatus_id, room_price) VALUES (@typeID,@statusID,@price); SELECT @room_id = @@ IDENTITY";
+// connection.Execute(sql,r);
+//     int newIdentity= r.Get<int>("@room_id");
+// return newIdentity;
+   
     
   var insertRoom = connection.Query<Room> ($"INSERT INTO rooms (room_id, roomType_id, roomStatus_id, room_price) VALUES ({id},{typeID},{statusID},{price})");
   
-  
   }
+
   public void DeleteRoom(int number)
   {
 
     var DeleteRoom = connection.Query<Room>($"DELETE FROM `rooms` WHERE room_id = {number}");
   }
+
+
 }
