@@ -9,14 +9,14 @@ public class Room
     public string? roomStatus_name { get; set; }
     public double room_price { get; set; }
     // need a Enum RoomStatus= CheckIn, CheckOut seem as table ? 
-    enum RoomStatus
-    {
-        CheckedIn=1,
-        CheckOut,
-        Reserved,
-        NotInUse,   //named "Not in Use" in DB
+    // enum RoomStatus
+    // {
+    //     CheckedIn=1,
+    //     CheckOut,
+    //     Reserved,
+    //     NotInUse,   //named "Not in Use" in DB
 
-    }
+    // }
 
     // public Room(int roomID, string roomType_name, string roomStatus_name, double roomPrice)
     // {
@@ -28,6 +28,6 @@ public class Room
 
     public override string ToString()
     {
-        return "Room: " + room_id + " " + roomType_name + " " + roomStatus_name + " " + room_price;
+        return $"Room: " + room_id + " " + roomType_name + " " + roomStatus_name + " " + room_price;
     }
 }

@@ -48,11 +48,11 @@ internal class Program
             switch (choice)
             {
                 case MenuChoiceStaff.ShowRoom:
-                //    foreach (var item in roomManager.ShowAvailableRoom())
-                //    {
-                //     Console.WriteLine(item);
-                //    }
-              Console.WriteLine (newDatabase.GetRoomList());   
+                   foreach (var item in roomManager.ShowAvailableRoom())
+                   {
+                    Console.WriteLine(item);
+                   }
+             // Console.WriteLine (newDatabase.GetRoomList());   
                  //RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
                     break;
 
