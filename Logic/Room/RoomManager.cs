@@ -7,16 +7,23 @@ class RoomManager
 {
     private List<Room> rooms;
      Database newDatabase = new Database();
+     RoomData newRoomData= new();
 
     public RoomManager()
     {
         // get list from database?
     }
+    
+    public List<Room> ShowAllRooms()
+    {
+
+        return newRoomData.GetRoomList();
+    }
 
     public List<Room> ShowAvailableRoom()
     {
         List<Room> availableRooms = new();
-        foreach (Room room in newDatabase.GetRoomList())
+        foreach (Room room in newRoomData.GetRoomList())
         {
             if (room.roomStatus_name == "CheckOut")// this Available need to be changed to Enum later
             {
