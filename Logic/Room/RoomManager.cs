@@ -32,6 +32,11 @@ class RoomManager
         return availableRooms;
     }
 
+    public void UpdateRoomData(string roomToUpdate, string newRoomStatus)
+    {
+        
+    }
+
     public List<Room> AddRooms(int id1, int typeID1, int statusID1,double price1)   //needs to update DB directly /j
     {
         List<Room> AddRooms=new();
