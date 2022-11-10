@@ -27,7 +27,10 @@ class RoomManager
         }
         return availableRooms;
     }
-
+    public void UpdateRoomStatusID(string roomToUpdate, string newRoomStatus)
+    {
+        newRoomData.UpdateRoomStatus(roomToUpdate, newRoomStatus);
+    }
 
      public void AddRoom(int roomID,int typeID, int statusID, double price)   
 
