@@ -121,8 +121,25 @@ internal class Program
                     break;
 
                 case MenuChoiceStaff.Receipt:
-                    Console.WriteLine("Print Receipt");
+                    Console.WriteLine("Do you want a receipt? Y/N");
+                    string answer = Console.ReadLine().ToLower();
+                    if (answer == "y")
+                    {
+                        Console.WriteLine("Your receipt");//Console.WriteLine("Receipt\n" + "Check in date: " + date_in + "\nCheck out date: " + check_out + "\nCustomer name: " + customer_fname + customer_lname + "\nRoom: " + room_id + "\nTotal Price: " + Price +"\nHotellet\nTel: 033-106600\nAllégatan 13 \nBorås");
+                        quit = false;
+                    }
+                    else if (answer == "n")
+                    {
+                        Console.WriteLine("No receipt chosen!");
+                        quit = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("your choice does not exist!");
+                        
+                    }
                     break;
+
 
                 case MenuChoiceStaff.Update:
                     Console.WriteLine("Update room status");
