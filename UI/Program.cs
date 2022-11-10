@@ -52,7 +52,7 @@ internal class Program
         {
 
             foreach (string c in Enum.GetNames(typeof(MenuChoiceStaff)))
-                Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceStaff), Enum.Parse(typeof(MenuChoiceStaff), c), "d"));
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceStaff), Enum.Parse(typeof(MenuChoiceStaff), c), "d"));
 
             Console.WriteLine("Select one of the options:");
             int employeeInput = int.Parse(Console.ReadLine());
@@ -197,7 +197,17 @@ internal class Program
             {
 
                 case MenuChoiceCustomer.ViewRoom:
-                Console.WriteLine("View Available Rooms");
+                Console.WriteLine("All rooms!");
+                foreach (var item in roomManager.ShowAllRooms())
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine("Available rooms!");
+                foreach (var item in roomManager.ShowAvailableRoom())
+                {
+                    Console.WriteLine(item);
+                }
+                Console.ReadKey();
                 break;
 
                 case MenuChoiceCustomer.ViewReviews:
