@@ -111,7 +111,8 @@ internal class Program
                 break;
 
                 case MenuChoiceStaff.Quit:
-                quit = true;
+                Console.WriteLine("You have chosen to quit the program");
+                quit = false;
                 break;
 
                 default:
