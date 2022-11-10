@@ -11,8 +11,9 @@ class RoomManager
     
     public List<Room> ShowAllRooms()
     {
+        rooms.AddRange(newRoomData.GetRoomList());
 
-        return newRoomData.GetRoomList();
+        return rooms;
     }
 
     public List<Room> ShowAvailableRoom()
