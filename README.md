@@ -129,6 +129,10 @@ Maybe we should have a Product base class, so we can add other products besides 
 
 UPDATE `rooms` SET `roomStatus_id`='1' WHERE `room_id` = 1001
 
+[ ] search for span in reservations
+
+SELECT * FROM `reservations` WHERE date_in>("2022-11-08 11:58:29") AND date_out < ("2022-11-10 00:00:00");
+
 NOTES:
 TimeSpan
 DateOnly
