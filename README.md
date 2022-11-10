@@ -136,11 +136,11 @@ SELECT * FROM `reservations` WHERE date_in >= ("2022-11-06 11:58:29") AND date_o
 
 [ ] list rooms and rservations
 
-SELECT rooms.room_id, rooms.roomType_id, rooms.roomStatus_id, rooms.room_price, reservations.reservation_id
+SELECT rooms.room_id, rooms.roomType_id, rooms.roomStatus_id, rooms.room_price, reservations.reservation_id, reservations.date_in, reservations.date_out
 FROM `rooms`
 LEFT JOIN reservations ON rooms.room_id = reservations.room_id;
 
-[ ] List all available rooms between two dates YEEESS!!!
+[ ] List all available rooms between two dates (this is wrong!)
 
 SELECT rooms.room_id, rooms.roomType_id, rooms.roomStatus_id, rooms.room_price, reservations.reservation_id
 FROM `rooms`
