@@ -124,7 +124,7 @@ internal class Program
 
          if (employeeID== 1 && employeePass=="1")
           {
-             isLoggeIn= true;
+             isLogIn= true;
              break;
           }  
             else
@@ -243,4 +243,3 @@ internal class Program
     //     GetEmployeeInput();
 
     }
-}
