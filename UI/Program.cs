@@ -155,22 +155,26 @@ internal class Program
 
     private static void GetCustomerInput()
     {
-         foreach (string c in Enum.GetNames(typeof(MenuChoiceCustomer)))
+        bool quit = true;
+        while (quit)
+        {
+            foreach (string c in Enum.GetNames(typeof(MenuChoiceCustomer)))
             Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceCustomer), Enum.Parse(typeof(MenuChoiceCustomer), c), "d"));
 
-        Console.WriteLine("Select one of the options:");
-        int CustomerInput = int.Parse(Console.ReadLine());
-        MenuChoiceCustomer CustomerChoice = (MenuChoiceCustomer)CustomerInput;
+            Console.WriteLine("Select one of the options:");
+            int CustomerInput = int.Parse(Console.ReadLine());
+            MenuChoiceCustomer CustomerChoice = (MenuChoiceCustomer)CustomerInput;
 
 
             switch (CustomerChoice)
             {
+
                 case MenuChoiceCustomer.ViewRoom:
                 Console.WriteLine("View Available Rooms");
                 break;
 
                 case MenuChoiceCustomer.ViewReviews:
-                Console.WriteLine("View Reviews");
+                Console.WriteLine("View Reviews");                    
                 break;
 
                 case MenuChoiceCustomer.BookRoom:
@@ -189,6 +193,7 @@ internal class Program
                 
                 default:
                 break;
+
             }
         }
     }
