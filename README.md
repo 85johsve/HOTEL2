@@ -132,6 +132,13 @@ UPDATE `rooms` SET `roomStatus_id`='1' WHERE `room_id` = 1001
 [ ] search for span in reservations
 
 SELECT * FROM `reservations` WHERE date_in>("2022-11-08 11:58:29") AND date_out < ("2022-11-10 00:00:00");
+SELECT * FROM `reservations` WHERE date_in >= ("2022-11-06 11:58:29") AND date_out <= ("2022-11-08 00:00:00");
+
+[ ] list rooms and rservations
+
+SELECT rooms.room_id, rooms.roomType_id, rooms.roomStatus_id, rooms.room_price, reservations.reservation_id
+FROM `rooms`
+LEFT JOIN reservations ON rooms.room_id = reservations.room_id;
 
 NOTES:
 TimeSpan
