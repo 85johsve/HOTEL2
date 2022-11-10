@@ -158,10 +158,6 @@ internal class Program
     }
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 66f756fe6a2da75f839e4806c90ec6dbabef2524
     private static void AddRoomMenyInput()
     {
         Console.WriteLine("room Id: ");
