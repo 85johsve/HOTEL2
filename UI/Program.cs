@@ -24,6 +24,7 @@ internal class Program
             Customer();
         }
     }
+    
     static void Employee()
     {
         Console.Clear();
@@ -35,78 +36,77 @@ internal class Program
             Console.WriteLine("ID not recognized! Try again");
         }
 
-        if (employeeID == 1 || employeeID == 2 || employeeID == 3) //Hämta från databasen
-        {
-            foreach (string c in Enum.GetNames(typeof(MenuChoiceStaff)))
-                Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceStaff), Enum.Parse(typeof(MenuChoiceStaff), c), "d"));
 
-            Console.WriteLine("Select one of the options:");
-            int input = int.Parse(Console.ReadLine());
-            MenuChoiceStaff choice = (MenuChoiceStaff)input;
+        foreach (string c in Enum.GetNames(typeof(MenuChoiceStaff)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceStaff), Enum.Parse(typeof(MenuChoiceStaff), c), "d"));
 
-            switch (choice)
-            {
-                case MenuChoiceStaff.ShowRoom:
-                    Console.WriteLine("All rooms!");
-                    foreach (var item in roomManager.ShowAllRooms())
-                    {
-                        Console.WriteLine(item);
-                    }
-                    Console.WriteLine("Available rooms!");
-                    foreach (var item in roomManager.ShowAvailableRoom())
-                    {
-                        Console.WriteLine(item);
-                    }
-                    // Console.WriteLine (newDatabase.GetRoomList());   
-                    //RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
-                    break;
-
-                case MenuChoiceStaff.CheckIn:
-                    Console.WriteLine("Check in/Check out");
-                    break;
-
-                case MenuChoiceStaff.AddRoom: // and also RemoveRoom()
-                    AddRoomMenyInput();
-
-                    break;
-                case MenuChoiceStaff.RemoveRoom:
-
-                     Console.WriteLine("room Id: ");
-                     int id = int.Parse(Console.ReadLine());
-                     roomManager.RemoveRoom(id);
-                     break;
-
-                case MenuChoiceStaff.Receipt:
-                    Console.WriteLine("Print Receipt");
-                    break;
-
-                case MenuChoiceStaff.Update:
-                    Console.WriteLine("Update room status");
-                    foreach (var item in roomManager.ShowAllRooms())
-                    {
-                        Console.WriteLine(item);
-                    }
-                    Console.WriteLine("Choose room to update: ");
-                    string roomToUpdate = Console.ReadLine();
-                    Console.WriteLine("Choose room status: \n [1] checked in \n [2] check out \n [3] reserved \n [4] not in use");
-                    string newRoomStatus = Console.ReadLine();
-
-                    break;
-
-                case MenuChoiceStaff.Quit:
-                    Console.WriteLine("Quit");
-                    break;
-
-                default:
-                    break;
-            }
-        }
-        else
-            Console.WriteLine("No ID identified!");
+        GetEmployeeInput();
 
     }
 
+    private static void GetEmployeeInput()
+    {
+        Console.WriteLine("Select one of the options:");
+        int input = int.Parse(Console.ReadLine());
+        MenuChoiceStaff choice = (MenuChoiceStaff)input;
 
+        switch (choice)
+        {
+            case MenuChoiceStaff.ShowRoom:
+                Console.WriteLine("All rooms!");
+                foreach (var item in roomManager.ShowAllRooms())
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine("Available rooms!");
+                foreach (var item in roomManager.ShowAvailableRoom())
+                {
+                    Console.WriteLine(item);
+                }
+                // Console.WriteLine (newDatabase.GetRoomList());   
+                //RoomManager.ShowAvailableRoom();  //Behöver ändra dessa till anrop
+                break;
+
+            case MenuChoiceStaff.CheckIn:
+                Console.WriteLine("Check in/Check out");
+                break;
+
+            case MenuChoiceStaff.AddRoom: // and also RemoveRoom()
+                AddRoomMenyInput();
+
+                break;
+            case MenuChoiceStaff.RemoveRoom:
+
+                Console.WriteLine("room Id: ");
+                int id = int.Parse(Console.ReadLine());
+                roomManager.RemoveRoom(id);
+                break;
+
+            case MenuChoiceStaff.Receipt:
+                Console.WriteLine("Print Receipt");
+                break;
+
+            case MenuChoiceStaff.Update:
+                Console.WriteLine("Update room status");
+                foreach (var item in roomManager.ShowAllRooms())
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine("Choose room to update: ");
+                string roomToUpdate = Console.ReadLine();
+                Console.WriteLine("Choose room status: \n [1] checked in \n [2] check out \n [3] reserved \n [4] not in use");
+                string newRoomStatus = Console.ReadLine();
+
+                break;
+
+            case MenuChoiceStaff.Quit:
+                Console.WriteLine("Quit");
+                break;
+
+            default:
+                break;
+        }
+    }
 
     static void Customer()
     {
