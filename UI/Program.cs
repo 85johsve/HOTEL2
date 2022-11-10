@@ -84,7 +84,7 @@ internal class Program
         {
 
             foreach (string c in Enum.GetNames(typeof(MenuChoiceStaff)))
-                Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceStaff), Enum.Parse(typeof(MenuChoiceStaff), c), "d"));
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceStaff), Enum.Parse(typeof(MenuChoiceStaff), c), "d"));
 
             Console.WriteLine("Select one of the options:");
             int employeeInput = int.Parse(Console.ReadLine());
@@ -121,8 +121,25 @@ internal class Program
                     break;
 
                 case MenuChoiceStaff.Receipt:
-                    Console.WriteLine("Print Receipt");
+                    Console.WriteLine("Do you want a receipt? Y/N");
+                    string answer = Console.ReadLine().ToLower();
+                    if (answer == "y")
+                    {
+                        Console.WriteLine("Your receipt");//Console.WriteLine("Receipt\n" + "Check in date: " + date_in + "\nCheck out date: " + check_out + "\nCustomer name: " + customer_fname + customer_lname + "\nRoom: " + room_id + "\nTotal Price: " + Price +"\nHotellet\nTel: 033-106600\nAllégatan 13 \nBorås");
+                        quit = false;
+                    }
+                    else if (answer == "n")
+                    {
+                        Console.WriteLine("No receipt chosen!");
+                        quit = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("your choice does not exist!");
+                        
+                    }
                     break;
+
 
                 case MenuChoiceStaff.Update:
                     Console.WriteLine("Update room status");
@@ -197,7 +214,17 @@ internal class Program
             {
 
                 case MenuChoiceCustomer.ViewRoom:
-                    Console.WriteLine("View Available Rooms");
+                    Console.WriteLine("All rooms!");
+                    foreach (var item in roomManager.ShowAllRooms())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine("Available rooms!");
+                    foreach (var item in roomManager.ShowAvailableRoom())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.ReadKey();
                     break;
 
                 case MenuChoiceCustomer.ViewReviews:
