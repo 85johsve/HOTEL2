@@ -11,9 +11,9 @@ class RoomManager
     
     public List<Room> ShowAllRooms()
     {
-        rooms.AddRange(newRoomData.GetRoomList());
+        
 
-        return rooms;
+        return  newRoomData.GetRoomList();
     }
 
     public List<Room> ShowAvailableRoom()
@@ -33,12 +33,13 @@ class RoomManager
         newRoomData.UpdateRoomStatus(roomToUpdate, newRoomStatus);
     }
 
-     public void AddRoom(int roomID,int typeID, int statusID, double price)   
+     public int AddRoom(int roomID,int typeID, int statusID, double price)   
 
     {
           
-           newRoomData.InsertRoom (roomID,typeID, statusID, price);     
-          // print out the room?
+          int InsertRoomID= newRoomData.InsertRoom (roomID,typeID, statusID, price);     
+     
+     return InsertRoomID;     // print out the room?
     }
 
 
