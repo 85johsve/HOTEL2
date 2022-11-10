@@ -198,7 +198,17 @@ internal class Program
             {
 
                 case MenuChoiceCustomer.ViewRoom:
-                    Console.WriteLine("View Available Rooms");
+                    Console.WriteLine("All rooms!");
+                    foreach (var item in roomManager.ShowAllRooms())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine("Available rooms!");
+                    foreach (var item in roomManager.ShowAvailableRoom())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.ReadKey();
                     break;
 
                 case MenuChoiceCustomer.ViewReviews:
