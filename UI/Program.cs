@@ -27,6 +27,7 @@ internal class Program
         }
     }
 
+
     static void Employee()
     {
         Console.Clear();
@@ -35,13 +36,12 @@ internal class Program
        {
         GetEmployeeInput();
        }
-        
-
     }
+
     static void Customer()
     {
         Console.Clear();
-        EmployeeLog();
+        CustomerLog();
        if (isLogIn)
        {
         GetCustomerInput();;
@@ -152,6 +152,37 @@ internal class Program
        
     }
 
+     private static void CustomerLog()
+    {
+        int temp=0;
+        while(temp<3)
+        {
+        Customer customer = new();
+        Console.WriteLine("Please enter your ID: "); //For-loop i<3?
+        int customerID = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter password");
+      string customerPass = Console.ReadLine();
+        //employeeID== employee.employee_id && employeeID!=null
+
+         if (customerID== 2 && customerPass=="2")
+          {
+             isLogIn= true;
+             break;
+          }  
+            else
+            {
+         if(temp<2)
+           Console.Write("\nLoggin unsucced, try again!");
+           else
+           Console.Write("\nNO more try. Bye!");
+                
+            } 
+             temp++;
+
+        }
+        
+       
+    }
 
     private static void GetCustomerInput()
     {
