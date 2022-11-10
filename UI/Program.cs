@@ -66,16 +66,8 @@ internal class Program
                     break;
 
                 case MenuChoiceStaff.AddRoom: // and also RemoveRoom()
-                    Console.WriteLine("room Id: ");
-                    int id1 = int.Parse(Console.ReadLine());
-                    Console.WriteLine("TYPE ID: ");
-                    int id2 = int.Parse(Console.ReadLine());
-                    Console.WriteLine("STATUS ID");
-                    int id3 = int.Parse(Console.ReadLine());
-                    Console.WriteLine("price");
-                    double p = double.Parse(Console.ReadLine());
-                     roomManager.AddRoom(id1, id2, id3, p);
-                    
+                    AddRoomMenyInput();
+
                     break;
                 case MenuChoiceStaff.RemoveRoom:
 
@@ -113,6 +105,8 @@ internal class Program
             Console.WriteLine("No ID identified!");
 
     }
+
+
 
     static void Customer()
     {
@@ -162,6 +156,19 @@ internal class Program
         Console.WriteLine("Please enter your ID: "); //For-loop i<3?
         int employeeID = int.Parse(Console.ReadLine());
         return employeeID;
+    }
+
+        private static void AddRoomMenyInput()
+    {
+        Console.WriteLine("room Id: ");
+        int id1 = int.Parse(Console.ReadLine());
+        Console.WriteLine("TYPE ID: ");
+        int id2 = int.Parse(Console.ReadLine());
+        Console.WriteLine("STATUS ID");
+        int id3 = int.Parse(Console.ReadLine());
+        Console.WriteLine("price");
+        double p = double.Parse(Console.ReadLine());
+        roomManager.AddRoom(id1, id2, id3, p);
     }
     // static void Login()
     // {
