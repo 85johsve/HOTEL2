@@ -4,6 +4,7 @@ internal class Program
 {
     static Database newDatabase = new Database();
     static RoomManager roomManager = new();
+    static bool isLogIn = true;
 
 
 
@@ -29,17 +30,12 @@ internal class Program
     static void Employee()
     {
         Console.Clear();
-
-        int employeeID = GetID();
-
-        // if (employeeID != 1 || employeeID != 2 || employeeID != 3) //Hämta från databasen
-        {
-            Console.WriteLine("ID not recognized! Try again");
-        }
-
-
-
+        GetID();
+       if (isLogIn)
+       {
         GetEmployeeInput();
+       }
+        
 
     }
 
@@ -114,7 +110,7 @@ internal class Program
         }
     }
 
-        private static bool GetID()
+        private static void GetID()
     {
         int temp=0;
         while(temp<3)
@@ -122,27 +118,28 @@ internal class Program
         Employee employee = new();
         Console.WriteLine("Please enter your ID: "); //For-loop i<3?
         int employeeID = int.Parse(Console.ReadLine());
-        if (employeeID== employee.employee_id && employeeID!=null)
-        {
-            Console.WriteLine("Enter password");
-            string employeePass = Console.ReadLine();
-            if (employeePass==employee.employee_lname && employeePass!=null)
-            {
-                return true;
-            }
+        Console.WriteLine("Enter password");
+      string employeePass = Console.ReadLine();
+        //employeeID== employee.employee_id && employeeID!=null
+
+         if (employeeID== 1 && employeePass=="1")
+          {
+             isLogIn= true;
+             break;
+          }  
             else
             {
-                Console.WriteLine("");
-            }
+         if(temp<2)
+           Console.Write("\nLoggin unsucced, try again!");
+           else
+           Console.Write("\nNO more try. Bye!");
+                
+            } 
+             temp++;
+
         }
-        else
-        {
-            Console.WriteLine("Invalid ID!");
-            temp++;
-            continue;
-        }
-        }
-        return employeeID;
+        
+       
     }
 
     static void Customer()
@@ -229,4 +226,20 @@ internal class Program
     //       temp++;
     //     }
     // }
-}
+
+    //   static void Employee()
+    // {
+    //     Console.Clear();
+
+    //     int employeeID = GetID();
+
+    //     // if (employeeID != 1 || employeeID != 2 || employeeID != 3) //Hämta från databasen
+    //     {
+    //         Console.WriteLine("ID not recognized! Try again");
+    //     }
+
+
+
+    //     GetEmployeeInput();
+
+    }
