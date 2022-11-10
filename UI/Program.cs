@@ -148,7 +148,6 @@ internal class Program
         }
     }
 
-
     private static void CustomerLog()
     {
         int temp = 0;
@@ -228,15 +227,15 @@ internal class Program
 
     private static void AddRoomMenyInput()
     {
-        Console.WriteLine("room Id: ");
-        int id1 = int.Parse(Console.ReadLine());
         Console.WriteLine("TYPE ID: ");
         int id2 = int.Parse(Console.ReadLine());
         Console.WriteLine("STATUS ID");
         int id3 = int.Parse(Console.ReadLine());
         Console.WriteLine("price");
         double p = double.Parse(Console.ReadLine());
-        roomManager.AddRoom(id1, id2, id3, p);
+        Console.WriteLine ("Added room ID:");
+        Console.WriteLine ( roomManager.AddRoom( id2, id3, p));//id1,
+        Console.ReadLine();
     }
 
     // static void Login()
