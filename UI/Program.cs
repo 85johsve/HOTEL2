@@ -10,10 +10,6 @@ internal class Program
 
     private static void Main(string[] args)
     {
-        Database newDatabase = new Database();
-        RoomManager roomManager = new();
-
-
 
         Console.WriteLine("Employee Press [1]\nCustomer Press [2]");
         string answer = Console.ReadLine();
@@ -26,7 +22,6 @@ internal class Program
             Customer();
         }
     }
-
 
     static void Employee()
     {
