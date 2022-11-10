@@ -4,7 +4,7 @@ internal class Program
 {
     static Database newDatabase = new Database();
     static RoomManager roomManager = new();
-    static bool isLoggeIn = true;
+    static bool isLogIn = true;
 
 
 
@@ -31,7 +31,7 @@ internal class Program
     {
         Console.Clear();
         GetID();
-       if (isLoggeIn)
+       if (isLogIn)
        {
         GetEmployeeInput();
        }
