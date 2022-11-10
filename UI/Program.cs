@@ -30,10 +30,21 @@ internal class Program
     static void Employee()
     {
         Console.Clear();
-        GetID();
+        EmployeeLog();
        if (isLogIn)
        {
         GetEmployeeInput();
+       }
+        
+
+    }
+    static void Customer()
+    {
+        Console.Clear();
+        EmployeeLog();
+       if (isLogIn)
+       {
+        GetCustomerInput();;
        }
         
 
@@ -49,8 +60,8 @@ internal class Program
                 Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceStaff), Enum.Parse(typeof(MenuChoiceStaff), c), "d"));
 
             Console.WriteLine("Select one of the options:");
-            int input = int.Parse(Console.ReadLine());
-            MenuChoiceStaff choice = (MenuChoiceStaff)input;
+            int employeeInput = int.Parse(Console.ReadLine());
+            MenuChoiceStaff choice = (MenuChoiceStaff)employeeInput;
 
             switch (choice)
             {
@@ -109,7 +120,7 @@ internal class Program
         }
     }
 
-        private static void GetID()
+        private static void EmployeeLog()
     {
         int temp=0;
         while(temp<3)
@@ -141,22 +152,15 @@ internal class Program
        
     }
 
-    static void Customer()
-    {
-        foreach (string c in Enum.GetNames(typeof(MenuChoiceCustomer)))
-            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceCustomer), Enum.Parse(typeof(MenuChoiceCustomer), c), "d"));
-        GetCustomerInput();
-
-    }
 
     private static void GetCustomerInput()
     {
-        bool quit = true;
-        while (quit)
-        {
-            Console.WriteLine("Select one of the options:");
-            int CustomerInput = int.Parse(Console.ReadLine());
-            MenuChoiceCustomer CustomerChoice = (MenuChoiceCustomer)CustomerInput;
+         foreach (string c in Enum.GetNames(typeof(MenuChoiceCustomer)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceCustomer), Enum.Parse(typeof(MenuChoiceCustomer), c), "d"));
+
+        Console.WriteLine("Select one of the options:");
+        int CustomerInput = int.Parse(Console.ReadLine());
+        MenuChoiceCustomer CustomerChoice = (MenuChoiceCustomer)CustomerInput;
 
 
             switch (CustomerChoice)
