@@ -11,7 +11,6 @@ class RoomManager
     
     public List<Room> ShowAllRooms()
     {
-        
 
         return  newRoomData.GetRoomList();
     }
