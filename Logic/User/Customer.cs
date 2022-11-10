@@ -6,4 +6,9 @@ public class Customer
   public string? customer_email {get;set;}
   public int customer_phone {get;set;}
 
+      public Customer()
+    {
+
+    }
+
 }
