@@ -24,7 +24,7 @@ internal class Program
             Customer();
         }
     }
-    
+
     static void Employee()
     {
         Console.Clear();
@@ -151,14 +151,9 @@ internal class Program
         }
     }
 
-    private static int GetID()
-    {
-        Console.WriteLine("Please enter your ID: "); //For-loop i<3?
-        int employeeID = int.Parse(Console.ReadLine());
-        return employeeID;
-    }
 
-        private static void AddRoomMenyInput()
+
+    private static void AddRoomMenyInput()
     {
         Console.WriteLine("room Id: ");
         int id1 = int.Parse(Console.ReadLine());
@@ -170,17 +165,32 @@ internal class Program
         double p = double.Parse(Console.ReadLine());
         roomManager.AddRoom(id1, id2, id3, p);
     }
+
     // static void Login()
     // {
-    //     for (int i = 1; i < 3; i++)
-    //     {
-    //     Console.WriteLine("Please enter your employee ID: "); //For-loop i<3?
-    //     string employeeID = Console.ReadLine();
+    //     int temp = 0;
+    // while (temp < 3)
+    // {
 
-    //     if (employeeID != "1" || employeeID != "2" || employeeID !="3") //Hämta från databasen
+    //   Console.Write("\nEnter socialsercurity number: ");
+    //   SocialSecurityNumber = Console.ReadLine();
+    //   Console.Write("\nEnter Password: ");
+    //   string userPassword = Console.ReadLine();
+      
+    //     if (SocialSecurityNumber == "1" && userPassword  == "2")
+    //     {          
+    //        isLoggedIn =true ;  
+    //        break;                          
+    //     }      
+      
+    //    else 
     //     {
-    //         Console.WriteLine("ID not recognized! Try again");   
+    //        if(temp<2)
+    //        Console.Write("\nLoggin unsucced, try again!");
+    //        else
+    //        Console.Write("\nNO more try. Bye!");
     //     }
+    //       temp++;
     //     }
     // }
 }
