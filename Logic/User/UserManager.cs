@@ -3,6 +3,9 @@ using MySqlConnector;
 
 class userManager
 {
+    private List<Employee> employees;
+    private List<Customer> customers;
+    
     public void CreateEmployee()
     {
 
