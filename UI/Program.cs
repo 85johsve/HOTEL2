@@ -114,6 +114,37 @@ internal class Program
         }
     }
 
+        private static bool GetID()
+    {
+        int temp=0;
+        while(temp<3)
+        {
+        Employee employee = new();
+        Console.WriteLine("Please enter your ID: "); //For-loop i<3?
+        int employeeID = int.Parse(Console.ReadLine());
+        if (employeeID== employee.employee_id && employeeID!=null)
+        {
+            Console.WriteLine("Enter password");
+            string employeePass = Console.ReadLine();
+            if (employeePass==employee.employee_lname && employeePass!=null)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid ID!");
+            temp++;
+            continue;
+        }
+        }
+        return employeeID;
+    }
+
     static void Customer()
     {
         foreach (string c in Enum.GetNames(typeof(MenuChoiceCustomer)))
