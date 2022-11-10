@@ -226,4 +226,21 @@ internal class Program
     //       temp++;
     //     }
     // }
+
+    //   static void Employee()
+    // {
+    //     Console.Clear();
+
+    //     int employeeID = GetID();
+
+    //     // if (employeeID != 1 || employeeID != 2 || employeeID != 3) //Hämta från databasen
+    //     {
+    //         Console.WriteLine("ID not recognized! Try again");
+    //     }
+
+
+
+    //     GetEmployeeInput();
+
+    }
 }
