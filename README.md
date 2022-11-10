@@ -140,6 +140,13 @@ SELECT rooms.room_id, rooms.roomType_id, rooms.roomStatus_id, rooms.room_price, 
 FROM `rooms`
 LEFT JOIN reservations ON rooms.room_id = reservations.room_id;
 
+[ ] List all available rooms between two dates YEEESS!!!
+
+SELECT rooms.room_id, rooms.roomType_id, rooms.roomStatus_id, rooms.room_price, reservations.reservation_id
+FROM `rooms`
+LEFT JOIN reservations ON rooms.room_id = reservations.room_id
+WHERE NOT date_in >= ("2122-11-06 11:58:29") AND date_out <= ("2122-11-08 00:00:00");
+
 NOTES:
 TimeSpan
 DateOnly
