@@ -2,7 +2,7 @@
 using MySqlConnector;
 internal class Program
 {
-    static Database newDatabase = new Database();
+    
     static RoomManager roomManager = new();
     static bool isLogIn = true;
 

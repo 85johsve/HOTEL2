@@ -2,7 +2,7 @@ using Dapper;
 using MySqlConnector;
 class RoomData
 {
-    Database roomdb = new Database();
+    
     MySqlConnection connection;
     // string roomToUpdate;
     // string newRoomStatus;

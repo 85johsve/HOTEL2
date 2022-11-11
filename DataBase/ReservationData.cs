@@ -1,9 +1,9 @@
 using Dapper;
 using MySqlConnector;
 
-class ReservationData : Database
+class ReservationData 
 {
-    Database reservatindb = new Database();
+    
     MySqlConnection connection;
 
     public ReservationData()

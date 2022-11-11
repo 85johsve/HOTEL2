@@ -1,8 +1,8 @@
 using Dapper;
 using MySqlConnector;
-class ReviewData : Database
+class ReviewData 
 {
-    Database reviewdb = new Database();
+    
     MySqlConnection connection;
 
 
