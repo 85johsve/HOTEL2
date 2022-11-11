@@ -33,40 +33,10 @@ internal class Program
             }
         } 
         
-      
-        // if (answer == "1")
-        // {
-        //     Console.Clear();
-        //     EmployeeLog();
-        //     if (isLogIn)
-        //     {
-        //         GetEmployeeInput();
-        //     }
-        // }
-        // else if (answer == "2")
-        // {
-        //     Console.Clear();
-        //     CustomerLog();
-        //     if (isLogIn)
-        //     {
-        //         GetCustomerInput(); ;
-        //     }
-        // }
-        // else
-        // {
-           
-        // }
+     
     }
 
-    // static void Employee()
-    // {
-    //     Console.Clear();
-    //     EmployeeLog();
-    //     if (isLogIn)
-    //     {
-    //         GetEmployeeInput();
-    //     }
-    // }
+
 
     static void Customer()
     {
@@ -85,7 +55,7 @@ internal class Program
         int temp = 0;
         while (temp < 3)
         {
-            Employee employee = new();
+            // Employee employee = new();
             int employeeID;
             string employeePass;
             try

@@ -50,6 +50,7 @@ class userManager
     public int AddCustomer(string customer_fname, string customer_lname, int customer_phone, string customer_email, string customer_city, string customer_country, string customer_address)
     {
         int InsertCustomerID= newCustomerData.InsertCustomer (customer_fname, customer_lname, customer_phone, customer_email, customer_city, customer_country, customer_address);     
+        
         return InsertCustomerID;  
     
         using (var connection = new MySqlConnection("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"))
