@@ -5,9 +5,10 @@ class EmployeeManager
 {
     private List<Employee> employees;
     EmployeeData newEmployeeData= new();
-    private List<Customer> customers;
-    CustomerData newCustomerData= new();
- 
+    // private List<Customer> customers;
+    // CustomerData newCustomerData= new();
+
+    
 
     public int AddEmployee(int jobTitle_id, string employee_fname, string employee_lname, int employee_phone, string employee_email)
     {
@@ -30,20 +31,17 @@ class EmployeeManager
             var employee = connection.Query<Employee>($"INSERT INTO employees(jobTitle_id, employee_fname, employee_lname, employee_phone, employee_email)VALUES ('{addJobTitleId}', '{addEmployeeFName}''{addEmployeeLName}','{addEmployeePhone}','{addEmployeeEmail}',);").ToList();
             Console.WriteLine("Employee has been added!");
         }
+    
     }
-
-    public void UpdateEmployee()
-    {
-        
-    }
-    // public List<Employee> GetEmployeeList()
-    // {
-    //     // EmployeeData.employees = connection.Query<Employee>("SELECT * FROM employees;").ToList();
-    //     // return employees;
-
-    // }
+        public List<Employee>ShowAllEmployees()
+        {
+            return newEmployeeData.GetEmployeeList();
+        }
+    
+        //newEmployeeData.DeleteEmployee(int idNumber);
     
     public void RemoveEmployee(int idNumber)
     {
         //newEmployeeData.DeleteEmployee(int idNumber);
     }
+}
