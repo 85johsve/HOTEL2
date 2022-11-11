@@ -1,8 +1,9 @@
 using Dapper;
 using MySqlConnector;
-class EmployeeData : Database
+class EmployeeData 
 {
-    Database employeedb = new Database();
+    private List<Employee> employees;
+    EmployeeData newEmployeeData= new();
     MySqlConnection connection;
 
 
@@ -11,6 +12,14 @@ class EmployeeData : Database
         connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
 
     }
+
+    public List<Employee> GetEmployeeList()
+    {
+        var employees = connection.Query<Employee>("SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.roomStatus_id=roomstatus.roomStatus_id) ;").ToList();
+        return employees;
+
+    }
+    
     public int InsertEmployee(int jobTitleId, string employeeFName, string employeeLName, int employeePhone, string employeeEmail)
     {
         //int id, 
@@ -28,4 +37,6 @@ class EmployeeData : Database
 
 
     }
+
+   
 }

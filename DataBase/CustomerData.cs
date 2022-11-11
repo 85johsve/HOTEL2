@@ -2,7 +2,7 @@ using Dapper;
 using MySqlConnector;
 class CustomerData : Database
 {
-    Database customerdb = new Database();
+   
     MySqlConnection connection;
 
 
@@ -12,7 +12,7 @@ class CustomerData : Database
 
     }
 
-    public int InsertCustomer()
+    public int InsertCustomer(string customer_fname, string customer_lname, int customer_phone, string customer_email, string customer_city, string customer_country, string customer_address)
     {
          var r = new DynamicParameters();
         r.Add("@roomType_id", typeID);
