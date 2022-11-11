@@ -20,7 +20,7 @@ class CustomerData
     }
      public Customer SearchCustomer()
     {
-        var customer = connection.Query<Customer>("SELECT * FROM customers;");
+        var customer = connection.QuerySingle<Customer>("SELECT * FROM customers WHERE customer_id = 1;");
         return customer;
 
     }
