@@ -4,16 +4,16 @@ using MySqlConnector;
 class CustomerManager
 {
     
-    private List<Customer> customers;
+   // private List<Customer> customers;
     CustomerData newCustomerData= new();
  
 
 
-    public int AddCustomer(string customer_fname, string customer_lname, int customer_phone, string customer_email, string customer_city, string customer_country, string customer_address)
+    public int AddCustomer(string fname, string lname, int phone, string email, string city, string country, string address)
     {
-        int InsertCustomerID= newCustomerData.InsertCustomer (customer_fname, customer_lname, customer_phone, customer_email, customer_city, customer_country, customer_address);     
+        int insertCustomerID= newCustomerData.InsertCustomer (fname, lname, phone, email, city, country, address);     
 
-        return InsertCustomerID;  
+        return insertCustomerID;  
     
         // using (var connection = new MySqlConnection("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"))
         // {

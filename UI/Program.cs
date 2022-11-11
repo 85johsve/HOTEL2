@@ -88,7 +88,6 @@ internal class Program
                     LoginWrongMessage();
                 else
                     NoTryMessage();
-
             }
             temp++;
 
@@ -252,7 +251,7 @@ internal class Program
             {
 
                 case MenuChoiceCustomer.ViewRoom:
-                    Console.WriteLine("Add customers id!");
+                    Console.WriteLine("Add customer!");
                     Console.WriteLine("First name: ");
                     string addCustomerFName = Console.ReadLine();
                     Console.WriteLine("Last name: ");
@@ -261,13 +260,14 @@ internal class Program
                     int addCustomerPhone = int.Parse(Console.ReadLine());
                     Console.WriteLine("Email: ");
                     string addCustomerEmail = Console.ReadLine();
-                    Console.WriteLine("Email: ");
+                    Console.WriteLine("City: ");
                     string addCustomerCity = Console.ReadLine();
-                    Console.WriteLine("Email: ");
+                    Console.WriteLine("Country: ");
                     string addCustomerCountry = Console.ReadLine();
-                    Console.WriteLine("Email: ");
+                    Console.WriteLine("Address: ");
                     string addCustomerAddress = Console.ReadLine();
-                    Console.WriteLine(customerManager.AddCustomer(addCustomerFName,addCustomerLName,addCustomerPhone,addCustomerEmail,addCustomerCity,addCustomerCountry,addCustomerAddress));
+                    int addId =customerManager.AddCustomer(addCustomerFName,addCustomerLName,addCustomerPhone,addCustomerEmail,addCustomerCity,addCustomerCountry,addCustomerAddress);
+                    Console.WriteLine(addId);
 
                     Console.WriteLine("All rooms!");
 
