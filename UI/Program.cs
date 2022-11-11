@@ -121,16 +121,16 @@ internal class Program
         while (quit)
         {
 
-            foreach (string c in Enum.GetNames(typeof(MenuChoiceStaff)))
-                Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceStaff), Enum.Parse(typeof(MenuChoiceStaff), c), "d"));
+            foreach (string c in Enum.GetNames(typeof(MenuChoiceEmployee)))
+                Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceEmployee), Enum.Parse(typeof(MenuChoiceEmployee), c), "d"));
 
             Console.WriteLine("Select one of the options:");
             int employeeInput = int.Parse(Console.ReadLine());
-            MenuChoiceStaff choice = (MenuChoiceStaff)employeeInput;
+            MenuChoiceEmployee choice = (MenuChoiceEmployee)employeeInput;
 
             switch (choice)
             {
-                case MenuChoiceStaff.ShowRoom:
+                case MenuChoiceEmployee.ShowRoom:
                     Console.WriteLine("All rooms!");
                     foreach (var item in roomManager.ShowAllRooms())
                     {
@@ -144,7 +144,7 @@ internal class Program
                     Console.ReadKey();
                     break;
 
-                case MenuChoiceStaff.CheckIn:
+                case MenuChoiceEmployee.CheckIn:
 
                 
                 // Console.WriteLine("Show AllCustomer!");
@@ -174,11 +174,11 @@ internal class Program
 
                     break;
 
-                case MenuChoiceStaff.AddRoom: // and also RemoveRoom()
+                case MenuChoiceEmployee.AddRoom: // and also RemoveRoom()
                     AddRoomMenyInput();
                     break;
 
-                case MenuChoiceStaff.RemoveRoom:
+                case MenuChoiceEmployee.RemoveRoom:
                     // Console.WriteLine("employee Id: ");
                     // int id = int.Parse(Console.ReadLine());
                     // employeeManager.RemoveEmployee(id);
@@ -187,7 +187,7 @@ internal class Program
                     roomManager.RemoveRoom(id);
                     break;
 
-                case MenuChoiceStaff.Receipt:
+                case MenuChoiceEmployee.Receipt:
                     Console.WriteLine("Do you want a receipt? Y/N");
                     string answer = Console.ReadLine().ToLower();
                     if (answer == "y")
@@ -208,7 +208,7 @@ internal class Program
                     break;
 
 
-                case MenuChoiceStaff.Update:
+                case MenuChoiceEmployee.Update:
                     Console.WriteLine("Update room status");
                     foreach (var item in roomManager.ShowAllRooms())
                     {
@@ -221,7 +221,7 @@ internal class Program
                     roomManager.UpdateRoomStatusID(roomToUpdate, newRoomStatus);
                     break;
 
-                case MenuChoiceStaff.Quit:
+                case MenuChoiceEmployee.Quit:
                     Console.WriteLine("You have chosen to quit the program");
                     quit = false;
                     break;

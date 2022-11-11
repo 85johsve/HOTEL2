@@ -1,5 +1,5 @@
 
-    public enum MenuChoiceStaff //change to employee
+    public enum MenuChoiceEmployee //change to employee
     {
         ShowRoom=1,
         CheckIn,
