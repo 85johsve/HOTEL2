@@ -279,25 +279,31 @@ internal class Program
             {
 
                 case MenuChoiceCustomer.ViewRoom:
-                    Console.WriteLine("Add customer!");
-                    Console.WriteLine("First name: ");
-                    string addCustomerFName = Console.ReadLine();
-                    Console.WriteLine("Last name: ");
-                    string addCustomerLName = Console.ReadLine();
-                    Console.WriteLine("Phone: ");
-                    int addCustomerPhone = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Email: ");
-                    string addCustomerEmail = Console.ReadLine();
-                    Console.WriteLine("City: ");
-                    string addCustomerCity = Console.ReadLine();
-                    Console.WriteLine("Country: ");
-                    string addCustomerCountry = Console.ReadLine();
-                    Console.WriteLine("Address: ");
-                    string addCustomerAddress = Console.ReadLine();
-                    int addId = customerManager.AddCustomer(addCustomerFName, addCustomerLName, addCustomerPhone, addCustomerEmail, addCustomerCity, addCustomerCountry, addCustomerAddress);
-                    Console.WriteLine(addId);
 
-                    Console.WriteLine("All rooms!");
+                Console.WriteLine ("Search A Customer!");
+                Console.WriteLine ("Customer ID: ");
+                int customerId = int.Parse(Console.ReadLine());
+                Console.WriteLine (customerManager.SearchCustomer(customerId));
+                Console.ReadLine();
+                    // Console.WriteLine("Add customer!");
+                    // Console.WriteLine("First name: ");
+                    // string addCustomerFName = Console.ReadLine();
+                    // Console.WriteLine("Last name: ");
+                    // string addCustomerLName = Console.ReadLine();
+                    // Console.WriteLine("Phone: ");
+                    // int addCustomerPhone = int.Parse(Console.ReadLine());
+                    // Console.WriteLine("Email: ");
+                    // string addCustomerEmail = Console.ReadLine();
+                    // Console.WriteLine("City: ");
+                    // string addCustomerCity = Console.ReadLine();
+                    // Console.WriteLine("Country: ");
+                    // string addCustomerCountry = Console.ReadLine();
+                    // Console.WriteLine("Address: ");
+                    // string addCustomerAddress = Console.ReadLine();
+                    // int addId = customerManager.AddCustomer(addCustomerFName, addCustomerLName, addCustomerPhone, addCustomerEmail, addCustomerCity, addCustomerCountry, addCustomerAddress);
+                    // Console.WriteLine(addId);
+
+                   // Console.WriteLine("All rooms!");
 
                     // foreach (var item in roomManager.ShowAllRooms())
                     // {

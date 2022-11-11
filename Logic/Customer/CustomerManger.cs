@@ -16,9 +16,9 @@ class CustomerManager
 
         return insertCustomerID;  
     }
-    public void UpdateCustomer()
+    public Customer SearchCustomer(int number)
     {
-
+         return newCustomerData.GetCustomer(number);
     }
     public List<Customer> ShowAllCustomers()
     {

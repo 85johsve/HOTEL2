@@ -18,9 +18,9 @@ class CustomerData
         return customers;
 
     }
-     public Customer SearchCustomer()
+     public Customer GetCustomer(int idNr)
     {
-        var customer = connection.QuerySingle<Customer>("SELECT * FROM customers WHERE customer_id = 1;");
+        var customer = connection.QuerySingle<Customer>($"SELECT * FROM customers WHERE customer_id  ={idNr};");
         return customer;
 
     }
