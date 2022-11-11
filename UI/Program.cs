@@ -147,13 +147,15 @@ internal class Program
                 case MenuChoiceStaff.CheckIn:
 
                 
-                Console.WriteLine("Show AllCustomer!");
-                 foreach (var item in customerManager.ShowAllCustomers())
-                    {
-                        Console.WriteLine(item);
-                    }
+                // Console.WriteLine("Show AllCustomer!");
+                //  foreach (var item in customerManager.ShowAllCustomers())
+                //     {
+                //         Console.WriteLine(item);
+                //     }
                    
-                    Console.ReadKey();
+                //     Console.ReadKey();
+
+                
                
                 //     Console.WriteLine("Check in/Check out");
                 //     Console.WriteLine("Job Title ID: "); //LÄGGA DETTA I PROGRAM
