@@ -3,13 +3,22 @@ using MySqlConnector;
 
 class EmployeeManager
 {
+<<<<<<< HEAD
    // private List<Employee> employees;
+=======
+    //private List<Employee> employees;
+>>>>>>> 10fc4ad4f095a2462ea6a605913581fc231f984a
     EmployeeData newEmployeeData= new();
     // private List<Customer> customers;
     // CustomerData newCustomerData= new();
+    public EmployeeManager()
+    {
+        
+    }
 
     
 
+<<<<<<< HEAD
     public int AddEmployee(int jobTitle_id, string employee_fname, string employee_lname, int employee_phone, string employee_email)
      {
          int InsertEmployeeID= newEmployeeData.InsertEmployee (jobTitle_id, employee_fname, employee_lname, employee_phone, employee_email);     
@@ -34,6 +43,14 @@ class EmployeeManager
     //         '{addEmployeeLName}','{addEmployeePhone}','{addEmployeeEmail}',);").ToList();
     //         Console.WriteLine("Employee has been added!");
     //     }
+=======
+    public int AddEmployee(int jobId, string fname, string lname, int phone, string email)
+    {
+        int InsertEmployeeID= newEmployeeData.InsertEmployee (jobId, fname, lname, phone, email);     
+        return InsertEmployeeID;  
+    
+        
+>>>>>>> 10fc4ad4f095a2462ea6a605913581fc231f984a
     
     // }
         public List<Employee>ShowAllEmployees()

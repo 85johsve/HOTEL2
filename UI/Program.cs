@@ -28,7 +28,7 @@ internal class Program
         }
         else if (answer == "2")
         {
-           // Customer();
+            // Customer();
             Console.Clear();
             CustomerLog();
             if (isLogIn)
@@ -145,6 +145,7 @@ internal class Program
                     break;
 
                 case MenuChoiceStaff.CheckIn:
+<<<<<<< HEAD
                     Console.WriteLine("Check in/Check out");
                     Console.WriteLine("Job Title ID: "); //LÄGGA DETTA I PROGRAM
             int addJobTitleId = int.Parse(Console.ReadLine());
@@ -158,6 +159,30 @@ internal class Program
             string addEmployeeEmail = Console.ReadLine();
         //    int  addEmpId= employeeManager.AddEmployee(addJobTitleId,addEmployeeFName,addEmployeeLName, addEmployeePhone, addEmployeeEmail);
         //     Console.WriteLine(addEmpId);
+=======
+                Console.WriteLine("Show AllCustomer!");
+                 foreach (var item in customerManager.ShowAllCustomers())
+                    {
+                        Console.WriteLine(item);
+                    }
+                   
+                    Console.ReadKey();
+               
+                //     Console.WriteLine("Check in/Check out");
+                //     Console.WriteLine("Job Title ID: "); //LÄGGA DETTA I PROGRAM
+                //     int addJobTitleId = int.Parse(Console.ReadLine());
+                //     Console.WriteLine("First name: ");
+                //     string addEmployeeFName = Console.ReadLine();
+                //     Console.WriteLine("Last name: ");
+                //     string addEmployeeLName = Console.ReadLine();
+                //     Console.WriteLine("Phone: ");
+                //     int addEmployeePhone = int.Parse(Console.ReadLine());
+                //     Console.WriteLine("Email: ");
+                //     string addEmployeeEmail = Console.ReadLine();
+                //    int eId= employeeManager.AddEmployee(addJobTitleId,addEmployeeFName,addEmployeeLName,addEmployeePhone,addEmployeeEmail);
+                //    Console.WriteLine (eId);
+
+>>>>>>> 10fc4ad4f095a2462ea6a605913581fc231f984a
                     break;
 
                 case MenuChoiceStaff.AddRoom: // and also RemoveRoom()
@@ -282,7 +307,7 @@ internal class Program
                     string addCustomerCountry = Console.ReadLine();
                     Console.WriteLine("Address: ");
                     string addCustomerAddress = Console.ReadLine();
-                    int addId =customerManager.AddCustomer(addCustomerFName,addCustomerLName,addCustomerPhone,addCustomerEmail,addCustomerCity,addCustomerCountry,addCustomerAddress);
+                    int addId = customerManager.AddCustomer(addCustomerFName, addCustomerLName, addCustomerPhone, addCustomerEmail, addCustomerCity, addCustomerCountry, addCustomerAddress);
                     Console.WriteLine(addId);
 
                     Console.WriteLine("All rooms!");
