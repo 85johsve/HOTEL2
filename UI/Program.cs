@@ -13,25 +13,60 @@ internal class Program
 
         Console.WriteLine("Employee Press [1]\nCustomer Press [2]");
         string answer = Console.ReadLine();
-        if (answer == "1")
+       
+            if (answer == "1")
         {
-            Employee();
+            Console.Clear();
+            EmployeeLog();
+            if (isLogIn)
+            {
+                GetEmployeeInput();
+            }
         }
         else if (answer == "2")
         {
-            Customer();
-        }
+            Console.Clear();
+            CustomerLog();
+            if (isLogIn)
+            {
+                GetCustomerInput(); ;
+            }
+        } 
+        
+      
+        // if (answer == "1")
+        // {
+        //     Console.Clear();
+        //     EmployeeLog();
+        //     if (isLogIn)
+        //     {
+        //         GetEmployeeInput();
+        //     }
+        // }
+        // else if (answer == "2")
+        // {
+        //     Console.Clear();
+        //     CustomerLog();
+        //     if (isLogIn)
+        //     {
+        //         GetCustomerInput(); ;
+        //     }
+        // }
+        // else
+        // {
+           
+        // }
     }
 
-    static void Employee()
-    {
-        Console.Clear();
-        EmployeeLog();
-        if (isLogIn)
-        {
-            GetEmployeeInput();
-        }
-    }
+    // static void Employee()
+    // {
+    //     Console.Clear();
+    //     EmployeeLog();
+    //     if (isLogIn)
+    //     {
+    //         GetEmployeeInput();
+    //     }
+    // }
 
     static void Customer()
     {
@@ -51,10 +86,18 @@ internal class Program
         while (temp < 3)
         {
             Employee employee = new();
-            Console.WriteLine("Please enter your ID: "); //For-loop i<3?
-            int employeeID = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter password");
-            string employeePass = Console.ReadLine();
+            int employeeID;
+            string employeePass;
+            try
+            {
+               GetID(out employeeID, out employeePass); 
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
+           // GetID(out employeeID, out employeePass);
             //employeeID== employee.employee_id && employeeID!=null
 
             if (employeeID == 1 && employeePass == "1")
@@ -65,9 +108,9 @@ internal class Program
             else
             {
                 if (temp < 2)
-                    Console.Write("\nLoggin unsucced, try again!");
+                    LoginWrongMessage();
                 else
-                    Console.Write("\nNO more try. Bye!");
+                    NoTryMessage();
 
             }
             temp++;
@@ -77,6 +120,24 @@ internal class Program
 
     }
 
+    private static void GetID(out int employeeID, out string employeePass)
+    {
+        Console.WriteLine("Please enter your ID: "); //For-loop i<3?
+        employeeID = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter password");
+        employeePass = Console.ReadLine();
+    }
+
+    private static void NoTryMessage()
+    {
+        Console.Write("\nNO more try. Bye!");
+    }
+
+    private static void LoginWrongMessage()
+    {
+        Console.Write("\nLoggin unsucced, try again!");
+    }
+
     private static void GetEmployeeInput()
     {
         bool quit = true;
@@ -84,7 +145,7 @@ internal class Program
         {
 
             foreach (string c in Enum.GetNames(typeof(MenuChoiceStaff)))
-            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceStaff), Enum.Parse(typeof(MenuChoiceStaff), c), "d"));
+                Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceStaff), Enum.Parse(typeof(MenuChoiceStaff), c), "d"));
 
             Console.WriteLine("Select one of the options:");
             int employeeInput = int.Parse(Console.ReadLine());
@@ -136,7 +197,7 @@ internal class Program
                     else
                     {
                         Console.WriteLine("your choice does not exist!");
-                        
+
                     }
                     break;
 
@@ -260,8 +321,8 @@ internal class Program
         int id3 = int.Parse(Console.ReadLine());
         Console.WriteLine("price");
         double p = double.Parse(Console.ReadLine());
-        Console.WriteLine ("Added room ID:");
-        Console.WriteLine ( roomManager.AddRoom( id2, id3, p));//id1,
+        Console.WriteLine("Added room ID:");
+        Console.WriteLine(roomManager.AddRoom(id2, id3, p));//id1,
         Console.ReadLine();
     }
 

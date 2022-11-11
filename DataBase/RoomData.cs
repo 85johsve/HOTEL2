@@ -45,8 +45,16 @@ class RoomData
 
     public void DeleteRoom(int number)
     {
+      
+       var r = new DynamicParameters();
+        r.Add("@roomType_id", number);
+        // r.Add("@roomStatus_id", statusID);
+        // r.Add("@room_price", price);
+        string sql = $@"DELETE FROM rooms WHERE number=@room_id ";
+        int Id = connection.Query<int>(sql, r).First();
 
-        var DeleteRoom = connection.Query<Room>($"DELETE FROM `rooms` WHERE room_id = {number}");
+        // return Id;
+        // var DeleteRoom = connection.Query<Room>($"DELETE FROM `rooms` WHERE room_id = {number}");
     }
 
 
