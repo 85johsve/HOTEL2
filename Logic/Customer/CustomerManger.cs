@@ -3,8 +3,7 @@ using MySqlConnector;
 
 class CustomerManager
 {
-    private List<Employee> employees;
-    EmployeeData newEmployeeData= new();
+    
     private List<Customer> customers;
     CustomerData newCustomerData= new();
  

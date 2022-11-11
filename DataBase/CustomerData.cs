@@ -6,22 +6,26 @@ class CustomerData
     MySqlConnection connection;
 
 
-    // public CustomerData()
-    // {
-    //     connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
+    public CustomerData()
+    {
+        connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
 
-    // }
+    }
 
-    // // public int InsertCustomer(string customer_fname, string customer_lname, int customer_phone, string customer_email, string customer_city, string customer_country, string customer_address)
-    // // {
-    // //      var r = new DynamicParameters();
-    // //     r.Add("@roomType_id", typeID);
-    // //     r.Add("@roomStatus_id", statusID);
-    // //     r.Add("@room_price", price);
-    // //     string sql = $@"INSERT INTO rooms (roomType_id, roomStatus_id, room_price) VALUES (@roomType_id,@roomStatus_id,@room_price); SELECT LAST_INSERT_ID() ";
-    // //     int Id = connection.Query<int>(sql, r).First();
+    public int InsertCustomer(string fname, string lname, int phone, string email, string city, string country, string address)
+    {
+         var r = new DynamicParameters();
+        r.Add("@customer_fname", fname);
+        r.Add("@customer_lname", lname);
+        r.Add("@customer_phone", phone);
+        r.Add("@customer_email", email);
+        r.Add("@customer_city", city);
+        r.Add("@customer_country", country);
+        r.Add("@customer_address", address);
+        string sql = $@"INSERT INTO rooms (customer_fname, customer_lname, customer_phone,customer_email,customer_city, customer_country, customer_address) VALUES (@customer_fname,@customer_lname,@customer_phone,@customer_email,@customer_city,@customer_country,@customer_address); SELECT LAST_INSERT_ID() ";
+        int Id = connection.Query<int>(sql, r).First();
 
-    //     return Id;
+        return Id;
     
-    // }
+    }
 }

@@ -2,8 +2,9 @@
 using MySqlConnector;
 internal class Program
 {
-    
+
     static RoomManager roomManager = new();
+    static CustomerManager customerManager = new();
     static bool isLogIn = true;
 
 
@@ -13,9 +14,10 @@ internal class Program
 
         Console.WriteLine("Employee Press [1]\nCustomer Press [2]");
         string answer = Console.ReadLine();
-       
-            if (answer == "1")
+
+        if (answer == "1")
         {
+            //Employee();
             Console.Clear();
             EmployeeLog();
             if (isLogIn)
@@ -25,18 +27,25 @@ internal class Program
         }
         else if (answer == "2")
         {
-            Console.Clear();
-            CustomerLog();
-            if (isLogIn)
-            {
-                GetCustomerInput(); ;
-            }
-        } 
-        
-     
+            Customer();
+            // Console.Clear();
+            // CustomerLog();
+            // if (isLogIn)
+            // {
+            //     GetCustomerInput(); ;
+            // }
+        }
+
     }
-
-
+    // static void Employee()
+    // {
+    //      Console.Clear();
+    //         EmployeeLog();
+    //         if (isLogIn)
+    //         {
+    //             GetEmployeeInput();
+    //         }
+    // }
 
     static void Customer()
     {
@@ -46,8 +55,6 @@ internal class Program
         {
             GetCustomerInput(); ;
         }
-
-
     }
 
     private static void EmployeeLog()
@@ -55,19 +62,19 @@ internal class Program
         int temp = 0;
         while (temp < 3)
         {
-            // Employee employee = new();
+            //Employee employee = new();
             int employeeID;
             string employeePass;
             try
             {
-               GetID(out employeeID, out employeePass); 
+                GetID(out employeeID, out employeePass);
             }
             catch (System.Exception)
             {
-                
+
                 throw;
             }
-           // GetID(out employeeID, out employeePass);
+            // GetID(out employeeID, out employeePass);
             //employeeID== employee.employee_id && employeeID!=null
 
             if (employeeID == 1 && employeePass == "1")
@@ -245,17 +252,35 @@ internal class Program
             {
 
                 case MenuChoiceCustomer.ViewRoom:
+                    Console.WriteLine("Add customers id!");
+                    Console.WriteLine("First name: ");
+                    string addCustomerFName = Console.ReadLine();
+                    Console.WriteLine("Last name: ");
+                    string addCustomerLName = Console.ReadLine();
+                    Console.WriteLine("Phone: ");
+                    int addCustomerPhone = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Email: ");
+                    string addCustomerEmail = Console.ReadLine();
+                    Console.WriteLine("Email: ");
+                    string addCustomerCity = Console.ReadLine();
+                    Console.WriteLine("Email: ");
+                    string addCustomerCountry = Console.ReadLine();
+                    Console.WriteLine("Email: ");
+                    string addCustomerAddress = Console.ReadLine();
+                    Console.WriteLine(customerManager.AddCustomer(addCustomerFName,addCustomerLName,addCustomerPhone,addCustomerEmail,addCustomerCity,addCustomerCountry,addCustomerAddress));
+
                     Console.WriteLine("All rooms!");
-                    foreach (var item in roomManager.ShowAllRooms())
-                    {
-                        Console.WriteLine(item);
-                    }
-                    Console.WriteLine("Available rooms!");
-                    foreach (var item in roomManager.ShowAvailableRoom())
-                    {
-                        Console.WriteLine(item);
-                    }
-                    Console.ReadKey();
+
+                    // foreach (var item in roomManager.ShowAllRooms())
+                    // {
+                    //     Console.WriteLine(item);
+                    // }
+                    // Console.WriteLine("Available rooms!");
+                    // foreach (var item in roomManager.ShowAvailableRoom())
+                    // {
+                    //     Console.WriteLine(item);
+                    // }
+                    // Console.ReadKey();
                     break;
 
                 case MenuChoiceCustomer.ViewReviews:

@@ -47,3 +47,4 @@ class EmployeeManager
     {
         //newEmployeeData.DeleteEmployee(int idNumber);
     }
+}
