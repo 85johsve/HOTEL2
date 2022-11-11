@@ -145,6 +145,21 @@ internal class Program
                     break;
 
                 case MenuChoiceStaff.CheckIn:
+<<<<<<< HEAD
+                    Console.WriteLine("Check in/Check out");
+                    Console.WriteLine("Job Title ID: "); //LÄGGA DETTA I PROGRAM
+            int addJobTitleId = int.Parse(Console.ReadLine());
+            Console.WriteLine("First name: ");
+            string addEmployeeFName = Console.ReadLine();
+            Console.WriteLine("Last name: ");
+            string addEmployeeLName = Console.ReadLine();
+            Console.WriteLine("Phone: ");
+            int addEmployeePhone = int.Parse(Console.ReadLine());
+            Console.WriteLine("Email: ");
+            string addEmployeeEmail = Console.ReadLine();
+        //    int  addEmpId= employeeManager.AddEmployee(addJobTitleId,addEmployeeFName,addEmployeeLName, addEmployeePhone, addEmployeeEmail);
+        //     Console.WriteLine(addEmpId);
+=======
                 Console.WriteLine("Show AllCustomer!");
                  foreach (var item in customerManager.ShowAllCustomers())
                     {
@@ -167,6 +182,7 @@ internal class Program
                 //    int eId= employeeManager.AddEmployee(addJobTitleId,addEmployeeFName,addEmployeeLName,addEmployeePhone,addEmployeeEmail);
                 //    Console.WriteLine (eId);
 
+>>>>>>> 10fc4ad4f095a2462ea6a605913581fc231f984a
                     break;
 
                 case MenuChoiceStaff.AddRoom: // and also RemoveRoom()
@@ -174,6 +190,9 @@ internal class Program
                     break;
 
                 case MenuChoiceStaff.RemoveRoom:
+                    // Console.WriteLine("employee Id: ");
+                    // int id = int.Parse(Console.ReadLine());
+                    // employeeManager.RemoveEmployee(id);
                     Console.WriteLine("room Id: ");
                     int id = int.Parse(Console.ReadLine());
                     roomManager.RemoveRoom(id);
