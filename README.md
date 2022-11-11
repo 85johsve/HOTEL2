@@ -150,3 +150,4 @@ WHERE NOT date_in >= ("2122-11-06 11:58:29") AND date_out <= ("2122-11-08 00:00:
 NOTES:
 TimeSpan
 DateOnly
+;SELECT LAST_INSERT_ID() sen QuerySingle<int>(sql)
