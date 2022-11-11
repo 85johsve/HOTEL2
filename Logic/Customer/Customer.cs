@@ -15,7 +15,7 @@ public class Customer
     }
      public override string ToString()
     {
-        return $"Customer: " + customer_id + " " + customer_fname + " " + customer_lname + " " + customer_email + " " + customer_phone+ " " + customer_city+ " " + customer_country+ " " + customer_address;
+        return $"Customer: " + " " + customer_id + "\nCustomer Full Name: " + customer_fname + " " + customer_lname +"\nCustomer Email: "+ customer_email +"\nCustomer Phone: " + customer_phone+ "\nCustomer City: " + customer_city+ "\nCustomer Country: " + customer_country+ "\nCustomer Address: " + customer_address;
     }
 
 }
