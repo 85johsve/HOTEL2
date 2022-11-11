@@ -27,13 +27,13 @@ internal class Program
         }
         else if (answer == "2")
         {
-            Customer();
-            // Console.Clear();
-            // CustomerLog();
-            // if (isLogIn)
-            // {
-            //     GetCustomerInput(); ;
-            // }
+           // Customer();
+            Console.Clear();
+            CustomerLog();
+            if (isLogIn)
+            {
+                GetCustomerInput(); ;
+            }
         }
 
     }
@@ -47,15 +47,15 @@ internal class Program
     //         }
     // }
 
-    static void Customer()
-    {
-        Console.Clear();
-        CustomerLog();
-        if (isLogIn)
-        {
-            GetCustomerInput(); ;
-        }
-    }
+    // static void Customer()
+    // {
+    //     Console.Clear();
+    //     CustomerLog();
+    //     if (isLogIn)
+    //     {
+    //         GetCustomerInput(); ;
+    //     }
+    // }
 
     private static void EmployeeLog()
     {
