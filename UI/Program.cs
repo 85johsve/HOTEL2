@@ -5,6 +5,7 @@ internal class Program
 
     static RoomManager roomManager = new();
     static CustomerManager customerManager = new();
+    //static EmployeeManager employeeManager = new();
     static bool isLogIn = true;
 
 
@@ -145,6 +146,18 @@ internal class Program
 
                 case MenuChoiceStaff.CheckIn:
                     Console.WriteLine("Check in/Check out");
+                    Console.WriteLine("Job Title ID: "); //LÄGGA DETTA I PROGRAM
+            int addJobTitleId = int.Parse(Console.ReadLine());
+            Console.WriteLine("First name: ");
+            string addEmployeeFName = Console.ReadLine();
+            Console.WriteLine("Last name: ");
+            string addEmployeeLName = Console.ReadLine();
+            Console.WriteLine("Phone: ");
+            int addEmployeePhone = int.Parse(Console.ReadLine());
+            Console.WriteLine("Email: ");
+            string addEmployeeEmail = Console.ReadLine();
+        //    int  addEmpId= employeeManager.AddEmployee(addJobTitleId,addEmployeeFName,addEmployeeLName, addEmployeePhone, addEmployeeEmail);
+        //     Console.WriteLine(addEmpId);
                     break;
 
                 case MenuChoiceStaff.AddRoom: // and also RemoveRoom()
@@ -152,6 +165,9 @@ internal class Program
                     break;
 
                 case MenuChoiceStaff.RemoveRoom:
+                    // Console.WriteLine("employee Id: ");
+                    // int id = int.Parse(Console.ReadLine());
+                    // employeeManager.RemoveEmployee(id);
                     Console.WriteLine("room Id: ");
                     int id = int.Parse(Console.ReadLine());
                     roomManager.RemoveRoom(id);
