@@ -12,6 +12,13 @@ class CustomerData
 
     }
 
+     public List<Customer> GetCustomerList()
+    {
+        var customers = connection.Query<Customer>("SELECT * FROM customers;").ToList();
+        return customers;
+
+    }
+
     public int InsertCustomer(string fname, string lname, int phone, string email, string city, string country, string address)
     {
          var r = new DynamicParameters();
