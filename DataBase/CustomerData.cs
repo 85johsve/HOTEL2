@@ -18,6 +18,12 @@ class CustomerData
         return customers;
 
     }
+     public Customer SearchCustomer()
+    {
+        var customer = connection.Query<Customer>("SELECT * FROM customers;");
+        return customer;
+
+    }
 
     public int InsertCustomer(string fname, string lname, int phone, string email, string city, string country, string address)
     {
