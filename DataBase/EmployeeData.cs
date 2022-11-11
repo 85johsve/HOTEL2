@@ -47,7 +47,7 @@ class EmployeeData
 
     public Employee SearchEmployees(string searchId) //söker igenom listan av böcker med hjälp av sök-text
     {
-        var employee = connection.Query<Employee>($@"SELECT  jobTitle_name, employee_fname, employee_lname,employee_phone, employee_email FROM employees
+        var employee = connection.QuerySingle<Employee>($@"SELECT  jobTitle_name, employee_fname, employee_lname,employee_phone, employee_email FROM employees
         INNER JOIN jobtitles ON jobtitles.jobTitle_id=employees.jobTitle_id
         WHERE employee_id={searchId}");
         return employee;
