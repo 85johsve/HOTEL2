@@ -50,5 +50,14 @@ class RoomData
         
     }
 
+     public Room GetRoom(int idNr)
+    {
+      
+       var room = connection.QuerySingle<Room>($"SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.roomStatus_id=roomstatus.roomStatus_id) WHERE room_id = {idNr};");
+ 
+    return room;
+        
+    }
+
 
 }

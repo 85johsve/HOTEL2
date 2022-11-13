@@ -18,11 +18,23 @@ class CustomerManager
     }
     public Customer SearchCustomer(int sCustomerId)
     {
-         return newCustomerData.GetCustomer(sCustomerId);
+         if (newCustomerData.GetCustomer(sCustomerId)!=null)
+        {
+
+            return newCustomerData.GetCustomer(sCustomerId);
+        }
+        return null;
+         
     }
+
     public List<Customer> ShowAllCustomers()
     {
-      return newCustomerData.GetCustomerList();
+       if (newCustomerData.GetCustomerList()!=null)
+        {
+
+            return newCustomerData.GetCustomerList();
+        }
+        return null;
     }
     
     public void RemoveCustomer(int rCustomerId)    

@@ -5,13 +5,8 @@ internal class Program
 
     static RoomManager roomManager = new();
     static CustomerManager customerManager = new();
-
     static EmployeeManager employeeManager = new();
-
-
     static bool isLogIn = true;
-
-
 
     private static void Main(string[] args)
     {
@@ -46,11 +41,12 @@ internal class Program
             CustomerLog();
             if (isLogIn)
             {
-                GetManagerInput(); 
+                GetManagerInput();
             }
         }
 
     }
+
     // static void Employee()
     // {
     //      Console.Clear();
@@ -70,63 +66,6 @@ internal class Program
     //         GetCustomerInput(); ;
     //     }
     // }
-
-    private static void EmployeeLog()
-    {
-        int temp = 0;
-        while (temp < 3)
-        {
-            //Employee employee = new();
-            int employeeID;
-            string employeePass;
-            try
-            {
-                GetID(out employeeID, out employeePass);
-            }
-            catch (System.Exception)
-            {
-
-                throw;
-            }
-            // GetID(out employeeID, out employeePass);
-            //employeeID== employee.employee_id && employeeID!=null
-
-            if (employeeID == 1 && employeePass == "1")
-            {
-                isLogIn = true;
-                break;
-            }
-            else
-            {
-                if (temp < 2)
-                    LoginWrongMessage();
-                else
-                    NoTryMessage();
-            }
-            temp++;
-
-        }
-
-
-    }
-
-    private static void GetID(out int employeeID, out string employeePass)
-    {
-        Console.WriteLine("Please enter your ID: "); //For-loop i<3?
-        employeeID = int.Parse(Console.ReadLine());
-        Console.WriteLine("Enter password");
-        employeePass = Console.ReadLine();
-    }
-
-    private static void NoTryMessage()
-    {
-        Console.Write("\nNO more try. Bye!");
-    }
-
-    private static void LoginWrongMessage()
-    {
-        Console.Write("\nLoggin unsucced, try again!");
-    }
 
     private static void GetEmployeeInput()
     {
@@ -158,36 +97,24 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.CheckIn:
-
-                
-                // Console.WriteLine("Show AllCustomer!");
-                //  foreach (var item in customerManager.ShowAllCustomers())
-                //     {
-                //         Console.WriteLine(item);
-                //     }
-                   
-                //     Console.ReadKey();
-
-                
-               
-                //     Console.WriteLine("Check in/Check out");
-                //     Console.WriteLine("Job Title ID: "); //LÄGGA DETTA I PROGRAM
-                //     int addJobTitleId = int.Parse(Console.ReadLine());
-                //     Console.WriteLine("First name: ");
-                //     string addEmployeeFName = Console.ReadLine();
-                //     Console.WriteLine("Last name: ");
-                //     string addEmployeeLName = Console.ReadLine();
-                //     Console.WriteLine("Phone: ");
-                //     int addEmployeePhone = int.Parse(Console.ReadLine());
-                //     Console.WriteLine("Email: ");
-                //     string addEmployeeEmail = Console.ReadLine();
-                //    int eId= employeeManager.AddEmployee(addJobTitleId,addEmployeeFName,addEmployeeLName,addEmployeePhone,addEmployeeEmail);
-                //    Console.WriteLine (eId);
+                    //     Console.WriteLine("Check in/Check out");
+                    //     Console.WriteLine("Job Title ID: "); //LÄGGA DETTA I PROGRAM
+                    //     int addJobTitleId = int.Parse(Console.ReadLine());
+                    //     Console.WriteLine("First name: ");
+                    //     string addEmployeeFName = Console.ReadLine();
+                    //     Console.WriteLine("Last name: ");
+                    //     string addEmployeeLName = Console.ReadLine();
+                    //     Console.WriteLine("Phone: ");
+                    //     int addEmployeePhone = int.Parse(Console.ReadLine());
+                    //     Console.WriteLine("Email: ");
+                    //     string addEmployeeEmail = Console.ReadLine();
+                    //    int eId= employeeManager.AddEmployee(addJobTitleId,addEmployeeFName,addEmployeeLName,addEmployeePhone,addEmployeeEmail);
+                    //    Console.WriteLine (eId);
 
 
                     break;
 
-                case MenuChoiceEmployee.AddRoom: 
+                case MenuChoiceEmployee.AddRoom:
                     AddRoomMenyInput();
                     break;
 
@@ -196,15 +123,90 @@ internal class Program
                     // int deleteEmployeeId = int.Parse(Console.ReadLine());
                     // employeeManager.RemoveEmployee(deleteEmployeeId);
 
+                    //     Console.WriteLine("Search Room!");
+                    //     Console.WriteLine("Room Id: ");
+                    //     int searchRoomId = int.Parse(Console.ReadLine());
+                    //     try
+                    //     {
+                    //         if (roomManager.SearchRoom(searchRoomId)!=null)
+                    //     {
+                    //          Console.WriteLine ( roomManager.SearchRoom(searchRoomId));
+                    //     } 
+                    //     }
+                    //     catch (Exception e)
+                    //     {
+
+                    //         throw new ArgumentNullException();
+                    //     }
+                    //    Console.ReadLine ();
+
+
                     // Console.WriteLine("Delete Room!");
                     // Console.WriteLine("Room Id: ");
                     // int deleteRoomId = int.Parse(Console.ReadLine());
                     // roomManager.RemoveRoom(deleteRoomId);
+                    //Console.ReadLine ();
 
-                    Console.WriteLine("Delete Customer!");
-                    Console.WriteLine("Customer Id: ");
-                    int deleteCustomerId = int.Parse(Console.ReadLine());
-                    customerManager.RemoveCustomer(deleteCustomerId);
+                    // Console.WriteLine("Show AllCustomer!");
+                    //  try
+                    //     {
+                    //         if (customerManager.ShowAllCustomers()!=null)
+                    //        {
+                    //             foreach (var item in customerManager.ShowAllCustomers())
+                    //           {
+                    //              Console.WriteLine(item);
+                    //            }
+
+                    //         } 
+                    //     }
+                    //     catch (Exception e)
+                    //     {
+                    //         throw new ArgumentNullException();
+                    //     }   
+                    //     Console.ReadLine ();
+
+                    // Console.WriteLine("Add customer!");
+                    // Console.WriteLine("First name: ");
+                    // string addCustomerFName = Console.ReadLine();
+                    // Console.WriteLine("Last name: ");
+                    // string addCustomerLName = Console.ReadLine();
+                    // Console.WriteLine("Phone: ");
+                    // int addCustomerPhone = int.Parse(Console.ReadLine());
+                    // Console.WriteLine("Email: ");
+                    // string addCustomerEmail = Console.ReadLine();
+                    // Console.WriteLine("City: ");
+                    // string addCustomerCity = Console.ReadLine();
+                    // Console.WriteLine("Country: ");
+                    // string addCustomerCountry = Console.ReadLine();
+                    // Console.WriteLine("Address: ");
+                    // string addCustomerAddress = Console.ReadLine();
+                    // int addId = customerManager.AddCustomer(addCustomerFName, addCustomerLName, addCustomerPhone, addCustomerEmail, addCustomerCity, addCustomerCountry, addCustomerAddress);
+                    // Console.WriteLine(addId);
+                    //Console.ReadLine ();
+
+
+                    //  Console.WriteLine ("Search A Customer!");
+                    // Console.WriteLine ("Customer ID: ");
+                    // int customerId = int.Parse(Console.ReadLine());
+                    //  try
+                    //     {
+                    //         if (customerManager.SearchCustomer(customerId)!=null)
+                    //       {
+                    //          Console.WriteLine ( customerManager.SearchCustomer(customerId));
+                    //        } 
+                    //     }
+                    //     catch (Exception e)
+                    //     {
+                    //         throw new ArgumentNullException();
+                    //     }
+                    //    Console.ReadLine ();
+
+
+                    // Console.WriteLine("Delete Customer!");
+                    // Console.WriteLine("Customer Id: ");
+                    // int deleteCustomerId = int.Parse(Console.ReadLine());
+                    // customerManager.RemoveCustomer(deleteCustomerId);
+                    //Console.ReadLine ();
                     break;
 
                 case MenuChoiceEmployee.Receipt:
@@ -226,7 +228,6 @@ internal class Program
 
                     }
                     break;
-
 
                 case MenuChoiceEmployee.Update:
                     Console.WriteLine("Update room status");
@@ -252,38 +253,6 @@ internal class Program
         }
     }
 
-    private static void CustomerLog()
-    {
-        int temp = 0;
-        while (temp < 3)
-        {
-            Customer customer = new();
-            Console.WriteLine("Please enter your ID: "); //For-loop i<3?
-            int customerID = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter password");
-            string customerPass = Console.ReadLine();
-            //employeeID== employee.employee_id && employeeID!=null
-
-            if (customerID == 2 && customerPass == "2")
-            {
-                isLogIn = true;
-                break;
-            }
-            else
-            {
-                if (temp < 2)
-                    Console.Write("\nLoggin unsucced, try again!");
-                else
-                    Console.Write("\nNO more try. Bye!");
-
-            }
-            temp++;
-
-        }
-
-
-    }
-
     private static void GetCustomerInput()
     {
         bool quit = true;
@@ -301,42 +270,6 @@ internal class Program
             {
 
                 case MenuChoiceCustomer.ViewRoom:
-
-                Console.WriteLine ("Search A Customer!");
-                Console.WriteLine ("Customer ID: ");
-                int customerId = int.Parse(Console.ReadLine());
-                Console.WriteLine (customerManager.SearchCustomer(customerId));
-                Console.ReadLine();
-                    // Console.WriteLine("Add customer!");
-                    // Console.WriteLine("First name: ");
-                    // string addCustomerFName = Console.ReadLine();
-                    // Console.WriteLine("Last name: ");
-                    // string addCustomerLName = Console.ReadLine();
-                    // Console.WriteLine("Phone: ");
-                    // int addCustomerPhone = int.Parse(Console.ReadLine());
-                    // Console.WriteLine("Email: ");
-                    // string addCustomerEmail = Console.ReadLine();
-                    // Console.WriteLine("City: ");
-                    // string addCustomerCity = Console.ReadLine();
-                    // Console.WriteLine("Country: ");
-                    // string addCustomerCountry = Console.ReadLine();
-                    // Console.WriteLine("Address: ");
-                    // string addCustomerAddress = Console.ReadLine();
-                    // int addId = customerManager.AddCustomer(addCustomerFName, addCustomerLName, addCustomerPhone, addCustomerEmail, addCustomerCity, addCustomerCountry, addCustomerAddress);
-                    // Console.WriteLine(addId);
-
-                   // Console.WriteLine("All rooms!");
-
-                    // foreach (var item in roomManager.ShowAllRooms())
-                    // {
-                    //     Console.WriteLine(item);
-                    // }
-                    // Console.WriteLine("Available rooms!");
-                    // foreach (var item in roomManager.ShowAvailableRoom())
-                    // {
-                    //     Console.WriteLine(item);
-                    // }
-                    // Console.ReadKey();
                     break;
 
                 case MenuChoiceCustomer.ViewReviews:
@@ -363,13 +296,14 @@ internal class Program
             }
         }
     }
-     private static void GetManagerInput()   // ID = 2 PASSWORD = 2
+
+    private static void GetManagerInput()   // ID = 2 PASSWORD = 2
     {
         bool quit = true;
         while (quit)
         {
             foreach (string c in Enum.GetNames(typeof(MenuChoiceManager)))
-            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceManager), Enum.Parse(typeof(MenuChoiceManager), c), "d"));
+                Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceManager), Enum.Parse(typeof(MenuChoiceManager), c), "d"));
 
             Console.WriteLine("Select one of the options:");
             int ManagerInput = int.Parse(Console.ReadLine());
@@ -391,16 +325,16 @@ internal class Program
                     Console.ReadKey();
                     break;
 
-                    case MenuChoiceManager.CheckIn:
+                case MenuChoiceManager.CheckIn:
                     Console.WriteLine("Show AllCustomer!");
                     foreach (var item in customerManager.ShowAllCustomers())
                     {
                         Console.WriteLine(item);
-                    }  
+                    }
                     Console.ReadKey();
                     break;
 
-                    case MenuChoiceManager.AddRoom:
+                case MenuChoiceManager.AddRoom:
                     AddRoomMenyInput();
                     break;
 
@@ -410,7 +344,7 @@ internal class Program
                     roomManager.RemoveRoom(id);
                     break;
 
-                    case MenuChoiceManager.Receipt:
+                case MenuChoiceManager.Receipt:
                     Console.WriteLine("Do you want a receipt? Y/N");
                     string answer = Console.ReadLine().ToLower();
                     if (answer == "y")
@@ -429,7 +363,6 @@ internal class Program
                     }
                     break;
 
-
                 case MenuChoiceManager.Update:
                     Console.WriteLine("Update room status");
                     foreach (var item in roomManager.ShowAllRooms())
@@ -443,47 +376,47 @@ internal class Program
                     roomManager.UpdateRoomStatusID(roomToUpdate, newRoomStatus);
                     break;
 
-                    case MenuChoiceManager.AddEmployee: 
+                case MenuChoiceManager.AddEmployee:
                     AddEmployeeMenyInput();
                     break;
 
-                    case MenuChoiceManager.RemoveEmployee:
+                case MenuChoiceManager.RemoveEmployee:
                     Console.WriteLine("Employee Id: ");
                     int eId = int.Parse(Console.ReadLine());
-                    employeeManager.RemoveEmployee(eId);           
+                    employeeManager.RemoveEmployee(eId);
                     break;
 
-                    case MenuChoiceManager.SearchEmployees:
+                case MenuChoiceManager.SearchEmployees:
                     Console.WriteLine("Employee Id: ");
                     int esId = int.Parse(Console.ReadLine());
-                    employeeManager.RemoveEmployee(esId);           
+                    employeeManager.RemoveEmployee(esId);
                     break;
 
-                    case MenuChoiceManager.ShowEmployees:
+                case MenuChoiceManager.ShowEmployees:
                     Console.WriteLine("All employees!");
                     foreach (var item in employeeManager.ShowEmployees())
                     {
                         Console.WriteLine(item);
                     }
                     break;
-                    
-                    case MenuChoiceManager.AddCustomer:
+
+                case MenuChoiceManager.AddCustomer:
                     //AddCustomerMenyInput();
                     break;
 
-                    case MenuChoiceManager.RemoveCustomer:
+                case MenuChoiceManager.RemoveCustomer:
                     Console.WriteLine("Customer Id: ");
                     int cId = int.Parse(Console.ReadLine());
                     //customerManager.RemoveCustomer(cId);           
                     break;
 
-                    case MenuChoiceManager.SearchCustomer:
+                case MenuChoiceManager.SearchCustomer:
                     Console.WriteLine("Customer Id: ");
                     int csId = int.Parse(Console.ReadLine());
-                    customerManager.SearchCustomer(csId);           
+                    customerManager.SearchCustomer(csId);
                     break;
 
-                    case MenuChoiceManager.ShowCustomers:
+                case MenuChoiceManager.ShowCustomers:
                     Console.WriteLine("All customers!");
                     foreach (var item in customerManager.ShowAllCustomers())
                     {
@@ -491,19 +424,85 @@ internal class Program
                     }
                     break;
 
-                    case MenuChoiceManager.Quit:
+                case MenuChoiceManager.Quit:
                     Console.WriteLine("You have chosen to quit the program");
                     quit = false;
                     break;
 
                 default:
                     break;
-
-
             }
         }
     }
- 
+
+    private static void CustomerLog()
+    {
+        int temp = 0;
+        while (temp < 3)
+        {
+            Customer customer = new();
+            Console.WriteLine("Please enter your ID: "); 
+            int customerID = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter password");
+            string customerPass = Console.ReadLine();
+
+            if (customerID == 2 && customerPass == "2")
+            {
+                isLogIn = true;
+                break;
+            }
+            else
+            {
+                if (temp < 2)
+                    Console.Write("\nLoggin unsucced, try again!");
+                else
+                    Console.Write("\nNO more try. Bye!");
+            }
+            temp++;
+        }
+    }
+
+    private static void EmployeeLog()
+    {
+        int temp = 0;
+        while (temp < 3)
+        {
+            //Employee employee = new();
+            int employeeID;
+            string employeePass;
+            try
+            {
+                GetEmployeeID(out employeeID, out employeePass);
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
+            if (employeeID == 1 && employeePass == "1")
+            {
+                isLogIn = true;
+                break;
+            }
+            else
+            {
+                if (temp < 2)
+                    LoginWrongMessage();
+                else
+                    NoTryMessage();
+            }
+            temp++;
+        }
+    }
+
+    private static void GetEmployeeID(out int employeeID, out string employeePass)
+    {
+        Console.WriteLine("Please enter your ID: "); //For-loop i<3?
+        employeeID = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter password");
+        employeePass = Console.ReadLine();
+    }
 
     private static void AddRoomMenyInput()
     {
@@ -517,6 +516,7 @@ internal class Program
         Console.WriteLine(roomManager.AddRoom(id2, id3, p));//id1,
         Console.ReadLine();
     }
+
     private static void AddEmployeeMenyInput()
     {
         Console.WriteLine("Job Title ID: ");
@@ -533,6 +533,16 @@ internal class Program
         Console.WriteLine("Added employee ID:");
         //Console.WriteLine(employeeManager.AddEmployee(id2, fname, lname, id3, email));//id1,
         Console.ReadLine();
+    }
+
+    private static void NoTryMessage()
+    {
+        Console.Write("\nNO more try. Bye!");
+    }
+
+    private static void LoginWrongMessage()
+    {
+        Console.Write("\nLoggin unsucced, try again!");
     }
 
     // static void Login()

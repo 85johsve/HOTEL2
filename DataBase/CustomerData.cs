@@ -44,7 +44,7 @@ class CustomerData
 
      public void DeleteCustomer(int number)
     {
-        var deleteCustomer = connection.Query<Customer>($"DELETE FROM `customers` WHERE number= @customer_id");
+        var deleteCustomer = connection.Query<Customer>($"DELETE FROM `customers` WHERE customer_id = {number}");
 
     }
 }

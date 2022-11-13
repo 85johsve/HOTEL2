@@ -27,6 +27,17 @@ class RoomManager
         }
         return availableRooms;
     }
+
+     public Room SearchRoom(int sRoomId)
+    {    
+        if (newRoomData.GetRoom(sRoomId)!=null)
+        {
+
+            return newRoomData.GetRoom(sRoomId);
+        }
+        return null;
+         
+    }
     public void UpdateRoomStatusID(string roomToUpdate, string newRoomStatus)
     {
         newRoomData.UpdateRoomStatus(roomToUpdate, newRoomStatus);
@@ -41,7 +52,7 @@ class RoomManager
      return InsertRoomID;     
     }
 
-    public void RemoveRoom(int rRoomId)    
+    public void RemoveRoom(int rRoomId)    // how to controll this, make sure if the id does not exist and try catch it?
     {
         newRoomData.DeleteRoom( rRoomId);
     }
