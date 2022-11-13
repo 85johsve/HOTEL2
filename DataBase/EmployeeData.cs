@@ -3,7 +3,7 @@ using MySqlConnector;
 class EmployeeData 
 {
     private List<Employee> employees;
-    EmployeeData newEmployeeData= new();
+    //EmployeeData newEmployeeData= new();
     MySqlConnection connection;
 
 

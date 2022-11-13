@@ -34,6 +34,6 @@
         AddCustomer,
         RemoveCustomer,
         SearchCustomer,
-        ShowAllCustomers,
+        ShowCustomers,
         Quit,
     }
