@@ -41,8 +41,8 @@ class RoomManager
      return InsertRoomID;     
     }
 
-    public void RemoveRoom(int idNumber)    
+    public void RemoveRoom(int rRoomId)    
     {
-        newRoomData.DeleteRoom( idNumber);
+        newRoomData.DeleteRoom( rRoomId);
     }
 }

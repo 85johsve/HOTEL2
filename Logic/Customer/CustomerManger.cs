@@ -16,17 +16,17 @@ class CustomerManager
 
         return insertCustomerID;  
     }
-    public Customer SearchCustomer(int number)
+    public Customer SearchCustomer(int sCustomerId)
     {
-         return newCustomerData.GetCustomer(number);
+         return newCustomerData.GetCustomer(sCustomerId);
     }
     public List<Customer> ShowAllCustomers()
     {
       return newCustomerData.GetCustomerList();
     }
     
-    // public void List<Customer> DeleteCustomer()
-    // {
-
-    // }
+    public void RemoveCustomer(int rCustomerId)    
+    {
+        newCustomerData.DeleteCustomer( rCustomerId);
+    }
 }
