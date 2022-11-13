@@ -5,11 +5,10 @@ internal class Program
 
     static RoomManager roomManager = new();
     static CustomerManager customerManager = new();
-<<<<<<< HEAD
+
     EmployeeManager employeeManager = new();
-=======
-    static EmployeeManager employeeManager = new();
->>>>>>> faa4dfa7279fd0c9f4ede0faa89a64bdfa0bf439
+
+
     static bool isLogIn = true;
 
 
