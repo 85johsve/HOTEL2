@@ -479,15 +479,15 @@ internal class Program
     }
 
     private static void AddRoomMenyInput()
-    {
+    {   // do not need room id, it will return added room id.
         Console.WriteLine("TYPE ID: ");
-        int id2 = int.Parse(Console.ReadLine());
+        int tid = int.Parse(Console.ReadLine());
         Console.WriteLine("STATUS ID");
-        int id3 = int.Parse(Console.ReadLine());
+        int sid = int.Parse(Console.ReadLine());
         Console.WriteLine("price");
         double p = double.Parse(Console.ReadLine());
         Console.WriteLine("Added room ID:");
-        Console.WriteLine(roomManager.AddRoom(id2, id3, p));//id1,
+        Console.WriteLine(roomManager.AddRoom(tid, sid, p));
         Console.ReadLine();
     }
 
