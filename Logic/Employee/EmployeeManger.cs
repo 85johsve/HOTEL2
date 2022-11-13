@@ -21,7 +21,7 @@ class EmployeeManager
         
     
      }
-        public List<Employee>ShowAllEmployees()
+        public List<Employee>ShowEmployees()
         {
             return newEmployeeData.GetEmployeeList();
         }

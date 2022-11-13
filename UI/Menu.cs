@@ -30,7 +30,7 @@
         AddEmployee,
         RemoveEmployee,
         SearchEmployees,
-        ShowAllEmployees,
+        ShowEmployees,
         AddCustomer,
         RemoveCustomer,
         SearchCustomer,
