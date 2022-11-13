@@ -28,6 +28,6 @@ public class Room
 
     public override string ToString()
     {
-        return $"Room: " + room_id + " " + roomType_name + " " + roomStatus_name + " " + room_price;
+        return $"Room: " + room_id + " " + roomType_name + " " + roomStatus_name + " " + room_price+"Kr";
     }
 }

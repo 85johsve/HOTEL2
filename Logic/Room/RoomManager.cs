@@ -6,13 +6,12 @@ using MySqlConnector;
 class RoomManager
 {
     private List<Room> rooms;
-     RoomData newRoomData= new();
+    RoomData newRoomData = new();
 
-    
+
     public List<Room> ShowAllRooms()
     {
-
-        return  newRoomData.GetRoomList();
+        return newRoomData.GetRoomList();
     }
 
     public List<Room> ShowAvailableRoom()
@@ -28,32 +27,29 @@ class RoomManager
         return availableRooms;
     }
 
-     public Room SearchRoom(int sRoomId)
-    {    
-        if (newRoomData.GetRoom(sRoomId)!=null)
+    public Room SearchRoom(int sRoomId)
+    {
+        if (newRoomData.GetRoom(sRoomId) != null)
         {
-
             return newRoomData.GetRoom(sRoomId);
         }
         return null;
-         
     }
+
     public void UpdateRoomStatusID(string roomToUpdate, string newRoomStatus)
     {
         newRoomData.UpdateRoomStatus(roomToUpdate, newRoomStatus);
     }
 
-     public int AddRoom(int typeID, int statusID, double price)   
+    public int AddRoom(int typeID, int statusID, double price)
+    {
+        int InsertRoomID = newRoomData.InsertRoom(typeID, statusID, price);
 
-    { 
-          
-          int InsertRoomID= newRoomData.InsertRoom (typeID, statusID, price);     
-     
-     return InsertRoomID;     
+        return InsertRoomID;
     }
 
     public void RemoveRoom(int rRoomId)    // how to controll this, make sure if the id does not exist and try catch it?
     {
-        newRoomData.DeleteRoom( rRoomId);
+        newRoomData.DeleteRoom(rRoomId);
     }
 }
