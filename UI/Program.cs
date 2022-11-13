@@ -6,7 +6,7 @@ internal class Program
     static RoomManager roomManager = new();
     static CustomerManager customerManager = new();
 
-    EmployeeManager employeeManager = new();
+    static EmployeeManager employeeManager = new();
 
 
     static bool isLogIn = true;
@@ -187,7 +187,7 @@ internal class Program
 
                     break;
 
-                case MenuChoiceEmployee.AddRoom: // and also RemoveRoom()
+                case MenuChoiceEmployee.AddRoom: 
                     AddRoomMenyInput();
                     break;
 
