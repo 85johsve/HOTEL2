@@ -3,7 +3,7 @@ using MySqlConnector;
 class EmployeeData 
 {
     private List<Employee> employees;
-    EmployeeData newEmployeeData= new();
+    //EmployeeData newEmployeeData= new();
     MySqlConnection connection;
 
 
@@ -15,14 +15,13 @@ class EmployeeData
 
     public List<Employee> GetEmployeeList()
     {
-        var employees = connection.Query<Employee>("SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.roomStatus_id=roomstatus.roomStatus_id) ;").ToList();
+        var employees = connection.Query<Employee>("SELECT employee_id,jobTitle_id,employee-fname,employee_lname,employee_phone, employee_email, jobTitle_name FROM ((employees INNER JOIN jobtitles ON employees.jobTitle_name=jobtitle.jobtitle_name);").ToList();
         return employees;
 
     }
     
     public int InsertEmployee(int jobTitleId, string employeeFName, string employeeLName, int employeePhone, string employeeEmail)
-    {
-        //int id, 
+    { 
         var e = new DynamicParameters();
         e.Add("@jobTitle_id", jobTitleId);
         e.Add("@employee_fname", employeeFName);
@@ -39,8 +38,8 @@ class EmployeeData
     public void DeleteEmployee(int number)
     {
         var e = new DynamicParameters();
-        e.Add("@roomType_id", number);
-        string sql = $@"DELETE FROM rooms WHERE number=@room_id ";
+        e.Add("@employee_id", number);
+        string sql = $@"DELETE FROM employees WHERE number=@employee_id ";
         int Id = connection.Query<int>(sql, e).First();
     }
 

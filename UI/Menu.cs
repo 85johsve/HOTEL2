@@ -30,10 +30,10 @@
         AddEmployee,
         RemoveEmployee,
         SearchEmployees,
-        ShowAllEmployees,
+        ShowEmployees,
         AddCustomer,
         RemoveCustomer,
         SearchCustomer,
-        ShowAllCustomers,
+        ShowCustomers,
         Quit,
     }

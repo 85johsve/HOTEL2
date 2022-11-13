@@ -7,10 +7,10 @@ class EmployeeManager
     // private List<Customer> customers;
     // CustomerData newCustomerData= new();
     EmployeeData newEmployeeData=new();
-    public EmployeeManager()
-    {
+    // public EmployeeManager()
+    // {
         
-    }
+    // }
 
 
     public int AddEmployee(int jobId, string fname, string lname, int phone, string email)
@@ -21,7 +21,7 @@ class EmployeeManager
         
     
      }
-        public List<Employee>ShowAllEmployees()
+        public List<Employee>ShowEmployees()
         {
             return newEmployeeData.GetEmployeeList();
         }

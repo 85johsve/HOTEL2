@@ -5,7 +5,11 @@ internal class Program
 
     static RoomManager roomManager = new();
     static CustomerManager customerManager = new();
+<<<<<<< HEAD
     EmployeeManager employeeManager = new();
+=======
+    static EmployeeManager employeeManager = new();
+>>>>>>> faa4dfa7279fd0c9f4ede0faa89a64bdfa0bf439
     static bool isLogIn = true;
 
 
@@ -13,7 +17,7 @@ internal class Program
     private static void Main(string[] args)
     {
 
-        Console.WriteLine("Employee Press [1]\nCustomer Press [2]");
+        Console.WriteLine("Employee Press [1]\nCustomer Press [2]\nManager Press [3]");
         string answer = Console.ReadLine();
 
         if (answer == "1")
@@ -34,6 +38,16 @@ internal class Program
             if (isLogIn)
             {
                 GetCustomerInput(); ;
+            }
+        }
+        else if (answer == "3")
+        {
+            // Manager(); ID = 2, PASSWORD = 2            
+            Console.Clear();
+            CustomerLog();
+            if (isLogIn)
+            {
+                GetManagerInput(); 
             }
         }
 
@@ -350,6 +364,147 @@ internal class Program
             }
         }
     }
+     private static void GetManagerInput()   // ID = 2 PASSWORD = 2
+    {
+        bool quit = true;
+        while (quit)
+        {
+            foreach (string c in Enum.GetNames(typeof(MenuChoiceManager)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceManager), Enum.Parse(typeof(MenuChoiceManager), c), "d"));
+
+            Console.WriteLine("Select one of the options:");
+            int ManagerInput = int.Parse(Console.ReadLine());
+            MenuChoiceManager ManagerChoice = (MenuChoiceManager)ManagerInput;
+
+            switch (ManagerChoice)
+            {
+                case MenuChoiceManager.ShowRoom:
+                    Console.WriteLine("All rooms!");
+                    foreach (var item in roomManager.ShowAllRooms())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine("Available rooms!");
+                    foreach (var item in roomManager.ShowAvailableRoom())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.ReadKey();
+                    break;
+
+                    case MenuChoiceManager.CheckIn:
+                    Console.WriteLine("Show AllCustomer!");
+                    foreach (var item in customerManager.ShowAllCustomers())
+                    {
+                        Console.WriteLine(item);
+                    }  
+                    Console.ReadKey();
+                    break;
+
+                    case MenuChoiceManager.AddRoom:
+                    AddRoomMenyInput();
+                    break;
+
+                case MenuChoiceManager.RemoveRoom:
+                    Console.WriteLine("room Id: ");
+                    int id = int.Parse(Console.ReadLine());
+                    roomManager.RemoveRoom(id);
+                    break;
+
+                    case MenuChoiceManager.Receipt:
+                    Console.WriteLine("Do you want a receipt? Y/N");
+                    string answer = Console.ReadLine().ToLower();
+                    if (answer == "y")
+                    {
+                        Console.WriteLine("Your receipt");//Console.WriteLine("Receipt\n" + "Check in date: " + date_in + "\nCheck out date: " + check_out + "\nCustomer name: " + customer_fname + customer_lname + "\nRoom: " + room_id + "\nTotal Price: " + Price +"\nHotellet\nTel: 033-106600\nAllégatan 13 \nBorås");
+                        quit = false;
+                    }
+                    else if (answer == "n")
+                    {
+                        Console.WriteLine("No receipt chosen!");
+                        quit = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("your choice does not exist!");
+                    }
+                    break;
+
+
+                case MenuChoiceManager.Update:
+                    Console.WriteLine("Update room status");
+                    foreach (var item in roomManager.ShowAllRooms())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine("Choose room to update: ");
+                    string roomToUpdate = Console.ReadLine();
+                    Console.WriteLine("Choose room status: \n [1] checked in \n [2] check out \n [3] reserved \n [4] not in use");
+                    string newRoomStatus = Console.ReadLine();
+                    roomManager.UpdateRoomStatusID(roomToUpdate, newRoomStatus);
+                    break;
+
+                    case MenuChoiceManager.AddEmployee: 
+                    AddEmployeeMenyInput();
+                    break;
+
+                    case MenuChoiceManager.RemoveEmployee:
+                    Console.WriteLine("Employee Id: ");
+                    int eId = int.Parse(Console.ReadLine());
+                    employeeManager.RemoveEmployee(eId);           
+                    break;
+
+                    case MenuChoiceManager.SearchEmployees:
+                    Console.WriteLine("Employee Id: ");
+                    int esId = int.Parse(Console.ReadLine());
+                    employeeManager.RemoveEmployee(esId);           
+                    break;
+
+                    case MenuChoiceManager.ShowEmployees:
+                    Console.WriteLine("All employees!");
+                    foreach (var item in employeeManager.ShowEmployees())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    break;
+                    
+                    case MenuChoiceManager.AddCustomer:
+                    //AddCustomerMenyInput();
+                    break;
+
+                    case MenuChoiceManager.RemoveCustomer:
+                    Console.WriteLine("Customer Id: ");
+                    int cId = int.Parse(Console.ReadLine());
+                    //customerManager.RemoveCustomer(cId);           
+                    break;
+
+                    case MenuChoiceManager.SearchCustomer:
+                    Console.WriteLine("Customer Id: ");
+                    int csId = int.Parse(Console.ReadLine());
+                    customerManager.SearchCustomer(csId);           
+                    break;
+
+                    case MenuChoiceManager.ShowCustomers:
+                    Console.WriteLine("All customers!");
+                    foreach (var item in customerManager.ShowAllCustomers())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    break;
+
+                    case MenuChoiceManager.Quit:
+                    Console.WriteLine("You have chosen to quit the program");
+                    quit = false;
+                    break;
+
+                default:
+                    break;
+
+
+            }
+        }
+    }
+ 
 
     private static void AddRoomMenyInput()
     {
@@ -361,6 +516,23 @@ internal class Program
         double p = double.Parse(Console.ReadLine());
         Console.WriteLine("Added room ID:");
         Console.WriteLine(roomManager.AddRoom(id2, id3, p));//id1,
+        Console.ReadLine();
+    }
+    private static void AddEmployeeMenyInput()
+    {
+        Console.WriteLine("Job Title ID: ");
+        int id2 = int.Parse(Console.ReadLine());
+        Console.WriteLine("First name");
+        string fname = Console.ReadLine();
+        Console.WriteLine("Last name");
+        string lname = Console.ReadLine();
+        Console.WriteLine("Phone: ");
+        int id3 = int.Parse(Console.ReadLine());
+        Console.WriteLine("Email: ");
+        string email = Console.ReadLine();
+
+        Console.WriteLine("Added employee ID:");
+        //Console.WriteLine(employeeManager.AddEmployee(id2, fname, lname, id3, email));//id1,
         Console.ReadLine();
     }
 
