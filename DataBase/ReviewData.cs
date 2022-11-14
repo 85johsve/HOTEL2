@@ -1,5 +1,6 @@
 using Dapper;
 using MySqlConnector;
+using System.Data;
 class ReviewData 
 {
     
@@ -11,8 +12,15 @@ class ReviewData
         connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
 
     }
+      public void Open()
+    {
+        if(connection.State != ConnectionState.Open)
+            connection.Open();
+    }
+
     public List<Review> GetReviews()
     {
+        Open();
         var reviews = connection.Query<Review>("SELECT review_id,reservation_id, review_content FROM reviews INNER JOIN customers ON reviews.customer_id=customers.customer_id;").ToList();
         return reviews;
 

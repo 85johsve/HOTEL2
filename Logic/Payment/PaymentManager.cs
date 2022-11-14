@@ -2,12 +2,16 @@ using Dapper;
 using MySqlConnector;
 class PaymentManger
 {
-     private List<Payment> payments;
+     //private List<Payment> payments;
     PaymentData newPaymentData = new();
-    
+
      public List<Payment> ShowAllPayments()
     {
-        return newPaymentData.GetPaymentList();
+         if (newPaymentData.GetPaymentList() != null)
+        {
+            return newPaymentData.GetPaymentList();
+        }
+        return null;
     }
 
 

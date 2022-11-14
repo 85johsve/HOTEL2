@@ -1,5 +1,6 @@
 using Dapper;
 using MySqlConnector;
+using System.Data;
 class CustomerData
 {
    
@@ -11,15 +12,22 @@ class CustomerData
         connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
 
     }
+      public void Open()
+    {
+        if(connection.State != ConnectionState.Open)
+            connection.Open();
+    }
 
      public List<Customer> GetCustomerList()
     {
+        Open();
         var customers = connection.Query<Customer>("SELECT * FROM customers;").ToList();
         return customers;
 
     }
      public Customer GetCustomer(int idNr)
     {
+        Open();
         var customer = connection.QuerySingle<Customer>($"SELECT * FROM customers WHERE customer_id  ={idNr};");
         return customer;
 
@@ -27,6 +35,7 @@ class CustomerData
 
     public int InsertCustomer(string fname, string lname, int phone, string email, string city, string country, string address)
     {
+        Open();
          var r = new DynamicParameters();
         r.Add("@customer_fname", fname);
         r.Add("@customer_lname", lname);
@@ -44,6 +53,7 @@ class CustomerData
 
      public void DeleteCustomer(int number)
     {
+        Open();
         var deleteCustomer = connection.Query<Customer>($"DELETE FROM `customers` WHERE customer_id = {number}");
 
     }
