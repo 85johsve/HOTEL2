@@ -17,7 +17,6 @@ class EmployeeData
     {
         var employees = connection.Query<Employee>("SELECT employee_id,jobTitle_id,employee-fname,employee_lname,employee_phone, employee_email, jobTitle_name FROM ((employees INNER JOIN jobtitles ON employees.jobTitle_name=jobtitle.jobtitle_name);").ToList();
         return employees;
-
     }
     
     public int InsertEmployee(int jobTitleId, string employeeFName, string employeeLName, int employeePhone, string employeeEmail)
@@ -35,21 +34,28 @@ class EmployeeData
         return Id;
 
     }
+  
     public void DeleteEmployee(int number)
     {
-        var e = new DynamicParameters();
-        e.Add("@employee_id", number);
-        string sql = $@"DELETE FROM employees WHERE number=@employee_id ";
-        int Id = connection.Query<int>(sql, e).First();
+        var deleteEmployee = connection.Query<Employee>($"DELETE FROM employees WHERE employee_id = {number};");
     }
 
 
-    public Employee SearchEmployees(string searchId) //söker igenom listan av böcker med hjälp av sök-text
+    // public Employee SearchEmployee(string searchId) 
+    // {
+    //     var employee = connection.QuerySingle<Employee>($@"SELECT  jobTitle_name, employee_fname, employee_lname,employee_phone, employee_email FROM employees
+    //     INNER JOIN jobtitles ON jobtitles.jobTitle_id=employees.jobTitle_id
+    //     WHERE employee_id={searchId}");
+    //     return employee;
+    // }
+
+    public Employee GetEmployee(int eIdNr)
     {
-        var employee = connection.QuerySingle<Employee>($@"SELECT  jobTitle_name, employee_fname, employee_lname,employee_phone, employee_email FROM employees
-        INNER JOIN jobtitles ON jobtitles.jobTitle_id=employees.jobTitle_id
-        WHERE employee_id={searchId}");
+      
+        var employee = connection.QuerySingle<Employee>($"SELECT employee_id,jobTitle_id,employee_fname,employee_lname,employee_phone,employee_email FROM employees WHERE room_id = {eIdNr};");
+ 
         return employee;
+        
     }
     
 

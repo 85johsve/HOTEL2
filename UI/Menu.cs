@@ -25,11 +25,8 @@
     public enum MenuChoiceManager
     {
         ShowRoom=1,
-        CheckIn,//take off?
         AddRoom,
         RemoveRoom,
-        Receipt,//take off?
-        Update, // take off?
         AddEmployee,
         RemoveEmployee,
         SearchEmployee,
