@@ -45,9 +45,9 @@ class RoomData
 
     public void DeleteRoom(int number)
     {
-      
-       var deleteRoom = connection.Query<Room>($"DELETE FROM `rooms` WHERE number=@room_id");
-        
+
+        var deleteRoom = connection.Query<Room>($"DELETE FROM rooms WHERE room_id = {number};");
+
     }
 
      public Room GetRoom(int idNr)

@@ -4,31 +4,31 @@ using MySqlConnector;
 class EmployeeManager
 {
 
-    // private List<Customer> customers;
-    // CustomerData newCustomerData= new();
     EmployeeData newEmployeeData=new();
-    // public EmployeeManager()
-    // {
-        
-    // }
 
 
     public int AddEmployee(int jobId, string fname, string lname, int phone, string email)
     {
         int InsertEmployeeID= newEmployeeData.InsertEmployee (jobId, fname, lname, phone, email);     
         return InsertEmployeeID;  
+    }
     
+    public List<Employee>ShowEmployees()
+    {
+        return newEmployeeData.GetEmployeeList();
+    }
         
-    
-     }
-        public List<Employee>ShowEmployees()
+    public void RemoveEmployee(int idNumber)
+    {
+        newEmployeeData.DeleteEmployee(idNumber);
+    }
+
+    public Employee SearchEmployee(int sEmployeeId)
+    {
+        if (newEmployeeData.GetEmployee(sEmployeeId) != null)
         {
-            return newEmployeeData.GetEmployeeList();
+            return newEmployeeData.GetEmployee(sEmployeeId);
         }
-    
-    
-        public void RemoveEmployee(int idNumber)
-        {
-            newEmployeeData.DeleteEmployee(idNumber);
-        }
+        return null;
+    }
 }
