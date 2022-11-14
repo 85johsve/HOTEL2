@@ -264,6 +264,7 @@ internal class Program
                     break;
 
                 case MenuChoiceManager.RemoveEmployee:// is done!
+                    Console.WriteLine("Delete Employee!");
                     Console.WriteLine("Employee Id: ");
                     int deleteEmployeeId = int.Parse(Console.ReadLine());
                     employeeManager.RemoveEmployee(deleteEmployeeId);
@@ -271,27 +272,26 @@ internal class Program
                     Console.ReadLine();
                     break;
 
-                    case MenuChoiceManager.SearchEmployee: //Not working!!
+                case MenuChoiceManager.SearchEmployee: // works but without the job title name
                     Console.WriteLine("Search Employee!");
-                    Console.WriteLine("Employee Id: ");
-                    int searchId = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Employee Id:");
+                    int searchEmployeeId = int.Parse(Console.ReadLine());
                     try
                     {
-                        if (employeeManager.SearchEmployee(searchId)!= null)
+                        if (employeeManager.SearchEmployee(searchEmployeeId) != null)
                         {
-                            Console.WriteLine(employeeManager.SearchEmployee(searchId));
+                            Console.WriteLine(employeeManager.SearchEmployee(searchEmployeeId));
                         }
                     }
                     catch (Exception e)
                     {
-
                         throw new ArgumentNullException();
                     }
                     Console.ReadLine();
                     break;
 
 
-                case MenuChoiceManager.ShowEmployees: // Not working!!
+                case MenuChoiceManager.ShowEmployees: // is done!
                     Console.WriteLine("Show All Employees!");
                     try
                     {
@@ -323,7 +323,7 @@ internal class Program
                     break;
 
                 case MenuChoiceManager.SearchCustomer: //is done!
-                    Console.WriteLine("Search Cusstomer!");
+                    Console.WriteLine("Search Customer!");
                     Console.WriteLine("Customer Id:");
                     int searchCustomerId = int.Parse(Console.ReadLine());
                     try

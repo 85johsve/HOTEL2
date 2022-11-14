@@ -15,7 +15,8 @@ class EmployeeData
 
     public List<Employee> GetEmployeeList()
     {
-        var employees = connection.Query<Employee>("SELECT employee_id,jobTitle_id,employee-fname,employee_lname,employee_phone, employee_email, jobTitle_name FROM ((employees INNER JOIN jobtitles ON employees.jobTitle_name=jobtitle.jobtitle_name);").ToList();
+        var employees = connection.Query<Employee>("SELECT * FROM employees;").ToList();
+        //var employees = connection.Query<Employee>("SELECT employee_id,jobTitle_id,employee-fname,employee_lname,employee_phone, employee_email, jobTitle_name FROM (employees INNER JOIN jobtitles ON employees.jobTitle_name=jobtitle.jobtitle_name);").ToList();
         return employees;
     }
     
@@ -52,7 +53,7 @@ class EmployeeData
     public Employee GetEmployee(int eIdNr)
     {
       
-        var employee = connection.QuerySingle<Employee>($"SELECT employee_id,jobTitle_id,employee_fname,employee_lname,employee_phone,employee_email FROM employees WHERE room_id = {eIdNr};");
+        var employee = connection.QuerySingle<Employee>($"SELECT * FROM employees WHERE employee_id  ={eIdNr};");
  
         return employee;
         
