@@ -19,12 +19,6 @@ class PaymentData
 
     }
 
-    // public void UpdateRoomStatus(string roomToUpdate, string newRoomStatus)
-    // {
-    //     var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id={newRoomStatus} WHERE room_id = {roomToUpdate};");
-
-    // }
-
     public int InsertPayment(int typeID, int statusID, double price)
     {
         //int id, 
