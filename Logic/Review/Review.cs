@@ -9,6 +9,6 @@ class Review
     
     public override string ToString()
     {
-        return $"Review: " + review_id + "\nReservation:" + reservation_id + "\nCustomer Account " + customer_id + "\nCustomer Name " + customer_fname + "\n" + review_content;
+        return $"Review: " + review_id + "\nReservation:" + reservation_id  + "\nCustomer Name " + customer_fname + "\n" + review_content + "\n";
     }
 }

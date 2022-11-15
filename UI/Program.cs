@@ -8,6 +8,7 @@ internal class Program
     static EmployeeManager employeeManager = new();
     static PaymentManger paymentManager = new();
     static ReservationData myResData = new();
+    static ReviewManager reviewManager = new();
     static int customerID { get; set; }
     static bool isLogIn = true;
 
@@ -216,13 +217,12 @@ internal class Program
                     Console.Clear();
                     break;
 
-                case MenuChoiceCustomer.ReadReviews:
-                    Console.WriteLine("View Reviews");
+                case MenuChoiceCustomer.ReadReviews://is done Tina
+                    PrintAllReviews();
                     break;
 
-                case MenuChoiceCustomer.WriteReview:
-                    Console.WriteLine("Please, Write your review, make sure to add your account:");
-                    string review = Console.ReadLine();
+                case MenuChoiceCustomer.WriteReview://is done Tina
+                    WriteReviewInput();
                     break;
 
                 case MenuChoiceCustomer.Quit: // is done Tina!
@@ -297,6 +297,41 @@ internal class Program
                     break;
             }
         }
+    }
+
+  private static void WriteReviewInput()
+    {
+        Console.WriteLine("Enter account number:");
+        int customerId = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter reservation number:");
+        int reservationId = int.Parse(Console.ReadLine());
+        Console.WriteLine("Write your review:");
+        string review = Console.ReadLine();
+        Console.WriteLine("Review Id:");
+        Console.WriteLine(reviewManager.WriteReview(customerID, reservationId, review));
+        Console.ReadLine();
+    }
+
+   private static void PrintAllReviews()
+    {
+        Console.WriteLine("View Reviews");
+        try
+        {
+            if (reviewManager.ShowAllReviews() != null)
+            {
+                foreach (var item in reviewManager.ShowAllReviews())
+                {
+                    Console.WriteLine(item);
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+
+            throw new ArgumentNullException();
+        }
+        Console.ReadLine();
     }
 
     private static bool ReceiptInput(bool quit)
