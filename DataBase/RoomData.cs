@@ -1,5 +1,6 @@
 using Dapper;
 using MySqlConnector;
+using System.Data;
 class RoomData
 {
     
@@ -11,11 +12,17 @@ class RoomData
     public RoomData()
     {
         connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
+    }
 
+     public void Open()
+    {
+        if(connection.State != ConnectionState.Open)
+            connection.Open();
     }
 
     public List<Room> GetRoomList()
     {
+         Open();
         var rooms = connection.Query<Room>("SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.roomStatus_id=roomstatus.roomStatus_id) ;").ToList();
         return rooms;
 
@@ -23,6 +30,7 @@ class RoomData
 
     public void UpdateRoomStatus(string roomToUpdate, string newRoomStatus)
     {
+         Open();
         var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id={newRoomStatus} WHERE room_id = {roomToUpdate};");
 
     }
@@ -34,7 +42,7 @@ class RoomData
 
     public int InsertRoom(int typeID, int statusID, double price)
     {
-        //int id, 
+         Open();//int id, 
         var r = new DynamicParameters();
         r.Add("@roomType_id", typeID);
         r.Add("@roomStatus_id", statusID);
@@ -43,21 +51,18 @@ class RoomData
         int Id = connection.Query<int>(sql, r).First();
 
         return Id;
-
-
-
     }
 
     public void DeleteRoom(int number)
     {
-
+        Open();
         var deleteRoom = connection.Query<Room>($"DELETE FROM rooms WHERE room_id = {number};");
 
     }
 
      public Room GetRoom(int idNr)
     {
-      
+        Open();
        var room = connection.QuerySingle<Room>($"SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.roomStatus_id=roomstatus.roomStatus_id) WHERE room_id = {idNr};");
  
     return room;

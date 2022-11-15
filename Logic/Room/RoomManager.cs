@@ -11,12 +11,18 @@ class RoomManager
 
     public List<Room> ShowAllRooms()
     {
-        return newRoomData.GetRoomList();
+         if (newRoomData.GetRoomList() != null)
+        {
+            return newRoomData.GetRoomList();
+        }
+        return null;
+       
     }
 
     public List<Room> ShowAvailableRoom()
     {
         List<Room> availableRooms = new();
+        
         foreach (Room room in newRoomData.GetRoomList())
         {
             if (room.roomStatus_name == "CheckOut")
@@ -24,7 +30,11 @@ class RoomManager
                 availableRooms.Add(room);
             }
         }
-        return availableRooms;
+         if (availableRooms!= null)
+        {
+            return availableRooms;
+        }
+        return null;
     }
 
     public Room SearchRoom(int sRoomId)

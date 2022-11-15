@@ -1,5 +1,6 @@
 using Dapper;
 using MySqlConnector;
+using System.Data;
 class EmployeeData 
 {
     private List<Employee> employees;
@@ -12,9 +13,15 @@ class EmployeeData
         connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
 
     }
+     public void Open()
+    {
+        if(connection.State != ConnectionState.Open)
+            connection.Open();
+    }
 
     public List<Employee> GetEmployeeList()
     {
+        Open();
         var employees = connection.Query<Employee>("SELECT * FROM employees;").ToList();
         //var employees = connection.Query<Employee>("SELECT employee_id,jobTitle_id,employee-fname,employee_lname,employee_phone, employee_email, jobTitle_name FROM (employees INNER JOIN jobtitles ON employees.jobTitle_name=jobtitle.jobtitle_name);").ToList();
         return employees;
@@ -22,6 +29,7 @@ class EmployeeData
     
     public int InsertEmployee(int jobTitleId, string employeeFName, string employeeLName, int employeePhone, string employeeEmail)
     { 
+        Open();
         var e = new DynamicParameters();
         e.Add("@jobTitle_id", jobTitleId);
         e.Add("@employee_fname", employeeFName);
@@ -38,6 +46,7 @@ class EmployeeData
   
     public void DeleteEmployee(int number)
     {
+        Open();
         var deleteEmployee = connection.Query<Employee>($"DELETE FROM employees WHERE employee_id = {number};");
     }
 
@@ -52,7 +61,7 @@ class EmployeeData
 
     public Employee GetEmployee(int eIdNr)
     {
-      
+       Open();
         var employee = connection.QuerySingle<Employee>($"SELECT * FROM employees WHERE employee_id  ={eIdNr};");
  
         return employee;

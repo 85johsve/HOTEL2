@@ -6,13 +6,16 @@ internal class Program
     static RoomManager roomManager = new();
     static CustomerManager customerManager = new();
     static EmployeeManager employeeManager = new();
+    static PaymentManger paymentManager = new();
+    static ReservationData myResData = new();
+    static int customerID {get; set;}
     static bool isLogIn = true;
 
     private static void Main(string[] args)
     {
-         Console.WriteLine("Employee Press [1]\nCustomer Press [2]\nManager Press [3]");
+        Console.WriteLine("Employee Press [1]\nCustomer Press [2]\nManager Press [3]");
         string answer = Console.ReadLine();
-        
+
 
         if (answer == "1")
         {
@@ -45,7 +48,7 @@ internal class Program
             }
         }
     }
- 
+
     // static void Employee()
     // {
     //      Console.Clear();
@@ -77,20 +80,41 @@ internal class Program
             {
                 case MenuChoiceEmployee.ViewRooms://is done!
                     Console.WriteLine("All rooms!");
-                    foreach (var item in roomManager.ShowAllRooms())
+                    try
                     {
-                        Console.WriteLine(item);
+                        if (roomManager.ShowAllRooms() != null)
+                        {
+                            foreach (var item in roomManager.ShowAllRooms())
+                            {
+                                Console.WriteLine(item);
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        throw new ArgumentNullException();
                     }
                     Console.ReadLine();
                     break;
 
                 case MenuChoiceEmployee.ShowAvailableRooms://is done!
                     Console.WriteLine("Available rooms!");
-                    foreach (var item in roomManager.ShowAvailableRoom())
+                    try
                     {
-                        Console.WriteLine(item);
+                        if (roomManager.ShowAvailableRoom() != null)
+                        {
+                            foreach (var item in roomManager.ShowAvailableRoom())
+                            {
+                                Console.WriteLine(item);
+                            }
+                        }
                     }
-                    Console.ReadKey();
+                    catch (Exception e)
+                    {
+                        throw new ArgumentNullException();
+                    }
+
+                    Console.ReadLine();
                     break;
 
                 case MenuChoiceEmployee.SearchRoom://is done!
@@ -128,23 +152,41 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.Receipt: //Do this last?
-                    Console.WriteLine("Do you want a receipt? Y/N");
-                    string answer = Console.ReadLine().ToLower();
-                    if (answer == "y")
-                    {
-                        Console.WriteLine("Your receipt");//Console.WriteLine("Receipt\n" + "Check in date: " + date_in + "\nCheck out date: " + check_out + "\nCustomer name: " + customer_fname + customer_lname + "\nRoom: " + room_id + "\nTotal Price: " + Price +"\nHotellet\nTel: 033-106600\nAllégatan 13 \nBorås");
-                        quit = false;
-                    }
-                    else if (answer == "n")
-                    {
-                        Console.WriteLine("No receipt chosen!");
-                        quit = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("your choice does not exist!");
+                                                 //    Console.WriteLine("All payments!");// is done!
+                                                 //      try
+                                                 //     {
+                                                 //         if ( paymentManager.ShowAllPayments() != null)
+                                                 //         {
+                                                 //             foreach (var item in  paymentManager.ShowAllPayments())
+                                                 //             {
+                                                 //                 Console.WriteLine(item);
+                                                 //             }
+                                                 //         }
+                                                 //     }
+                                                 //     catch (Exception e)
+                                                 //     {
+                                                 //         throw new ArgumentNullException();
+                                                 //     }
+                                                 //     Console.ReadLine();
 
-                    }
+
+                    // Console.WriteLine("Do you want a receipt? Y/N");
+                    // string answer = Console.ReadLine().ToLower();
+                    // if (answer == "y")
+                    // {
+                    //     Console.WriteLine("Your receipt");//Console.WriteLine("Receipt\n" + "Check in date: " + date_in + "\nCheck out date: " + check_out + "\nCustomer name: " + customer_fname + customer_lname + "\nRoom: " + room_id + "\nTotal Price: " + Price +"\nHotellet\nTel: 033-106600\nAllégatan 13 \nBorås");
+                    //     quit = false;
+                    // }
+                    // else if (answer == "n")
+                    // {
+                    //     Console.WriteLine("No receipt chosen!");
+                    //     quit = false;
+                    // }
+                    // else
+                    // {
+                    //     Console.WriteLine("your choice does not exist!");
+
+                    // }
                     break;
 
                 case MenuChoiceEmployee.Update://is done!
@@ -198,12 +240,122 @@ internal class Program
                     Console.ReadKey();
                     break;
 
-                case MenuChoiceCustomer.ReadReviews:
-                    Console.WriteLine("View Reviews");
-                    break;
+
 
                 case MenuChoiceCustomer.BookRoom:
-                    Console.WriteLine("Book Room");
+
+                    Console.WriteLine("Book room");
+                    
+                    int customerIdBooking = customerID;
+                    Console.WriteLine("Enter a from-date: ");
+                    DateTime userDateIn;
+                    if (DateTime.TryParse(Console.ReadLine(), out userDateIn))
+                    {
+                        Console.WriteLine("you choosed: " + userDateIn);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have entered an incorrect value.");
+                    }
+
+
+                    Console.WriteLine("Enter a to-date: ");
+                    DateTime userDateOut;
+                    if (DateTime.TryParse(Console.ReadLine(), out userDateOut))
+                    {
+                        Console.WriteLine("you choosed: " + userDateOut);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have entered an incorrect value.");
+                    }
+                    Console.ReadLine();
+
+                    List<Reservation> dateInList = new();
+                    List<Reservation> dateInOut = new();
+                    List<Reservation> availabeRooms = new();
+                    foreach (var item in myResData.GetReservationData())
+                    {
+
+                        if (userDateIn > item.date_in)
+                        {
+
+                            dateInList.Add(item);
+                        }
+
+
+
+                    }
+
+                    foreach (var listItem in dateInList)
+                    {
+                        if (userDateIn > listItem.date_out)
+                        {
+                            bool add_it = true;
+                            foreach (var room in availabeRooms)
+                            {
+                                if (room.room_id == listItem.room_id)
+                                {
+                                    add_it = false;
+                                    break;
+                                }
+                            }
+                            if (add_it)
+                                availabeRooms.Add(listItem);
+                        }
+                    }
+
+                    foreach (var item in myResData.GetReservationData())
+                    {
+
+                        if (userDateIn < item.date_in)
+                        {
+
+
+                            dateInOut.Add(item);
+
+
+                        }
+                    }
+
+                    foreach (var item in dateInOut)
+                    {
+                        if (userDateOut < item.date_in)
+                        {
+
+
+                            bool add_it = true;
+                            foreach (var room in availabeRooms)
+                            {
+                                if (room.room_id == item.room_id)
+                                {
+                                    add_it = false;
+                                    break;
+                                }
+                            }
+                            if (add_it)
+                                availabeRooms.Add(item);
+
+                        }
+                    }
+
+                    foreach (var gg in availabeRooms)
+                    {
+                        Console.WriteLine("room nr: " + gg.room_id);
+                    }
+
+
+                    DateTime todaysDate = DateTime.Now;
+                    Console.WriteLine("Choose room to book: ");
+                    int roomSelected = Int32.Parse(Console.ReadLine());
+                    myResData.MakeReservationCustomer(customerIdBooking, roomSelected, todaysDate, userDateIn, userDateOut);
+                    Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+
+                case MenuChoiceCustomer.ReadReviews:
+                    Console.WriteLine("View Reviews");
                     break;
 
                 case MenuChoiceCustomer.WriteReview:
@@ -377,8 +529,8 @@ internal class Program
         while (temp < 3)
         {
             Customer customer = new();
-            Console.WriteLine("Please enter your ID: "); 
-            int customerID = int.Parse(Console.ReadLine());
+            Console.WriteLine("Please enter your ID: ");
+            customerID = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter password");
             string customerPass = Console.ReadLine();
 
@@ -505,7 +657,7 @@ internal class Program
         Console.WriteLine(addEId);
     }
 
-   private static void AddCustomerInput()
+    private static void AddCustomerInput()
     {
         Console.WriteLine("Add customer!");
         Console.WriteLine("First name: ");
@@ -527,15 +679,15 @@ internal class Program
         Console.WriteLine(addId);
     }
 
-   private static void RemoveCustomerInput()
+    private static void RemoveCustomerInput()
     {
         Console.WriteLine("Delete Customer!");
         Console.WriteLine("Customer Id: ");
         int deleteCustomerId = int.Parse(Console.ReadLine());
         customerManager.RemoveCustomer(deleteCustomerId);
     }
-    
-   private static void NoTryMessage()
+
+    private static void NoTryMessage()
     {
         Console.Write("\nNO more try. Bye!");
     }
@@ -544,5 +696,5 @@ internal class Program
     {
         Console.Write("\nLoggin unsucced, try again!");
     }
-   
+
 }

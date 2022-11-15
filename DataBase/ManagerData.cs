@@ -1,5 +1,6 @@
 using Dapper;
 using MySqlConnector;
+using System.Data;
 
 class ManagerData 
 {
@@ -14,5 +15,10 @@ class ManagerData
     public ManagerData()
     {
         connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
+    }
+      public void Open()
+    {
+        if(connection.State != ConnectionState.Open)
+            connection.Open();
     }
 }
