@@ -350,6 +350,8 @@ internal class Program
                     int roomSelected = Int32.Parse(Console.ReadLine());
                     myResData.MakeReservationCustomer(customerIdBooking, roomSelected, todaysDate, userDateIn, userDateOut);
                     Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
+                    Console.ReadKey();
+                    Console.Clear();
                     break;
 
                 case MenuChoiceCustomer.ReadReviews:
