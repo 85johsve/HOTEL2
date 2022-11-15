@@ -24,9 +24,9 @@ class PaymentManger
         return null;
     }
 
-    public int AddPayment(int typeID, int statusID, double price)
+    public int AddPayment( int cID, DateTime date, double amount, int rID,string name,string bank)
     {
-        int InsertPaymentID = newPaymentData.InsertPayment(typeID, statusID, price);
+        int InsertPaymentID = newPaymentData.InsertPayment(cID, date, amount, rID,name,bank);
 
         return InsertPaymentID;
     }

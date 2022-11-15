@@ -50,10 +50,10 @@ class RoomManager
     {
         newRoomData.UpdateRoomStatus(roomToUpdate, newRoomStatus);
     }
-    public void CheckInRoomStatusID(string roomToCheckIn, string newCheckInRoomStatus)
-    {
-        newRoomData.UpdateRoomStatus(roomToCheckIn, newCheckInRoomStatus);
-    }
+    // public void CheckInRoomStatusID(string roomToCheckIn, string newRoomCheckInStatus)
+    // {
+    //     newRoomData.UpdateRoomStatus(roomToCheckIn, newRoomCheckInStatus);
+    // }
 
     public int AddRoom(int typeID, int statusID, double price)
     {

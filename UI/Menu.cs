@@ -1,4 +1,6 @@
 
+
+
     public enum MenuChoiceEmployee //change to employee
     {
         ViewRooms=1,
@@ -10,6 +12,7 @@
         AddRoom,
         RemoveRoom,
         Receipt,
+        Payment,
         Update,
         ViewReviews,
         RemoveReview,
@@ -39,3 +42,4 @@
         ShowCustomers,
         Quit,
     }
+
