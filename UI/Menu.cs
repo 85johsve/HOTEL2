@@ -1,4 +1,6 @@
 
+
+
     public enum MenuChoiceEmployee //change to employee
     {
         ViewRooms=1,
@@ -39,3 +41,4 @@
         ShowCustomers,
         Quit,
     }
+
