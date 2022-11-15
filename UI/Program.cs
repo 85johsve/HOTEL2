@@ -278,7 +278,19 @@ internal class Program
                     break;
 
                 case MenuChoiceManager.RemoveCustomer: // is done Tina
-                    RemoveCustomerInput();
+                    //RemoveCustomerInput();
+                    Console.WriteLine ("Review Id to be removed:");
+                    int removId = int.Parse(Console.ReadLine());
+                    try
+                    {
+                        reviewManager.RemoveReview(removId);
+                    }
+                    catch (System.Exception)
+                    {
+                        
+                        throw new FieldAccessException();
+                    }
+                    Console.ReadLine ();
                     break;
 
                 case MenuChoiceManager.SearchCustomer: //is done Tina!
