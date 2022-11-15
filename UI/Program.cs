@@ -82,37 +82,35 @@ internal class Program
                     RemoveRoomInput();
                     break;
 
-                case MenuChoiceEmployee.Receipt: //Do this last?
-                    // PrintAllPayments();// is done Tina!
-                    // AddPaymentInput();//it does not inseart the customer Id, dont not know why Tina!
-                    // SearchPaymentInput();// is done Tina!
-                    Console.WriteLine ("Remove a payment!");
-                    Console.WriteLine ("Payment Id to be removed: ");
-                    int rPaymentId= int.Parse(Console.ReadLine());
-                    paymentManager.RemovePayment (rPaymentId);
+                case MenuChoiceEmployee.Receipt:
+                    // Console.WriteLine ("Remove a payment!");
+                    // Console.WriteLine ("Payment Id to be removed: ");
+                    // int rPaymentId= int.Parse(Console.ReadLine());
+                    // paymentManager.RemovePayment (rPaymentId);
 
-                    // Console.WriteLine("Do you want a receipt? Y/N");
-                    // string answer = Console.ReadLine().ToLower();
-                    // if (answer == "y")
-                    // {
-                    //     Console.WriteLine("Your receipt");//Console.WriteLine("Receipt\n" + "Check in date: " + date_in + "\nCheck out date: " + check_out + "\nCustomer name: " + customer_fname + customer_lname + "\nRoom: " + room_id + "\nTotal Price: " + Price +"\nHotellet\nTel: 033-106600\nAllégatan 13 \nBorås");
-                    //     quit = false;
-                    // }
-                    // else if (answer == "n")
-                    // {
-                    //     Console.WriteLine("No receipt chosen!");
-                    //     quit = false;
-                    // }
-                    // else
-                    // {
-                    //     Console.WriteLine("your choice does not exist!");
+                    Console.WriteLine("Do you want a receipt? Y/N");
+                    string answer = Console.ReadLine().ToLower();
+                    if (answer == "y")
+                    {
+                        //PrintAllPayments();
+                        //AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
+                        SearchPaymentInput();
+                        quit = false;
+                    }
+                    else if (answer == "n")
+                    {
+                        Console.WriteLine("No receipt chosen!");
+                        quit = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("your choice does not exist!");
 
-                    //  }
+                     }
                     break;
 
-                case MenuChoiceEmployee.Update://is done?
+                case MenuChoiceEmployee.Update://is done! Jessica
                     UppdateRoomInput();
-
                     break;
 
                 case MenuChoiceEmployee.Quit: //is done!
@@ -288,7 +286,7 @@ internal class Program
                     AddEmployeeInput();
                     break;
 
-                case MenuChoiceManager.RemoveEmployee:// is done!
+                case MenuChoiceManager.RemoveEmployee:// is done! Jessica
                     RemoveEmployeeInput();
                     break;
 
@@ -296,9 +294,8 @@ internal class Program
                     SearchEmployeeInput();
                     break;
 
-                case MenuChoiceManager.ShowEmployees: // is done!
+                case MenuChoiceManager.ShowEmployees: // is done! Jessica
                     PrintAllEmployees();
-
                     break;
 
                 case MenuChoiceManager.AddCustomer: // is done Tina!
