@@ -9,6 +9,7 @@
         AddRoom,
         RemoveRoom,
         Receipt,
+        Payment,
         Update,
         ViewReviews,
         RemoveReview,

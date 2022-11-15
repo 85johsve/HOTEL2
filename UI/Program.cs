@@ -82,18 +82,11 @@ internal class Program
                     RemoveRoomInput();
                     break;
 
-                case MenuChoiceEmployee.Receipt: //Do this last?
-                    PrintAllPayments();// is done Tina!
-                    AddPaymentInput();//it does not inseart the customer Id, dont not know why Tina!
-                    SearchPaymentInput();// is done Tina!
-                    RemovePaymentInput();//is done Tina!
-
+                case MenuChoiceEmployee.Receipt: //is done Jessica
                     Console.WriteLine("Do you want a receipt? Y/N");
                     string answer = Console.ReadLine().ToLower();
                     if (answer == "y")
                     {
-                        //PrintAllPayments();
-                        //AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
                         SearchPaymentInput();
                         quit = false;
                     }
@@ -107,6 +100,31 @@ internal class Program
                         Console.WriteLine("your choice does not exist!");
 
                      }
+                    break;
+
+                    case MenuChoiceEmployee.Payment://is done! Jessica
+                    Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
+                    string option = Console.ReadLine();
+                    if (option == "1")
+                    {
+                        PrintAllPayments();
+                        quit = false;
+                    }
+                    else if (option == "2")
+                    {
+                        AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
+                        quit = false;
+                    }
+                    else if (option == "3")
+                    {
+                        SearchPaymentInput();
+                        quit = false;
+                    }
+                    else if (option == "4")
+                    {
+                        RemovePaymentInput();
+                        quit = false;
+                    }
                     break;
 
                 case MenuChoiceEmployee.Update://is done! Jessica
