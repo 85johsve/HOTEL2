@@ -82,49 +82,12 @@ internal class Program
                     RemoveRoomInput();
                     break;
 
-                case MenuChoiceEmployee.Receipt: //is done Jessica
-                    Console.WriteLine("Do you want a receipt? Y/N");
-                    string answer = Console.ReadLine().ToLower();
-                    if (answer == "y")
-                    {
-                        SearchPaymentInput();
-                        quit = false;
-                    }
-                    else if (answer == "n")
-                    {
-                        Console.WriteLine("No receipt chosen!");
-                        quit = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("your choice does not exist!");
-
-                     }
+                case MenuChoiceEmployee.Receipt: //is done Jessica!
+                    quit = ReceiptInput(quit);
                     break;
 
-                    case MenuChoiceEmployee.Payment://is done! Jessica
-                    Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
-                    string option = Console.ReadLine();
-                    if (option == "1")
-                    {
-                        PrintAllPayments();
-                        quit = false;
-                    }
-                    else if (option == "2")
-                    {
-                        AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
-                        quit = false;
-                    }
-                    else if (option == "3")
-                    {
-                        SearchPaymentInput();
-                        quit = false;
-                    }
-                    else if (option == "4")
-                    {
-                        RemovePaymentInput();
-                        quit = false;
-                    }
+                case MenuChoiceEmployee.Payment://is done! Jessica
+                    quit = PaymentChoiceInput(quit);
                     break;
 
                 case MenuChoiceEmployee.Update://is done! Jessica
@@ -142,7 +105,29 @@ internal class Program
         }
     }
 
+    private static bool ReceiptInput(bool quit)
+    {
+        AddPaymentInput();
+        Console.WriteLine("Do you want a receipt? Y/N");
+        string answer = Console.ReadLine().ToLower();
+        if (answer == "y")
+        {
+            SearchPaymentInput();
+            quit = false;
+        }
+        else if (answer == "n")
+        {
+            Console.WriteLine("No receipt chosen!");
+            quit = false;
+        }
+        else
+        {
+            Console.WriteLine("your choice does not exist!");
 
+        }
+
+        return quit;
+    }
 
     private static void GetCustomerInput()
     {
@@ -343,6 +328,38 @@ internal class Program
                     break;
             }
         }
+    }
+
+    private static bool PaymentChoiceInput(bool quit)
+    {
+        Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
+        string option = Console.ReadLine();
+        if (option == "1")
+        {
+            PrintAllPayments();
+            quit = false;
+        }
+        else if (option == "2")
+        {
+            AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
+            quit = false;
+        }
+        else if (option == "3")
+        {
+            SearchPaymentInput();
+            quit = false;
+        }
+        else if (option == "4")
+        {
+            RemovePaymentInput();
+            quit = false;
+        }
+        else
+        {
+            Console.WriteLine("Select one of the number!");
+        }
+        Console.ReadLine();
+        return quit;
     }
 
     private static void RemovePaymentInput()
