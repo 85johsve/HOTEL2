@@ -15,8 +15,6 @@ internal class Program
     {
         Console.WriteLine("Employee Press [1]\nCustomer Press [2]\nManager Press [3]");
         string answer = Console.ReadLine();
-
-
         if (answer == "1")
         {
             //Employee();
@@ -48,7 +46,6 @@ internal class Program
             }
         }
     }
-
 
     private static void GetEmployeeInput()
     {
@@ -95,38 +92,13 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.Quit: //is done!
-                    Console.WriteLine("You have chosen to quit the program");
-                    quit = false;
+                    quit = QuitMessage();
                     break;
 
                 default:
                     break;
             }
         }
-    }
-
-    private static bool ReceiptInput(bool quit)
-    {
-        AddPaymentInput();
-        Console.WriteLine("Do you want a receipt? Y/N");
-        string answer = Console.ReadLine().ToLower();
-        if (answer == "y")
-        {
-            SearchPaymentInput();
-            quit = false;
-        }
-        else if (answer == "n")
-        {
-            Console.WriteLine("No receipt chosen!");
-            quit = false;
-        }
-        else
-        {
-            Console.WriteLine("your choice does not exist!");
-
-        }
-
-        return quit;
     }
 
     private static void GetCustomerInput()
@@ -253,9 +225,8 @@ internal class Program
                     string review = Console.ReadLine();
                     break;
 
-                case MenuChoiceCustomer.Quit:
-                    Console.WriteLine("You have chosen to quit the program");
-                    quit = false;
+                case MenuChoiceCustomer.Quit: // is done Tina!
+                     quit = QuitMessage();
                     break;
 
                 default:
@@ -316,18 +287,40 @@ internal class Program
 
                 case MenuChoiceManager.ShowCustomers: // is done Tina!
                     PrintAllCustomers();
-
                     break;
 
                 case MenuChoiceManager.Quit: //is done!
-                    Console.WriteLine("You have chosen to quit the program");
-                    quit = false;
+                     quit = QuitMessage();
                     break;
 
                 default:
                     break;
             }
         }
+    }
+
+    private static bool ReceiptInput(bool quit)
+    {
+        AddPaymentInput();
+        Console.WriteLine("Do you want a receipt? Y/N");
+        string answer = Console.ReadLine().ToLower();
+        if (answer == "y")
+        {
+            SearchPaymentInput();
+            quit = false;
+        }
+        else if (answer == "n")
+        {
+            Console.WriteLine("No receipt chosen!");
+            quit = false;
+        }
+        else
+        {
+            Console.WriteLine("your choice does not exist!");
+
+        }
+
+        return quit;
     }
 
     private static bool PaymentChoiceInput(bool quit)
@@ -789,6 +782,14 @@ internal class Program
     private static void LoginWrongMessage()
     {
         Console.Write("\nLoggin unsucced, try again!");
+    }
+
+    private static bool QuitMessage()
+    {
+        bool quit;
+        Console.WriteLine("You have chosen to quit the program");
+        quit = false;
+        return quit;
     }
 
 }
