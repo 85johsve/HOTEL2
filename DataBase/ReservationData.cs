@@ -23,6 +23,17 @@ FROM `rooms`
 LEFT JOIN reservations ON rooms.room_id = reservations.room_id").ToList();
         return getResData;
     }
+    public List<Reservation> GetReservationList()
+    {
+        var getRes = connection.Query<Reservation> ("SELECT * FROM `reservations`;").ToList();
+        return getRes;
+    }
+
+    public List<Reservation> GetTimeSpanData(int reservation_id)
+    {
+        var getTimeSpan = connection.Query<Reservation> ($"SELECT * FROM `reservations`WHERE reservations.reservation_id = {reservation_id};").ToList();
+        return getTimeSpan;
+    }
     public void MakeReservationCustomer(int customer_id, int room_id, DateTime reservation_date, DateTime date_in, DateTime date_out)
     {
         var makeReservation = connection.Query<Reservation> ($"INSERT INTO `reservations`( `customer_id`, `room_id`, `reservation_date`, `date_in`, `date_out`) VALUES ({customer_id}, {room_id}, '{reservation_date}','{date_in}','{date_out}')");
@@ -33,6 +44,16 @@ LEFT JOIN reservations ON rooms.room_id = reservations.room_id").ToList();
     {
         var makeReservation = connection.Query<Reservation> ($"INSERT INTO `reservations`( `customer_id`, `employee_id`, `room_id`, `reservation_date`, `date_in`, `date_out`) VALUES ({customer_id},{employee_id}, {room_id}, '{reservation_date}','{date_in}','{date_out}')");
         
+    }
+
+    public void UpdateReservationDateIn(int reservation_id, DateTime date_in)
+    {
+        var updateReservation = connection.Query<Reservation> ($"UPDATE `reservations` SET `date_in`='{date_in}' WHERE reservations.reservation_id = {reservation_id};");
+    }
+
+    public void UpdateReservationDateOut(int reservation_id, DateTime date_out)
+    {
+        var updateReservation = connection.Query<Reservation> ($"UPDATE `reservations` SET `date_out`='{date_out}' WHERE reservations.reservation_id = {reservation_id};");
     }
 
     //     public List<Reservation> ReturnReservationVerification()

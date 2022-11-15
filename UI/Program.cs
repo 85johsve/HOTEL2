@@ -8,12 +8,18 @@ internal class Program
     static EmployeeManager employeeManager = new();
     static PaymentManger paymentManager = new();
     static ReservationData myResData = new();
+    static ReservationManager myResManager = new();
     static ReviewManager reviewManager = new();
     static int customerID { get; set; }
     static bool isLogIn = true;
 
     private static void Main(string[] args)
     {
+
+        //TEST GET TIMESPAN OF RESERVATION NR1
+        Console.WriteLine(myResManager.GetTimeSpan(1));
+        
+
         Console.WriteLine("Employee Press [1]\nCustomer Press [2]\nManager Press [3]");
         string answer = Console.ReadLine();
         if (answer == "1")
@@ -88,8 +94,12 @@ internal class Program
                     quit = PaymentChoiceInput(quit);
                     break;
 
-                case MenuChoiceEmployee.Update://is done! Jessica
+                case MenuChoiceEmployee.UpdateStatus://is done! Jessica
                     UppdateRoomInput();
+                    break;
+
+                case MenuChoiceEmployee.UpdateReservation://please take a look /Johan
+                    UpdateReservation();
                     break;
 
                 case MenuChoiceEmployee.Quit: //is done!
@@ -624,6 +634,62 @@ internal class Program
         string newRoomStatus = Console.ReadLine();
         roomManager.UpdateRoomStatusID(roomToUpdate, newRoomStatus);
         Console.WriteLine("Room is updated!");
+    }
+
+    private static void UpdateReservation()
+    {
+        Console.WriteLine("[1]Update check in date \n[2]Update check out date ");
+         string choice = Console.ReadLine();
+        if (choice == "1")
+        {
+            Console.Clear();
+            foreach (var item in myResData.GetReservationList())
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Choose reservation ID: ");
+            int resID = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Choose new check in date: ");
+            DateTime userDateIn;
+                    if (DateTime.TryParse(Console.ReadLine(), out userDateIn))
+                    {
+                        Console.WriteLine("you choosed: " + userDateIn);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have entered an incorrect value.");
+                    }
+
+            myResData.UpdateReservationDateIn(resID, userDateIn);
+            Console.WriteLine($"You have updated reservation nr {resID} New check in date: {userDateIn}.");
+            Console.ReadKey();
+
+        }
+
+        if(choice == "2")
+        {
+            Console.Clear();
+            foreach (var item in myResData.GetReservationList())
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Choose reservation ID: ");
+            int resID = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Choose new check out date: ");
+            DateTime userDateOut;
+                    if (DateTime.TryParse(Console.ReadLine(), out userDateOut))
+                    {
+                        Console.WriteLine("you choosed: " + userDateOut);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have entered an incorrect value.");
+                    }
+
+            myResData.UpdateReservationDateOut(resID, userDateOut);
+            Console.WriteLine($"You have updated reservation nr {resID} New check out date: {userDateOut}.");
+            Console.ReadKey();
+        }
     }
 
     private static void RemoveRoomInput()
