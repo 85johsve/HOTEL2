@@ -52,8 +52,8 @@ internal class Program
 
     private static void GetEmployeeInput()
     {
-        bool quit = true;
-        while (quit)
+        bool quit = false;
+        while (!quit)
         {
             MenuChoiceEmployee choice = EmployeeEnumSwitch();
 
