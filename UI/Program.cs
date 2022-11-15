@@ -83,10 +83,10 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.Receipt: //Do this last?
-                    PrintAllPayments();// is done Tina!
-                    AddPaymentInput();//it does not inseart the customer Id, dont not know why Tina!
+                    // PrintAllPayments();// is done Tina!
+                    // AddPaymentInput();//it does not inseart the customer Id, dont not know why Tina!
                     SearchPaymentInput();// is done Tina!
-                    RemovePaymentInput();//is done Tina!
+                   // RemovePaymentInput();//is done Tina!
 
                     // Console.WriteLine("Do you want a receipt? Y/N");
                     // string answer = Console.ReadLine().ToLower();

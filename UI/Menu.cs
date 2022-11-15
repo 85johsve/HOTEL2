@@ -1,3 +1,7 @@
+class Menu
+{
+}
+
 
     public enum MenuChoiceEmployee //change to employee
     {
@@ -38,3 +42,4 @@
         ShowCustomers,
         Quit,
     }
+
