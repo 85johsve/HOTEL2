@@ -12,6 +12,6 @@ public class Payment
 
      public override string ToString()
      {
-        return $"Payment Id: " +payment_id + "\nPayment Detial:" + payment_name+"\nPayment Amount: "+ payment_amount+"Payment Date: "+ payment_date + "\nReservation Nr: "+ reservation_id + "\nCustomer Name: "+ customer_fname+" "+ customer_lname+ "\nBankInfor: "+ bankInfor + "\n";
+        return $"Payment Id: " +payment_id + "\nPayment Detial:" + payment_name+"\nPayment Amount: "+ "Kr"+payment_amount+"\nPayment Date: "+ payment_date + "\nReservation Nr: "+ reservation_id + "\nCustomer Name: "+ customer_fname+" "+ customer_lname+ "\nBankInfor: "+ bankInfor + "\n";
      }
 }

@@ -83,8 +83,13 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.Receipt: //Do this last?
-                    PrintAllPayments();// is done Tina!
-
+                    // PrintAllPayments();// is done Tina!
+                    // AddPaymentInput();//it does not inseart the customer Id, dont not know why Tina!
+                    // SearchPaymentInput();// is done Tina!
+                    Console.WriteLine ("Remove a payment!");
+                    Console.WriteLine ("Payment Id to be removed: ");
+                    int rPaymentId= int.Parse(Console.ReadLine());
+                    paymentManager.RemovePayment (rPaymentId);
 
                     // Console.WriteLine("Do you want a receipt? Y/N");
                     // string answer = Console.ReadLine().ToLower();
@@ -121,7 +126,8 @@ internal class Program
         }
     }
 
-     private static void GetCustomerInput()
+  
+    private static void GetCustomerInput()
     {
         bool quit = true;
         while (quit)
@@ -131,11 +137,11 @@ internal class Program
             switch (CustomerChoice)
             {
                 case MenuChoiceCustomer.ViewRooms://is done Tina!
-                     PrintAllRooms();
+                    PrintAllRooms();
                     break;
 
                 case MenuChoiceCustomer.ShowAvailableRooms:// is done Tina!
-                   PrintAvailableRooms();
+                    PrintAvailableRooms();
                     break;
 
                 case MenuChoiceCustomer.BookRoom:
@@ -257,7 +263,7 @@ internal class Program
         }
     }
 
-       private static void GetManagerInput()   // ID = 2 PASSWORD = 2
+    private static void GetManagerInput()   // ID = 2 PASSWORD = 2
     {
         bool quit = true;
         while (quit)
@@ -267,7 +273,7 @@ internal class Program
             switch (ManagerChoice)
             {
                 case MenuChoiceManager.ShowRoom: //is done Tina!
-                   PrintAllRooms();
+                    PrintAllRooms();
                     break;
 
                 case MenuChoiceManager.AddRoom: //is done Tina!
@@ -287,23 +293,8 @@ internal class Program
                     break;
 
                 case MenuChoiceManager.SearchEmployee: // works but without the job title name
-                    Console.WriteLine("Search Employee!");
-                    Console.WriteLine("Employee Id:");
-                    int searchEmployeeId = int.Parse(Console.ReadLine());
-                    try
-                    {
-                        if (employeeManager.SearchEmployee(searchEmployeeId) != null)
-                        {
-                            Console.WriteLine(employeeManager.SearchEmployee(searchEmployeeId));
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        throw new ArgumentNullException();
-                    }
-                    Console.ReadLine();
+                    SearchEmployeeInput();
                     break;
-
 
                 case MenuChoiceManager.ShowEmployees: // is done!
                     PrintAllEmployees();
@@ -311,7 +302,7 @@ internal class Program
                     break;
 
                 case MenuChoiceManager.AddCustomer: // is done Tina!
-                    AddCustomerInput();            
+                    AddCustomerInput();
                     break;
 
                 case MenuChoiceManager.RemoveCustomer: // is done Tina
@@ -336,6 +327,71 @@ internal class Program
                     break;
             }
         }
+    }
+
+    private static void SearchPaymentInput()
+    {
+        Console.WriteLine("Search Payment!");
+        Console.WriteLine("Searching Payment ID: ");
+        if (int.TryParse(Console.ReadLine(), out int searchPaymentId))
+        {
+
+            try
+            {
+                if (paymentManager.SearchPayment(searchPaymentId) != null)
+                {
+                    Console.WriteLine(paymentManager.SearchPayment(searchPaymentId));
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentNullException();
+            }
+        }
+        else
+        {
+            Console.WriteLine("Input Id number!");
+        }
+        Console.ReadLine();
+    }
+
+    private static void SearchEmployeeInput()
+    {
+        Console.WriteLine("Search Employee!");
+        Console.WriteLine("Employee Id:");
+        int searchEmployeeId = int.Parse(Console.ReadLine());
+        try
+        {
+            if (employeeManager.SearchEmployee(searchEmployeeId) != null)
+            {
+                Console.WriteLine(employeeManager.SearchEmployee(searchEmployeeId));
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentNullException();
+        }
+        Console.ReadLine();
+    }
+
+    private static void AddPaymentInput()
+    {
+        Console.WriteLine("Add payment!");
+        Console.WriteLine("Customer ID: ");
+        int customerId = int.Parse(Console.ReadLine());
+        Console.WriteLine("Payment date: ");
+        DateTime date = DateTime.Parse(Console.ReadLine());
+        Console.WriteLine("Payment amount: ");
+        double payAmount = double.Parse(Console.ReadLine());
+        Console.WriteLine("Reservation ID: ");
+        int reservationId = int.Parse(Console.ReadLine());
+        Console.WriteLine("Payment name: ");
+        string? paymentName = Console.ReadLine();
+        Console.WriteLine("Bank information");
+        string? payBankInfor = Console.ReadLine();
+        Console.WriteLine("Added new payment ID: ");
+        Console.WriteLine(paymentManager.AddPayment(customerID, date, payAmount, reservationId, paymentName, payBankInfor));
+        Console.ReadLine();
     }
 
     private static void RemoveEmployeeInput()
@@ -675,7 +731,7 @@ internal class Program
         Console.WriteLine("Customer Id: ");
         int deleteCustomerId = int.Parse(Console.ReadLine());
         customerManager.RemoveCustomer(deleteCustomerId);
-         Console.ReadLine();
+        Console.ReadLine();
     }
 
     private static void NoTryMessage()
