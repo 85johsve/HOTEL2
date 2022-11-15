@@ -7,8 +7,9 @@ internal class Program
     static CustomerManager customerManager = new();
     static EmployeeManager employeeManager = new();
     static PaymentManger paymentManager = new();
-    static bool isLogIn = true;
     static ReservationData myResData = new();
+    static int customerID {get; set;}
+    static bool isLogIn = true;
 
     private static void Main(string[] args)
     {
@@ -244,8 +245,8 @@ internal class Program
                 case MenuChoiceCustomer.BookRoom:
 
                     Console.WriteLine("Book room");
-                    Console.WriteLine("Enter customer id: ");
-                    int customerIdBooking = Int32.Parse(Console.ReadLine());
+                    
+                    int customerIdBooking = customerID;
                     Console.WriteLine("Enter a from-date: ");
                     DateTime userDateIn;
                     if (DateTime.TryParse(Console.ReadLine(), out userDateIn))
@@ -527,7 +528,7 @@ internal class Program
         {
             Customer customer = new();
             Console.WriteLine("Please enter your ID: ");
-            int customerID = int.Parse(Console.ReadLine());
+            customerID = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter password");
             string customerPass = Console.ReadLine();
 
