@@ -26,6 +26,11 @@ class RoomData
         var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id={newRoomStatus} WHERE room_id = {roomToUpdate};");
 
     }
+    public void CheckInRoomStatus(string roomToCheckIn, string newRoomStatus)
+    {
+        var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id=1 WHERE room_id = {roomToCheckIn};");
+
+    }
 
     public int InsertRoom(int typeID, int statusID, double price)
     {

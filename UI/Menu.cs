@@ -5,6 +5,7 @@
         ShowAvailableRooms,
         SearchRoom,
         CheckIn,
+        CheckOut,
         AddRoom,
         RemoveRoom,
         Receipt,
