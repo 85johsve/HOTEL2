@@ -82,34 +82,61 @@ internal class Program
                     RemoveRoomInput();
                     break;
 
+<<<<<<< HEAD
                 case MenuChoiceEmployee.Receipt: //Do this last?
                     // PrintAllPayments();// is done Tina!
                     // AddPaymentInput();//it does not inseart the customer Id, dont not know why Tina!
                     SearchPaymentInput();// is done Tina!
                    // RemovePaymentInput();//is done Tina!
+=======
+                case MenuChoiceEmployee.Receipt: //is done Jessica
+                    Console.WriteLine("Do you want a receipt? Y/N");
+                    string answer = Console.ReadLine().ToLower();
+                    if (answer == "y")
+                    {
+                        SearchPaymentInput();
+                        quit = false;
+                    }
+                    else if (answer == "n")
+                    {
+                        Console.WriteLine("No receipt chosen!");
+                        quit = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("your choice does not exist!");
+>>>>>>> 7b6849d5f4b8822791bc252cf71b2956b5781d43
 
-                    // Console.WriteLine("Do you want a receipt? Y/N");
-                    // string answer = Console.ReadLine().ToLower();
-                    // if (answer == "y")
-                    // {
-                    //     Console.WriteLine("Your receipt");//Console.WriteLine("Receipt\n" + "Check in date: " + date_in + "\nCheck out date: " + check_out + "\nCustomer name: " + customer_fname + customer_lname + "\nRoom: " + room_id + "\nTotal Price: " + Price +"\nHotellet\nTel: 033-106600\nAllégatan 13 \nBorås");
-                    //     quit = false;
-                    // }
-                    // else if (answer == "n")
-                    // {
-                    //     Console.WriteLine("No receipt chosen!");
-                    //     quit = false;
-                    // }
-                    // else
-                    // {
-                    //     Console.WriteLine("your choice does not exist!");
-
-                    //  }
+                     }
                     break;
 
-                case MenuChoiceEmployee.Update://is done?
-                    UppdateRoomInput();
+                    case MenuChoiceEmployee.Payment://is done! Jessica
+                    Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
+                    string option = Console.ReadLine();
+                    if (option == "1")
+                    {
+                        PrintAllPayments();
+                        quit = false;
+                    }
+                    else if (option == "2")
+                    {
+                        AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
+                        quit = false;
+                    }
+                    else if (option == "3")
+                    {
+                        SearchPaymentInput();
+                        quit = false;
+                    }
+                    else if (option == "4")
+                    {
+                        RemovePaymentInput();
+                        quit = false;
+                    }
+                    break;
 
+                case MenuChoiceEmployee.Update://is done! Jessica
+                    UppdateRoomInput();
                     break;
 
                 case MenuChoiceEmployee.Quit: //is done!
@@ -286,7 +313,7 @@ internal class Program
                     AddEmployeeInput();
                     break;
 
-                case MenuChoiceManager.RemoveEmployee:// is done!
+                case MenuChoiceManager.RemoveEmployee:// is done! Jessica
                     RemoveEmployeeInput();
                     break;
 
@@ -294,9 +321,8 @@ internal class Program
                     SearchEmployeeInput();
                     break;
 
-                case MenuChoiceManager.ShowEmployees: // is done!
+                case MenuChoiceManager.ShowEmployees: // is done! Jessica
                     PrintAllEmployees();
-
                     break;
 
                 case MenuChoiceManager.AddCustomer: // is done Tina!
