@@ -44,7 +44,7 @@ class PaymentData
     public void DeletePayment(int number)
     {
       Open();
-       var deletePayment = connection.Query<Payment>($"DELETE FROM `payments` WHERE number=@payment_id");      
+       var deletePayment = connection.Query<Payment>($"DELETE FROM `payments` WHERE payment_id={number}");      
     }
 
      public Payment GetPayment(int idNr)

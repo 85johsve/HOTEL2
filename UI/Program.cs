@@ -82,11 +82,11 @@ internal class Program
                     RemoveRoomInput();
                     break;
 
-                case MenuChoiceEmployee.Receipt:
-                    // Console.WriteLine ("Remove a payment!");
-                    // Console.WriteLine ("Payment Id to be removed: ");
-                    // int rPaymentId= int.Parse(Console.ReadLine());
-                    // paymentManager.RemovePayment (rPaymentId);
+                case MenuChoiceEmployee.Receipt: //Do this last?
+                    PrintAllPayments();// is done Tina!
+                    AddPaymentInput();//it does not inseart the customer Id, dont not know why Tina!
+                    SearchPaymentInput();// is done Tina!
+                    RemovePaymentInput();//is done Tina!
 
                     Console.WriteLine("Do you want a receipt? Y/N");
                     string answer = Console.ReadLine().ToLower();
@@ -124,7 +124,8 @@ internal class Program
         }
     }
 
-  
+
+
     private static void GetCustomerInput()
     {
         bool quit = true;
@@ -323,6 +324,20 @@ internal class Program
                 default:
                     break;
             }
+        }
+    }
+
+    private static void RemovePaymentInput()
+    {
+        Console.WriteLine("Remove a payment!");
+        Console.WriteLine("Payment Id to be removed: ");
+        if (int.TryParse(Console.ReadLine(), out int rPaymentId))
+        {
+            paymentManager.RemovePayment(rPaymentId);
+        }
+        else
+        {
+            Console.WriteLine("Input prayment ID number!");
         }
     }
 
