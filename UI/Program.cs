@@ -82,13 +82,6 @@ internal class Program
                     RemoveRoomInput();
                     break;
 
-<<<<<<< HEAD
-                case MenuChoiceEmployee.Receipt: //Do this last?
-                    // PrintAllPayments();// is done Tina!
-                    // AddPaymentInput();//it does not inseart the customer Id, dont not know why Tina!
-                    SearchPaymentInput();// is done Tina!
-                   // RemovePaymentInput();//is done Tina!
-=======
                 case MenuChoiceEmployee.Receipt: //is done Jessica
                     Console.WriteLine("Do you want a receipt? Y/N");
                     string answer = Console.ReadLine().ToLower();
@@ -105,7 +98,6 @@ internal class Program
                     else
                     {
                         Console.WriteLine("your choice does not exist!");
->>>>>>> 7b6849d5f4b8822791bc252cf71b2956b5781d43
 
                      }
                     break;
