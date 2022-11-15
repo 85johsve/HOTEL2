@@ -59,46 +59,31 @@ internal class Program
 
             switch (choice)
             {
-                case MenuChoiceEmployee.ViewRooms://is done!
-                    ViewRoomsInput();
+                case MenuChoiceEmployee.ViewRooms://is done Tina!
+                    PrintAllRooms();
                     break;
 
-                case MenuChoiceEmployee.ShowAvailableRooms://is done!
-                    ShowAvailableRoomInput();
+                case MenuChoiceEmployee.ShowAvailableRooms://is done Tina!
+                    PrintAvailableRooms();
                     break;
 
-                case MenuChoiceEmployee.SearchRoom://is done!
+                case MenuChoiceEmployee.SearchRoom://is done Tina!
                     SearchRoomInput();
                     break;
 
                 case MenuChoiceEmployee.CheckIn:
                     break;
 
-                case MenuChoiceEmployee.AddRoom: //is done!
+                case MenuChoiceEmployee.AddRoom: //is done Tina!
                     AddRoomMenyInput();
                     break;
 
-                case MenuChoiceEmployee.RemoveRoom://is done!        
+                case MenuChoiceEmployee.RemoveRoom://is done TINA!        
                     RemoveRoomInput();
                     break;
 
                 case MenuChoiceEmployee.Receipt: //Do this last?
-                    // Console.WriteLine("All payments!");// is done!
-                    // try
-                    // {
-                    //     if (paymentManager.ShowAllPayments() != null)
-                    //     {
-                    //         foreach (var item in paymentManager.ShowAllPayments())
-                    //         {
-                    //             Console.WriteLine(item);
-                    //         }
-                    //     }
-                    // }
-                    // catch (Exception e)
-                    // {
-                    //     throw new ArgumentNullException();
-                    // }
-                    // Console.ReadLine();
+                    PrintAllPayments();// is done Tina!
 
 
                     // Console.WriteLine("Do you want a receipt? Y/N");
@@ -117,10 +102,10 @@ internal class Program
                     // {
                     //     Console.WriteLine("your choice does not exist!");
 
-                    // }
+                    //  }
                     break;
 
-                case MenuChoiceEmployee.Update://is done!
+                case MenuChoiceEmployee.Update://is done?
                     UppdateRoomInput();
 
                     break;
@@ -136,92 +121,7 @@ internal class Program
         }
     }
 
-    private static void ViewRoomsInput()
-    {
-        Console.WriteLine("All rooms!");
-        try
-        {
-            if (roomManager.ShowAllRooms() != null)
-            {
-                foreach (var item in roomManager.ShowAllRooms())
-                {
-                    Console.WriteLine(item);
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            throw new ArgumentNullException();
-        }
-        Console.ReadLine();
-    }
-
-    private static void ShowAvailableRoomInput()
-    {
-        Console.WriteLine("Available rooms!");
-        try
-        {
-            if (roomManager.ShowAvailableRoom() != null)
-            {
-                foreach (var item in roomManager.ShowAvailableRoom())
-                {
-                    Console.WriteLine(item);
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            throw new ArgumentNullException();
-        }
-
-        Console.ReadLine();
-    }
-
-    private static void UppdateRoomInput()
-    {
-        Console.WriteLine("Update room status");
-        foreach (var item in roomManager.ShowAllRooms())
-        {
-            Console.WriteLine(item);
-        }
-        Console.WriteLine("Choose room to update: ");
-        string roomToUpdate = Console.ReadLine();
-        Console.WriteLine("Choose room status: \n [1] checked in \n [2] check out \n [3] reserved \n [4] not in use");
-        string newRoomStatus = Console.ReadLine();
-        roomManager.UpdateRoomStatusID(roomToUpdate, newRoomStatus);
-        Console.WriteLine("Room is updated!");
-    }
-
-    private static void RemoveRoomInput()
-    {
-        Console.WriteLine("Delete Room!");
-        Console.WriteLine("Room Id: ");
-        int deleteRoomId = int.Parse(Console.ReadLine());
-        roomManager.RemoveRoom(deleteRoomId);
-        Console.WriteLine("Room has been deleted!");
-        Console.ReadLine();
-    }
-
-    private static void SearchRoomInput()
-    {
-        Console.WriteLine("Search Room!");
-        Console.WriteLine("Room Id: ");
-        int searchRoomId = int.Parse(Console.ReadLine());
-        try
-        {
-            if (roomManager.SearchRoom(searchRoomId) != null)
-            {
-                Console.WriteLine(roomManager.SearchRoom(searchRoomId));
-            }
-        }
-        catch (Exception e)
-        {
-            throw new ArgumentNullException();
-        }
-        Console.ReadLine();
-    }
-
-    private static void GetCustomerInput()
+     private static void GetCustomerInput()
     {
         bool quit = true;
         while (quit)
@@ -230,14 +130,13 @@ internal class Program
 
             switch (CustomerChoice)
             {
-                case MenuChoiceCustomer.ViewRooms://is done!
-                     ViewRoomsInput();
+                case MenuChoiceCustomer.ViewRooms://is done Tina!
+                     PrintAllRooms();
                     break;
 
-                case MenuChoiceCustomer.ShowAvailableRooms:// is done!
-                   ShowAvailableRoomInput();
+                case MenuChoiceCustomer.ShowAvailableRooms:// is done Tina!
+                   PrintAvailableRooms();
                     break;
-
 
                 case MenuChoiceCustomer.BookRoom:
 
@@ -358,7 +257,7 @@ internal class Program
         }
     }
 
-    private static void GetManagerInput()   // ID = 2 PASSWORD = 2
+       private static void GetManagerInput()   // ID = 2 PASSWORD = 2
     {
         bool quit = true;
         while (quit)
@@ -367,44 +266,24 @@ internal class Program
 
             switch (ManagerChoice)
             {
-                case MenuChoiceManager.ShowRoom: //is done!
-                    Console.WriteLine("All rooms!");
-                    foreach (var item in roomManager.ShowAllRooms())
-                    {
-                        Console.WriteLine(item);
-                    }
-                    Console.WriteLine("Available rooms!");
-                    foreach (var item in roomManager.ShowAvailableRoom())
-                    {
-                        Console.WriteLine(item);
-                    }
-                    Console.ReadKey();
+                case MenuChoiceManager.ShowRoom: //is done Tina!
+                   PrintAllRooms();
                     break;
 
-                case MenuChoiceManager.AddRoom: //is done!
+                case MenuChoiceManager.AddRoom: //is done Tina!
                     AddRoomMenyInput();
                     break;
 
-                case MenuChoiceManager.RemoveRoom:   //is done!     
-                    Console.WriteLine("Delete Room!");
-                    Console.WriteLine("Room Id: ");
-                    int deleteRoomId = int.Parse(Console.ReadLine());
-                    roomManager.RemoveRoom(deleteRoomId);
-                    Console.WriteLine("Room has been removed!");
-                    Console.ReadLine();
+                case MenuChoiceManager.RemoveRoom:   //is done Tina!     
+                    RemoveRoomInput();
                     break;
 
-                case MenuChoiceManager.AddEmployee:// is done!
+                case MenuChoiceManager.AddEmployee:// is done Tina!
                     AddEmployeeInput();
                     break;
 
                 case MenuChoiceManager.RemoveEmployee:// is done!
-                    Console.WriteLine("Delete Employee!");
-                    Console.WriteLine("Employee Id: ");
-                    int deleteEmployeeId = int.Parse(Console.ReadLine());
-                    employeeManager.RemoveEmployee(deleteEmployeeId);
-                    Console.WriteLine("Employee has been removed!");
-                    Console.ReadLine();
+                    RemoveEmployeeInput();
                     break;
 
                 case MenuChoiceManager.SearchEmployee: // works but without the job title name
@@ -427,71 +306,24 @@ internal class Program
 
 
                 case MenuChoiceManager.ShowEmployees: // is done!
-                    Console.WriteLine("Show All Employees!");
-                    try
-                    {
-                        if (employeeManager.ShowEmployees() != null)
-                        {
-                            foreach (var item in employeeManager.ShowEmployees())
-                            {
-                                Console.WriteLine(item);
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        throw new ArgumentNullException();
-                    }
-                    Console.ReadLine();
+                    PrintAllEmployees();
 
                     break;
 
-                case MenuChoiceManager.AddCustomer: // is done!
-                    AddCustomerInput();
-                    Console.ReadLine();
+                case MenuChoiceManager.AddCustomer: // is done Tina!
+                    AddCustomerInput();            
                     break;
 
-                case MenuChoiceManager.RemoveCustomer: // is done
+                case MenuChoiceManager.RemoveCustomer: // is done Tina
                     RemoveCustomerInput();
-                    Console.ReadLine();
-
                     break;
 
-                case MenuChoiceManager.SearchCustomer: //is done!
-                    Console.WriteLine("Search Customer!");
-                    Console.WriteLine("Customer Id:");
-                    int searchCustomerId = int.Parse(Console.ReadLine());
-                    try
-                    {
-                        if (customerManager.SearchCustomer(searchCustomerId) != null)
-                        {
-                            Console.WriteLine(customerManager.SearchCustomer(searchCustomerId));
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        throw new ArgumentNullException();
-                    }
-                    Console.ReadLine();
+                case MenuChoiceManager.SearchCustomer: //is done Tina!
+                    SearchCustomerInput();
                     break;
 
-                case MenuChoiceManager.ShowCustomers: // is done!
-                    Console.WriteLine("Show AllCustomer!");
-                    try
-                    {
-                        if (customerManager.ShowAllCustomers() != null)
-                        {
-                            foreach (var item in customerManager.ShowAllCustomers())
-                            {
-                                Console.WriteLine(item);
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        throw new ArgumentNullException();
-                    }
-                    Console.ReadLine();
+                case MenuChoiceManager.ShowCustomers: // is done Tina!
+                    PrintAllCustomers();
 
                     break;
 
@@ -504,6 +336,180 @@ internal class Program
                     break;
             }
         }
+    }
+
+    private static void RemoveEmployeeInput()
+    {
+        Console.WriteLine("Delete Employee!");
+        Console.WriteLine("Employee Id: ");
+        int deleteEmployeeId = int.Parse(Console.ReadLine());
+        employeeManager.RemoveEmployee(deleteEmployeeId);
+        Console.WriteLine("Employee has been removed!");
+        Console.ReadLine();
+    }
+
+    private static void PrintAllCustomers()
+    {
+        Console.WriteLine("Show AllCustomer!");
+        try
+        {
+            if (customerManager.ShowAllCustomers() != null)
+            {
+                foreach (var item in customerManager.ShowAllCustomers())
+                {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentNullException();
+        }
+        Console.ReadLine();
+    }
+
+    private static void SearchCustomerInput()
+    {
+        Console.WriteLine("Search Customer!");
+        Console.WriteLine("Customer Id:");
+        int searchCustomerId = int.Parse(Console.ReadLine());
+        try
+        {
+            if (customerManager.SearchCustomer(searchCustomerId) != null)
+            {
+                Console.WriteLine(customerManager.SearchCustomer(searchCustomerId));
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentNullException();
+        }
+        Console.ReadLine();
+    }
+
+    private static void PrintAllEmployees()
+    {
+        Console.WriteLine("Show All Employees!");
+        try
+        {
+            if (employeeManager.ShowEmployees() != null)
+            {
+                foreach (var item in employeeManager.ShowEmployees())
+                {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentNullException();
+        }
+        Console.ReadLine();
+    }
+
+    private static void PrintAllPayments()
+    {
+        Console.WriteLine("All payments!");// is done!
+        try
+        {
+            if (paymentManager.ShowAllPayments() != null)
+            {
+                foreach (var item in paymentManager.ShowAllPayments())
+                {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentNullException();
+        }
+        Console.ReadLine();
+    }
+
+    private static void PrintAllRooms()
+    {
+        Console.WriteLine("All rooms!");
+        try
+        {
+            if (roomManager.ShowAllRooms() != null)
+            {
+                foreach (var item in roomManager.ShowAllRooms())
+                {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentNullException();
+        }
+        Console.ReadLine();
+    }
+
+    private static void PrintAvailableRooms()
+    {
+        Console.WriteLine("Available rooms!");
+        try
+        {
+            if (roomManager.ShowAvailableRoom() != null)
+            {
+                foreach (var item in roomManager.ShowAvailableRoom())
+                {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentNullException();
+        }
+
+        Console.ReadLine();
+    }
+
+    private static void UppdateRoomInput()
+    {
+        Console.WriteLine("Update room status");
+        foreach (var item in roomManager.ShowAllRooms())
+        {
+            Console.WriteLine(item);
+        }
+        Console.WriteLine("Choose room to update: ");
+        string roomToUpdate = Console.ReadLine();
+        Console.WriteLine("Choose room status: \n [1] checked in \n [2] check out \n [3] reserved \n [4] not in use");
+        string newRoomStatus = Console.ReadLine();
+        roomManager.UpdateRoomStatusID(roomToUpdate, newRoomStatus);
+        Console.WriteLine("Room is updated!");
+    }
+
+    private static void RemoveRoomInput()
+    {
+        Console.WriteLine("Delete Room!");
+        Console.WriteLine("Room Id: ");
+        int deleteRoomId = int.Parse(Console.ReadLine());
+        roomManager.RemoveRoom(deleteRoomId);
+        Console.WriteLine("Room has been deleted!");
+        Console.ReadLine();
+    }
+
+    private static void SearchRoomInput()
+    {
+        Console.WriteLine("Search Room!");
+        Console.WriteLine("Room Id: ");
+        int searchRoomId = int.Parse(Console.ReadLine());
+        try
+        {
+            if (roomManager.SearchRoom(searchRoomId) != null)
+            {
+                Console.WriteLine(roomManager.SearchRoom(searchRoomId));
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentNullException();
+        }
+        Console.ReadLine();
     }
 
     private static void CustomerLog()
@@ -660,6 +666,7 @@ internal class Program
         int addId = customerManager.AddCustomer(addCustomerFName, addCustomerLName, addCustomerPhone, addCustomerEmail, addCustomerCity, addCustomerCountry, addCustomerAddress);
         Console.WriteLine("Added customer ID: ");
         Console.WriteLine(addId);
+        Console.ReadLine();
     }
 
     private static void RemoveCustomerInput()
@@ -668,6 +675,7 @@ internal class Program
         Console.WriteLine("Customer Id: ");
         int deleteCustomerId = int.Parse(Console.ReadLine());
         customerManager.RemoveCustomer(deleteCustomerId);
+         Console.ReadLine();
     }
 
     private static void NoTryMessage()
