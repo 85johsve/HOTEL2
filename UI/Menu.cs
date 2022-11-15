@@ -4,6 +4,7 @@
         ViewRooms=1,
         ShowAvailableRooms,
         SearchRoom,
+        BookRoom,
         CheckIn,
         CheckOut,
         AddRoom,
