@@ -8,6 +8,7 @@ internal class Program
     static EmployeeManager employeeManager = new();
     static PaymentManger paymentManager = new();
     static bool isLogIn = true;
+    static ReservationData myResData = new();
 
     private static void Main(string[] args)
     {
@@ -150,24 +151,24 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.Receipt: //Do this last?
-                //    Console.WriteLine("All payments!");// is done!
-                //      try
-                //     {
-                //         if ( paymentManager.ShowAllPayments() != null)
-                //         {
-                //             foreach (var item in  paymentManager.ShowAllPayments())
-                //             {
-                //                 Console.WriteLine(item);
-                //             }
-                //         }
-                //     }
-                //     catch (Exception e)
-                //     {
-                //         throw new ArgumentNullException();
-                //     }
-                //     Console.ReadLine();
+                                                 //    Console.WriteLine("All payments!");// is done!
+                                                 //      try
+                                                 //     {
+                                                 //         if ( paymentManager.ShowAllPayments() != null)
+                                                 //         {
+                                                 //             foreach (var item in  paymentManager.ShowAllPayments())
+                                                 //             {
+                                                 //                 Console.WriteLine(item);
+                                                 //             }
+                                                 //         }
+                                                 //     }
+                                                 //     catch (Exception e)
+                                                 //     {
+                                                 //         throw new ArgumentNullException();
+                                                 //     }
+                                                 //     Console.ReadLine();
 
-                   
+
                     // Console.WriteLine("Do you want a receipt? Y/N");
                     // string answer = Console.ReadLine().ToLower();
                     // if (answer == "y")
@@ -238,12 +239,120 @@ internal class Program
                     Console.ReadKey();
                     break;
 
-                case MenuChoiceCustomer.ReadReviews:
-                    Console.WriteLine("View Reviews");
-                    break;
+
 
                 case MenuChoiceCustomer.BookRoom:
-                    Console.WriteLine("Book Room");
+
+                    Console.WriteLine("Book room");
+                    Console.WriteLine("Enter customer id: ");
+                    int customerIdBooking = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter a from-date: ");
+                    DateTime userDateIn;
+                    if (DateTime.TryParse(Console.ReadLine(), out userDateIn))
+                    {
+                        Console.WriteLine("you choosed: " + userDateIn);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have entered an incorrect value.");
+                    }
+
+
+                    Console.WriteLine("Enter a to-date: ");
+                    DateTime userDateOut;
+                    if (DateTime.TryParse(Console.ReadLine(), out userDateOut))
+                    {
+                        Console.WriteLine("you choosed: " + userDateOut);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have entered an incorrect value.");
+                    }
+                    Console.ReadLine();
+
+                    List<Reservation> dateInList = new();
+                    List<Reservation> dateInOut = new();
+                    List<Reservation> availabeRooms = new();
+                    foreach (var item in myResData.GetReservationData())
+                    {
+
+                        if (userDateIn > item.date_in)
+                        {
+
+                            dateInList.Add(item);
+                        }
+
+
+
+                    }
+
+                    foreach (var listItem in dateInList)
+                    {
+                        if (userDateIn > listItem.date_out)
+                        {
+                            bool add_it = true;
+                            foreach (var room in availabeRooms)
+                            {
+                                if (room.room_id == listItem.room_id)
+                                {
+                                    add_it = false;
+                                    break;
+                                }
+                            }
+                            if (add_it)
+                                availabeRooms.Add(listItem);
+                        }
+                    }
+
+                    foreach (var item in myResData.GetReservationData())
+                    {
+
+                        if (userDateIn < item.date_in)
+                        {
+
+
+                            dateInOut.Add(item);
+
+
+                        }
+                    }
+
+                    foreach (var item in dateInOut)
+                    {
+                        if (userDateOut < item.date_in)
+                        {
+
+
+                            bool add_it = true;
+                            foreach (var room in availabeRooms)
+                            {
+                                if (room.room_id == item.room_id)
+                                {
+                                    add_it = false;
+                                    break;
+                                }
+                            }
+                            if (add_it)
+                                availabeRooms.Add(item);
+
+                        }
+                    }
+
+                    foreach (var gg in availabeRooms)
+                    {
+                        Console.WriteLine("room nr: " + gg.room_id);
+                    }
+
+
+                    DateTime todaysDate = DateTime.Now;
+                    Console.WriteLine("Choose room to book: ");
+                    int roomSelected = Int32.Parse(Console.ReadLine());
+                    myResData.MakeReservationCustomer(customerIdBooking, roomSelected, todaysDate, userDateIn, userDateOut);
+                    Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
+                    break;
+
+                case MenuChoiceCustomer.ReadReviews:
+                    Console.WriteLine("View Reviews");
                     break;
 
                 case MenuChoiceCustomer.WriteReview:

@@ -17,8 +17,8 @@
     {
         ViewRooms=1,
         ShowAvailableRooms,
-        ReadReviews,
         BookRoom,
+        ReadReviews,
         WriteReview,
         Quit,
     }
