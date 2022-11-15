@@ -52,8 +52,8 @@ internal class Program
 
     private static void GetEmployeeInput()
     {
-        bool quit = true;
-        while (quit)
+        bool quit = false;
+        while (!quit)
         {
             MenuChoiceEmployee choice = EmployeeEnumSwitch();
 
@@ -124,6 +124,10 @@ internal class Program
                     {
                         RemovePaymentInput();
                         quit = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("your choice does not exist!");
                     }
                     break;
 
