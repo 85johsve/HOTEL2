@@ -609,7 +609,7 @@ internal class Program
         Console.WriteLine("Bank information");
         string? payBankInfor = Console.ReadLine();
         Console.WriteLine("Added new payment ID: ");
-        Console.WriteLine(paymentManager.AddPayment(customerID, date, payAmount, reservationId, paymentName, payBankInfor));
+        Console.WriteLine(paymentManager.AddPayment(customerId, date, payAmount, reservationId, paymentName, payBankInfor));
         Console.ReadLine();
     }
 
