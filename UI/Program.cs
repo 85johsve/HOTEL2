@@ -854,10 +854,11 @@ internal class Program
             Customer customer = new();
             Console.WriteLine("Please enter your ID: ");
             customerID = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter password");
-            string customerPass = Console.ReadLine();
+            Console.WriteLine("Enter First Name");
+            string customerFname = Console.ReadLine();
+           // customerManager.CustomerLogInNameId(customerFname,customerID);
 
-            if (customerID == 2 && customerPass == "2")
+            if (customerID == 2 && customerFname == "2")
             {
                 return true;         
             }
@@ -1005,7 +1006,7 @@ internal class Program
         return quit;
     }
 
-        static int TryGetInt(string prompt)
+    static int TryGetInt(string prompt)
     {
 
         Console.WriteLine(prompt);

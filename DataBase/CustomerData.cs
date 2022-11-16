@@ -3,7 +3,7 @@ using MySqlConnector;
 using System.Data;
 class CustomerData
 {
-   
+
     MySqlConnection connection;
 
 
@@ -12,20 +12,20 @@ class CustomerData
         connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
 
     }
-      public void Open()
+    public void Open()
     {
-        if(connection.State != ConnectionState.Open)
+        if (connection.State != ConnectionState.Open)
             connection.Open();
     }
 
-     public List<Customer> GetCustomerList()
+    public List<Customer> GetCustomerList()
     {
         Open();
         var customers = connection.Query<Customer>("SELECT * FROM customers;").ToList();
         return customers;
 
     }
-     public Customer GetCustomerById(int idNr)
+    public Customer GetCustomerById(int idNr)
     {
         Open();
         var customer = connection.QuerySingle<Customer>($"SELECT * FROM customers WHERE customer_id  ={idNr};");
@@ -36,7 +36,7 @@ class CustomerData
     public int InsertCustomer(string fname, string lname, int phone, string email, string city, string country, string address)
     {
         Open();
-         var r = new DynamicParameters();
+        var r = new DynamicParameters();
         r.Add("@customer_fname", fname);
         r.Add("@customer_lname", lname);
         r.Add("@customer_phone", phone);
@@ -48,13 +48,24 @@ class CustomerData
         int Id = connection.Query<int>(sql, r).First();
 
         return Id;
-    
+
     }
 
-     public void DeleteCustomerById(int number)
+    public void DeleteCustomerById(int number)
     {
         Open();
         var deleteCustomer = connection.Query<Customer>($"DELETE FROM `customers` WHERE customer_id = {number}");
 
+    }
+
+    public void GetCustomerLogInNameId(string username, int password)
+    {
+        var parameters = new { customer_fname = username, customer_id = password };
+        var sql = "select * from customers where username = @customer_fname and password = @customer_id";
+        var result = connection.Query(sql, parameters);
+        // if (result!=null)
+        // return true;
+        // else
+        // return false;
     }
 }

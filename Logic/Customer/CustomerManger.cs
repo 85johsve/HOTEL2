@@ -34,4 +34,9 @@ class CustomerManager
     {
         newCustomerData.DeleteCustomerById(rCustomerId);
     }
+
+    public void CustomerLogInNameId(string fname, int id)
+    {
+       newCustomerData.GetCustomerLogInNameId(fname,id);
+    }
 }
