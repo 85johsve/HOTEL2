@@ -19,7 +19,7 @@ internal class Program
     {
 
         //TEST GET TIMESPAN OF RESERVATION NR1
-        Console.WriteLine(myResManager.GetTimeSpan(1));
+       // Console.WriteLine(myResManager.GetTimeSpan(1));
         
         foreach ( string c in Enum.GetNames(typeof (MenuChoiceUser )) )
         Console.WriteLine( "{0,-11}= {1}", c, Enum.Format( typeof (MenuChoiceUser ) , Enum.Parse(typeof (MenuChoiceUser ) , c), "d"));
@@ -29,24 +29,22 @@ internal class Program
         switch (choice)
         {
             case MenuChoiceUser.Employee:
-                GetEmployeeLogIn();
-                 if (isLogIn)
+            
+                 if (GetEmployeeLogIn())
                 {
                     GetEmployeeMenu();
                 }
                 break;
 
             case MenuChoiceUser.Customer:
-                CustomerLog();
-                if (isLogIn)
+                if (GetCustomerLogIn())
                 {
                     GetCustomerMenu(); ;
                 }
                 break;
 
             case MenuChoiceUser.Manager:
-                CustomerLog();//ManagerLog();
-                if (isLogIn)
+                if (GetCustomerLogIn())
                 {
                     GetManagerMenu();
                 }
@@ -504,36 +502,36 @@ internal class Program
         return quit;
     }
 
-    private static bool PaymentChoiceInput(bool choice)
+    private static bool PaymentChoiceInput(bool quit)
     {
         Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
         string option = Console.ReadLine();
         if (option == "1")
         {
             PrintAllPayments();
-            choice = false;
+            quit = false;
         }
         else if (option == "2")
         {
             AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
-            choice = false;
+            quit = false;
         }
         else if (option == "3")
         {
             SearchPaymentInput();
-            choice = false;
+            quit = false;
         }
         else if (option == "4")
         {
             RemovePaymentInput();
-            choice = false;
+            quit = false;
         }
         else
         {
             Console.WriteLine("Select one of the number!");
         }
         Console.ReadLine();
-        return choice;
+        return quit;
     }
 
     private static void RemovePaymentInput()
@@ -821,7 +819,7 @@ internal class Program
         Console.WriteLine("Delete Room!");
         Console.WriteLine("Room Id: ");
         int deleteRoomId = int.Parse(Console.ReadLine());
-        roomManager.RemoveRoom(deleteRoomId);
+        roomManager.RemoveRoomById(deleteRoomId);
         Console.WriteLine("Room has been deleted!");
         Console.ReadLine();
     }
@@ -833,9 +831,9 @@ internal class Program
         int searchRoomId = int.Parse(Console.ReadLine());
         try
         {
-            if (roomManager.SearchRoom(searchRoomId) != null)
+            if (roomManager.SearchRoomById(searchRoomId) != null)
             {
-                Console.WriteLine(roomManager.SearchRoom(searchRoomId));
+                Console.WriteLine(roomManager.SearchRoomById(searchRoomId));
             }
         }
         catch (Exception e)
@@ -845,11 +843,9 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static void CustomerLog()
+    private static bool GetCustomerLogIn()
     {
-        int temp = 0;
-        while (temp < 3)
-        {
+        
             Customer customer = new();
             Console.WriteLine("Please enter your ID: ");
             customerID = int.Parse(Console.ReadLine());
@@ -858,18 +854,11 @@ internal class Program
 
             if (customerID == 2 && customerPass == "2")
             {
-                isLogIn = true;
-                break;
+                return true;         
             }
-            else
-            {
-                if (temp < 2)
-                    Console.Write("\nLoggin unsucced, try again!");
-                else
-                    Console.Write("\nNO more try. Bye!");
-            }
-            temp++;
-        }
+           else
+           return false;
+        
     }
 
     private static bool GetEmployeeLogIn()
@@ -931,13 +920,17 @@ internal class Program
     }
 
     private static void AddRoomMenyInput()
-    {
-
+    {   // do not need room id, it will return added room id.
+        Console.WriteLine("TYPE ID: ");
+        int tid = int.Parse(Console.ReadLine());
+        Console.WriteLine("STATUS ID");
+        int sid = int.Parse(Console.ReadLine());
         Console.WriteLine("price");
         double p = double.Parse(Console.ReadLine());
-        roomManager.AddRoom(TryGetInt("TYPE ID:"), TryGetInt("STATUS ID:"), p);
+        Console.WriteLine("Added room ID:");
+        Console.WriteLine(roomManager.AddRoom(tid, sid, p));
+        Console.ReadLine();
     }
-
 
     private static void AddEmployeeInput()
     {
@@ -1005,17 +998,6 @@ internal class Program
         Console.WriteLine("You have chosen to quit the program");
         quit = false;
         return quit;
-    }
-
-    static int TryGetInt(string prompt)
-    {
-
-        Console.WriteLine(prompt);
-        if (int.TryParse(Console.ReadLine(), out int id))
-        {
-            return id;
-        }
-        return 0;
     }
 
 }

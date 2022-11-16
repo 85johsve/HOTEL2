@@ -3,7 +3,7 @@ using MySqlConnector;
 using System.Data;
 class RoomData
 {
-    
+
     MySqlConnection connection;
     // string roomToUpdate;
     // string newRoomStatus;
@@ -14,15 +14,15 @@ class RoomData
         connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
     }
 
-     public void Open()
+    public void Open()
     {
-        if(connection.State != ConnectionState.Open)
+        if (connection.State != ConnectionState.Open)
             connection.Open();
     }
 
     public List<Room> GetRoomList()
     {
-         Open();
+        Open();
         var rooms = connection.Query<Room>("SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.roomStatus_id=roomstatus.roomStatus_id) ;").ToList();
         return rooms;
 
@@ -30,7 +30,7 @@ class RoomData
 
     public void UpdateRoomStatus(string roomToUpdate, string newRoomStatus)
     {
-         Open();
+        Open();
         var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id={newRoomStatus} WHERE room_id = {roomToUpdate};");
 
     }
@@ -42,7 +42,7 @@ class RoomData
 
     public int InsertRoom(int typeID, int statusID, double price)
     {
-         Open();//int id, 
+        Open();//int id, 
         var r = new DynamicParameters();
         r.Add("@roomType_id", typeID);
         r.Add("@roomStatus_id", statusID);
@@ -53,20 +53,20 @@ class RoomData
         return Id;
     }
 
-    public void DeleteRoom(int number)
+    public void DeleteRoomById(int number)
     {
         Open();
         var deleteRoom = connection.Query<Room>($"DELETE FROM rooms WHERE room_id = {number};");
 
     }
 
-     public Room GetRoom(int idNr)
+    public Room GetRoomById(int idNr)
     {
         Open();
-       var room = connection.QuerySingle<Room>($"SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.roomStatus_id=roomstatus.roomStatus_id) WHERE room_id = {idNr};");
- 
-    return room;
-        
+        var room = connection.QuerySingle<Room>($"SELECT room_id,roomType_name,roomStatus_name,room_price FROM ((rooms INNER JOIN roomtype ON rooms.roomType_id=roomtype.roomType_id) INNER JOIN roomstatus ON rooms.roomStatus_id=roomstatus.roomStatus_id) WHERE room_id = {idNr};");
+
+        return room;
+
     }
 
 
