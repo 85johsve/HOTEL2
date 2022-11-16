@@ -117,11 +117,6 @@ internal class Program
 
                 case MenuChoiceEmployee.RemoveReview:
                     RemoveReviewInput();
-
-                    // int removeReviewId = int.Parse(Console.ReadLine());
-                    // ReviewManager.RemoveReview(reviewId)
-                    // Console.WriteLine("Review has been removed!");
-                    // Console.ReadLine();
                     break;
 
                 case MenuChoiceEmployee.Quit: //is done!
