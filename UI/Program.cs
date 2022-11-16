@@ -96,7 +96,7 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.Receipt: //is done Jessica!
-                    quit = ReceiptInput(quit);
+                    quit = ReceiptChoiceInput(quit);
                     break;
 
                 case MenuChoiceEmployee.Payment://is done! Jessica
@@ -133,8 +133,6 @@ internal class Program
             }
         }
     }
-
-  
 
     private static void GetCustomerMenu()
     {
@@ -488,7 +486,7 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static bool ReceiptInput(bool quit)
+    private static bool ReceiptChoiceInput(bool quit)
     {
         AddPaymentInput();
         Console.WriteLine("Do you want a receipt? Y/N");
