@@ -31,7 +31,7 @@ internal class Program
             EmployeeLog();
             if (isLogIn)
             {
-                GetEmployeeInput();
+                GetEmployeeMenu();
             }
         }
         else if (answer == "2")
@@ -41,7 +41,7 @@ internal class Program
             CustomerLog();
             if (isLogIn)
             {
-                GetCustomerInput(); ;
+                GetCustomerMenu(); ;
             }
         }
         else if (answer == "3")
@@ -51,12 +51,12 @@ internal class Program
             CustomerLog();
             if (isLogIn)
             {
-                GetManagerInput();
+                GetManagerMenu();
             }
         }
     }
 
-    private static void GetEmployeeInput()
+    private static void GetEmployeeMenu()
     {
         bool quit = false;
         while (!quit)
@@ -65,7 +65,7 @@ internal class Program
 
             switch (choice)
             {
-                case MenuChoiceEmployee.ViewRooms://is done Tina!
+                case MenuChoiceEmployee.ShowRooms://is done Tina!
                     PrintAllRooms();
                     break;
 
@@ -78,7 +78,7 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.BookRoom://is done Tina!
-                    BookRoomEmployee();
+                    EmployeeBookRoom();
                     break;
 
                 case MenuChoiceEmployee.CheckIn:
@@ -100,7 +100,7 @@ internal class Program
                     quit = PaymentChoiceInput(quit);
                     break;
 
-                case MenuChoiceEmployee.UpdateStatus://is done! Jessica
+                case MenuChoiceEmployee.UpdateRoom://is done! Jessica
                     UppdateRoomInput();
                     break;
 
@@ -108,7 +108,7 @@ internal class Program
                     UpdateReservation();
                     break;
 
-                case MenuChoiceEmployee.ViewReviews:
+                case MenuChoiceEmployee.ReadReviews:
                     break;
 
                     
@@ -125,7 +125,7 @@ internal class Program
         }
     }
 
-    private static void GetCustomerInput()
+    private static void GetCustomerMenu()
     {
         bool quit = true;
         while (quit)
@@ -143,7 +143,7 @@ internal class Program
                     break;
 
                 case MenuChoiceCustomer.BookRoom:
-                    BookRoomCustomer();
+                    CustomerBookRoom();
                     break;
 
                 case MenuChoiceCustomer.ReadReviews://is done Tina
@@ -165,7 +165,7 @@ internal class Program
         }
     }
 
-    private static void BookRoomCustomer()
+    private static void CustomerBookRoom()
     {
         Console.WriteLine("Book room");
 
@@ -263,7 +263,7 @@ internal class Program
         Console.Clear();
     }
 
-    private static void BookRoomEmployee()
+    private static void EmployeeBookRoom()
     {
         int employee_id = employeeID;
         Console.WriteLine("Book room");
@@ -362,7 +362,7 @@ internal class Program
         Console.Clear();
     }
 
-    private static void GetManagerInput()   // ID = 2 PASSWORD = 2
+    private static void GetManagerMenu()   // ID = 2 PASSWORD = 2
     {
         bool quit = true;
         while (quit)

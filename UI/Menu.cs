@@ -3,7 +3,7 @@
 
     public enum MenuChoiceEmployee //change to employee
     {
-        ViewRooms=1,
+        ShowRooms=1,
         ShowAvailableRooms,
         SearchRoom,
         BookRoom,
@@ -13,9 +13,9 @@
         RemoveRoom,
         Receipt,
         Payment,
-        UpdateStatus,
+        UpdateRoom,
         UpdateReservation,
-        ViewReviews,
+        ReadReviews,
         RemoveReview,
         Quit,
     }
@@ -42,5 +42,12 @@
         SearchCustomer,
         ShowCustomers,
         Quit,
+    }
+
+    public enum UserChoice
+    {
+        Employee=1,
+        Customer,
+        Manager,
     }
 
