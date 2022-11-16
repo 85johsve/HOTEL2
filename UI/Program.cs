@@ -121,7 +121,7 @@ internal class Program
                     int removId = int.Parse(Console.ReadLine());
                     try
                     {
-                        reviewManager.RemoveReview(removId);
+                        reviewManager.RemoveReviewById(removId);
                     }
                     catch (System.Exception)
                     {
