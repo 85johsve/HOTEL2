@@ -11,8 +11,8 @@ internal class Program
     static ReservationManager myResManager = new();
     static ReviewManager reviewManager = new();
     static int customerID { get; set; }
-    static int employeeID {get; set; }
-    
+    //static int employeeID {get; set; }
+
     static bool isLogIn = true;
 
     private static void Main(string[] args)
@@ -24,11 +24,10 @@ internal class Program
 
         Console.WriteLine("Employee Press [1]\nCustomer Press [2]\nManager Press [3]");
         string answer = Console.ReadLine();
+        Console.Clear();
         if (answer == "1")
         {
-            //Employee();
-            Console.Clear();
-            EmployeeLog();
+            GetEmployeeLogIn();
             if (isLogIn)
             {
                 GetEmployeeMenu();
@@ -36,8 +35,6 @@ internal class Program
         }
         else if (answer == "2")
         {
-            // Customer();
-            Console.Clear();
             CustomerLog();
             if (isLogIn)
             {
@@ -47,7 +44,7 @@ internal class Program
         else if (answer == "3")
         {
             // Manager(); ID = 2, PASSWORD = 2            
-            Console.Clear();
+
             CustomerLog();
             if (isLogIn)
             {
@@ -114,7 +111,7 @@ internal class Program
                 case MenuChoiceEmployee.ReadReviews:
                     break;
 
-                    
+
                 case MenuChoiceEmployee.RemoveReview:
                     break;
 
@@ -268,6 +265,7 @@ internal class Program
 
     private static void EmployeeBookRoom()
     {
+
         int employee_id = employeeID;
         Console.WriteLine("Book room");
         Console.WriteLine("Enter customer ID: ");
@@ -409,7 +407,7 @@ internal class Program
                 case MenuChoiceManager.RemoveCustomer: // is done Tina
                     //RemoveCustomerInput();
 
-                    Console.WriteLine ("Review Id to be removed:"); // it works on database but program keeps giving me exeption message!!!!!!
+                    Console.WriteLine("Review Id to be removed:"); // it works on database but program keeps giving me exeption message!!!!!!
 
                     int removId = int.Parse(Console.ReadLine());
                     try
@@ -813,7 +811,7 @@ internal class Program
         }
     }
 
-    private static void  RemoveRoomInput()
+    private static void RemoveRoomInput()
     {
         Console.WriteLine("Delete Room!");
         Console.WriteLine("Room Id: ");
@@ -869,38 +867,20 @@ internal class Program
         }
     }
 
-    private static void EmployeeLog()
+    private bool GetEmployeeLogIn()
     {
-        int temp = 0;
-        while (temp < 3)
-        {
-            //Employee employee = new();
-            
-            string employeePass;
-            
-            
-            GetEmployeeID(out employeeID, out employeePass);
-            
-            catch (System.Exception)
-            {
+        int employeeID;
+        string employeePass;
 
-                throw;
-            }
+        GetEmployeeID(out employeeID, out employeePass);
 
-            if (employeeID == 1 && employeePass == "1")
-            {
-                isLogIn = true;
-                break;
-            }
-            else
-            {
-                if (temp < 2)
-                    LoginWrongMessage();
-                else
-                    NoTryMessage();
-            }
-            temp++;
-        }
+        if (employeeID == 1 && employeePass == "1")
+
+            return true;
+
+        else
+            return false;
+
     }
 
     private static void GetEmployeeID(out int employeeID, out string employeePass)
