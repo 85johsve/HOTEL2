@@ -44,36 +44,6 @@ internal class Program
                 }
                 break;
 
-<<<<<<< HEAD
-        Console.WriteLine("Employee Press [1]\nCustomer Press [2]\nManager Press [3]");
-        string answer = Console.ReadLine();
-        Console.Clear();
-        if (answer == "1")
-        {
-            GetEmployeeLogIn();
-            if (isLogIn)
-            {
-                GetEmployeeMenu();
-            }
-        }
-        else if (answer == "2")
-        {
-            CustomerLog();
-            if (isLogIn)
-            {
-                GetCustomerMenu(); ;
-            }
-        }
-        else if (answer == "3")
-        {
-            // Manager(); ID = 2, PASSWORD = 2            
-
-            CustomerLog();
-            if (isLogIn)
-            {
-                GetManagerMenu();
-            }
-=======
             case MenuChoiceUser.Manager:
                 CustomerLog();//ManagerLog();
                 if (isLogIn)
@@ -84,7 +54,7 @@ internal class Program
 
             default:
                 break;
->>>>>>> f0a887698927c25326c3c925601366583c6dfdba
+
         }
     }
 
@@ -301,7 +271,7 @@ internal class Program
     private static void EmployeeBookRoom()
     {
 
-        int employee_id = employeeID;
+       
         Console.WriteLine("Book room");
         Console.WriteLine("Enter customer ID: ");
         int customerIdBooking = Int32.Parse(Console.ReadLine());
