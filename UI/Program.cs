@@ -20,39 +20,40 @@ internal class Program
 
         //TEST GET TIMESPAN OF RESERVATION NR1
         Console.WriteLine(myResManager.GetTimeSpan(1));
+        
+        foreach ( string c in Enum.GetNames(typeof (MenuChoiceUser )) )
+        Console.WriteLine( "{0,-11}= {1}", c, Enum.Format( typeof (MenuChoiceUser ) , Enum.Parse(typeof (MenuChoiceUser ) , c), "d"));
+        Console.WriteLine("Select one of the options:");
+        int input =int.Parse(Console.ReadLine ());
+        MenuChoiceUser choice=(MenuChoiceUser )input ;
+        switch (choice)
+        {
+            case MenuChoiceUser.Employee:
+                EmployeeLog();
+                 if (isLogIn)
+                {
+                    GetEmployeeMenu();
+                }
+                break;
 
+            case MenuChoiceUser.Customer:
+                CustomerLog();
+                if (isLogIn)
+                {
+                    GetCustomerMenu(); ;
+                }
+                break;
 
-        Console.WriteLine("Employee Press [1]\nCustomer Press [2]\nManager Press [3]");
-        string answer = Console.ReadLine();
-        if (answer == "1")
-        {
-            //Employee();
-            Console.Clear();
-            EmployeeLog();
-            if (isLogIn)
-            {
-                GetEmployeeMenu();
-            }
-        }
-        else if (answer == "2")
-        {
-            // Customer();
-            Console.Clear();
-            CustomerLog();
-            if (isLogIn)
-            {
-                GetCustomerMenu(); ;
-            }
-        }
-        else if (answer == "3")
-        {
-            // Manager(); ID = 2, PASSWORD = 2            
-            Console.Clear();
-            CustomerLog();
-            if (isLogIn)
-            {
-                GetManagerMenu();
-            }
+            case MenuChoiceUser.Manager:
+                CustomerLog();//ManagerLog();
+                if (isLogIn)
+                {
+                    GetManagerMenu();
+                }
+                break;
+
+            default:
+                break;
         }
     }
 
@@ -879,7 +880,8 @@ internal class Program
             string employeePass;
             
             
-            GetEmployeeID(out employeeID, out employeePass);
+            GetEmployeeID(out employeeID, out employeePass)
+            
             
             catch (System.Exception)
             {
@@ -900,6 +902,7 @@ internal class Program
                     NoTryMessage();
             }
             temp++;
+            
         }
     }
 
