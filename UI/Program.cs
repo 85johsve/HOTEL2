@@ -874,24 +874,9 @@ internal class Program
 
     private bool GetEmployeeLogIn()
     {
-<<<<<<< HEAD
+
         int employeeID;
         string employeePass;
-=======
-        int temp = 0;
-        while (temp < 3)
-        {
-            //Employee employee = new();
-            
-            string employeePass;
-            
-            
-            GetEmployeeID(out employeeID, out employeePass)
-            
-            
-            catch (System.Exception)
-            {
->>>>>>> f0a887698927c25326c3c925601366583c6dfdba
 
         GetEmployeeID(out employeeID, out employeePass);
 
@@ -900,26 +885,7 @@ internal class Program
             return true;
 
         else
-            return false;
-
-<<<<<<< HEAD
-=======
-            if (employeeID == 1 && employeePass == "1")
-            {
-                isLogIn = true;
-                break;
-            }
-            else
-            {
-                if (temp < 2)
-                    LoginWrongMessage();
-                else
-                    NoTryMessage();
-            }
-            temp++;
-            
-        }
->>>>>>> f0a887698927c25326c3c925601366583c6dfdba
+            return false;          
     }
 
     private static void GetEmployeeID(out int employeeID, out string employeePass)
