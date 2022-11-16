@@ -120,7 +120,7 @@ internal class Program
                     RemoveReviewInput();
                     break;
 
-                case MenuChoiceEmployee.Quit: //is done!
+                case MenuChoiceEmployee.Quit: //is done! Jessica
                     quit = QuitMessage();
                     break;
 
