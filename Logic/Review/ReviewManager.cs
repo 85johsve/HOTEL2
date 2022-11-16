@@ -3,7 +3,7 @@ using MySqlConnector;
 class ReviewManager
 {
     private List<Review> reviews;
-    ReviewData newReviewData= new();
+    ReviewData newReviewData = new();
 
     public int WriteReview(int customerID, int reservationID, string content)
     {
@@ -13,11 +13,11 @@ class ReviewManager
     }
 
     public List<Review> ShowAllReviews()
-    {  
-            return newReviewData.GetReviewList(); 
+    {
+        return newReviewData.GetReviewList();
     }
 
-     public void RemoveReview(int reviewId)    // how to controll this, make sure if the id does not exist and try catch it?
+    public void RemoveReviewById(int reviewId)    // how to controll this, make sure if the id does not exist and try catch it?
     {
         newReviewData.DeleteReviewById(reviewId);
     }

@@ -415,7 +415,7 @@ internal class Program
                     int removId = int.Parse(Console.ReadLine());
                     try
                     {
-                        reviewManager.RemoveReview(removId);
+                        reviewManager.RemoveReviewById(removId);
                     }
                     catch (System.Exception)
                     {
@@ -650,9 +650,9 @@ internal class Program
         int searchCustomerId = int.Parse(Console.ReadLine());
         try
         {
-            if (customerManager.SearchCustomer(searchCustomerId) != null)
+            if (customerManager.SearchCustomerById(searchCustomerId) != null)
             {
-                Console.WriteLine(customerManager.SearchCustomer(searchCustomerId));
+                Console.WriteLine(customerManager.SearchCustomerById(searchCustomerId));
             }
         }
         catch (Exception e)
@@ -978,7 +978,7 @@ internal class Program
         Console.WriteLine("Delete Customer!");
         Console.WriteLine("Customer Id: ");
         int deleteCustomerId = int.Parse(Console.ReadLine());
-        customerManager.RemoveCustomer(deleteCustomerId);
+        customerManager.RemoveCustomerById(deleteCustomerId);
         Console.ReadLine();
     }
 

@@ -25,7 +25,7 @@ class CustomerData
         return customers;
 
     }
-     public Customer GetCustomer(int idNr)
+     public Customer GetCustomerById(int idNr)
     {
         Open();
         var customer = connection.QuerySingle<Customer>($"SELECT * FROM customers WHERE customer_id  ={idNr};");
@@ -51,7 +51,7 @@ class CustomerData
     
     }
 
-     public void DeleteCustomer(int number)
+     public void DeleteCustomerById(int number)
     {
         Open();
         var deleteCustomer = connection.Query<Customer>($"DELETE FROM `customers` WHERE customer_id = {number}");

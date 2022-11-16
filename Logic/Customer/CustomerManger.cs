@@ -14,10 +14,10 @@ class CustomerManager
         return insertCustomerID;
     }
 
-    public Customer SearchCustomer(int sCustomerId)
+    public Customer SearchCustomerById(int sCustomerId)
     {
         
-            return newCustomerData.GetCustomer(sCustomerId);
+            return newCustomerData.GetCustomerById(sCustomerId);
        
     }
 
@@ -30,8 +30,8 @@ class CustomerManager
         return null;
     }
 
-    public void RemoveCustomer(int rCustomerId)
+    public void RemoveCustomerById(int rCustomerId)
     {
-        newCustomerData.DeleteCustomer(rCustomerId);
+        newCustomerData.DeleteCustomerById(rCustomerId);
     }
 }
