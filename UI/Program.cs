@@ -867,10 +867,10 @@ internal class Program
             //Employee employee = new();
             
             string employeePass;
-            try
-            {
-                GetEmployeeID(out employeeID, out employeePass);
-            }
+            
+            
+            GetEmployeeID(out employeeID, out employeePass);
+            
             catch (System.Exception)
             {
 
