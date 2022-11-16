@@ -398,11 +398,9 @@ internal class Program
 
                 case MenuChoiceManager.RemoveCustomer: // is done Tina
                     //RemoveCustomerInput();
-<<<<<<< HEAD
-                    Console.WriteLine ("Review Id to be removed:"); // it works on database but program keeps giving me exeption message!!!!!!
-=======
+
                     Console.WriteLine("Review Id to be removed:");
->>>>>>> 19aab397431a83e0c40f874d4fe53fb81eafc98a
+
                     int removId = int.Parse(Console.ReadLine());
                     try
                     {
@@ -869,10 +867,10 @@ internal class Program
             //Employee employee = new();
             
             string employeePass;
-            try
-            {
-                GetEmployeeID(out employeeID, out employeePass);
-            }
+            
+            
+            GetEmployeeID(out employeeID, out employeePass);
+            
             catch (System.Exception)
             {
 
