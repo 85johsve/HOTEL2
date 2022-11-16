@@ -116,18 +116,7 @@ internal class Program
 
 
                 case MenuChoiceEmployee.RemoveReview:
-                    Console.WriteLine("Review Id to be removed:"); // it works on database but program keeps giving me exeption message!!!!!!
-
-                    int removId = int.Parse(Console.ReadLine());
-                    try
-                    {
-                        reviewManager.RemoveReviewById(removId);
-                    }
-                    catch (System.Exception)
-                    {
-                        throw new FieldAccessException();
-                    }
-                    Console.ReadLine();
+                    RemoveReviewInput();
 
                     // int removeReviewId = int.Parse(Console.ReadLine());
                     // ReviewManager.RemoveReview(reviewId)
@@ -144,6 +133,8 @@ internal class Program
             }
         }
     }
+
+  
 
     private static void GetCustomerMenu()
     {
@@ -282,6 +273,22 @@ internal class Program
     //     Console.ReadKey();
     //     Console.Clear();
     // }
+
+    private static void RemoveReviewInput()
+    {
+        Console.WriteLine("Review Id to be removed:"); // it works on database but program keeps giving me exeption message!!!!!!
+
+        int removId = int.Parse(Console.ReadLine());
+        try
+        {
+            reviewManager.RemoveReviewById(removId);
+        }
+        catch (System.Exception)
+        {
+            throw new FieldAccessException();
+        }
+        Console.ReadLine();
+    }
 
     private static void EmployeeBookRoom()
     {
