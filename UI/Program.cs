@@ -111,17 +111,13 @@ internal class Program
                     UpdateReservationInput();
                     break;
 
-                case MenuChoiceEmployee.ReadReviews:
+                case MenuChoiceEmployee.ReadReviews: // is done! Jessica
+                    PrintAllReviews();
                     break;
 
 
-                case MenuChoiceEmployee.RemoveReview:
+                case MenuChoiceEmployee.RemoveReview: //is done Jessica
                     RemoveReviewInput();
-
-                    // int removeReviewId = int.Parse(Console.ReadLine());
-                    // ReviewManager.RemoveReview(reviewId)
-                    // Console.WriteLine("Review has been removed!");
-                    // Console.ReadLine();
                     break;
 
                 case MenuChoiceEmployee.Quit: //is done!
@@ -136,8 +132,8 @@ internal class Program
 
     private static void GetCustomerMenu()
     {
-        bool quit = true;
-        while (quit)
+        bool quit = false;
+        while (!quit)
         {
             MenuChoiceCustomer CustomerChoice = CustomerEnumSwitch();
 
@@ -277,14 +273,15 @@ internal class Program
         Console.WriteLine("Review Id to be removed:"); // it works on database but program keeps giving me exeption message!!!!!!
 
         int removId = int.Parse(Console.ReadLine());
-        // try
-        // {
+        try
+        {
             reviewManager.RemoveReviewById(removId);
-        // }
-        // catch (System.Exception)
-        // {
-            //throw new FieldAccessException();
-        // }
+            Console.WriteLine("The review has been removed!");
+        }
+        catch (System.Exception)
+        {
+            throw new FieldAccessException();
+        }
         Console.ReadLine();
     }
 
@@ -390,8 +387,8 @@ internal class Program
 
     private static void GetManagerMenu()   // ID = 2 PASSWORD = 2
     {
-        bool quit = true;
-        while (quit)
+        bool quit = false;
+        while (!quit)
         {
             MenuChoiceManager ManagerChoice = ManagerEnumSwitch();
 
@@ -1005,7 +1002,7 @@ internal class Program
     {
         bool quit;
         Console.WriteLine("You have chosen to quit the program");
-        quit = false;
+        quit = true;
         return quit;
     }
 

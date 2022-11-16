@@ -42,7 +42,7 @@ class ReviewData
     public void DeleteReviewById(int number)
     {
         Open();
-        var deleteReview = connection.QuerySingle<Review>($"DELETE FROM reviews WHERE review_id = {number};");
+        var deleteReview = connection.Query<Review>($"DELETE FROM reviews WHERE review_id = {number};");
 
     }
 }
