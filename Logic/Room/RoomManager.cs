@@ -11,18 +11,13 @@ class RoomManager
 
     public List<Room> ShowAllRooms()
     {
-         if (newRoomData.GetRoomList() != null)
-        {
-            return newRoomData.GetRoomList();
-        }
-        return null;
-       
+        return newRoomData.GetRoomList();
     }
 
     public List<Room> ShowAvailableRoom()
     {
         List<Room> availableRooms = new();
-        
+
         foreach (Room room in newRoomData.GetRoomList())
         {
             if (room.roomStatus_name == "CheckOut")
@@ -30,26 +25,19 @@ class RoomManager
                 availableRooms.Add(room);
             }
         }
-         if (availableRooms!= null)
-        {
-            return availableRooms;
-        }
-        return null;
+        return availableRooms;
     }
 
-    public Room SearchRoom(int sRoomId)
+    public Room SearchRoomById(int sRoomId)
     {
-        if (newRoomData.GetRoom(sRoomId) != null)
-        {
-            return newRoomData.GetRoom(sRoomId);
-        }
-        return null;
+        return newRoomData.GetRoomById(sRoomId);
     }
 
     public void UpdateRoomStatusID(string roomToUpdate, string newRoomStatus)
     {
         newRoomData.UpdateRoomStatus(roomToUpdate, newRoomStatus);
     }
+
     // public void CheckInRoomStatusID(string roomToCheckIn, string newRoomCheckInStatus)
     // {
     //     newRoomData.UpdateRoomStatus(roomToCheckIn, newRoomCheckInStatus);
@@ -62,8 +50,8 @@ class RoomManager
         return InsertRoomID;
     }
 
-    public void RemoveRoom(int rRoomId)    // how to controll this, make sure if the id does not exist and try catch it?
+    public void RemoveRoomById(int rRoomId)    // how to controll this, make sure if the id does not exist and try catch it?
     {
-        newRoomData.DeleteRoom(rRoomId);
+        newRoomData.DeleteRoomById(rRoomId);
     }
 }

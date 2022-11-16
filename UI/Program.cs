@@ -19,7 +19,7 @@ internal class Program
     {
 
         //TEST GET TIMESPAN OF RESERVATION NR1
-        Console.WriteLine(myResManager.GetTimeSpan(1));
+       // Console.WriteLine(myResManager.GetTimeSpan(1));
         
         foreach ( string c in Enum.GetNames(typeof (MenuChoiceUser )) )
         Console.WriteLine( "{0,-11}= {1}", c, Enum.Format( typeof (MenuChoiceUser ) , Enum.Parse(typeof (MenuChoiceUser ) , c), "d"));
@@ -29,24 +29,22 @@ internal class Program
         switch (choice)
         {
             case MenuChoiceUser.Employee:
-                GetEmployeeLogIn();
-                 if (isLogIn)
+            
+                 if (GetEmployeeLogIn())
                 {
                     GetEmployeeMenu();
                 }
                 break;
                 
             case MenuChoiceUser.Customer:
-                CustomerLog();
-                if (isLogIn)
+                if (GetCustomerLogIn())
                 {
                     GetCustomerMenu(); ;
                 }
                 break;
 
             case MenuChoiceUser.Manager:
-                CustomerLog();//ManagerLog();
-                if (isLogIn)
+                if (GetCustomerLogIn())
                 {
                     GetManagerMenu();
                 }
@@ -90,7 +88,7 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.AddRoom: //is done Tina!
-                    AddRoomMenyInput();
+                    AddRoomInput();
                     break;
 
                 case MenuChoiceEmployee.RemoveRoom://is done TINA!        
@@ -110,7 +108,7 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.UpdateReservation://please take a look /Johan
-                    UpdateReservation();
+                    UpdateReservationInput();
                     break;
 
                 case MenuChoiceEmployee.ReadReviews:
@@ -156,7 +154,7 @@ internal class Program
 
             switch (CustomerChoice)
             {
-                case MenuChoiceCustomer.ViewRooms://is done Tina!
+                case MenuChoiceCustomer.ShowRooms://is done Tina!
                     PrintAllRooms();
                     break;
 
@@ -165,7 +163,7 @@ internal class Program
                     break;
 
                 case MenuChoiceCustomer.BookRoom:
-                    CustomerBookRoom();
+                    myResManager.CustomerBookRoom();
                     break;
 
                 case MenuChoiceCustomer.ReadReviews://is done Tina
@@ -187,103 +185,103 @@ internal class Program
         }
     }
 
-    private static void CustomerBookRoom()
-    {
-        Console.WriteLine("Book room");
+    // private static void CustomerBookRoom()
+    // {
+    //     Console.WriteLine("Book room");
 
-        int customerIdBooking = customerID;
-        Console.WriteLine("Enter a from-date: ");
-        DateTime userDateIn;
-        if (DateTime.TryParse(Console.ReadLine(), out userDateIn))
-        {
-            Console.WriteLine("you choosed: " + userDateIn);
-        }
-        else
-        {
-            Console.WriteLine("You have entered an incorrect value.");
-        }
+    //     int customerIdBooking = customerID;
+    //     Console.WriteLine("Enter a from-date: ");
+    //     DateTime userDateIn;
+    //     if (DateTime.TryParse(Console.ReadLine(), out userDateIn))
+    //     {
+    //         Console.WriteLine("you choosed: " + userDateIn);
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("You have entered an incorrect value.");
+    //     }
 
 
-        Console.WriteLine("Enter a to-date: ");
-        DateTime userDateOut;
-        if (DateTime.TryParse(Console.ReadLine(), out userDateOut))
-        {
-            Console.WriteLine("you choosed: " + userDateOut);
-        }
-        else
-        {
-            Console.WriteLine("You have entered an incorrect value.");
-        }
-        Console.ReadLine();
+    //     Console.WriteLine("Enter a to-date: ");
+    //     DateTime userDateOut;
+    //     if (DateTime.TryParse(Console.ReadLine(), out userDateOut))
+    //     {
+    //         Console.WriteLine("you choosed: " + userDateOut);
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("You have entered an incorrect value.");
+    //     }
+    //     Console.ReadLine();
 
-        List<Reservation> dateInList = new();
-        List<Reservation> dateInOut = new();
-        List<Reservation> availabeRooms = new();
-        foreach (var item in myResData.GetReservationData())
-        {
-            if (userDateIn > item.date_in)
-            {
-                dateInList.Add(item);
-            }
-        }
+    //     List<Reservation> dateInList = new();
+    //     List<Reservation> dateInOut = new();
+    //     List<Reservation> availabeRooms = new();
+    //     foreach (var item in myResData.GetReservationData())
+    //     {
+    //         if (userDateIn > item.date_in)
+    //         {
+    //             dateInList.Add(item);
+    //         }
+    //     }
 
-        foreach (var listItem in dateInList)
-        {
-            if (userDateIn > listItem.date_out)
-            {
-                bool add_it = true;
-                foreach (var room in availabeRooms)
-                {
-                    if (room.room_id == listItem.room_id)
-                    {
-                        add_it = false;
-                        break;
-                    }
-                }
-                if (add_it)
-                    availabeRooms.Add(listItem);
-            }
-        }
+    //     foreach (var listItem in dateInList)
+    //     {
+    //         if (userDateIn > listItem.date_out)
+    //         {
+    //             bool add_it = true;
+    //             foreach (var room in availabeRooms)
+    //             {
+    //                 if (room.room_id == listItem.room_id)
+    //                 {
+    //                     add_it = false;
+    //                     break;
+    //                 }
+    //             }
+    //             if (add_it)
+    //                 availabeRooms.Add(listItem);
+    //         }
+    //     }
 
-        foreach (var item in myResData.GetReservationData())
-        {
+    //     foreach (var item in myResData.GetReservationData())
+    //     {
 
-            if (userDateIn < item.date_in)
-            {
-                dateInOut.Add(item);
-            }
-        }
+    //         if (userDateIn < item.date_in)
+    //         {
+    //             dateInOut.Add(item);
+    //         }
+    //     }
 
-        foreach (var item in dateInOut)
-        {
-            if (userDateOut < item.date_in)
-            {
-                bool add_it = true;
-                foreach (var room in availabeRooms)
-                {
-                    if (room.room_id == item.room_id)
-                    {
-                        add_it = false;
-                        break;
-                    }
-                }
-                if (add_it)
-                    availabeRooms.Add(item);
-            }
-        }
+    //     foreach (var item in dateInOut)
+    //     {
+    //         if (userDateOut < item.date_in)
+    //         {
+    //             bool add_it = true;
+    //             foreach (var room in availabeRooms)
+    //             {
+    //                 if (room.room_id == item.room_id)
+    //                 {
+    //                     add_it = false;
+    //                     break;
+    //                 }
+    //             }
+    //             if (add_it)
+    //                 availabeRooms.Add(item);
+    //         }
+    //     }
 
-        foreach (var gg in availabeRooms)
-        {
-            Console.WriteLine("room nr: " + gg.room_id);
-        }
-        DateTime todaysDate = DateTime.Now;
-        Console.WriteLine("Choose room to book: ");
-        int roomSelected = Int32.Parse(Console.ReadLine());
-        myResData.MakeReservationCustomer(customerIdBooking, roomSelected, todaysDate, userDateIn, userDateOut);
-        Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
-        Console.ReadKey();
-        Console.Clear();
-    }
+    //     foreach (var gg in availabeRooms)
+    //     {
+    //         Console.WriteLine("room nr: " + gg.room_id);
+    //     }
+    //     DateTime todaysDate = DateTime.Now;
+    //     Console.WriteLine("Choose room to book: ");
+    //     int roomSelected = Int32.Parse(Console.ReadLine());
+    //     myResData.MakeReservationCustomer(customerIdBooking, roomSelected, todaysDate, userDateIn, userDateOut);
+    //     Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
+    //     Console.ReadKey();
+    //     Console.Clear();
+    // }
 
     private static void EmployeeBookRoom()
     {
@@ -399,7 +397,7 @@ internal class Program
                     break;
 
                 case MenuChoiceManager.AddRoom: //is done Tina!
-                    AddRoomMenyInput();
+                    AddRoomInput();
                     break;
 
                 case MenuChoiceManager.RemoveRoom:   //is done Tina!     
@@ -545,7 +543,7 @@ internal class Program
         Console.WriteLine("Payment Id to be removed: ");
         if (int.TryParse(Console.ReadLine(), out int rPaymentId))
         {
-            paymentManager.RemovePayment(rPaymentId);
+            paymentManager.RemovePaymentById(rPaymentId);
         }
         else
         {
@@ -562,9 +560,9 @@ internal class Program
 
             try
             {
-                if (paymentManager.SearchPayment(searchPaymentId) != null)
+                if (paymentManager.SearchPaymentById(searchPaymentId) != null)
                 {
-                    Console.WriteLine(paymentManager.SearchPayment(searchPaymentId));
+                    Console.WriteLine(paymentManager.SearchPaymentById(searchPaymentId));
                 }
             }
             catch (Exception e)
@@ -614,7 +612,7 @@ internal class Program
         Console.WriteLine("Bank information");
         string? payBankInfor = Console.ReadLine();
         Console.WriteLine("Added new payment ID: ");
-        Console.WriteLine(paymentManager.AddPayment(customerID, date, payAmount, reservationId, paymentName, payBankInfor));
+        Console.WriteLine(paymentManager.AddPayment(customerId, date, payAmount, reservationId, paymentName, payBankInfor));
         Console.ReadLine();
     }
 
@@ -655,9 +653,9 @@ internal class Program
         int searchCustomerId = int.Parse(Console.ReadLine());
         try
         {
-            if (customerManager.SearchCustomer(searchCustomerId) != null)
+            if (customerManager.SearchCustomerById(searchCustomerId) != null)
             {
-                Console.WriteLine(customerManager.SearchCustomer(searchCustomerId));
+                Console.WriteLine(customerManager.SearchCustomerById(searchCustomerId));
             }
         }
         catch (Exception e)
@@ -763,7 +761,7 @@ internal class Program
         Console.WriteLine("Room is updated!");
     }
 
-    private static void UpdateReservation()
+    private static void UpdateReservationInput()
     {
         Console.WriteLine("[1]Update check in date \n[2]Update check out date ");
         string choice = Console.ReadLine();
@@ -824,7 +822,7 @@ internal class Program
         Console.WriteLine("Delete Room!");
         Console.WriteLine("Room Id: ");
         int deleteRoomId = int.Parse(Console.ReadLine());
-        roomManager.RemoveRoom(deleteRoomId);
+        roomManager.RemoveRoomById(deleteRoomId);
         Console.WriteLine("Room has been deleted!");
         Console.ReadLine();
     }
@@ -836,9 +834,9 @@ internal class Program
         int searchRoomId = int.Parse(Console.ReadLine());
         try
         {
-            if (roomManager.SearchRoom(searchRoomId) != null)
+            if (roomManager.SearchRoomById(searchRoomId) != null)
             {
-                Console.WriteLine(roomManager.SearchRoom(searchRoomId));
+                Console.WriteLine(roomManager.SearchRoomById(searchRoomId));
             }
         }
         catch (Exception e)
@@ -848,11 +846,9 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static void CustomerLog()
+    private static bool GetCustomerLogIn()
     {
-        int temp = 0;
-        while (temp < 3)
-        {
+        
             Customer customer = new();
             Console.WriteLine("Please enter your ID: ");
             customerID = int.Parse(Console.ReadLine());
@@ -861,18 +857,11 @@ internal class Program
 
             if (customerID == 2 && customerPass == "2")
             {
-                isLogIn = true;
-                break;
+                return true;         
             }
-            else
-            {
-                if (temp < 2)
-                    Console.Write("\nLoggin unsucced, try again!");
-                else
-                    Console.Write("\nNO more try. Bye!");
-            }
-            temp++;
-        }
+           else
+           return false;
+        
     }
 
     private static bool GetEmployeeLogIn()
@@ -933,7 +922,7 @@ internal class Program
         return ManagerChoice;
     }
 
-    private static void AddRoomMenyInput()
+    private static void AddRoomInput()
     {   // do not need room id, it will return added room id.
         Console.WriteLine("TYPE ID: ");
         int tid = int.Parse(Console.ReadLine());
@@ -992,7 +981,7 @@ internal class Program
         Console.WriteLine("Delete Customer!");
         Console.WriteLine("Customer Id: ");
         int deleteCustomerId = int.Parse(Console.ReadLine());
-        customerManager.RemoveCustomer(deleteCustomerId);
+        customerManager.RemoveCustomerById(deleteCustomerId);
         Console.ReadLine();
     }
 
