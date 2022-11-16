@@ -1010,4 +1010,15 @@ internal class Program
         return quit;
     }
 
+        static int TryGetInt(string prompt)
+    {
+
+        Console.WriteLine(prompt);
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            return id;
+        }
+        return 0;
+    }
+
 }
