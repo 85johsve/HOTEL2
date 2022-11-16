@@ -108,6 +108,13 @@ internal class Program
                     UpdateReservation();
                     break;
 
+                case MenuChoiceEmployee.ViewReviews:
+                    break;
+
+                    
+                case MenuChoiceEmployee.RemoveReview:
+                    break;
+
                 case MenuChoiceEmployee.Quit: //is done!
                     quit = QuitMessage();
                     break;
