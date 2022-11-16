@@ -931,17 +931,13 @@ internal class Program
     }
 
     private static void AddRoomMenyInput()
-    {   // do not need room id, it will return added room id.
-        Console.WriteLine("TYPE ID: ");
-        int tid = int.Parse(Console.ReadLine());
-        Console.WriteLine("STATUS ID");
-        int sid = int.Parse(Console.ReadLine());
+    {
+
         Console.WriteLine("price");
         double p = double.Parse(Console.ReadLine());
-        Console.WriteLine("Added room ID:");
-        Console.WriteLine(roomManager.AddRoom(tid, sid, p));
-        Console.ReadLine();
+        roomManager.AddRoom(TryGetInt("TYPE ID:"), TryGetInt("STATUS ID:"), p);
     }
+
 
     private static void AddEmployeeInput()
     {
@@ -1009,6 +1005,17 @@ internal class Program
         Console.WriteLine("You have chosen to quit the program");
         quit = false;
         return quit;
+    }
+
+    static int TryGetInt(string prompt)
+    {
+
+        Console.WriteLine(prompt);
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            return id;
+        }
+        return 0;
     }
 
 }
