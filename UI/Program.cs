@@ -84,6 +84,9 @@ internal class Program
                 case MenuChoiceEmployee.CheckIn:
                     break;
 
+                case MenuChoiceEmployee.CheckOut:
+                    break;
+
                 case MenuChoiceEmployee.AddRoom: //is done Tina!
                     AddRoomMenyInput();
                     break;
