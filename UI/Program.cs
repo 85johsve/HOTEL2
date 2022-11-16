@@ -111,11 +111,12 @@ internal class Program
                     UpdateReservationInput();
                     break;
 
-                case MenuChoiceEmployee.ReadReviews:
+                case MenuChoiceEmployee.ReadReviews: // is done! Jessica
+                    PrintAllReviews();
                     break;
 
 
-                case MenuChoiceEmployee.RemoveReview:
+                case MenuChoiceEmployee.RemoveReview: //is done Jessica
                     RemoveReviewInput();
                     break;
 
