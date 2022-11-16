@@ -88,7 +88,7 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.AddRoom: //is done Tina!
-                    AddRoomMenyInput();
+                    AddRoomInput();
                     break;
 
                 case MenuChoiceEmployee.RemoveRoom://is done TINA!        
@@ -108,7 +108,7 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.UpdateReservation://please take a look /Johan
-                    UpdateReservation();
+                    UpdateReservationInput();
                     break;
 
                 case MenuChoiceEmployee.ReadReviews:
@@ -380,7 +380,7 @@ internal class Program
                     break;
 
                 case MenuChoiceManager.AddRoom: //is done Tina!
-                    AddRoomMenyInput();
+                    AddRoomInput();
                     break;
 
                 case MenuChoiceManager.RemoveRoom:   //is done Tina!     
@@ -540,7 +540,7 @@ internal class Program
         Console.WriteLine("Payment Id to be removed: ");
         if (int.TryParse(Console.ReadLine(), out int rPaymentId))
         {
-            paymentManager.RemovePayment(rPaymentId);
+            paymentManager.RemovePaymentById(rPaymentId);
         }
         else
         {
@@ -557,9 +557,9 @@ internal class Program
 
             try
             {
-                if (paymentManager.SearchPayment(searchPaymentId) != null)
+                if (paymentManager.SearchPaymentById(searchPaymentId) != null)
                 {
-                    Console.WriteLine(paymentManager.SearchPayment(searchPaymentId));
+                    Console.WriteLine(paymentManager.SearchPaymentById(searchPaymentId));
                 }
             }
             catch (Exception e)
@@ -758,7 +758,7 @@ internal class Program
         Console.WriteLine("Room is updated!");
     }
 
-    private static void UpdateReservation()
+    private static void UpdateReservationInput()
     {
         Console.WriteLine("[1]Update check in date \n[2]Update check out date ");
         string choice = Console.ReadLine();
@@ -919,7 +919,7 @@ internal class Program
         return ManagerChoice;
     }
 
-    private static void AddRoomMenyInput()
+    private static void AddRoomInput()
     {   // do not need room id, it will return added room id.
         Console.WriteLine("TYPE ID: ");
         int tid = int.Parse(Console.ReadLine());
