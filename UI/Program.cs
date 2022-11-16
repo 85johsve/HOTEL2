@@ -132,8 +132,8 @@ internal class Program
 
     private static void GetCustomerMenu()
     {
-        bool quit = true;
-        while (quit)
+        bool quit = false;
+        while (!quit)
         {
             MenuChoiceCustomer CustomerChoice = CustomerEnumSwitch();
 
@@ -387,8 +387,8 @@ internal class Program
 
     private static void GetManagerMenu()   // ID = 2 PASSWORD = 2
     {
-        bool quit = true;
-        while (quit)
+        bool quit = false;
+        while (!quit)
         {
             MenuChoiceManager ManagerChoice = ManagerEnumSwitch();
 
@@ -1001,7 +1001,7 @@ internal class Program
     {
         bool quit;
         Console.WriteLine("You have chosen to quit the program");
-        quit = false;
+        quit = true;
         return quit;
     }
 
