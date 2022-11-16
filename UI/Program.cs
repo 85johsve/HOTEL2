@@ -272,14 +272,15 @@ internal class Program
         Console.WriteLine("Review Id to be removed:"); // it works on database but program keeps giving me exeption message!!!!!!
 
         int removId = int.Parse(Console.ReadLine());
-        // try
-        // {
+        try
+        {
             reviewManager.RemoveReviewById(removId);
-        // }
-        // catch (System.Exception)
-        // {
-            //throw new FieldAccessException();
-        // }
+            Console.WriteLine("The review has been removed!");
+        }
+        catch (System.Exception)
+        {
+            throw new FieldAccessException();
+        }
         Console.ReadLine();
     }
 
