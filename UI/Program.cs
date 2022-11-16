@@ -11,7 +11,7 @@ internal class Program
     static ReservationManager myResManager = new();
     static ReviewManager reviewManager = new();
     static int customerID { get; set; }
-    int employeeID {get; set; }
+    static int employeeID {get; set; }
     
     static bool isLogIn = true;
 
@@ -258,7 +258,7 @@ internal class Program
 
     private static void BookRoomEmployee()
     {
-        int employee_id
+        int employee_id = employeeID;
         Console.WriteLine("Book room");
         Console.WriteLine("Enter customer ID: ");
         int customerIdBooking = Int32.Parse(Console.ReadLine());
