@@ -18,7 +18,7 @@ class ReviewData
             connection.Open();
     }
 
-    public List<Review> GetReviews()
+    public List<Review> GetReviewList()
     {
         Open();
         var reviews = connection.Query<Review>("SELECT review_id, reservation_id, customer_fname, review_content FROM reviews INNER JOIN customers ON customers.customer_id=reviews.customer_id;").ToList();
@@ -39,7 +39,7 @@ class ReviewData
         return Id;
     }
 
-    public void DeleteReview(int number)
+    public void DeleteReviewById(int number)
     {
         Open();
         var deleteReview = connection.QuerySingle<Review>($"DELETE FROM reviews WHERE review_id = {number};");
