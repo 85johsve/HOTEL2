@@ -13,13 +13,8 @@ class ReviewManager
     }
 
     public List<Review> ShowAllReviews()
-    {
-         if (newReviewData.GetReviewList() != null)
-        {
-            return newReviewData.GetReviewList();
-        }
-        return null;
-       
+    {  
+            return newReviewData.GetReviewList(); 
     }
 
      public void RemoveReview(int reviewId)    // how to controll this, make sure if the id does not exist and try catch it?

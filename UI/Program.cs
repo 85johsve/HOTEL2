@@ -139,7 +139,7 @@ internal class Program
 
             switch (CustomerChoice)
             {
-                case MenuChoiceCustomer.ViewRooms://is done Tina!
+                case MenuChoiceCustomer.ShowRooms://is done Tina!
                     PrintAllRooms();
                     break;
 
@@ -504,36 +504,36 @@ internal class Program
         return quit;
     }
 
-    private static bool PaymentChoiceInput(bool quit)
+    private static bool PaymentChoiceInput(bool choice)
     {
         Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
         string option = Console.ReadLine();
         if (option == "1")
         {
             PrintAllPayments();
-            quit = false;
+            choice = false;
         }
         else if (option == "2")
         {
             AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
-            quit = false;
+            choice = false;
         }
         else if (option == "3")
         {
             SearchPaymentInput();
-            quit = false;
+            choice = false;
         }
         else if (option == "4")
         {
             RemovePaymentInput();
-            quit = false;
+            choice = false;
         }
         else
         {
             Console.WriteLine("Select one of the number!");
         }
         Console.ReadLine();
-        return quit;
+        return choice;
     }
 
     private static void RemovePaymentInput()
