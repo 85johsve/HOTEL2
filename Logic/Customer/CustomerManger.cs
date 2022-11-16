@@ -16,11 +16,9 @@ class CustomerManager
 
     public Customer SearchCustomer(int sCustomerId)
     {
-        if (newCustomerData.GetCustomer(sCustomerId) != null)
-        {
+        
             return newCustomerData.GetCustomer(sCustomerId);
-        }
-        return null;
+       
     }
 
     public List<Customer> ShowAllCustomers()

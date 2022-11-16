@@ -20,8 +20,31 @@ internal class Program
 
         //TEST GET TIMESPAN OF RESERVATION NR1
         Console.WriteLine(myResManager.GetTimeSpan(1));
+        
+        foreach ( string c in Enum.GetNames(typeof (MenuChoiceUser )) )
+        Console.WriteLine( "{0,-11}= {1}", c, Enum.Format( typeof (MenuChoiceUser ) , Enum.Parse(typeof (MenuChoiceUser ) , c), "d"));
+        Console.WriteLine("Select one of the options:");
+        int input =int.Parse(Console.ReadLine ());
+        MenuChoiceUser choice=(MenuChoiceUser )input ;
+        switch (choice)
+        {
+            case MenuChoiceUser.Employee:
+                EmployeeLog();
+                 if (isLogIn)
+                {
+                    GetEmployeeMenu();
+                }
+                break;
 
+            case MenuChoiceUser.Customer:
+                CustomerLog();
+                if (isLogIn)
+                {
+                    GetCustomerMenu(); ;
+                }
+                break;
 
+<<<<<<< HEAD
         Console.WriteLine("Employee Press [1]\nCustomer Press [2]\nManager Press [3]");
         string answer = Console.ReadLine();
         Console.Clear();
@@ -50,6 +73,18 @@ internal class Program
             {
                 GetManagerMenu();
             }
+=======
+            case MenuChoiceUser.Manager:
+                CustomerLog();//ManagerLog();
+                if (isLogIn)
+                {
+                    GetManagerMenu();
+                }
+                break;
+
+            default:
+                break;
+>>>>>>> f0a887698927c25326c3c925601366583c6dfdba
         }
     }
 
@@ -869,8 +904,24 @@ internal class Program
 
     private bool GetEmployeeLogIn()
     {
+<<<<<<< HEAD
         int employeeID;
         string employeePass;
+=======
+        int temp = 0;
+        while (temp < 3)
+        {
+            //Employee employee = new();
+            
+            string employeePass;
+            
+            
+            GetEmployeeID(out employeeID, out employeePass)
+            
+            
+            catch (System.Exception)
+            {
+>>>>>>> f0a887698927c25326c3c925601366583c6dfdba
 
         GetEmployeeID(out employeeID, out employeePass);
 
@@ -881,6 +932,24 @@ internal class Program
         else
             return false;
 
+<<<<<<< HEAD
+=======
+            if (employeeID == 1 && employeePass == "1")
+            {
+                isLogIn = true;
+                break;
+            }
+            else
+            {
+                if (temp < 2)
+                    LoginWrongMessage();
+                else
+                    NoTryMessage();
+            }
+            temp++;
+            
+        }
+>>>>>>> f0a887698927c25326c3c925601366583c6dfdba
     }
 
     private static void GetEmployeeID(out int employeeID, out string employeePass)

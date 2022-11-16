@@ -1,7 +1,7 @@
 
 
 
-    public enum MenuChoiceEmployee //change to employee
+    public enum MenuChoiceEmployee 
     {
         ShowRooms=1,
         ShowAvailableRooms,
@@ -44,7 +44,7 @@
         Quit,
     }
 
-    public enum UserChoice
+    public enum MenuChoiceUser
     {
         Employee=1,
         Customer,
