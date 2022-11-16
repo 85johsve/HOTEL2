@@ -29,7 +29,7 @@ internal class Program
         switch (choice)
         {
             case MenuChoiceUser.Employee:
-                EmployeeLog();
+                GetEmployeeLogIn();
                  if (isLogIn)
                 {
                     GetEmployeeMenu();
@@ -872,7 +872,7 @@ internal class Program
         }
     }
 
-    private bool GetEmployeeLogIn()
+    private static bool GetEmployeeLogIn()
     {
 
         int employeeID;
