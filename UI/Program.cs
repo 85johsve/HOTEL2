@@ -277,14 +277,14 @@ internal class Program
         Console.WriteLine("Review Id to be removed:"); // it works on database but program keeps giving me exeption message!!!!!!
 
         int removId = int.Parse(Console.ReadLine());
-        try
-        {
+        // try
+        // {
             reviewManager.RemoveReviewById(removId);
-        }
-        catch (System.Exception)
-        {
-            throw new FieldAccessException();
-        }
+        // }
+        // catch (System.Exception)
+        // {
+            //throw new FieldAccessException();
+        // }
         Console.ReadLine();
     }
 
@@ -1006,6 +1006,17 @@ internal class Program
         Console.WriteLine("You have chosen to quit the program");
         quit = false;
         return quit;
+    }
+
+        static int TryGetInt(string prompt)
+    {
+
+        Console.WriteLine(prompt);
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            return id;
+        }
+        return 0;
     }
 
 }
