@@ -21,7 +21,7 @@
     }
     public enum MenuChoiceCustomer
     {
-        ViewRooms=1,
+        ShowRooms=1,
         ShowAvailableRooms,
         BookRoom,
         ReadReviews,
