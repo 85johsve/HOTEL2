@@ -35,7 +35,7 @@ internal class Program
                     GetEmployeeMenu();
                 }
                 break;
-
+                
             case MenuChoiceUser.Customer:
                 CustomerLog();
                 if (isLogIn)
@@ -118,6 +118,23 @@ internal class Program
 
 
                 case MenuChoiceEmployee.RemoveReview:
+                    Console.WriteLine("Review Id to be removed:"); // it works on database but program keeps giving me exeption message!!!!!!
+
+                    int removId = int.Parse(Console.ReadLine());
+                    try
+                    {
+                        reviewManager.RemoveReview(removId);
+                    }
+                    catch (System.Exception)
+                    {
+                        throw new FieldAccessException();
+                    }
+                    Console.ReadLine();
+
+                    // int removeReviewId = int.Parse(Console.ReadLine());
+                    // ReviewManager.RemoveReview(reviewId)
+                    // Console.WriteLine("Review has been removed!");
+                    // Console.ReadLine();
                     break;
 
                 case MenuChoiceEmployee.Quit: //is done!
@@ -410,21 +427,7 @@ internal class Program
                     break;
 
                 case MenuChoiceManager.RemoveCustomer: // is done Tina
-                    //RemoveCustomerInput();
-
-                    Console.WriteLine("Review Id to be removed:"); // it works on database but program keeps giving me exeption message!!!!!!
-
-                    int removId = int.Parse(Console.ReadLine());
-                    try
-                    {
-                        reviewManager.RemoveReview(removId);
-                    }
-                    catch (System.Exception)
-                    {
-
-                        throw new FieldAccessException();
-                    }
-                    Console.ReadLine();
+                    RemoveCustomerInput();
                     break;
 
                 case MenuChoiceManager.SearchCustomer: //is done Tina!
