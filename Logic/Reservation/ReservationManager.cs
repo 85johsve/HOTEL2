@@ -127,7 +127,7 @@ public class ReservationManager
     {
         Console.WriteLine("Book room");
         int customerIdBooking = 1;
-
+        int employee_id = 1;
         
         Console.WriteLine("Enter a from-date: ");
 
@@ -217,7 +217,7 @@ public class ReservationManager
         DateTime todaysDate = DateTime.Now;
         Console.WriteLine("Choose room to book: ");
         int roomSelected = Int32.Parse(Console.ReadLine());
-        newReservationData.MakeReservationCustomer(customerIdBooking, roomSelected, todaysDate, userDateIn, userDateOut);
+        newReservationData.MakeReservationEmployee(customerIdBooking, employee_id, roomSelected, todaysDate, userDateIn, userDateOut);
         Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
         Console.ReadKey();
         Console.Clear();
