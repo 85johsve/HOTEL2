@@ -19,23 +19,23 @@ internal class Program
     {
 
         //TEST GET TIMESPAN OF RESERVATION NR1
-       // Console.WriteLine(myResManager.GetTimeSpan(1));
-        
-        foreach ( string c in Enum.GetNames(typeof (MenuChoiceUser )) )
-        Console.WriteLine( "{0,-11}= {1}", c, Enum.Format( typeof (MenuChoiceUser ) , Enum.Parse(typeof (MenuChoiceUser ) , c), "d"));
+        // Console.WriteLine(myResManager.GetTimeSpan(1));
+
+        foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceUser), Enum.Parse(typeof(MenuChoiceUser), c), "d"));
         Console.WriteLine("Select one of the options:");
-        int input =int.Parse(Console.ReadLine ());
-        MenuChoiceUser choice=(MenuChoiceUser )input ;
+        int input = int.Parse(Console.ReadLine());
+        MenuChoiceUser choice = (MenuChoiceUser)input;
         switch (choice)
         {
             case MenuChoiceUser.Employee:
-            
-                 if (GetEmployeeLogIn())
+
+                if (GetEmployeeLogIn())
                 {
                     GetEmployeeMenu();
                 }
                 break;
-                
+
             case MenuChoiceUser.Customer:
                 if (GetCustomerLogIn())
                 {
@@ -109,7 +109,7 @@ internal class Program
                     RoomUpdateInput();
                     break;
 
-                case MenuChoiceEmployee.UpdateReservation://please take a look /Johan
+                case MenuChoiceEmployee.UpdateReservationDate:// is done! Johan
                     ReservationUpdateInput();
                     break;
 
@@ -222,7 +222,7 @@ internal class Program
     private static void EmployeeBookRoom()
     {
 
-       
+
         Console.WriteLine("Book room");
         Console.WriteLine("Enter customer ID: ");
         int customerIdBooking = Int32.Parse(Console.ReadLine());
@@ -534,21 +534,12 @@ internal class Program
 
     private static void AddPaymentInput()
     {
+
         Console.WriteLine("Add payment!");
-        Console.WriteLine("Customer ID: ");
-        int customerId = int.Parse(Console.ReadLine());
         Console.WriteLine("Payment date: ");
         DateTime date = DateTime.Parse(Console.ReadLine());
-        Console.WriteLine("Payment amount: ");
-        double payAmount = double.Parse(Console.ReadLine());
-        Console.WriteLine("Reservation ID: ");
-        int reservationId = int.Parse(Console.ReadLine());
-        Console.WriteLine("Payment name: ");
-        string? paymentName = Console.ReadLine();
-        Console.WriteLine("Bank information");
-        string? payBankInfor = Console.ReadLine();
         Console.WriteLine("Added new payment ID: ");
-        Console.WriteLine(paymentManager.AddPayment(customerId, date, payAmount, reservationId, paymentName, payBankInfor));
+        Console.WriteLine(paymentManager.AddPayment(TryGetInt("Customer ID: "), date, GetDouble("Payment amount:"), TryGetInt("Reservation ID: "), GetString("Payment name: "), GetString("Bank information")));
         Console.ReadLine();
     }
 
@@ -682,8 +673,10 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static void RoomUpdateInput()
+    private static void RoomUpdateInput()  //GETSTRING DOES NOT WORK
     {
+        // TryGetInt("Room Id: ");
+        // GetString("Choose room to update: ");
         Console.WriteLine("Update room status");
         foreach (var item in roomManager.ShowAllRooms())
         {
@@ -756,9 +749,7 @@ internal class Program
     private static void RemoveRoomInput()
     {
         Console.WriteLine("Delete Room!");
-        Console.WriteLine("Room Id: ");
-        int deleteRoomId = int.Parse(Console.ReadLine());
-        roomManager.RemoveRoomById(deleteRoomId);
+        roomManager.RemoveRoomById(TryGetInt("Room Id: "));
         Console.WriteLine("Room has been deleted!");
         Console.ReadLine();
     }
@@ -784,21 +775,21 @@ internal class Program
 
     private static bool GetCustomerLogIn()
     {
-        
-            Customer customer = new();
-            Console.WriteLine("Please enter your ID: ");
-            customerID = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter First Name");
-            string customerFname = Console.ReadLine();
-           // customerManager.CustomerLogInNameId(customerFname,customerID);
+        Customer customer = new();
+        Console.WriteLine("Please enter your ID: ");
+        customerID = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter First Name");
+        string customerFname = Console.ReadLine();
+    
+        // customerManager.CustomerLogInNameId(customerFname,customerID);
 
-            if (customerID == 2 && customerFname == "2")
-            {
-                return true;         
-            }
-           else
-           return false;
-        
+        if (customerID == 2 && customerFname == "2")
+        {
+            return true;
+        }
+        else
+            return false;
+
     }
 
     private static bool GetEmployeeLogIn()
@@ -814,12 +805,12 @@ internal class Program
             return true;
 
         else
-            return false;          
+            return false;
     }
 
     private static void GetEmployeeID(out int employeeID, out string employeePass)
     {
-        Console.WriteLine("Please enter your ID: "); //For-loop i<3?
+        Console.WriteLine("Please enter your ID: "); 
         employeeID = int.Parse(Console.ReadLine());
         Console.WriteLine("Enter password");
         employeePass = Console.ReadLine();
@@ -829,10 +820,7 @@ internal class Program
     {
         foreach (string c in Enum.GetNames(typeof(MenuChoiceEmployee)))
             Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceEmployee), Enum.Parse(typeof(MenuChoiceEmployee), c), "d"));
-
-        Console.WriteLine("Select one of the options:");
-        int employeeInput = int.Parse(Console.ReadLine());
-        MenuChoiceEmployee choice = (MenuChoiceEmployee)employeeInput;
+        MenuChoiceEmployee choice = (MenuChoiceEmployee)TryGetInt("Select one of the options:");
         return choice;
     }
 
@@ -840,11 +828,7 @@ internal class Program
     {
         foreach (string c in Enum.GetNames(typeof(MenuChoiceCustomer)))
             Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceCustomer), Enum.Parse(typeof(MenuChoiceCustomer), c), "d"));
-
-
-        Console.WriteLine("Select one of the options:");
-        int CustomerInput = int.Parse(Console.ReadLine());
-        MenuChoiceCustomer CustomerChoice = (MenuChoiceCustomer)CustomerInput;
+        MenuChoiceCustomer CustomerChoice = (MenuChoiceCustomer)TryGetInt("Select one of the options:");
         return CustomerChoice;
     }
 
@@ -852,62 +836,32 @@ internal class Program
     {
         foreach (string c in Enum.GetNames(typeof(MenuChoiceManager)))
             Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceManager), Enum.Parse(typeof(MenuChoiceManager), c), "d"));
-
-        Console.WriteLine("Select one of the options:");
-        int ManagerInput = int.Parse(Console.ReadLine());
-        MenuChoiceManager ManagerChoice = (MenuChoiceManager)ManagerInput;
+        MenuChoiceManager ManagerChoice = (MenuChoiceManager)TryGetInt("Select one of the options:");
         return ManagerChoice;
     }
 
     private static void AddRoomInput()
     {   // do not need room id, it will return added room id.
-        Console.WriteLine("TYPE ID: ");
-        int tid = int.Parse(Console.ReadLine());
-        Console.WriteLine("STATUS ID");
-        int sid = int.Parse(Console.ReadLine());
         Console.WriteLine("price");
         double p = double.Parse(Console.ReadLine());
         Console.WriteLine("Added room ID:");
-        Console.WriteLine(roomManager.AddRoom(tid, sid, p));
+        Console.WriteLine(roomManager.AddRoom(TryGetInt("TYPE ID: "), TryGetInt("STATUS ID"), p));
         Console.ReadLine();
     }
 
     private static void AddEmployeeInput()
     {
         Console.WriteLine("Add employee!");
-        Console.WriteLine("Job Title ID: ");
-        int addJobTitleId = int.Parse(Console.ReadLine());
-        Console.WriteLine("First name");
-        string addEmployeeFname = Console.ReadLine();
-        Console.WriteLine("Last name");
-        string addEmployeeLName = Console.ReadLine();
-        Console.WriteLine("Phone: ");
-        int addEmployeePhone = int.Parse(Console.ReadLine());
-        Console.WriteLine("Email: ");
-        string addEmpoyeeEmail = Console.ReadLine();
-        int addEId = employeeManager.AddEmployee(addJobTitleId, addEmployeeFname, addEmployeeLName, addEmployeePhone, addEmpoyeeEmail);
+        int addEId = employeeManager.AddEmployee(TryGetInt("Job Title ID: "), GetString("First name"), GetString("Last name"), TryGetInt("Phone: "), GetString("Email: "));
         Console.WriteLine("Added customer ID: ");
         Console.WriteLine(addEId);
+        Console.ReadLine();
     }
 
     private static void AddCustomerInput()
     {
         Console.WriteLine("Add customer!");
-        Console.WriteLine("First name: ");
-        string? addCustomerFName = Console.ReadLine();
-        Console.WriteLine("Last name: ");
-        string? addCustomerLName = Console.ReadLine();
-        Console.WriteLine("Phone: ");
-        int addCustomerPhone = int.Parse(Console.ReadLine());
-        Console.WriteLine("Email: ");
-        string? addCustomerEmail = Console.ReadLine();
-        Console.WriteLine("City: ");
-        string? addCustomerCity = Console.ReadLine();
-        Console.WriteLine("Country: ");
-        string? addCustomerCountry = Console.ReadLine();
-        Console.WriteLine("Address: ");
-        string? addCustomerAddress = Console.ReadLine();
-        int addId = customerManager.AddCustomer(addCustomerFName, addCustomerLName, addCustomerPhone, addCustomerEmail, addCustomerCity, addCustomerCountry, addCustomerAddress);
+        int addId = customerManager.AddCustomer(GetString("First name: "), GetString("Last name: "), TryGetInt("Phone: "), GetString("Email: "), GetString("City: "), GetString("Country: "), GetString("Address: "));
         Console.WriteLine("Added customer ID: ");
         Console.WriteLine(addId);
         Console.ReadLine();
@@ -916,9 +870,7 @@ internal class Program
     private static void RemoveCustomerInput()
     {
         Console.WriteLine("Delete Customer!");
-        Console.WriteLine("Customer Id: ");
-        int deleteCustomerId = int.Parse(Console.ReadLine());
-        customerManager.RemoveCustomerById(deleteCustomerId);
+        customerManager.RemoveCustomerById(TryGetInt("Customer Id: "));
         Console.ReadLine();
     }
 
@@ -942,13 +894,73 @@ internal class Program
 
     static int TryGetInt(string prompt)
     {
-
-        Console.WriteLine(prompt);
-        if (int.TryParse(Console.ReadLine(), out int id))
+        int input = 0;
+        while (input < 3)
         {
-            return id;
+            Console.WriteLine(prompt);
+            if (int.TryParse(Console.ReadLine(), out int id))
+            {
+                return id;
+                //break;
+            }
+            else
+            {
+                if (input < 2)
+                {
+                    Console.WriteLine("Try again");
+                }
+
+                else
+                {
+                    Console.WriteLine("No more try! Press enter to return to menu");
+                }
+                input++;
+            }
         }
         return 0;
     }
+    public static string GetString(string prompt)
+    {
+        Console.Write(prompt);
+        return Console.ReadLine();
+    }
 
-}
+    public static double GetDouble(string message)
+    {
+        int input = 0;
+        while (input < 3)
+        {
+            Console.WriteLine(message);
+            if (double.TryParse(Console.ReadLine(), out double number))
+            {
+                return number;
+                //break;
+            }
+            else
+            {
+                if (input < 2)
+                {
+                    Console.WriteLine("Try again");
+                }
+
+                else
+                {
+                    Console.WriteLine("No more try! Press enter to return to menu");
+                }
+                input++;
+            }
+        }
+        return 0;
+    }
+    
+    // public static DateTime GetDate(string message)
+    // {   
+    //         Console.WriteLine(message);
+    //         if(DateTime.TryParse(Console.ReadLine(), out DateTime number))
+    //         return number;       
+    // }     
+        
+}   
+
+
+

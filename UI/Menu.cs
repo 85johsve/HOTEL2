@@ -14,7 +14,7 @@
         Receipt,
         Payment,
         UpdateRoom,
-        UpdateReservation,
+        UpdateReservationDate,
         ReadReviews,
         RemoveReview,
         Quit,
