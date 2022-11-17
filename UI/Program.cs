@@ -81,34 +81,12 @@ internal class Program
                     myResManager.EmployeeBookRoom();
                     break;
 
-                case MenuChoiceEmployee.CheckIn:
-                    Console.WriteLine("Update room status to Checked in");
-                    foreach (var item in roomManager.ShowAllRooms())
-                    {
-                        Console.WriteLine(item);
-                    }
-                    Console.WriteLine("Choose room to check in: ");
-                    string roomToCheckIn = Console.ReadLine();
-
-                    string newRoomCheckInStatus = "1";
-                    roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
-                    Console.WriteLine("Room status has now changed to Checked in!");
-
-        // Console.WriteLine("Update room status");
-        // foreach (var item in roomManager.ShowAllRooms())
-        // {
-        //     Console.WriteLine(item);
-        // }
-        // Console.WriteLine("Choose room to update: ");
-        // string roomToUpdate = Console.ReadLine();
-        // Console.WriteLine("Choose room status: \n [1] checked in \n [2] check out \n [3] reserved \n [4] not in use");
-        // string newRoomStatus = Console.ReadLine();
-        // roomManager.UpdateRoomStatusID(roomToUpdate, newRoomStatus);
-        // Console.WriteLine("Room is updated!");
-
+                case MenuChoiceEmployee.CheckIn: //is done! Jessica
+                    EmployeeCheckInUpdate();
                     break;
 
-                case MenuChoiceEmployee.CheckOut:
+                case MenuChoiceEmployee.CheckOut: //is done! Jessica
+                    EmployeeCheckOutUpdate();
                     break;
 
                 case MenuChoiceEmployee.AddRoom: //is done Tina!
@@ -128,11 +106,11 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.UpdateRoom://is done! Jessica
-                    UppdateRoomInput();
+                    RoomUpdateInput();
                     break;
 
                 case MenuChoiceEmployee.UpdateReservation://please take a look /Johan
-                    UpdateReservationInput();
+                    ReservationUpdateInput();
                     break;
 
                 case MenuChoiceEmployee.ReadReviews: // is done! Jessica
@@ -152,6 +130,34 @@ internal class Program
                     break;
             }
         }
+    }
+
+    private static void EmployeeCheckOutUpdate()
+    {
+        Console.WriteLine("Update room status to Checked out");
+        foreach (var item in roomManager.ShowAllRooms())
+        {
+            Console.WriteLine(item);
+        }
+        Console.WriteLine("Choose room to check out: ");
+        string roomToCheckOut = Console.ReadLine();
+        string newRoomCheckOutStatus = "2";
+        roomManager.CheckOutRoomStatusID(roomToCheckOut, newRoomCheckOutStatus);
+        Console.WriteLine("Room status has now changed to Checked Out!");
+    }
+
+    private static void EmployeeCheckInUpdate()
+    {
+        Console.WriteLine("Update room status to Checked in");
+        foreach (var item in roomManager.ShowAllRooms())
+        {
+            Console.WriteLine(item);
+        }
+        Console.WriteLine("Choose room to check in: ");
+        string roomToCheckIn = Console.ReadLine();
+        string newRoomCheckInStatus = "1";
+        roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
+        Console.WriteLine("Room status has now changed to Checked in!");
     }
 
     private static void GetCustomerMenu()
@@ -578,7 +584,7 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static void UppdateRoomInput()
+    private static void RoomUpdateInput()
     {
         Console.WriteLine("Update room status");
         foreach (var item in roomManager.ShowAllRooms())
@@ -593,7 +599,7 @@ internal class Program
         Console.WriteLine("Room is updated!");
     }
 
-    private static void UpdateReservationInput()
+    private static void ReservationUpdateInput()
     {
         Console.WriteLine("[1]Update check in date \n[2]Update check out date ");
         string choice = Console.ReadLine();

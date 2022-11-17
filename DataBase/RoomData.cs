@@ -47,7 +47,11 @@ class RoomData
     public void CheckInRoomStatus(string roomToCheckIn, string newRoomCheckInStatus)
     {
         var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id=1 WHERE room_id = {roomToCheckIn};");
+    }
 
+    public void CheckOutRoomStatus(string roomToCheckOut, string newRoomCheckOutStatus)
+    {
+        var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id=2 WHERE room_id = {roomToCheckOut};");
     }
 
     public int InsertRoom(int typeID, int statusID, double price)
