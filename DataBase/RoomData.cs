@@ -46,7 +46,7 @@ class RoomData
     }
     public void CheckInRoomStatus(string roomToCheckIn, string newRoomCheckInStatus)
     {
-        var updateRoom = connection.QuerySingle<Room>($"UPDATE rooms SET roomStatus_id=1 WHERE room_id = {roomToCheckIn};");
+        var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id=1 WHERE room_id = {roomToCheckIn};");
 
     }
 
