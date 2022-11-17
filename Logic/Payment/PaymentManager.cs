@@ -27,4 +27,9 @@ class PaymentManger
     {
         newPaymentData.DeletePaymentById(rPaymentId);
     }
+
+    public void PaymentCaculation()
+    {
+        
+    }
 }
