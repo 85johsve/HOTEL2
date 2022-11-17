@@ -1,6 +1,9 @@
 using Dapper;
 using MySqlConnector;
 using System.Data;
+using System;
+
+
 class CustomerData
 {
 
@@ -16,15 +19,15 @@ class CustomerData
     {
         try
         {
-           if (connection.State != ConnectionState.Open)
-            connection.Open();  
+            if (connection.State != ConnectionState.Open)
+                connection.Open();
         }
         catch (Exception e)
         {
-            
+
             throw new FieldAccessException();
         }
-       
+
     }
 
     public List<Customer> GetCustomerList()
@@ -67,14 +70,50 @@ class CustomerData
 
     }
 
-    public void GetCustomerLogInNameId(string username, int password)
+    public bool GetCustomerLogInNameId(int accountNr,string pass)
     {
-        var parameters = new { customer_fname = username, customer_id = password };
-        var sql = "select * from customers where username = @customer_fname and password = @customer_id";
-        var result = connection.Query(sql, parameters);
-        // if (result!=null)
-        // return true;
-        // else
-        // return false;
+        string sql = $@"select * from customers where customer_fname = '{pass}' and customer_id={accountNr};";
+
+        var result = connection.Query<Customer>(sql);
+
+        if (result!=null)
+        return true;
+        else
+         return false;
+
+    }
+
+public bool IsValidUser(string userName, int passWord)
+
+{
+    Open();
+bool loginSuccessful = false;
+ string sql = $@"SELECT * from customers WHERE customer_fname ={userName} and customer_id={passWord}";
+
+MySqlCommand sqlCommand= new(sql, connection);
+sqlCommand.Parameters.Add(new MySqlParameter("customer_fname", userName));
+sqlCommand.Parameters.Add(new MySqlParameter("customer_id", passWord));
+MySqlDataReader rdr = sqlCommand.ExecuteReader();
+
+
+if (rdr!=null) 
+   loginSuccessful = true;
+
+return loginSuccessful ;
+}
+
+
+
+
+
+
+
+
+
+    public string GetCustomerLogInPass(int customerId)
+    {
+        var firsName = connection.QuerySingle<Customer>($@"SELECT customer_fname FROM customers WHERE customer_id={customerId}").ToString();
+
+        return firsName;
     }
 }

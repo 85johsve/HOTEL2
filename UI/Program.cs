@@ -19,28 +19,25 @@ internal class Program
     {
 
         //TEST GET TIMESPAN OF RESERVATION NR1
-        // Console.WriteLine(myResManager.GetTimeSpan(1));
-
-        foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
-            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceUser), Enum.Parse(typeof(MenuChoiceUser), c), "d"));
+       // Console.WriteLine(myResManager.GetTimeSpan(1));
+        
+        foreach ( string c in Enum.GetNames(typeof (MenuChoiceUser )) )
+        Console.WriteLine( "{0,-11}= {1}", c, Enum.Format( typeof (MenuChoiceUser ) , Enum.Parse(typeof (MenuChoiceUser ) , c), "d"));
         Console.WriteLine("Select one of the options:");
-        int input = int.Parse(Console.ReadLine());
-        MenuChoiceUser choice = (MenuChoiceUser)input;
+        int input =int.Parse(Console.ReadLine ());
+        MenuChoiceUser choice=(MenuChoiceUser )input ;
         switch (choice)
         {
             case MenuChoiceUser.Employee:
-
-                if (GetEmployeeLogIn())
+            
+                 if (GetEmployeeLogIn())
                 {
                     GetEmployeeMenu();
                 }
                 break;
-
+                
             case MenuChoiceUser.Customer:
-                if (GetCustomerLogIn())
-                {
-                    GetCustomerMenu(); ;
-                }
+                RegisterLogin();
                 break;
 
             case MenuChoiceUser.Manager:
@@ -56,13 +53,35 @@ internal class Program
         }
     }
 
+    private static void RegisterLogin()
+    {
+        bool quit = false;
+        while (!quit)
+        {
+            RegisterLoginChoiceUser choice = RegisterLoginSwitch();
+
+            switch (choice)
+            {
+                case RegisterLoginChoiceUser.Register:
+                    AddCustomerInput();
+                    break;
+                case RegisterLoginChoiceUser.LogIn:
+                    if (GetCustomerLogIn())
+                    {
+                        GetCustomerMenu();
+                    }
+                    break;
+
+            }
+        }
+    }
     private static void GetEmployeeMenu()
     {
         bool quit = false;
         while (!quit)
         {
             MenuChoiceEmployee choice = EmployeeEnumSwitch();
-
+            Console.Clear();
             switch (choice)
             {
                 case MenuChoiceEmployee.ShowRooms://is done Tina!
@@ -73,12 +92,22 @@ internal class Program
                     PrintAvailableRooms();
                     break;
 
+                case MenuChoiceEmployee.ShowReservations:
+                    Console.Clear();
+                    foreach (var item in myResData.GetReservationList())
+                    {
+                        Console.WriteLine(item);
+
+                    }
+                    Console.ReadKey();
+                    break;
+
                 case MenuChoiceEmployee.SearchRoom://is done Tina!
                     SearchRoomInput();
                     break;
 
                 case MenuChoiceEmployee.BookRoom://is done Tina!
-                    EmployeeBookRoom();
+                    myResManager.EmployeeBookRoom();
                     break;
 
                 case MenuChoiceEmployee.CheckIn: //is done! Jessica
@@ -219,10 +248,8 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static void EmployeeBookRoom()
-    {
 
-
+       
         Console.WriteLine("Book room");
         Console.WriteLine("Enter customer ID: ");
         int customerIdBooking = Int32.Parse(Console.ReadLine());
@@ -713,8 +740,9 @@ internal class Program
             {
                 Console.WriteLine("You have entered an incorrect value.");
             }
-
-            myResData.UpdateReservationDateIn(resID, userDateIn);
+            Reservation myRoom = myResData.GetSingleReservationById(resID);
+            double newDateTime = myResManager.GetTimeSpanByDates(userDateIn, myRoom.date_out);
+            myResData.UpdateReservationDateIn(resID, userDateIn, newDateTime);
             Console.WriteLine($"You have updated reservation nr {resID} New check in date: {userDateIn}.");
             Console.ReadKey();
 
@@ -740,7 +768,9 @@ internal class Program
                 Console.WriteLine("You have entered an incorrect value.");
             }
 
-            myResData.UpdateReservationDateOut(resID, userDateOut);
+            Reservation myRoom = myResData.GetSingleReservationById(resID);
+            double newDateTime = myResManager.GetTimeSpanByDates(myRoom.date_in, userDateOut);
+            myResData.UpdateReservationDateOut(resID, userDateOut, newDateTime);
             Console.WriteLine($"You have updated reservation nr {resID} New check out date: {userDateOut}.");
             Console.ReadKey();
         }
@@ -775,21 +805,21 @@ internal class Program
 
     private static bool GetCustomerLogIn()
     {
-        Customer customer = new();
-        Console.WriteLine("Please enter your ID: ");
-        customerID = int.Parse(Console.ReadLine());
-        Console.WriteLine("Enter First Name");
-        string customerFname = Console.ReadLine();
-    
-        // customerManager.CustomerLogInNameId(customerFname,customerID);
+        
+            Customer customer = new();
+            Console.WriteLine("Please enter your ID: ");
+            customerID = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter First Name");
+            string customerFname = Console.ReadLine();
+           // customerManager.CustomerLogInNameId(customerFname,customerID);
 
-        if (customerID == 2 && customerFname == "2")
-        {
-            return true;
-        }
-        else
-            return false;
-
+            if (customerID == 2 && customerFname == "2")
+            {
+                return true;         
+            }
+           else
+           return false;
+        
     }
 
     private static bool GetEmployeeLogIn()
@@ -805,7 +835,7 @@ internal class Program
             return true;
 
         else
-            return false;
+            return false;          
     }
 
     private static void GetEmployeeID(out int employeeID, out string employeePass)
@@ -821,6 +851,17 @@ internal class Program
         foreach (string c in Enum.GetNames(typeof(MenuChoiceEmployee)))
             Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceEmployee), Enum.Parse(typeof(MenuChoiceEmployee), c), "d"));
         MenuChoiceEmployee choice = (MenuChoiceEmployee)TryGetInt("Select one of the options:");
+        return choice;
+    }
+
+    private static RegisterLoginChoiceUser RegisterLoginSwitch()
+    {
+        foreach (string c in Enum.GetNames(typeof(RegisterLoginChoiceUser)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(RegisterLoginChoiceUser), Enum.Parse(typeof(RegisterLoginChoiceUser), c), "d"));
+
+        Console.WriteLine("Select one of the options:");
+        int registerLoginInput = int.Parse(Console.ReadLine());
+        RegisterLoginChoiceUser choice = (RegisterLoginChoiceUser)registerLoginInput;
         return choice;
     }
 
