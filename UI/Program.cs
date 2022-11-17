@@ -641,8 +641,9 @@ internal class Program
             {
                 Console.WriteLine("You have entered an incorrect value.");
             }
-
-            myResData.UpdateReservationDateIn(resID, userDateIn);
+            Reservation myRoom = myResData.GetSingleReservationById(resID);
+            double newDateTime = myResManager.GetTimeSpanByDates(userDateIn, myRoom.date_out);
+            myResData.UpdateReservationDateIn(resID, userDateIn, newDateTime);
             Console.WriteLine($"You have updated reservation nr {resID} New check in date: {userDateIn}.");
             Console.ReadKey();
 
@@ -668,7 +669,9 @@ internal class Program
                 Console.WriteLine("You have entered an incorrect value.");
             }
 
-            myResData.UpdateReservationDateOut(resID, userDateOut);
+            Reservation myRoom = myResData.GetSingleReservationById(resID);
+            double newDateTime = myResManager.GetTimeSpanByDates(myRoom.date_in, userDateOut);
+            myResData.UpdateReservationDateOut(resID, userDateOut, newDateTime);
             Console.WriteLine($"You have updated reservation nr {resID} New check out date: {userDateOut}.");
             Console.ReadKey();
         }

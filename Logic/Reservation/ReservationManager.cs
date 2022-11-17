@@ -25,7 +25,7 @@ public class ReservationManager
         return numberOfDays;
     }
 
-        public double GetTimeSpanByDates(DateTime dateIn, DateTime dateOut)
+    public double GetTimeSpanByDates(DateTime dateIn, DateTime dateOut)
     {
         timeSpan = dateOut - dateIn; 
         numberOfDays = timeSpan.TotalDays;
