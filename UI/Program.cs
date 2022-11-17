@@ -711,14 +711,14 @@ internal class Program
     private static bool GetCustomerLogIn()
     {
         
-            Customer customer = new();
-            Console.WriteLine("Please enter your ID: ");
-            customerID = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter First Name");
-            string customerFname = Console.ReadLine();
+            // Customer customer = new();
+            // Console.WriteLine("Please enter your ID: ");
+            // customerID = int.Parse(Console.ReadLine());
+            // Console.WriteLine("Enter First Name");
+            // string customerFname = Console.ReadLine();
            
 
-            if (customerManager.CustomerLogInNameId(customerID,customerFname))
+            if (customerManager.CustomerLogInNameId(TryGetInt("Please enter your ID: "),GetString("Enter First Name:\n")))
             {
                 return true;         
             }
@@ -868,6 +868,7 @@ internal class Program
     public static string GetString(string prompt)
     {
         Console.Write(prompt);
+
         return Console.ReadLine();
     }
 
