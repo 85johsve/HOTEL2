@@ -19,28 +19,25 @@ internal class Program
     {
 
         //TEST GET TIMESPAN OF RESERVATION NR1
-       // Console.WriteLine(myResManager.GetTimeSpan(1));
-        
-        foreach ( string c in Enum.GetNames(typeof (MenuChoiceUser )) )
-        Console.WriteLine( "{0,-11}= {1}", c, Enum.Format( typeof (MenuChoiceUser ) , Enum.Parse(typeof (MenuChoiceUser ) , c), "d"));
+        // Console.WriteLine(myResManager.GetTimeSpan(1));
+
+        foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceUser), Enum.Parse(typeof(MenuChoiceUser), c), "d"));
         Console.WriteLine("Select one of the options:");
-        int input =int.Parse(Console.ReadLine ());
-        MenuChoiceUser choice=(MenuChoiceUser )input ;
+        int input = int.Parse(Console.ReadLine());
+        MenuChoiceUser choice = (MenuChoiceUser)input;
         switch (choice)
         {
             case MenuChoiceUser.Employee:
-            
-                 if (GetEmployeeLogIn())
+
+                if (GetEmployeeLogIn())
                 {
                     GetEmployeeMenu();
                 }
                 break;
-                
+
             case MenuChoiceUser.Customer:
-                if (GetCustomerLogIn())
-                {
-                    GetCustomerMenu(); ;
-                }
+                RegisterLogin();
                 break;
 
             case MenuChoiceUser.Manager:
@@ -56,6 +53,28 @@ internal class Program
         }
     }
 
+    private static void RegisterLogin()
+    {
+        bool quit = false;
+        while (!quit)
+        {
+            RegisterLoginChoiceUser choice = RegisterLoginSwitch();
+
+            switch (choice)
+            {
+                case RegisterLoginChoiceUser.Register:
+                     AddCustomerInput();
+                    break;
+                case RegisterLoginChoiceUser.LogIn:    
+                    if (GetCustomerLogIn())
+                    {
+                        GetCustomerMenu(); 
+                    }
+                    break;
+
+            }
+        }
+    }
     private static void GetEmployeeMenu()
     {
         bool quit = false;
@@ -219,7 +238,7 @@ internal class Program
         Console.ReadLine();
     }
 
-    
+
 
     private static void GetManagerMenu()   // ID = 2 PASSWORD = 2
     {
@@ -686,21 +705,21 @@ internal class Program
 
     private static bool GetCustomerLogIn()
     {
-        
-            Customer customer = new();
-            Console.WriteLine("Please enter your ID: ");
-            customerID = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter First Name");
-            string customerFname = Console.ReadLine();
-           // customerManager.CustomerLogInNameId(customerFname,customerID);
 
-            if (customerID == 2 && customerFname == "2")
-            {
-                return true;         
-            }
-           else
-           return false;
-        
+        Customer customer = new();
+        Console.WriteLine("Please enter your ID: ");
+        customerID = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter First Name");
+        string customerFname = Console.ReadLine();
+        // customerManager.CustomerLogInNameId(customerFname,customerID);
+
+        if (customerID == 2 && customerFname == "2")
+        {
+            return true;
+        }
+        else
+            return false;
+
     }
 
     private static bool GetEmployeeLogIn()
@@ -716,7 +735,7 @@ internal class Program
             return true;
 
         else
-            return false;          
+            return false;
     }
 
     private static void GetEmployeeID(out int employeeID, out string employeePass)
@@ -735,6 +754,17 @@ internal class Program
         Console.WriteLine("Select one of the options:");
         int employeeInput = int.Parse(Console.ReadLine());
         MenuChoiceEmployee choice = (MenuChoiceEmployee)employeeInput;
+        return choice;
+    }
+
+    private static RegisterLoginChoiceUser RegisterLoginSwitch()
+    {
+        foreach (string c in Enum.GetNames(typeof(RegisterLoginChoiceUser)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(RegisterLoginChoiceUser), Enum.Parse(typeof(RegisterLoginChoiceUser), c), "d"));
+
+        Console.WriteLine("Select one of the options:");
+        int registerLoginInput = int.Parse(Console.ReadLine());
+        RegisterLoginChoiceUser choice = (RegisterLoginChoiceUser)registerLoginInput;
         return choice;
     }
 

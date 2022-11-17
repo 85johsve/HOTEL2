@@ -44,7 +44,7 @@ LEFT JOIN reservations ON rooms.room_id = reservations.room_id").ToList();
     }
     public void MakeReservationCustomer(int customer_id, int room_id, DateTime reservation_date, DateTime date_in, DateTime date_out, double date_range)
     {
-        var makeReservation = connection.Query<Reservation> ($"INSERT INTO `reservations`( `customer_id`, `room_id`, `reservation_date`, `date_in`, `date_out`) VALUES ({customer_id}, {room_id}, '{reservation_date}','{date_in}','{date_out}', {date_range})");
+        var makeReservation = connection.Query<Reservation> ($"INSERT INTO `reservations`( `customer_id`, `room_id`, `reservation_date`, `date_in`, `date_out`, date_range) VALUES ({customer_id}, {room_id}, '{reservation_date}','{date_in}','{date_out}', {date_range})");
         
     }
 

@@ -51,3 +51,9 @@
         Manager,
     }
 
+    public enum RegisterLoginChoiceUser
+    {
+        Register=1,
+        LogIn
+    }
+
