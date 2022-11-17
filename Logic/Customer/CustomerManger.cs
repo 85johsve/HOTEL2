@@ -35,8 +35,14 @@ class CustomerManager
         newCustomerData.DeleteCustomerById(rCustomerId);
     }
 
-    public void CustomerLogInNameId(string fname, int id)
+    public bool CustomerLogInNameId(int id,string fname )
     {
-       newCustomerData.GetCustomerLogInNameId(fname,id);
+       //return newCustomerData.IsValidUser(fname,id);
+       return newCustomerData.GetCustomerLogInNameId(id,fname);
+    }
+
+    public string CustomerLogInPass(int id)
+    {
+         return newCustomerData.GetCustomerLogInPass(id);
     }
 }

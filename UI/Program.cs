@@ -778,15 +778,39 @@ internal class Program
 
     private static bool GetCustomerLogIn()
     {
+    //    string username;
+    //    int password;
+    //      MySqlCommand cmd = new MySqlCommand("select * from customers where username = @customer_fname and password = @customer_id;");
+    //     cmd.Parameters.AddWithValue("@customer_fname", username);
+    //     cmd.Parameters.AddWithValue("@customer_id", password);
+    //     cmd.Connection = con;
+    //     con.Open();
+
+    //     CustomerData ds = new ();
+    //     SqlDataAdapter da = new SqlDataAdapter(cmd);
+    //     da.Fill(ds);
+    //     con.Close();
+
+    //     bool loginSuccessful = ((ds.Tables.Count > 0) && (ds.Tables[0].Rows.Count > 0));
+
+    //     if (loginSuccessful)
+    //     {
+    //         Console.WriteLine("Success!");
+    //     } else {
+    //         Console.WriteLine("Invalid username or password");
+        
+    //     }
         
             Customer customer = new();
-            Console.WriteLine("Please enter your ID: ");
+            Console.WriteLine("Please enter your account number: ");
             customerID = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter First Name");
-            string customerFname = Console.ReadLine();
-           // customerManager.CustomerLogInNameId(customerFname,customerID);
-
-            if (customerID == 2 && customerFname == "2")
+            Console.WriteLine("Enter pass");
+            string ?customerFname = Console.ReadLine();
+            //string pass =customerManager.CustomerLogInPass(customerID);
+          // customerManager.CustomerLogInNameId(customerFname,customerID);
+          //
+            if (customerManager.CustomerLogInNameId(customerID,customerFname)
+ )
             {
                 return true;         
             }
