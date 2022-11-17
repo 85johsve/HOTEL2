@@ -83,7 +83,29 @@ internal class Program
 
                 case MenuChoiceEmployee.CheckIn:
                     Console.WriteLine("Update room status to Checked in");
-                    
+                    foreach (var item in roomManager.ShowAllRooms())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine("Choose room to check in: ");
+                    string roomToCheckIn = Console.ReadLine();
+
+                    string newRoomCheckInStatus = "1";
+                    roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
+                    Console.WriteLine("Room status has now changed to Checked in!");
+
+        // Console.WriteLine("Update room status");
+        // foreach (var item in roomManager.ShowAllRooms())
+        // {
+        //     Console.WriteLine(item);
+        // }
+        // Console.WriteLine("Choose room to update: ");
+        // string roomToUpdate = Console.ReadLine();
+        // Console.WriteLine("Choose room status: \n [1] checked in \n [2] check out \n [3] reserved \n [4] not in use");
+        // string newRoomStatus = Console.ReadLine();
+        // roomManager.UpdateRoomStatusID(roomToUpdate, newRoomStatus);
+        // Console.WriteLine("Room is updated!");
+
                     break;
 
                 case MenuChoiceEmployee.CheckOut:
@@ -172,103 +194,7 @@ internal class Program
         }
     }
 
-    // private static void CustomerBookRoom()
-    // {
-    //     Console.WriteLine("Book room");
 
-    //     int customerIdBooking = customerID;
-    //     Console.WriteLine("Enter a from-date: ");
-    //     DateTime userDateIn;
-    //     if (DateTime.TryParse(Console.ReadLine(), out userDateIn))
-    //     {
-    //         Console.WriteLine("you choosed: " + userDateIn);
-    //     }
-    //     else
-    //     {
-    //         Console.WriteLine("You have entered an incorrect value.");
-    //     }
-
-
-    //     Console.WriteLine("Enter a to-date: ");
-    //     DateTime userDateOut;
-    //     if (DateTime.TryParse(Console.ReadLine(), out userDateOut))
-    //     {
-    //         Console.WriteLine("you choosed: " + userDateOut);
-    //     }
-    //     else
-    //     {
-    //         Console.WriteLine("You have entered an incorrect value.");
-    //     }
-    //     Console.ReadLine();
-
-    //     List<Reservation> dateInList = new();
-    //     List<Reservation> dateInOut = new();
-    //     List<Reservation> availabeRooms = new();
-    //     foreach (var item in myResData.GetReservationData())
-    //     {
-    //         if (userDateIn > item.date_in)
-    //         {
-    //             dateInList.Add(item);
-    //         }
-    //     }
-
-    //     foreach (var listItem in dateInList)
-    //     {
-    //         if (userDateIn > listItem.date_out)
-    //         {
-    //             bool add_it = true;
-    //             foreach (var room in availabeRooms)
-    //             {
-    //                 if (room.room_id == listItem.room_id)
-    //                 {
-    //                     add_it = false;
-    //                     break;
-    //                 }
-    //             }
-    //             if (add_it)
-    //                 availabeRooms.Add(listItem);
-    //         }
-    //     }
-
-    //     foreach (var item in myResData.GetReservationData())
-    //     {
-
-    //         if (userDateIn < item.date_in)
-    //         {
-    //             dateInOut.Add(item);
-    //         }
-    //     }
-
-    //     foreach (var item in dateInOut)
-    //     {
-    //         if (userDateOut < item.date_in)
-    //         {
-    //             bool add_it = true;
-    //             foreach (var room in availabeRooms)
-    //             {
-    //                 if (room.room_id == item.room_id)
-    //                 {
-    //                     add_it = false;
-    //                     break;
-    //                 }
-    //             }
-    //             if (add_it)
-    //                 availabeRooms.Add(item);
-    //         }
-    //     }
-
-    //     foreach (var gg in availabeRooms)
-    //     {
-    //         Console.WriteLine("room nr: " + gg.room_id);
-    //     }
-    //     DateTime todaysDate = DateTime.Now;
-    //     Console.WriteLine("Choose room to book: ");
-    //     int roomSelected = Int32.Parse(Console.ReadLine());
-    //     myResData.MakeReservationCustomer(customerIdBooking, roomSelected, todaysDate, userDateIn, userDateOut);
-    //     Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
-    //     Console.ReadKey();
-    //     Console.Clear();
-    // }
 
     private static void RemoveReviewInput()
     {
