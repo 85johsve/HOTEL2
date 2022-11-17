@@ -82,6 +82,8 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.CheckIn:
+                    Console.WriteLine("Update room status to Checked in");
+                    
                     break;
 
                 case MenuChoiceEmployee.CheckOut:
@@ -120,7 +122,7 @@ internal class Program
                     RemoveReviewInput();
                     break;
 
-                case MenuChoiceEmployee.Quit: //is done!
+                case MenuChoiceEmployee.Quit: //is done! Jessica
                     quit = QuitMessage();
                     break;
 
@@ -132,8 +134,8 @@ internal class Program
 
     private static void GetCustomerMenu()
     {
-        bool quit = true;
-        while (quit)
+        bool quit = false;
+        while (!quit)
         {
             MenuChoiceCustomer CustomerChoice = CustomerEnumSwitch();
 
@@ -387,8 +389,8 @@ internal class Program
 
     private static void GetManagerMenu()   // ID = 2 PASSWORD = 2
     {
-        bool quit = true;
-        while (quit)
+        bool quit = false;
+        while (!quit)
         {
             MenuChoiceManager ManagerChoice = ManagerEnumSwitch();
 
@@ -854,10 +856,11 @@ internal class Program
             Customer customer = new();
             Console.WriteLine("Please enter your ID: ");
             customerID = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter password");
-            string customerPass = Console.ReadLine();
+            Console.WriteLine("Enter First Name");
+            string customerFname = Console.ReadLine();
+           // customerManager.CustomerLogInNameId(customerFname,customerID);
 
-            if (customerID == 2 && customerPass == "2")
+            if (customerID == 2 && customerFname == "2")
             {
                 return true;         
             }
@@ -1001,11 +1004,11 @@ internal class Program
     {
         bool quit;
         Console.WriteLine("You have chosen to quit the program");
-        quit = false;
+        quit = true;
         return quit;
     }
 
-        static int TryGetInt(string prompt)
+    static int TryGetInt(string prompt)
     {
 
         Console.WriteLine(prompt);

@@ -3,6 +3,8 @@ using MySqlConnector;
 using System.Data;
 class RoomData
 {
+    // DataConnection dbConnect = new();
+    // dbConnect.Open();
 
     MySqlConnection connection;
     // string roomToUpdate;
@@ -16,8 +18,16 @@ class RoomData
 
     public void Open()
     {
-        if (connection.State != ConnectionState.Open)
-            connection.Open();
+        try
+        {
+           if(connection.State != ConnectionState.Open)
+            connection.Open(); 
+        }
+        catch (Exception e)
+        {
+            
+            throw new FieldAccessException();
+        }
     }
 
     public List<Room> GetRoomList()
@@ -34,11 +44,11 @@ class RoomData
         var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id={newRoomStatus} WHERE room_id = {roomToUpdate};");
 
     }
-    // public void CheckInRoomStatus(string roomToCheckIn, string newRoomCheckInStatus)
-    // {
-    //     var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id=1 WHERE room_id = {roomToCheckIn};");
+    public void CheckInRoomStatus(string roomToCheckIn, string newRoomCheckInStatus)
+    {
+        var updateRoom = connection.QuerySingle<Room>($"UPDATE rooms SET roomStatus_id=1 WHERE room_id = {roomToCheckIn};");
 
-    // }
+    }
 
     public int InsertRoom(int typeID, int statusID, double price)
     {

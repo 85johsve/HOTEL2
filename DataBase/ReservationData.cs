@@ -13,8 +13,16 @@ class ReservationData
     }
       public void Open()
     {
-        if(connection.State != ConnectionState.Open)
-            connection.Open();
+         try
+        {
+           if(connection.State != ConnectionState.Open)
+            connection.Open(); 
+        }
+        catch (Exception e)
+        {
+            
+            throw new FieldAccessException();
+        }
     }
      public List<Reservation> GetReservationData()
     {
