@@ -5,6 +5,7 @@
     {
         ShowRooms=1,
         ShowAvailableRooms,
+        ShowReservations,
         SearchRoom,
         BookRoom,
         CheckIn,

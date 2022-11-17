@@ -92,6 +92,16 @@ internal class Program
                     PrintAvailableRooms();
                     break;
 
+                case MenuChoiceEmployee.ShowReservations:
+                Console.Clear();
+                foreach (var item in myResData.GetReservationList())
+                {
+                    Console.WriteLine(item);
+                    
+                }
+                    Console.ReadKey();
+                    break;
+
                 case MenuChoiceEmployee.SearchRoom://is done Tina!
                     SearchRoomInput();
                     break;
