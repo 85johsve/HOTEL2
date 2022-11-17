@@ -716,9 +716,9 @@ internal class Program
             customerID = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter First Name");
             string customerFname = Console.ReadLine();
-           // customerManager.CustomerLogInNameId(customerFname,customerID);
+           
 
-            if (customerID == 2 && customerFname == "2")
+            if (customerManager.CustomerLogInNameId(customerID,customerFname))
             {
                 return true;         
             }
