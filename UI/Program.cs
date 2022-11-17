@@ -81,7 +81,7 @@ internal class Program
         while (!quit)
         {
             MenuChoiceEmployee choice = EmployeeEnumSwitch();
-
+            Console.Clear();
             switch (choice)
             {
                 case MenuChoiceEmployee.ShowRooms://is done Tina!
