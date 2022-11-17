@@ -18,15 +18,20 @@ class EmployeeManager
         return newEmployeeData.GetEmployeeList();
     }
         
-    public void RemoveEmployee(int idNumber)
+    public void RemoveEmployeeById(int idNumber)
     {
-        newEmployeeData.DeleteEmployee(idNumber);
+        newEmployeeData.DeleteEmployeeById(idNumber);
     }
 
     public Employee SearchEmployee(int sEmployeeId)
     {
-         return newEmployeeData.GetEmployee(sEmployeeId);
+         return newEmployeeData.GetEmployeeById(sEmployeeId);
        
+    }
+
+    public bool EmployeeLogInNameId(int id,string fname )
+    {
+       return newEmployeeData.GetEmployeeLogInNameId(id,fname);
     }
 
     public bool ManagerLogInNameId(int id,string fname )

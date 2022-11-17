@@ -53,7 +53,7 @@ class EmployeeData
 
     }
 
-    public void DeleteEmployee(int number)
+    public void DeleteEmployeeById(int number)
     {
         Open();
         var deleteEmployee = connection.Query<Employee>($"DELETE FROM employees WHERE employee_id = {number};");
@@ -68,12 +68,26 @@ class EmployeeData
     //     return employee;
     // }
 
-    public Employee GetEmployee(int eIdNr)
+    public Employee GetEmployeeById(int eIdNr)
     {
         Open();
         var employee = connection.QuerySingle<Employee>($"SELECT * FROM employees WHERE employee_id  ={eIdNr};");
 
         return employee;
+
+    }
+
+     public bool GetEmployeeLogInNameId(int accountNr,string pass)
+    {
+        Open();
+        string sql = $@"select * from employees where employee_fname = '{pass}' and employee_id={accountNr};";
+
+        var result = connection.Query<Customer>(sql);
+
+        if (result!=null)
+        return true;
+        else
+         return false;
 
     }
 

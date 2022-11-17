@@ -19,29 +19,30 @@ internal class Program
     {
 
         //TEST GET TIMESPAN OF RESERVATION NR1
-       // Console.WriteLine(myResManager.GetTimeSpan(1));
-        
-        foreach ( string c in Enum.GetNames(typeof (MenuChoiceUser )) )
-        Console.WriteLine( "{0,-11}= {1}", c, Enum.Format( typeof (MenuChoiceUser ) , Enum.Parse(typeof (MenuChoiceUser ) , c), "d"));
-        Console.WriteLine("Select one of the options:");
-        int input =int.Parse(Console.ReadLine ());
-        MenuChoiceUser choice=(MenuChoiceUser )input ;
+        // Console.WriteLine(myResManager.GetTimeSpan(1));
+
+        foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceUser), Enum.Parse(typeof(MenuChoiceUser), c), "d"));
+        // Console.WriteLine("Select one of the options:");
+        // int input = int.Parse(Console.ReadLine());
+        MenuChoiceUser choice = (MenuChoiceUser)TryGetInt("Select one of the options:");// Tina. use TryGetInt for input
+        Console.Clear();
         switch (choice)
         {
             case MenuChoiceUser.Employee:
-            
-                 if (GetEmployeeLogIn())
+
+                if (GetEmployeeLogIn())
                 {
                     GetEmployeeMenu();
                 }
                 break;
-                
+
             case MenuChoiceUser.Customer:
-                RegisterLogin();
+                RegisterOrLoginChoice();
                 break;
 
             case MenuChoiceUser.Manager:
-                if (GetCustomerLogIn())
+                if (GetManagerLogIn())
                 {
                     GetManagerMenu();
                 }
@@ -53,28 +54,6 @@ internal class Program
         }
     }
 
-    private static void RegisterLogin()
-    {
-        bool quit = false;
-        while (!quit)
-        {
-            RegisterLoginChoiceUser choice = RegisterLoginSwitch();
-
-            switch (choice)
-            {
-                case RegisterLoginChoiceUser.Register:
-                    AddCustomerInput();
-                    break;
-                case RegisterLoginChoiceUser.LogIn:
-                    if (GetCustomerLogIn())
-                    {
-                        GetCustomerMenu();
-                    }
-                    break;
-
-            }
-        }
-    }
     private static void GetEmployeeMenu()
     {
         bool quit = false;
@@ -82,6 +61,7 @@ internal class Program
         {
             MenuChoiceEmployee choice = EmployeeEnumSwitch();
             Console.Clear();
+            Console.WriteLine("\n********* Employee Menu *********\n ");
             switch (choice)
             {
                 case MenuChoiceEmployee.ShowRooms://is done Tina!
@@ -103,7 +83,7 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.SearchRoom://is done Tina!
-                    SearchRoomInput();
+                    SearchRoomByIdInput();
                     break;
 
                 case MenuChoiceEmployee.BookRoom://is done Tina!
@@ -123,11 +103,11 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.RemoveRoom://is done TINA!        
-                    RemoveRoomInput();
+                    RemoveRoomByIdInput();
                     break;
 
                 case MenuChoiceEmployee.Receipt: //is done Jessica!
-                    quit = ReceiptChoiceInput(quit);
+                    quit = ReceiptOptionInput(quit);
                     break;
 
                 case MenuChoiceEmployee.Payment://is done! Jessica
@@ -148,7 +128,7 @@ internal class Program
 
 
                 case MenuChoiceEmployee.RemoveReview: //is done Jessica
-                    RemoveReviewInput();
+                    RemoveReviewByIdInput();
                     break;
 
                 case MenuChoiceEmployee.Quit: //is done! Jessica
@@ -161,43 +141,17 @@ internal class Program
         }
     }
 
-    private static void EmployeeCheckOutUpdate()
-    {
-        Console.WriteLine("Update room status to Checked out");
-        foreach (var item in roomManager.ShowAllRooms())
-        {
-            Console.WriteLine(item);
-        }
-        Console.WriteLine("Choose room to check out: ");
-        string roomToCheckOut = Console.ReadLine();
-        string newRoomCheckOutStatus = "2";
-        roomManager.CheckOutRoomStatusID(roomToCheckOut, newRoomCheckOutStatus);
-        Console.WriteLine("Room status has now changed to Checked Out!");
-    }
-
-    private static void EmployeeCheckInUpdate()
-    {
-        Console.WriteLine("Update room status to Checked in");
-        foreach (var item in roomManager.ShowAllRooms())
-        {
-            Console.WriteLine(item);
-        }
-        Console.WriteLine("Choose room to check in: ");
-        string roomToCheckIn = Console.ReadLine();
-        string newRoomCheckInStatus = "1";
-        roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
-        Console.WriteLine("Room status has now changed to Checked in!");
-    }
-
     private static void GetCustomerMenu()
     {
         bool quit = false;
         while (!quit)
         {
             MenuChoiceCustomer CustomerChoice = CustomerEnumSwitch();
-
+            Console.Clear();
+            Console.WriteLine("\n********* Customer Menu *********\n ");
             switch (CustomerChoice)
             {
+
                 case MenuChoiceCustomer.ShowRooms://is done Tina!
                     PrintAllRooms();
                     break;
@@ -229,21 +183,14 @@ internal class Program
         }
     }
 
-
-
-  
-
-
-
-
-
     private static void GetManagerMenu()   // ID = 2 PASSWORD = 2
     {
         bool quit = false;
         while (!quit)
         {
             MenuChoiceManager ManagerChoice = ManagerEnumSwitch();
-
+            Console.Clear();
+            Console.WriteLine("\n********* Manager Menu *********\n ");
             switch (ManagerChoice)
             {
                 case MenuChoiceManager.ShowRoom: //is done Tina!
@@ -255,7 +202,7 @@ internal class Program
                     break;
 
                 case MenuChoiceManager.RemoveRoom:   //is done Tina!     
-                    RemoveRoomInput();
+                    RemoveRoomByIdInput();
                     break;
 
                 case MenuChoiceManager.AddEmployee:// is done Tina!
@@ -263,11 +210,11 @@ internal class Program
                     break;
 
                 case MenuChoiceManager.RemoveEmployee:// is done! Jessica
-                    RemoveEmployeeInput();
+                    RemoveEmployeeByIdInput();
                     break;
 
                 case MenuChoiceManager.SearchEmployee: // works but without the job title name
-                    SearchEmployeeInput();
+                    SearchEmployeeByIdInput();
                     break;
 
                 case MenuChoiceManager.ShowEmployees: // is done! Jessica
@@ -279,11 +226,11 @@ internal class Program
                     break;
 
                 case MenuChoiceManager.RemoveCustomer: // is done Tina
-                    RemoveCustomerInput();
+                    RemoveCustomerByIdInput();
                     break;
 
                 case MenuChoiceManager.SearchCustomer: //is done Tina!
-                    SearchCustomerInput();
+                    SearchCustomerByIdInput();
                     break;
 
                 case MenuChoiceManager.ShowCustomers: // is done Tina!
@@ -294,14 +241,67 @@ internal class Program
                     quit = QuitMessage();
                     break;
 
+
                 default:
                     break;
             }
         }
     }
 
-    private static void RemoveReviewInput()
+    private static void RegisterOrLoginChoice()
     {
+        RegisterLoginChoiceUser choice = RegisterLoginSwitch();
+        Console.Clear();
+        switch (choice)
+        {
+            case RegisterLoginChoiceUser.Register:
+                AddCustomerInput();
+                GetCustomerLogIn();
+                GetCustomerMenu();
+                break;
+            case RegisterLoginChoiceUser.LogIn:
+                if (GetCustomerLogIn())
+                {
+                    GetCustomerMenu();
+                }
+                break;
+
+        }
+    }
+
+    private static void EmployeeCheckOutUpdate()
+    {
+        Console.WriteLine("Update room status to Checked out");
+        foreach (var item in roomManager.ShowAllRooms())
+        {
+            Console.WriteLine(item);
+        }
+        Console.WriteLine("Choose room to check out: ");
+        string roomToCheckOut = Console.ReadLine();
+        string newRoomCheckOutStatus = "2";
+        roomManager.CheckOutRoomStatusID(roomToCheckOut, newRoomCheckOutStatus);
+        Console.WriteLine("Room status has now changed to Checked Out!");
+    }
+
+    private static void EmployeeCheckInUpdate()
+    {
+        Console.WriteLine("Update room status to Checked in");
+        foreach (var item in roomManager.ShowAllRooms())
+        {
+            Console.WriteLine(item);
+        }
+        Console.WriteLine("Choose room to check in: ");
+        string roomToCheckIn = Console.ReadLine();
+        string newRoomCheckInStatus = "1";
+        roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
+        Console.WriteLine("Room status has now changed to Checked in!");
+    }
+
+
+    private static void RemoveReviewByIdInput()
+    {
+        Console.Clear();
+        Console.WriteLine("********* Remove review by Id ********* ");
         try
         {
             reviewManager.RemoveReviewById(TryGetInt("Review Id to be removed:"));
@@ -316,20 +316,23 @@ internal class Program
 
     private static void WriteReviewInput()
     {
-        Console.WriteLine("Enter account number:");
-        int customerId = int.Parse(Console.ReadLine());
-        Console.WriteLine("Enter reservation number:");
-        int reservationId = int.Parse(Console.ReadLine());
-        Console.WriteLine("Write your review:");
-        string review = Console.ReadLine();
-        Console.WriteLine("Review Id:");
-        Console.WriteLine(reviewManager.WriteReview(customerID, reservationId, review));
+        Console.Clear();
+        Console.WriteLine("********* Write Review ********* ");
+        // Console.WriteLine("Enter account number:");
+        // int customerId = int.Parse(Console.ReadLine());
+        // Console.WriteLine("Enter reservation number:");
+        // int reservationId = int.Parse(Console.ReadLine());
+        // Console.WriteLine("Write your review:");
+        // string review = Console.ReadLine();
+        // Console.WriteLine("Review Id:");
+        Console.WriteLine("Your Review Id: "+reviewManager.WriteReview(TryGetInt("Enter account number:"), TryGetInt("Enter reservation number:"), GetString("Write your review: \n")));
         Console.ReadLine();
     }
 
     private static void PrintAllReviews()
     {
-        Console.WriteLine("View Reviews");
+        Console.Clear();
+        Console.WriteLine("********* All Reviews ********* ");
         try
         {
             if (reviewManager.ShowAllReviews() != null)
@@ -349,14 +352,16 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static bool ReceiptChoiceInput(bool quit)
+    private static bool ReceiptOptionInput(bool quit)
     {
+        Console.Clear();
+        Console.WriteLine("********* Receipt option ********* ");
         AddPaymentInput();
         Console.WriteLine("Do you want a receipt? Y/N");
         string answer = Console.ReadLine().ToLower();
         if (answer == "y")
         {
-            SearchPaymentInput();
+            SearchPaymentByIdInput();
             quit = false;
         }
         else if (answer == "n")
@@ -375,6 +380,7 @@ internal class Program
 
     private static bool PaymentChoiceInput(bool quit)
     {
+        Console.Clear();
         Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
         string option = Console.ReadLine();
         if (option == "1")
@@ -389,7 +395,7 @@ internal class Program
         }
         else if (option == "3")
         {
-            SearchPaymentInput();
+            SearchPaymentByIdInput();
             quit = false;
         }
         else if (option == "4")
@@ -407,7 +413,7 @@ internal class Program
 
     private static void RemovePaymentInput()
     {
-        Console.WriteLine("Remove a payment!");
+        Console.WriteLine("\n******* Remove a payment ********\n");
         Console.WriteLine("Payment Id to be removed: ");
         if (int.TryParse(Console.ReadLine(), out int rPaymentId))
         {
@@ -419,9 +425,9 @@ internal class Program
         }
     }
 
-    private static void SearchPaymentInput()
+    private static void SearchPaymentByIdInput()
     {
-        Console.WriteLine("Search Payment!");
+        Console.WriteLine("\n******* Search a payment by Id ********\n");
         Console.WriteLine("Searching Payment ID: ");
         if (int.TryParse(Console.ReadLine(), out int searchPaymentId))
         {
@@ -445,9 +451,9 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static void SearchEmployeeInput()
+    private static void SearchEmployeeByIdInput()
     {
-        Console.WriteLine("Search Employee!");
+        Console.WriteLine("\n******* Search Employee by Id ********\n");
         Console.WriteLine("Employee Id:");
         int searchEmployeeId = int.Parse(Console.ReadLine());
         try
@@ -467,7 +473,7 @@ internal class Program
     private static void AddPaymentInput()
     {
 
-        Console.WriteLine("Add payment!");
+        Console.WriteLine("\n******* Add a payment ********\n");
         Console.WriteLine("Payment date: ");
         DateTime date = DateTime.Parse(Console.ReadLine());
         Console.WriteLine("Added new payment ID: ");
@@ -475,19 +481,19 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static void RemoveEmployeeInput()
+    private static void RemoveEmployeeByIdInput()
     {
-        Console.WriteLine("Delete Employee!");
+        Console.WriteLine("\n******* Remove a employee by Id ********\n");
         Console.WriteLine("Employee Id: ");
         int deleteEmployeeId = int.Parse(Console.ReadLine());
-        employeeManager.RemoveEmployee(deleteEmployeeId);
+        employeeManager.RemoveEmployeeById(deleteEmployeeId);
         Console.WriteLine("Employee has been removed!");
         Console.ReadLine();
     }
 
     private static void PrintAllCustomers()
     {
-        Console.WriteLine("Show AllCustomer!");
+        Console.WriteLine("\n******* Show all customers ********\n");
         try
         {
             if (customerManager.ShowAllCustomers() != null)
@@ -505,9 +511,9 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static void SearchCustomerInput()
+    private static void SearchCustomerByIdInput()
     {
-        Console.WriteLine("Search Customer!");
+        Console.WriteLine("\n******* Search customer by Id ********\n");
         Console.WriteLine("Customer Id:");
         int searchCustomerId = int.Parse(Console.ReadLine());
         try
@@ -526,7 +532,7 @@ internal class Program
 
     private static void PrintAllEmployees()
     {
-        Console.WriteLine("Show All Employees!");
+        Console.WriteLine("\n******* All Employees ********\n");
         try
         {
             if (employeeManager.ShowEmployees() != null)
@@ -546,7 +552,7 @@ internal class Program
 
     private static void PrintAllPayments()
     {
-        Console.WriteLine("All payments!");// is done!
+        Console.WriteLine("\n******* All Payments ********\n");// is done!
         try
         {
             if (paymentManager.ShowAllPayments() != null)
@@ -566,7 +572,7 @@ internal class Program
 
     private static void PrintAllRooms()
     {
-        Console.WriteLine("All rooms!");
+        Console.WriteLine("\n******* All Rooms ********\n");
         try
         {
             if (roomManager.ShowAllRooms() != null)
@@ -586,7 +592,7 @@ internal class Program
 
     private static void PrintAvailableRooms()
     {
-        Console.WriteLine("Available rooms!");
+        Console.WriteLine("\n******* All Available Rooms ********\n");
         try
         {
             if (roomManager.ShowAvailableRoom() != null)
@@ -609,7 +615,8 @@ internal class Program
     {
         // TryGetInt("Room Id: ");
         // GetString("Choose room to update: ");
-        Console.WriteLine("Update room status");
+        Console.WriteLine("\n******* Update room status ********\n");
+
         foreach (var item in roomManager.ShowAllRooms())
         {
             Console.WriteLine(item);
@@ -624,6 +631,7 @@ internal class Program
 
     private static void ReservationUpdateInput()
     {
+        Console.WriteLine("\n******* Update Reservation ********\n");
         Console.WriteLine("[1]Update check in date \n[2]Update check out date ");
         string choice = Console.ReadLine();
         if (choice == "1")
@@ -681,17 +689,17 @@ internal class Program
         }
     }
 
-    private static void RemoveRoomInput()
+    private static void RemoveRoomByIdInput()
     {
-        Console.WriteLine("Delete Room!");
+        Console.WriteLine("\n******* Remove room by Id ********\n");
         roomManager.RemoveRoomById(TryGetInt("Room Id: "));
         Console.WriteLine("Room has been deleted!");
         Console.ReadLine();
     }
 
-    private static void SearchRoomInput()
+    private static void SearchRoomByIdInput()
     {
-        Console.WriteLine("Search Room!");
+        Console.WriteLine("\n******* Search room by Id ********\n");
         Console.WriteLine("Room Id: ");
         int searchRoomId = int.Parse(Console.ReadLine());
         try
@@ -710,25 +718,39 @@ internal class Program
 
     private static bool GetCustomerLogIn()
     {
-        
-            if (customerManager.CustomerLogInNameId(TryGetInt("Please enter your ID: "),GetString("Enter First Name:\n")))
-            {
-                return true;         
-            }
-           else
-           return false;
-        
+        Console.Clear();
+        Console.WriteLine("********* Log In ********* ");
+        if (customerManager.CustomerLogInNameId(TryGetInt("Please enter your ID: "), GetString("Enter First Name:\n")))
+        {
+            return true;
+        }
+        else
+            return false;
+
     }
 
     private static bool GetEmployeeLogIn()
     {
+        Console.Clear();
+        Console.WriteLine("********* Log In ********* ");
+        if (employeeManager.EmployeeLogInNameId(TryGetInt("Please enter your ID: "), GetString("Enter First Name:\n")))
+        {
+            return true;
+        }
+        else
+            return false;
+    }
 
-        if (employeeManager.ManagerLogInNameId(TryGetInt("Please enter your ID: "),GetString("Enter First Name:\n")))
+    private static bool GetManagerLogIn()
+    {
+        Console.Clear();
+        Console.WriteLine("********* Log In ********* ");
+        if (employeeManager.ManagerLogInNameId(TryGetInt("Please enter your ID: "), GetString("Enter First Name:\n")))
 
             return true;
 
         else
-            return false;          
+            return false;
     }
 
     private static MenuChoiceEmployee EmployeeEnumSwitch()
@@ -766,36 +788,40 @@ internal class Program
         return ManagerChoice;
     }
 
-    private static void AddRoomInput()
+    private static void AddRoomInput()//Tina, put in one Console.Write()
     {   // do not need room id, it will return added room id.
+        Console.WriteLine("********* Add Room ********* ");
         Console.WriteLine("price");
         double p = double.Parse(Console.ReadLine());
-        Console.WriteLine("Added room ID:");
-        Console.WriteLine(roomManager.AddRoom(TryGetInt("TYPE ID: "), TryGetInt("STATUS ID"), p));
+        //Console.WriteLine("Added room ID:");
+        Console.WriteLine("Added room ID: " + roomManager.AddRoom(TryGetInt("TYPE ID: "), TryGetInt("STATUS ID"), p));
         Console.ReadLine();
     }
 
-    private static void AddEmployeeInput()
+    private static void AddEmployeeInput()//Tina, change the formation, put all in one Console.Write()
     {
-        Console.WriteLine("Add employee!");
-        int addEId = employeeManager.AddEmployee(TryGetInt("Job Title ID: "), GetString("First name"), GetString("Last name"), TryGetInt("Phone: "), GetString("Email: "));
-        Console.WriteLine("Added customer ID: ");
-        Console.WriteLine(addEId);
+        Console.WriteLine("********* Add Employee ********* ");
+        Console.WriteLine("Added employee ID: " + employeeManager.AddEmployee(TryGetInt("Job Title ID: "), GetString("First name"), GetString("Last name"), TryGetInt("Phone: "), GetString("Email: ")));
+        // Console.WriteLine("Added customer ID: "))
+        // int addEId = employeeManager.AddEmployee(TryGetInt("Job Title ID: "), GetString("First name"), GetString("Last name"), TryGetInt("Phone: "), GetString("Email: "));
+        // Console.WriteLine("Added customer ID: ");
+        // Console.WriteLine(addEId);
         Console.ReadLine();
     }
 
-    private static void AddCustomerInput()
+    private static void AddCustomerInput()//Tina, change the formation, put all in one Console.Write()
     {
-        Console.WriteLine("Add customer!");
-        int addId = customerManager.AddCustomer(GetString("First name: "), GetString("Last name: "), TryGetInt("Phone: "), GetString("Email: "), GetString("City: "), GetString("Country: "), GetString("Address: "));
-        Console.WriteLine("Added customer ID: ");
-        Console.WriteLine(addId);
+        Console.WriteLine("*********\n Register New Customer \n********* ");
+        Console.WriteLine("Added customer ID: " +customerManager.AddCustomer(GetString("First name: "), GetString("Last name: "), TryGetInt("Phone: "), GetString("Email: "), GetString("City: "), GetString("Country: "), GetString("Address: ")));
+        // int addId = customerManager.AddCustomer(GetString("First name: "), GetString("Last name: "), TryGetInt("Phone: "), GetString("Email: "), GetString("City: "), GetString("Country: "), GetString("Address: "));
+        // Console.WriteLine("Added customer ID: ");
+        // Console.WriteLine(addId);
         Console.ReadLine();
     }
 
-    private static void RemoveCustomerInput()
+    private static void RemoveCustomerByIdInput()
     {
-        Console.WriteLine("Delete Customer!");
+        Console.WriteLine("********* Remove customer by Id ********* ");
         customerManager.RemoveCustomerById(TryGetInt("Customer Id: "));
         Console.ReadLine();
     }
@@ -845,6 +871,7 @@ internal class Program
         }
         return 0;
     }
+
     public static string GetString(string prompt)
     {
         Console.Write(prompt);
@@ -879,16 +906,16 @@ internal class Program
         }
         return 0;
     }
-    
+
     // public static DateTime GetDate(string message)
     // {   
     //         Console.WriteLine(message);
     //         if(DateTime.TryParse(Console.ReadLine(), out DateTime number))
     //         return number;       
     // }   
-}  
-        
-   
+}
+
+
 
 
 
