@@ -54,9 +54,9 @@ LEFT JOIN reservations ON rooms.room_id = reservations.room_id").ToList();
         
     }
 
-    public List<Reservation> GetSingleReservation(int reservation_id)
+    public Reservation GetSingleReservation(int reservation_id)
     {
-        var getSingleResrvation = connection.Query<Reservation> ($"SELECT * FROM `reservations` WHERE reservations.reservation_id = {reservation_id};").ToList();
+        var getSingleResrvation = connection.QuerySingle<Reservation> ($"SELECT * FROM `reservations` WHERE reservations.reservation_id = {reservation_id};");
         return getSingleResrvation;
     }
 
