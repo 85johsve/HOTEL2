@@ -231,22 +231,7 @@ internal class Program
 
 
 
-    private static void RemoveReviewInput()
-    {
-        Console.WriteLine("Review Id to be removed:"); // it works on database but program keeps giving me exeption message!!!!!!
-        int removId = int.Parse(Console.ReadLine());
-        
-        try
-        {
-            reviewManager.RemoveReviewById(removId);
-            Console.WriteLine("The review has been removed!");
-        }
-        catch (System.Exception)
-        {
-            throw new FieldAccessException();
-        }
-        Console.ReadLine();
-    }
+  
 
 
 
@@ -313,6 +298,20 @@ internal class Program
                     break;
             }
         }
+    }
+
+    private static void RemoveReviewInput()
+    {
+        try
+        {
+            reviewManager.RemoveReviewById(TryGetInt("Review Id to be removed:"));
+            Console.WriteLine("The review has been removed!");
+        }
+        catch (System.Exception)
+        {
+            throw new FieldAccessException();
+        }
+        Console.ReadLine();
     }
 
     private static void WriteReviewInput()
