@@ -25,10 +25,14 @@ class EmployeeManager
 
     public Employee SearchEmployee(int sEmployeeId)
     {
-        if (newEmployeeData.GetEmployee(sEmployeeId) != null)
-        {
-            return newEmployeeData.GetEmployee(sEmployeeId);
-        }
-        return null;
+         return newEmployeeData.GetEmployee(sEmployeeId);
+       
     }
+
+    public bool ManagerLogInNameId(int id,string fname )
+    {
+       return newEmployeeData.GetManagerLogInNameId(id,fname);
+    }
+
+
 }

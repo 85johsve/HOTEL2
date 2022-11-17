@@ -711,13 +711,6 @@ internal class Program
     private static bool GetCustomerLogIn()
     {
         
-            // Customer customer = new();
-            // Console.WriteLine("Please enter your ID: ");
-            // customerID = int.Parse(Console.ReadLine());
-            // Console.WriteLine("Enter First Name");
-            // string customerFname = Console.ReadLine();
-           
-
             if (customerManager.CustomerLogInNameId(TryGetInt("Please enter your ID: "),GetString("Enter First Name:\n")))
             {
                 return true;         
@@ -730,25 +723,12 @@ internal class Program
     private static bool GetEmployeeLogIn()
     {
 
-        int employeeID;
-        string employeePass;
-
-        GetEmployeeID(out employeeID, out employeePass);
-
-        if (employeeID == 1 && employeePass == "1")
+        if (employeeManager.ManagerLogInNameId(TryGetInt("Please enter your ID: "),GetString("Enter First Name:\n")))
 
             return true;
 
         else
             return false;          
-    }
-
-    private static void GetEmployeeID(out int employeeID, out string employeePass)
-    {
-        Console.WriteLine("Please enter your ID: "); 
-        employeeID = int.Parse(Console.ReadLine());
-        Console.WriteLine("Enter password");
-        employeePass = Console.ReadLine();
     }
 
     private static MenuChoiceEmployee EmployeeEnumSwitch()

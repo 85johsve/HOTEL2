@@ -1,7 +1,7 @@
 using Dapper;
 using MySqlConnector;
 using System.Data;
-class EmployeeData 
+class EmployeeData
 {
     private List<Employee> employees;
     //EmployeeData newEmployeeData= new();
@@ -13,19 +13,19 @@ class EmployeeData
         connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
 
     }
-     public void Open()
+    public void Open()
     {
         try
         {
-           if(connection.State != ConnectionState.Open)
-            connection.Open(); 
+            if (connection.State != ConnectionState.Open)
+                connection.Open();
         }
         catch (Exception e)
         {
-            
+
             throw new FieldAccessException();
         }
-        
+
     }
 
     public List<Employee> GetEmployeeList()
@@ -35,9 +35,9 @@ class EmployeeData
         //var employees = connection.Query<Employee>("SELECT employee_id,jobTitle_id,employee-fname,employee_lname,employee_phone, employee_email, jobTitle_name FROM (employees INNER JOIN jobtitles ON employees.jobTitle_name=jobtitle.jobtitle_name);").ToList();
         return employees;
     }
-    
+
     public int InsertEmployee(int jobTitleId, string employeeFName, string employeeLName, int employeePhone, string employeeEmail)
-    { 
+    {
         Open();
         var e = new DynamicParameters();
         e.Add("@jobTitle_id", jobTitleId);
@@ -52,7 +52,7 @@ class EmployeeData
         return Id;
 
     }
-  
+
     public void DeleteEmployee(int number)
     {
         Open();
@@ -70,13 +70,27 @@ class EmployeeData
 
     public Employee GetEmployee(int eIdNr)
     {
-       Open();
+        Open();
         var employee = connection.QuerySingle<Employee>($"SELECT * FROM employees WHERE employee_id  ={eIdNr};");
- 
-        return employee;
-        
-    }
-    
 
-   
+        return employee;
+
+    }
+
+    public bool GetManagerLogInNameId(int accountNr, string pass)
+    {
+        Open();
+        string sql = $@"SELECT * FROM employees INNER JOIN jobtitles ON employees.jobTitle_id = jobtitles.jobTitle_id WHERE jobTitle_name = 'Manager' AND employee_fname='{pass}' AND employee_id={accountNr};";
+
+        var result = connection.Query<Customer>(sql);
+
+        if (result != null)
+            return true;
+        else
+            return false;
+
+    }
+
+
+
 }
