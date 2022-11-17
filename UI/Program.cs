@@ -82,6 +82,8 @@ internal class Program
                     break;
 
                 case MenuChoiceEmployee.CheckIn:
+                    Console.WriteLine("Update room status to Checked in");
+                    
                     break;
 
                 case MenuChoiceEmployee.CheckOut:
