@@ -3,8 +3,8 @@ using MySqlConnector;
 using System.Data;
 class RoomData
 {
-    //DataConnection dbConnect = new();
-    
+    // DataConnection dbConnect = new();
+    // dbConnect.Open();
 
     MySqlConnection connection;
     // string roomToUpdate;
