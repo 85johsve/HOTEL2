@@ -1,22 +1,17 @@
 using Dapper;
 using MySqlConnector;
 using System.Data;
-
-class ManagerData 
+class DataConnection
 {
-    
-    MySqlConnection connection;
-    ManagerData newManagerData = new();
-    // public void Manager()
-    // {
-        
-    // }
-
-    public ManagerData()
+     MySqlConnection connection;
+   
+    public  DataConnection()
     {
-        connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
+       connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
     }
-      public void Open()
+       
+    
+     public void Open()
     {
          try
         {
