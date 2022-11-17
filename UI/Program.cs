@@ -758,23 +758,7 @@ internal class Program
            else
            return false;
         
-=======
 
-        Customer customer = new();
-        Console.WriteLine("Please enter your ID: ");
-        customerID = int.Parse(Console.ReadLine());
-        Console.WriteLine("Enter First Name");
-        string customerFname = Console.ReadLine();
-        // customerManager.CustomerLogInNameId(customerFname,customerID);
-
-        if (customerID == 2 && customerFname == "2")
-        {
-            return true;
-        }
-        else
-            return false;
-
->>>>>>> fb54b6d499443a94e5213d4476de76cc0a51eef9
     }
 
     private static bool GetEmployeeLogIn()
