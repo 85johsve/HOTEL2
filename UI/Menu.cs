@@ -5,6 +5,7 @@
     {
         ShowRooms=1,
         ShowAvailableRooms,
+        ShowReservations,
         SearchRoom,
         BookRoom,
         CheckIn,
@@ -49,5 +50,11 @@
         Employee=1,
         Customer,
         Manager,
+    }
+
+    public enum RegisterLoginChoiceUser
+    {
+        Register=1,
+        LogIn
     }
 

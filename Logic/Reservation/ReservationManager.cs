@@ -12,7 +12,7 @@ public class ReservationManager
         public double numberOfDays;
         
 
-    public double GetTimeSpan(int reservation_id)
+    public double GetTimeSpanById(int reservation_id)
     {
         
         foreach (var item in newReservationData.GetTimeSpanData(reservation_id))
@@ -25,16 +25,23 @@ public class ReservationManager
         return numberOfDays;
     }
 
+    public double GetTimeSpanByDates(DateTime dateIn, DateTime dateOut)
+    {
+        timeSpan = dateOut - dateIn; 
+        numberOfDays = timeSpan.TotalDays;
+        return numberOfDays;
+    }
+
     public void CustomerBookRoom()
     {
         Console.WriteLine("Book room");
 
         int customerIdBooking = 1;
         Console.WriteLine("Enter a from-date: ");
-        DateTime userDateIn;
-        if (DateTime.TryParse(Console.ReadLine(), out userDateIn))
+        DateTime dateIn;
+        if (DateTime.TryParse(Console.ReadLine(), out dateIn))
         {
-            Console.WriteLine("you choosed: " + userDateIn);
+            Console.WriteLine("you choosed: " + dateIn);
         }
         else
         {
@@ -43,10 +50,10 @@ public class ReservationManager
 
 
         Console.WriteLine("Enter a to-date: ");
-        DateTime userDateOut;
-        if (DateTime.TryParse(Console.ReadLine(), out userDateOut))
+        DateTime dateOut;
+        if (DateTime.TryParse(Console.ReadLine(), out dateOut))
         {
-            Console.WriteLine("you choosed: " + userDateOut);
+            Console.WriteLine("you choosed: " + dateOut);
         }
         else
         {
@@ -59,7 +66,7 @@ public class ReservationManager
         List<Reservation> availabeRooms = new();
         foreach (var item in newReservationData.GetReservationData())
         {
-            if (userDateIn > item.date_in)
+            if (dateIn > item.date_in)
             {
                 dateInList.Add(item);
             }
@@ -67,7 +74,7 @@ public class ReservationManager
 
         foreach (var listItem in dateInList)
         {
-            if (userDateIn > listItem.date_out)
+            if (dateIn > listItem.date_out)
             {
                 bool add_it = true;
                 foreach (var room in availabeRooms)
@@ -86,7 +93,7 @@ public class ReservationManager
         foreach (var item in newReservationData.GetReservationData())
         {
 
-            if (userDateIn < item.date_in)
+            if (dateIn < item.date_in)
             {
                 dateInOut.Add(item);
             }
@@ -94,7 +101,7 @@ public class ReservationManager
 
         foreach (var item in dateInOut)
         {
-            if (userDateOut < item.date_in)
+            if (dateOut < item.date_in)
             {
                 bool add_it = true;
                 foreach (var room in availabeRooms)
@@ -115,10 +122,11 @@ public class ReservationManager
             Console.WriteLine("room nr: " + gg.room_id);
         }
         DateTime todaysDate = DateTime.Now;
+        double date_range = GetTimeSpanByDates(dateIn, dateOut);
         Console.WriteLine("Choose room to book: ");
         int roomSelected = Int32.Parse(Console.ReadLine());
-        newReservationData.MakeReservationCustomer(customerIdBooking, roomSelected, todaysDate, userDateIn, userDateOut);
-        Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
+        newReservationData.MakeReservationCustomer(customerIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range);
+        Console.WriteLine($"You have booked room nr {roomSelected} from: {dateIn} to: {dateOut}.");
         Console.ReadKey();
         Console.Clear();
     }
@@ -215,9 +223,10 @@ public class ReservationManager
             Console.WriteLine("room nr: " + gg.room_id);
         }
         DateTime todaysDate = DateTime.Now;
+        double date_range = GetTimeSpanByDates(dateIn, dateOut);
         Console.WriteLine("Choose room to book: ");
         int roomSelected = Int32.Parse(Console.ReadLine());
-        newReservationData.MakeReservationEmployee(customerIdBooking, employee_id, roomSelected, todaysDate, userDateIn, userDateOut);
+        newReservationData.MakeReservationEmployee(customerIdBooking, employee_id, roomSelected, todaysDate, userDateIn, userDateOut, date_range);
         Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
         Console.ReadKey();
         Console.Clear();
