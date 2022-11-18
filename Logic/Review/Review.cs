@@ -1,4 +1,4 @@
-class Review
+public class Review
 {
     public int review_id {get; set;}
     public int reservation_id {get; set;} //Do we need this?

@@ -1,7 +1,7 @@
 using Dapper;
 using MySqlConnector;
 
-class CustomerManager
+public class CustomerManager
 {
 
     // private List<Customer> customers;
@@ -17,17 +17,15 @@ class CustomerManager
     public Customer SearchCustomerById(int sCustomerId)
     {
         
-            return newCustomerData.GetCustomerById(sCustomerId);
+         return newCustomerData.GetCustomerById(sCustomerId);
        
     }
 
     public List<Customer> ShowAllCustomers()
     {
-        if (newCustomerData.GetCustomerList() != null)
-        {
-            return newCustomerData.GetCustomerList();
-        }
-        return null;
+       
+        return newCustomerData.GetCustomerList();
+        
     }
 
     public void RemoveCustomerById(int rCustomerId)

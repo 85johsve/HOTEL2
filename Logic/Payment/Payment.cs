@@ -9,9 +9,10 @@ public class Payment
     public string? bankInfor{get;set;}
     public string? customer_fname{get;set;} 
     public string? customer_lname{get;set;} 
+    public static int receipt_Nr =10000100;
 
      public override string ToString()
      {
-        return $"Receipt \nPayment Id: " +payment_id + "\nPayment Detial:" + payment_name+"\nPayment Amount: "+ "Kr"+payment_amount+"\nPayment Date: "+ payment_date + "\nReservation Nr: "+ reservation_id + "\nCustomer Name: "+ customer_fname+" "+ customer_lname+ "\nBankInfor: " + bankInfor + "\nHotellet \nTel:033-133366\nAllégatan 13 \nBorås\n";
+        return $" \nPayment Id: " +payment_id + "\nPayment Detial:" + payment_name+"\nPayment Amount: "+ "Kr"+payment_amount+"\nPayment Date: "+ payment_date + "\nReservation Nr: "+ reservation_id + "\nCustomer Name: "+ customer_fname+" "+ customer_lname+ "\nBankInfor: " + bankInfor + "\nHotellet \nTel:033-133366\nAllégatan 13 \nBorås\n";
      }
 }
