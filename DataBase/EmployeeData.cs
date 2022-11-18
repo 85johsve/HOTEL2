@@ -77,17 +77,17 @@ class EmployeeData
 
     }
 
-     public bool GetEmployeeLogInNameId(int accountNr,string pass)
+    public bool GetEmployeeLogInNameId(int accountNr, string pass)
     {
         Open();
         string sql = $@"select * from employees where employee_fname = '{pass}' and employee_id={accountNr};";
 
         var result = connection.Query<Customer>(sql);
 
-        if (result!=null)
-        return true;
+        if (result.Count() > 0)
+            return true;
         else
-         return false;
+            return false;
 
     }
 
