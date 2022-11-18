@@ -1,7 +1,7 @@
 using Dapper;
 using MySqlConnector;
 using System.Data;
-class ReviewManager
+public class ReviewManager
 {
     //private  List<Review> reviews=new();
     ReviewData newReviewData = new();
