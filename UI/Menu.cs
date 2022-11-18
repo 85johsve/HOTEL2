@@ -48,8 +48,10 @@
     public enum MenuChoiceUser
     {
         Employee=1,
-        Customer,
+        NewCustomer,
+        CustomerLogIn,
         Manager,
+        Quit,
     }
 
     public enum RegisterLoginChoiceUser

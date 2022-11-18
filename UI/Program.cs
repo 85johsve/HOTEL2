@@ -11,56 +11,93 @@ internal class Program
     static ReservationManager myResManager = new();
     static ReviewManager reviewManager = new();
     static int customerID { get; set; }
-    static bool isLoggedIn;
+    static bool employeeIsLoggedIn;
     //static int employeeID {get; set; }
 
-    static bool isLogIn = true;
+    static bool managerIsLoggedIn;
+    static bool customerIsLoggedIn;
 
     private static void Main(string[] args)
     {
-
         //TEST GET TIMESPAN OF RESERVATION NR1
         // Console.WriteLine(myResManager.GetTimeSpan(1));
-
-        foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
-            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceUser), Enum.Parse(typeof(MenuChoiceUser), c), "d"));
-        // Console.WriteLine("Select one of the options:");
-        // int input = int.Parse(Console.ReadLine());
-        MenuChoiceUser choice = (MenuChoiceUser)TryGetInt("Select one of the options:");// Tina. use TryGetInt for input
+        Console.WriteLine("\n********* Main Menu *********\n ");
+        MenuChoiceUser choice = MenuChoiceUserEnumSwitch();
         Console.Clear();
         switch (choice)
         {
             case MenuChoiceUser.Employee:
-              
-                    GetEmployeeLogIn();
-                    if (isLoggedIn)
-                    {
-                        GetEmployeeMenu();
-                        break;
-                    }
-                    else 
-                    {
-                      Console.WriteLine ("\nWrong!\n");
 
-                    }
-                
+                GetEmployeeLogIn();
+                if (employeeIsLoggedIn)
+                {
+                    GetEmployeeMenu();
+                    break;
+                }
+                else
+                {
+                   MenuChoiceUserEnumSwitch();
+                }
+                break;
+             case MenuChoiceUser.NewCustomer:
+                AddCustomerInput();
+                GetCustomerLogIn();
+                if (customerIsLoggedIn)
+                {
+                    GetCustomerMenu();
+                      break;
+                }
+                else
+                {
+                   MenuChoiceUserEnumSwitch();
+                }
                 break;
 
-            case MenuChoiceUser.Customer:
-                RegisterOrLoginChoice();
+            case MenuChoiceUser.CustomerLogIn:
+                //RegisterOrLoginChoice();
+                GetCustomerLogIn();
+                 if (customerIsLoggedIn)
+                {
+                     GetCustomerMenu();
+                      break;
+                }
+                else
+                {
+                   MenuChoiceUserEnumSwitch();
+                }
                 break;
 
             case MenuChoiceUser.Manager:
-                if (GetManagerLogIn())
+            GetManagerLogIn();
+                if (managerIsLoggedIn)
                 {
                     GetManagerMenu();
+                     break;
                 }
+                else
+                {
+                   MenuChoiceUserEnumSwitch();
+                }
+                break;
+
+            case MenuChoiceUser.Quit:
+                Environment.Exit(0);
                 break;
 
             default:
                 break;
 
         }
+    }
+
+    private static MenuChoiceUser MenuChoiceUserEnumSwitch()
+    {
+        foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceUser), Enum.Parse(typeof(MenuChoiceUser), c), "d"));
+        // Console.WriteLine("Select one of the options:");
+        // int input = int.Parse(Console.ReadLine());
+        MenuChoiceUser choice = (MenuChoiceUser)TryGetInt("Select one of the options:");// Tina. use TryGetInt for input
+        return choice;
     }
 
     private static void GetEmployeeMenu()
@@ -257,37 +294,37 @@ internal class Program
         }
     }
 
-    private static void RegisterOrLoginChoice()
-    {
-        RegisterLoginChoiceUser choice = RegisterLoginSwitch();
-        Console.Clear();
-        switch (choice)
-        {
-            case RegisterLoginChoiceUser.Register:
-                AddCustomerInput();
-                if (GetCustomerLogIn())
-                {
-                    GetCustomerMenu();
-                    //Warning. You will be logged in even if you insert wrong log in.
-                }
-                else
-                {
-                    GetCustomerLogIn();
-                }
-                break;
-            case RegisterLoginChoiceUser.LogIn:
-                if (GetCustomerLogIn())
-                {
-                    GetCustomerMenu();
-                }
-                else
-                {
-                    return;
-                }
-                break;
+    // private static void RegisterOrLoginChoice()
+    // {
+    //     RegisterLoginChoiceUser choice = RegisterLoginSwitch();
+    //     Console.Clear();
+    //     switch (choice)
+    //     {
+    //         case RegisterLoginChoiceUser.Register:
+    //             AddCustomerInput();
+    //             if (GetCustomerLogIn())
+    //             {
+    //                 GetCustomerMenu();
+    //                 //Warning. You will be logged in even if you insert wrong log in.
+    //             }
+    //             else
+    //             {
+    //                 GetCustomerLogIn();
+    //             }
+    //             break;
+    //         case RegisterLoginChoiceUser.LogIn:
+    //             if (GetCustomerLogIn())
+    //             {
+    //                 GetCustomerMenu();
+    //             }
+    //             else
+    //             {
+    //                 return;
+    //             }
+    //             break;
 
-        }
-    }
+    //     }
+    // }
 
     private static void EmployeeCheckOutUpdate()
     {
@@ -735,38 +772,18 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static bool GetCustomerLogIn()
+    private static void GetCustomerLogIn()
     {
         Console.Clear();
-        Console.WriteLine("********* Log In ********* ");
-        if (customerManager.CustomerLogInNameId(TryGetInt("Please enter your ID: "), GetString("Enter First Name:\n")))
-        {
-            return true;
-        }
-        else
-            return false;
-
-    }
-
-    private static void GetEmployeeLogIn()
-    {
-        Console.Clear();
-        Console.WriteLine("*********Employee Log In ********* ");
-        // if (employeeManager.EmployeeLogInNameId(TryGetInt("Please enter your ID: "), GetString("Enter First Name:\n")))
-
-        //     isLoggedIn = true;
-
-        // else
-        //     isLoggedIn = false;
-         int temp = 0;
+        Console.WriteLine("********* Customer Log In ********* ");
+        int temp = 0;
         while (temp < 3)
-
         {
             int id =TryGetInt("Please enter your ID: ");
             string name=GetString("Enter First Name:\n");
-            if  (employeeManager.EmployeeLogInNameId(id, name))
+            if  (customerManager.CustomerLogInNameId(id, name))
             {          
-               isLoggedIn =true ;  
+               customerIsLoggedIn =true ;  
                break;                          
             }      
            else 
@@ -776,26 +793,71 @@ internal class Program
                Console.Write("\nLoggin unsucced, try again!\n");
                
                else
-               Console.Write("\nNO more try. Bye!");
-               
+               Console.Write("\nNO more try. Bye!\n");
             }
             temp++;
 
 
-
+         
         }
     }
 
-    private static bool GetManagerLogIn()
+    private static void GetEmployeeLogIn()
     {
         Console.Clear();
-        Console.WriteLine("********* Log In ********* ");
-        if (employeeManager.ManagerLogInNameId(TryGetInt("Please enter your ID: "), GetString("Enter First Name:\n")))
+        Console.WriteLine("*********Employee Log In ********* ");
+         int temp = 0;
+        while (temp < 3)
+        {
+            int id =TryGetInt("Please enter your ID: ");
+            string name=GetString("Enter First Name:\n");
+            if  (employeeManager.EmployeeLogInNameId(id, name))
+            {          
+               employeeIsLoggedIn =true ;  
+               break;                          
+            }      
+           else 
+            {
 
-            return true;
+               if(temp<2)
+               Console.Write("\nLoggin unsucced, try again!\n");
+               
+               else
+               Console.Write("\nNO more try. Bye!\n");
+            }
+            temp++;
 
-        else
-            return false;
+
+         
+        }
+    }
+
+    private static void GetManagerLogIn()
+    {
+        Console.Clear();
+        Console.WriteLine("********* Manager Log In ********* ");
+         int temp = 0;
+        while (temp < 3)
+        {
+            int id =TryGetInt("Please enter your ID: ");
+            string name=GetString("Enter First Name:\n");
+            if  (employeeManager.ManagerLogInNameId(id, name))
+            {          
+               managerIsLoggedIn =true ;  
+               break;                          
+            }      
+           else 
+            {
+               if(temp<2)
+               Console.Write("\nLoggin unsucced, try again!\n");      
+               else
+               Console.Write("\nNO more try. Bye!\n");
+            }
+            temp++;
+
+
+         
+        }
     }
 
     private static MenuChoiceEmployee EmployeeEnumSwitch()
