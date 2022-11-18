@@ -10,6 +10,7 @@ internal class Program
     private static void Main(string[] args)
     {
         Menu menu = new();
+        UserInput userInput = new();
         MenuChoiceUser choice = menu.MenuChoiceUserEnumSwitch();
         bool quit = false;
         while (true)
@@ -20,7 +21,7 @@ internal class Program
             {
                 case MenuChoiceUser.Employee:
 
-                    menu.GetEmployeeLogIn();
+                    userInput.GetEmployeeLogIn();
                     if (menu.employeeIsLoggedIn)
                     {
                         menu.GetEmployeeMenu();
@@ -33,8 +34,8 @@ internal class Program
                     break;
 
                 case MenuChoiceUser.NewCustomer:
-                    menu.AddCustomerInput();
-                    menu.GetCustomerLogIn();
+                    userInput.AddCustomerInput();
+                    userInput.GetCustomerLogIn();
                     if (menu.customerIsLoggedIn)
                     {
                         menu.GetCustomerMenu();
@@ -47,7 +48,7 @@ internal class Program
                     break;
 
                 case MenuChoiceUser.CustomerLogIn:
-                    menu.GetCustomerLogIn();
+                    userInput.GetCustomerLogIn();
                     if (menu.customerIsLoggedIn)
                     {
                         menu.GetCustomerMenu();
@@ -60,7 +61,7 @@ internal class Program
                     break;
 
                 case MenuChoiceUser.Manager:
-                    menu.GetManagerLogIn();
+                    userInput.GetManagerLogIn();
                     if (menu.managerIsLoggedIn)
                     {
                         menu.GetManagerMenu();
@@ -73,7 +74,7 @@ internal class Program
                     break;
 
                 case MenuChoiceUser.Quit:
-                    quit = menu.QuitMessage();
+                    quit = userInput.QuitMessage();
                     Environment.Exit(0);
                     break;
 

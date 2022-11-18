@@ -1,7 +1,7 @@
 using Dapper;
 using MySqlConnector;
 using System.Data;
-class ReviewData 
+public class ReviewData 
 {
     
     MySqlConnection connection;
