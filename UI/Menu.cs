@@ -60,8 +60,9 @@ class Menu
                     reservationManager.EmployeeBookRoom();
                     break;
 
-                case MenuChoiceEmployee.ShowSingleReservation://is done Tina!//Johan is going to look more into it
-                    ShowSingleReservationByIdInput();
+                case MenuChoiceEmployee.ShowSingleReservation:
+                    userInput.ShowSingleReservationByIdInput();
+
                     break;
 
                 case MenuChoiceEmployee.CheckIn: //is done! Jessica// need more checkin detail
@@ -72,17 +73,16 @@ class Menu
                     userInput.EmployeeCheckOutUpdate();
                     break;
 
-
-
                 case MenuChoiceEmployee.ShowReceiptOptions: //is done Jessica!// printing detail with receipt Nr
-                    quit = userInput.ReceiptOptionInput(quit);
+                    //quit = userInput.ReceiptOptionInput(quit);
+                    ReservationData reservationData = new();
+                    reservationData.GetRoomPrice(1);
+                    Console.ReadLine ();
                     break;
 
                 case MenuChoiceEmployee.ShowPaymentOption:
                     quit = PaymentChoiceInput(quit);
                     break;
-
-
 
                 case MenuChoiceEmployee.UpdateReservationDate:// is done! Johan//need to Show more detail on the table
                     userInput.CheckInOutDateUpdateInput();
@@ -107,26 +107,7 @@ class Menu
                     break;
             }
         }
-    }
-
-    public void ShowSingleReservationByIdInput()
-    {
-        Console.WriteLine("******* Search Reseravtion by Id **********");
-        int searchReservId = userInput.TryGetInt("Enter reservation id to search: ");
-        try
-        {
-            if (reservationManager.SearchReservationById(searchReservId) != null)
-            {
-                Console.WriteLine(reservationManager.SearchReservationById(searchReservId));
-            }
-        }
-        catch (Exception e)
-        {
-
-            throw new ArgumentNullException(); ;
-        }
-        Console.ReadLine();
-    }
+    }  
 
     public void GetCustomerMenu()
     {
@@ -166,7 +147,6 @@ class Menu
 
                 default:
                     break;
-
             }
         }
     }
@@ -231,7 +211,6 @@ class Menu
 
                     break;
 
-
                 default:
                     break;
             }
@@ -293,9 +272,7 @@ class Menu
         else
         {
             Console.WriteLine("your choice does not exist!");
-
         }
-
         return quit;
     }
 
@@ -346,6 +323,25 @@ class Menu
             Console.WriteLine("Input prayment ID number!");
         }
     }
+
+    // public void ShowSingleReservationByIdInput()
+    // {
+    //     Console.WriteLine("******* Search Reseravtion by Id **********");
+    //     int searchReservId = userInput.TryGetInt("Enter reservation id to search: ");
+    //     try
+    //     {
+    //         if (reservationManager.SearchReservationById(searchReservId) != null)
+    //         {
+    //             Console.WriteLine(reservationManager.SearchReservationById(searchReservId));
+    //         }
+    //     }
+    //     catch (Exception e)
+    //     {
+
+    //         throw new ArgumentNullException(); ;
+    //     }
+    //     Console.ReadLine();
+    // }
 
     // public void PrintAllReservations()
     // {

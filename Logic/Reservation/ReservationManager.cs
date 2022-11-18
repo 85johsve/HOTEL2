@@ -17,18 +17,7 @@ public class ReservationManager
         return newReservationData.GetReservationList();
     }   
 
-    public double GetTimeSpanById(int reservation_id)
-    {
-        
-        foreach (var item in newReservationData.GetTimeSpanData(reservation_id))
-        {
-            dateIn = item.date_in;
-            dateOut = item.date_out;
-        }
-        timeSpan = dateOut - dateIn; 
-        numberOfDays = timeSpan.TotalDays;
-        return numberOfDays;
-    }
+   
 
     public double GetTimeSpanByDates(DateTime dateIn, DateTime dateOut)
     {
@@ -36,6 +25,8 @@ public class ReservationManager
         numberOfDays = timeSpan.TotalDays;
         return numberOfDays;
     }
+
+   
 
     public void CustomerBookRoom()
     {
@@ -242,7 +233,28 @@ public class ReservationManager
         return newReservationData.GetSingleReservationById(sReservationId);
     }
 
-    
+     public double GetTimeSpanById(int reservation_id)
+    {
+        
+        foreach (var item in newReservationData.GetTimeSpanData(reservation_id))
+        {
+            dateIn = item.date_in;
+            dateOut = item.date_out;
+        }
+        timeSpan = dateOut - dateIn; 
+        numberOfDays = timeSpan.TotalDays;
+        return numberOfDays;
+    }
+
+    //  public double CalculatingTotalRoomPay(int id)
+    // {
+    //     newReservationData.GetRoomPrice(id);
+    //     GetTimeSpanById (id);
+
+    //     double totalPay = newReservationData.GetRoomPrice(id)*GetTimeSpanById (id)  
+    // }
+
+
 
     public int TryGetInt(string prompt)
     {

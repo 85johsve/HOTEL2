@@ -37,11 +37,7 @@ public class ReservationData
         return getRes;
     }
 
-    public List<Reservation> GetTimeSpanData(int reservation_id)
-    {
-        var getTimeSpan = connection.Query<Reservation> ($"SELECT * FROM `reservations`WHERE reservations.reservation_id = {reservation_id};").ToList();
-        return getTimeSpan;
-    }
+   
     public void MakeReservationCustomer(int customer_id, int room_id, DateTime reservation_date, DateTime date_in, DateTime date_out, double date_range)
     {
         var makeReservation = connection.Query<Reservation> ($"INSERT INTO `reservations`( `customer_id`, `room_id`, `reservation_date`, `date_in`, `date_out`, date_range) VALUES ({customer_id}, {room_id}, '{reservation_date}','{date_in}','{date_out}', {date_range})");
@@ -71,6 +67,22 @@ public class ReservationData
         var getSingleResrvation = connection.QuerySingle<Reservation> ($@"SELECT reservation_id, customer_fname,customer_lname,employee_id,rooms.room_id,roomType_name,room_price, reservation_date, date_in, date_out FROM(((reservations INNER JOIN customers ON customers.customer_id = reservations.customer_id)INNER JOIN rooms ON rooms.room_id = reservations.room_id)INNER JOIN roomtype ON roomtype.roomType_id=rooms.roomType_id)WHERE reservations.reservation_id = {reservation_id};");
         return getSingleResrvation;
     }
+
+     public List<Reservation> GetTimeSpanData(int reservation_id)
+    {
+        var getTimeSpan = connection.Query<Reservation> ($"SELECT * FROM `reservations`WHERE reservations.reservation_id = {reservation_id};").ToList();
+        return getTimeSpan;
+    }
+
+     public Reservation GetRoomPrice(int reservation_id)
+    {
+        var roomPrice = connection.QuerySingle<Reservation> ($"SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id};");
+        return roomPrice;
+    }
+
+
+
+
 
 
      //SELECT date_in,date_out FROM `reservations` WHERE reservation_id = 1;

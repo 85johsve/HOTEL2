@@ -429,6 +429,25 @@ public class UserInput
         Console.ReadLine();
     }
 
+   public void ShowSingleReservationByIdInput()
+    {
+        Console.WriteLine("******* Search Reseravtion by Id **********");
+        int searchReservId = TryGetInt("Enter reservation id to search: ");
+        try
+        {
+            if (reservationManager.SearchReservationById(searchReservId) != null)
+            {
+                Console.WriteLine(reservationManager.SearchReservationById(searchReservId));
+            }
+        }
+        catch (Exception e)
+        {
+
+            throw new ArgumentNullException(); ;
+        }
+        Console.ReadLine();
+    }
+
     public  void RemoveReviewByIdInput()
     {
         Console.Clear();
@@ -496,6 +515,8 @@ public class UserInput
         string answer = Console.ReadLine().ToLower();
         if (answer == "y")
         {
+            
+            ShowSingleReservationByIdInput();
             SearchPaymentByIdInput();
             quit = false;
         }
@@ -587,8 +608,6 @@ public class UserInput
         Console.ReadLine();
     }
 
-
-   
 
     public  double GetDouble(string message)
     {
