@@ -12,7 +12,6 @@ class ReviewManager
 
         return InsertReviewID;
     }
-    
     public List<Review> ShowAllReviews()
     {
         return newReviewData.GetReviewList();
