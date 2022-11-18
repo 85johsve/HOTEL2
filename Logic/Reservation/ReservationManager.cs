@@ -237,6 +237,11 @@ public class ReservationManager
         Console.Clear();
     }
 
+     public Reservation SearchReservationById(int sReservationId)
+    {
+        return newReservationData.GetSingleReservationById(sReservationId);
+    }
+
     public int TryGetInt(string prompt)
     {
 

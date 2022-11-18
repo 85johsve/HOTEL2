@@ -12,12 +12,12 @@ public class Reservation
     public int roomStatus_id { get; set; }
     public string? roomStatus_name { get; set; }
     public double room_price { get; set; }
-    
-
+    public string? customer_fname { get; set; }
+    public string? customer_lname { get; set; }
 
     public override string ToString()
     {
-        return $"Reservation: " + reservation_id + " " + customer_id + " " + employee_id + " " + room_id + " " + reservation_date + " " + date_in + " " + date_out;
+        return $"Reservation: " + reservation_id + "\nCustomer Name: " + customer_fname + " " + customer_lname + "\nEmployee Id: " + employee_id + "\nRoom Type: " + roomType_name+ "\nRoom:  " + room_id  + "\nPrice: " + room_price +"Kr"+ "\nReservation Date:  " + reservation_date + "\nChecking in Date:  " + date_in + "\nChecking out Date:  " + date_out ;//+ "\nRange" + (date_out-date_in)
 
     }
     

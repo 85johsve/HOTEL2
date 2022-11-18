@@ -54,11 +54,7 @@ public class ReservationData
         
     }
 
-    public Reservation GetSingleReservationById(int reservation_id)
-    {
-        var getSingleResrvation = connection.QuerySingle<Reservation> ($@"SELECT reservation_id, customer_fname,customer_lname,employee_id,roomType_name,room_price, reservation_date, date_in, date_out, date_range FROM(((reservations INNER JOIN customers ON customers.customer_id = reservations.customer_id)INNER JOIN rooms ON rooms.room_id = reservations.room_id)INNER JOIN roomtype ON roomtype.roomType_id=rooms.roomType_id)WHERE reservations.reservation_id = {reservation_id};");
-        return getSingleResrvation;
-    }
+   
 
     public void UpdateReservationDateIn(int reservation_id, DateTime date_in, double date_range)
     {
@@ -70,6 +66,14 @@ public class ReservationData
         var updateReservation = connection.Query<Reservation> ($"UPDATE `reservations` SET `date_out`='{date_out}', `date_range`={date_range} WHERE reservations.reservation_id = {reservation_id};");
     }
 
+     public Reservation GetSingleReservationById(int reservation_id)
+    {
+        var getSingleResrvation = connection.QuerySingle<Reservation> ($@"SELECT reservation_id, customer_fname,customer_lname,employee_id,rooms.room_id,roomType_name,room_price, reservation_date, date_in, date_out FROM(((reservations INNER JOIN customers ON customers.customer_id = reservations.customer_id)INNER JOIN rooms ON rooms.room_id = reservations.room_id)INNER JOIN roomtype ON roomtype.roomType_id=rooms.roomType_id)WHERE reservations.reservation_id = {reservation_id};");
+        return getSingleResrvation;
+    }
+
+
+     //SELECT date_in,date_out FROM `reservations` WHERE reservation_id = 1;
     //     public List<Reservation> ReturnReservationVerification()
     // {
     //     var makeReservation = connection.Query<Reservation> ($"INSERT INTO `reservations`( `customer_id`, `room_id`, `reservation_date`, `date_in`, `date_out`) VALUES ({customer_id}, {room_id}, '{reservation_date}','{date_in}','{date_out}')");

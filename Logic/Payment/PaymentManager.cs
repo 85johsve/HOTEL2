@@ -4,6 +4,7 @@ public class PaymentManger
 {
      //private List<Payment> payments;
     PaymentData newPaymentData = new();
+    Receipt receipt = new();
 
      public List<Payment> ShowAllPayments()
     {  
@@ -28,8 +29,8 @@ public class PaymentManger
         newPaymentData.DeletePaymentById(rPaymentId);
     }
 
-    public void PaymentCaculation()
-    {
+    // public Payment PaymentCaculation()
+    // {
         
-    }
+    // }
 }
