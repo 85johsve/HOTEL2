@@ -10,7 +10,12 @@ public class ReservationManager
         private DateTime dateIn;
         private DateTime dateOut;
         public double numberOfDays;
-        
+
+    
+     public List<Reservation> ShowAllReservations()
+    {
+        return newReservationData.GetReservationList();
+    }   
 
     public double GetTimeSpanById(int reservation_id)
     {

@@ -9,7 +9,6 @@ public class Payment
     public string? bankInfor{get;set;}
     public string? customer_fname{get;set;} 
     public string? customer_lname{get;set;} 
-    public static int receipt_Nr =10000100;
 
      public override string ToString()
      {

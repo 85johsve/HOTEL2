@@ -359,7 +359,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public  void ReservationUpdateInput()
+    public  void CheckInOutDateUpdateInput()
     {
         Console.WriteLine("\n******* Update Reservation ********\n");
         Console.WriteLine("[1]Update check in date \n[2]Update check out date ");
@@ -417,6 +417,16 @@ public class UserInput
             Console.WriteLine($"You have updated reservation nr {resID} New check out date: {userDateOut}.");
             Console.ReadKey();
         }
+    }
+
+    public void PrintAllReservations()
+    {
+        foreach (var item in reservationManager.ShowAllReservations())
+        {
+            Console.WriteLine(item);
+
+        }
+        Console.ReadLine();
     }
 
     public  void RemoveReviewByIdInput()
@@ -543,7 +553,7 @@ public class UserInput
         if (int.TryParse(Console.ReadLine(), out int rPaymentId))
         {
             paymentManager.RemovePaymentById(rPaymentId);
-            Console.WriteLine ("The payment has been removed!");
+            Console.WriteLine ("Payment has been removed!");
         }
         else
         {

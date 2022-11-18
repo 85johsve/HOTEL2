@@ -9,10 +9,7 @@ class Menu
     public  ReviewManager reviewManager = new();
     public UserInput userInput = new();
     public  int customerID { get; set; }
-    public  bool employeeIsLoggedIn;
-    public bool managerIsLoggedIn;
-    public bool customerIsLoggedIn;
-    //static int employeeID {get; set; }
+   
     public  MenuChoiceUser MenuChoiceUserEnumSwitch()
     {
         foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
@@ -40,13 +37,7 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.ShowReservations:
-                    Console.Clear();
-                    foreach (var item in reservationData.GetReservationList())
-                    {
-                        Console.WriteLine(item);
-
-                    }
-                    Console.ReadKey();
+                    userInput.PrintAllReservations();
                     break;
 
                 case MenuChoiceEmployee.SearchRoom:
@@ -73,20 +64,20 @@ class Menu
                     userInput.RemoveRoomByIdInput();
                     break;
 
-                case MenuChoiceEmployee.Receipt: //is done Jessica!// printing detail with receipt Nr
+                case MenuChoiceEmployee.ShowReceiptOptions: //is done Jessica!// printing detail with receipt Nr
                     quit = userInput.ReceiptOptionInput(quit);
                     break;
 
-                case MenuChoiceEmployee.Payment:
-                    quit = userInput.PaymentChoiceInput(quit);
+                case MenuChoiceEmployee.ShowPaymentOption:
+                    quit = PaymentChoiceInput(quit);
                     break;
 
-                case MenuChoiceEmployee.UpdateRoom://check in date change unsuccesses!
+                case MenuChoiceEmployee.UpdateRoomStatus://check in date change unsuccesses!
                     userInput.UpdateRoomStatusInput();
                     break;
 
                 case MenuChoiceEmployee.UpdateReservationDate:// is done! Johan//need to Show more detail on the table
-                    userInput.ReservationUpdateInput();
+                    userInput.CheckInOutDateUpdateInput();
                     break;
 
                 case MenuChoiceEmployee.ReadReviews: 
@@ -109,6 +100,16 @@ class Menu
             }
         }
     }
+
+    // public void PrintAllReservations()
+    // {
+    //     foreach (var item in reservationManager.ShowAllReservations())
+    //     {
+    //         Console.WriteLine(item);
+
+    //     }
+    //     Console.ReadLine();
+    // }
 
     public  void GetCustomerMenu()
     {
@@ -142,8 +143,8 @@ class Menu
                     break;
 
                 case MenuChoiceCustomer.Quit:
-                Environment.Exit (0); 
                     quit = userInput.QuitMessage();
+                    Environment.Exit (0); 
                     break;
 
                 default:
@@ -208,8 +209,9 @@ class Menu
                     break;
 
                 case MenuChoiceManager.Quit: //is done!
-                     Environment.Exit (0);
                     quit = userInput.QuitMessage();
+                    Environment.Exit (0);
+                    
                     break;
 
 
@@ -997,9 +999,9 @@ class Menu
         CheckOut,
         AddRoom,
         RemoveRoom,
-        Receipt,
-        Payment,
-        UpdateRoom,
+        ShowReceiptOptions,
+        ShowPaymentOption,
+        UpdateRoomStatus,
         UpdateReservationDate,
         ReadReviews,
         RemoveReview,

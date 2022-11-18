@@ -3,10 +3,6 @@ using MySqlConnector;
 internal class Program
 {
 
-
-
-
-
     private static void Main(string[] args)
     {
         Menu menu = new();
@@ -22,7 +18,7 @@ internal class Program
                 case MenuChoiceUser.Employee:
 
                     userInput.GetEmployeeLogIn();
-                    if (menu.employeeIsLoggedIn)
+                    if (userInput.employeeIsLoggedIn)
                     {
                         menu.GetEmployeeMenu();
                         break;
@@ -36,7 +32,7 @@ internal class Program
                 case MenuChoiceUser.NewCustomer:
                     userInput.AddCustomerInput();
                     userInput.GetCustomerLogIn();
-                    if (menu.customerIsLoggedIn)
+                    if (userInput.customerIsLoggedIn)
                     {
                         menu.GetCustomerMenu();
                         break;
@@ -49,7 +45,7 @@ internal class Program
 
                 case MenuChoiceUser.CustomerLogIn:
                     userInput.GetCustomerLogIn();
-                    if (menu.customerIsLoggedIn)
+                    if (userInput.customerIsLoggedIn)
                     {
                         menu.GetCustomerMenu();
                         break;
@@ -62,7 +58,7 @@ internal class Program
 
                 case MenuChoiceUser.Manager:
                     userInput.GetManagerLogIn();
-                    if (menu.managerIsLoggedIn)
+                    if (userInput.managerIsLoggedIn)
                     {
                         menu.GetManagerMenu();
                         break;
