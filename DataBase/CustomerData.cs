@@ -72,6 +72,7 @@ class CustomerData
 
     public bool GetCustomerLogInNameId(int accountNr,string pass)
     {
+        Open();
         string sql = $@"select * from customers where customer_fname = '{pass}' and customer_id={accountNr};";
 
         var result = connection.Query<Customer>(sql);
@@ -80,7 +81,6 @@ class CustomerData
         return true;
         else
          return false;
-
     }
 
 public bool IsValidUser(string userName, int passWord)

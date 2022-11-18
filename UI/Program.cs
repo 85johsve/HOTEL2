@@ -11,6 +11,7 @@ internal class Program
     static ReservationManager myResManager = new();
     static ReviewManager reviewManager = new();
     static int customerID { get; set; }
+    static bool isLoggedIn;
     //static int employeeID {get; set; }
 
     static bool isLogIn = true;
@@ -30,11 +31,13 @@ internal class Program
         switch (choice)
         {
             case MenuChoiceUser.Employee:
-
-                if (GetEmployeeLogIn())
-                {
-                    GetEmployeeMenu();
-                }
+                  GetEmployeeLogIn();
+                    if (isLoggedIn)
+                    {
+                        GetEmployeeMenu();
+                        break;
+                    }
+                   
                 break;
 
             case MenuChoiceUser.Customer:
@@ -297,7 +300,6 @@ internal class Program
         Console.WriteLine("Room status has now changed to Checked in!");
     }
 
-
     private static void RemoveReviewByIdInput()
     {
         Console.Clear();
@@ -325,7 +327,7 @@ internal class Program
         // Console.WriteLine("Write your review:");
         // string review = Console.ReadLine();
         // Console.WriteLine("Review Id:");
-        Console.WriteLine("Your Review Id: "+reviewManager.WriteReview(TryGetInt("Enter account number:"), TryGetInt("Enter reservation number:"), GetString("Write your review: \n")));
+        Console.WriteLine("Your Review Id: " + reviewManager.WriteReview(TryGetInt("Enter account number:"), TryGetInt("Enter reservation number:"), GetString("Write your review: \n")));
         Console.ReadLine();
     }
 
@@ -729,17 +731,36 @@ internal class Program
 
     }
 
-    private static bool GetEmployeeLogIn()
+    private static void GetEmployeeLogIn()
     {
         Console.Clear();
-        Console.WriteLine("********* Log In ********* ");
-        if (employeeManager.EmployeeLogInNameId(TryGetInt("Please enter your ID: "), GetString("Enter First Name:\n")))
+        Console.WriteLine("*********Employee Log In ********* ");
+         int temp = 0;
+    while (temp < 3)
+
+    {
+        int id =TryGetInt("Please enter your ID: ");
+        string name=GetString("Enter First Name:\n");
+        if  (employeeManager.EmployeeLogInNameId(id, name))
+        {          
+           isLoggedIn =true ;  
+           break;                          
+        }      
+       else 
         {
-            return true;
+           
+           if(temp<2)
+           {
+           Console.Write("\nLoggin unsucced, try again!");
+           continue;
+           }
+           else
+           Console.Write("\nNO more try. Bye!");
         }
-        else
-            return false;
+        temp++;
+          
     }
+ }
 
     private static bool GetManagerLogIn()
     {
@@ -812,7 +833,7 @@ internal class Program
     private static void AddCustomerInput()//Tina, change the formation, put all in one Console.Write()
     {
         Console.WriteLine("*********\n Register New Customer \n********* ");
-        Console.WriteLine("Added customer ID: " +customerManager.AddCustomer(GetString("First name: "), GetString("Last name: "), TryGetInt("Phone: "), GetString("Email: "), GetString("City: "), GetString("Country: "), GetString("Address: ")));
+        Console.WriteLine("Added customer ID: " + customerManager.AddCustomer(GetString("First name: "), GetString("Last name: "), TryGetInt("Phone: "), GetString("Email: "), GetString("City: "), GetString("Country: "), GetString("Address: ")));
         // int addId = customerManager.AddCustomer(GetString("First name: "), GetString("Last name: "), TryGetInt("Phone: "), GetString("Email: "), GetString("City: "), GetString("Country: "), GetString("Address: "));
         // Console.WriteLine("Added customer ID: ");
         // Console.WriteLine(addId);
