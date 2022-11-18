@@ -7,7 +7,7 @@ class PaymentData
    
     public PaymentData()
     {
-        connection = new MySqlConnection(("Server=localhost;Database=hotelmg;Uid=Tina;Pwd=123456;"));
+        connection = new MySqlConnection(("Server=13.51.47.91;Database=hotelmg;Uid=root;Pwd=i-077e801baa9e32977;"));
     }
      public void Open()
     {
