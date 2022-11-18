@@ -2,7 +2,7 @@ using Dapper;
 using MySqlConnector;
 using System.Data;
 
-class ReservationData 
+public class ReservationData 
 {
     
     MySqlConnection connection;
