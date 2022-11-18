@@ -19,15 +19,18 @@ internal class Program
 
     private static void Main(string[] args)
     {
+       bool quit = false;
+        while (true)
+        {
         //TEST GET TIMESPAN OF RESERVATION NR1
         // Console.WriteLine(myResManager.GetTimeSpan(1));
         Console.WriteLine("\n********* Main Menu *********\n ");
-        //MenuChoiceUser choice = MenuChoiceUserEnumSwitch();
-         foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
-            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceUser), Enum.Parse(typeof(MenuChoiceUser), c), "d"));
-        // Console.WriteLine("Select one of the options:");
-        // int input = int.Parse(Console.ReadLine());
-        MenuChoiceUser choice = (MenuChoiceUser)TryGetInt("Select one of the options:");// Tina. use TryGetInt for input
+        MenuChoiceUser choice = MenuChoiceUserEnumSwitch();
+        //  foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
+        //     Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceUser), Enum.Parse(typeof(MenuChoiceUser), c), "d"));
+        // // Console.WriteLine("Select one of the options:");
+        // // int input = int.Parse(Console.ReadLine());
+        // MenuChoiceUser choice = (MenuChoiceUser)TryGetInt("Select one of the options:");// Tina. use TryGetInt for input
         Console.Clear();
         switch (choice)
         {
@@ -41,8 +44,10 @@ internal class Program
                 }
                 else
                 {
-                   //MenuChoiceUserEnumSwitch();
+                 
+                   MenuChoiceUserEnumSwitch();
                 }
+
                 break;
 
              case MenuChoiceUser.NewCustomer:
@@ -93,6 +98,7 @@ internal class Program
             default:
                 break;
 
+        }
         }
     }
 
