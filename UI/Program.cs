@@ -37,6 +37,10 @@ internal class Program
                         GetEmployeeMenu();
                         break;
                     }
+                    else
+                    {
+                        Environment.Exit(0);
+                    }
                    
                 break;
 
@@ -760,6 +764,7 @@ internal class Program
            Console.Write("\nNO more try. Bye!");
         }
         temp++;
+        
           
     }
  }
