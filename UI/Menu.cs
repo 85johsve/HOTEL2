@@ -1,11 +1,11 @@
 class Menu
 {
-     public  RoomManager roomManager = new();
+    public  RoomManager roomManager = new();
     public  CustomerManager customerManager = new();
     public  EmployeeManager employeeManager = new();
     public  PaymentManger paymentManager = new();
-    public  ReservationData myResData = new();
-    public  ReservationManager myResManager = new();
+    public  ReservationData reservationData = new();
+    public  ReservationManager reservationManager = new();
     public  ReviewManager reviewManager = new();
     public  int customerID { get; set; }
     public  bool employeeIsLoggedIn;
@@ -40,7 +40,7 @@ class Menu
 
                 case MenuChoiceEmployee.ShowReservations:
                     Console.Clear();
-                    foreach (var item in myResData.GetReservationList())
+                    foreach (var item in reservationData.GetReservationList())
                     {
                         Console.WriteLine(item);
 
@@ -53,7 +53,7 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.BookRoom://is done Tina!//Johan is going to look more into it
-                    myResManager.EmployeeBookRoom();
+                    reservationManager.EmployeeBookRoom();
                     break;
 
                 case MenuChoiceEmployee.CheckIn: //is done! Jessica// need more checkin detail
@@ -129,7 +129,7 @@ class Menu
                     break;
 
                 case MenuChoiceCustomer.BookRoom://not working properlly
-                    myResManager.CustomerBookRoom();
+                    reservationManager.CustomerBookRoom();
                     break;
 
                 case MenuChoiceCustomer.ReadReviews:
@@ -582,7 +582,7 @@ class Menu
         if (choice == "1")
         {
             Console.Clear();
-            foreach (var item in myResData.GetReservationList())
+            foreach (var item in reservationData.GetReservationList())
             {
                 Console.WriteLine(item);
             }
@@ -598,9 +598,9 @@ class Menu
             {
                 Console.WriteLine("You have entered an incorrect value.");
             }
-            Reservation myRoom = myResData.GetSingleReservationById(resID);
-            double newDateTime = myResManager.GetTimeSpanByDates(userDateIn, myRoom.date_out);
-            myResData.UpdateReservationDateIn(resID, userDateIn, newDateTime);
+            Reservation myRoom = reservationData.GetSingleReservationById(resID);
+            double newDateTime = reservationManager.GetTimeSpanByDates(userDateIn, myRoom.date_out);
+            reservationData.UpdateReservationDateIn(resID, userDateIn, newDateTime);
             Console.WriteLine($"You have updated reservation nr {resID} New check in date: {userDateIn}.");
             Console.ReadKey();
 
@@ -609,7 +609,7 @@ class Menu
         if (choice == "2")
         {
             Console.Clear();
-            foreach (var item in myResData.GetReservationList())
+            foreach (var item in reservationData.GetReservationList())
             {
                 Console.WriteLine(item);
             }
@@ -626,9 +626,9 @@ class Menu
                 Console.WriteLine("You have entered an incorrect value.");
             }
 
-            Reservation myRoom = myResData.GetSingleReservationById(resID);
-            double newDateTime = myResManager.GetTimeSpanByDates(myRoom.date_in, userDateOut);
-            myResData.UpdateReservationDateOut(resID, userDateOut, newDateTime);
+            Reservation myRoom = reservationData.GetSingleReservationById(resID);
+            double newDateTime = reservationManager.GetTimeSpanByDates(myRoom.date_in, userDateOut);
+            reservationData.UpdateReservationDateOut(resID, userDateOut, newDateTime);
             Console.WriteLine($"You have updated reservation nr {resID} New check out date: {userDateOut}.");
             Console.ReadKey();
         }

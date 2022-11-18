@@ -1,7 +1,7 @@
 using Dapper;
 using MySqlConnector;
 
-class CustomerManager
+public class CustomerManager
 {
 
     // private List<Customer> customers;

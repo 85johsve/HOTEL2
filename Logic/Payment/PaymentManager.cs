@@ -1,6 +1,6 @@
 using Dapper;
 using MySqlConnector;
-class PaymentManger
+public class PaymentManger
 {
      //private List<Payment> payments;
     PaymentData newPaymentData = new();

@@ -1,7 +1,7 @@
 using Dapper;
 using MySqlConnector;
 
-class EmployeeManager
+public class EmployeeManager
 {
 
     EmployeeData newEmployeeData=new();

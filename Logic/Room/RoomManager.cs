@@ -3,7 +3,7 @@ using MySqlConnector;
 
 // dotnet add package dapper
 // dotnet add package mysqlconnector
-class RoomManager
+public class RoomManager
 {
     private List<Room> rooms;
     RoomData newRoomData = new();

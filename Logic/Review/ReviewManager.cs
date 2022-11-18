@@ -1,6 +1,6 @@
 using Dapper;
 using MySqlConnector;
-class ReviewManager
+public class ReviewManager
 {
     private List<Review> reviews;
     ReviewData newReviewData = new();
