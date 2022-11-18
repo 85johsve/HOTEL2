@@ -19,13 +19,14 @@ internal class Program
 
     private static void Main(string[] args)
     {
+        MenuChoiceUser choice = MenuChoiceUserEnumSwitch();
        bool quit = false;
         while (true)
         {
         //TEST GET TIMESPAN OF RESERVATION NR1
         // Console.WriteLine(myResManager.GetTimeSpan(1));
         Console.WriteLine("\n********* Main Menu *********\n ");
-        MenuChoiceUser choice = MenuChoiceUserEnumSwitch();
+        
         //  foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
         //     Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceUser), Enum.Parse(typeof(MenuChoiceUser), c), "d"));
         // // Console.WriteLine("Select one of the options:");
