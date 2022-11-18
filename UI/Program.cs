@@ -527,7 +527,8 @@ internal class Program
         }
         catch (Exception e)
         {
-            throw new ArgumentNullException();
+            Console.WriteLine("no ID");
+            SearchEmployeeByIdInput();
         }
         Console.ReadLine();
     }
