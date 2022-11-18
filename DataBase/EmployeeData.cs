@@ -98,7 +98,7 @@ class EmployeeData
 
         var result = connection.Query<Customer>(sql);
 
-        if (result != null)
+        if (result.Count() > 0)
             return true;
         else
             return false;

@@ -77,10 +77,10 @@ class CustomerData
 
         var result = connection.Query<Customer>(sql);
 
-        if (result!=null)
-        return true;
+       if (result.Count() > 0)
+            return true;
         else
-         return false;
+            return false;
     }
 
 public bool IsValidUser(string userName, int passWord)
