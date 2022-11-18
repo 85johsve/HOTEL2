@@ -31,23 +31,19 @@ internal class Program
         switch (choice)
         {
             case MenuChoiceUser.Employee:
-                int temp = 0;
-                while (temp < 3)
-                {
+              
                     GetEmployeeLogIn();
                     if (isLoggedIn)
                     {
                         GetEmployeeMenu();
                         break;
                     }
-                    else if (!isLoggedIn)
+                    else 
                     {
-                        GetEmployeeLogIn();
+                      Console.WriteLine ("\nWrong!\n");
 
                     }
-                    temp++;
-                }
-
+                
                 break;
 
             case MenuChoiceUser.Customer:
@@ -756,40 +752,38 @@ internal class Program
     {
         Console.Clear();
         Console.WriteLine("*********Employee Log In ********* ");
-        if (employeeManager.EmployeeLogInNameId(TryGetInt("Please enter your ID: "), GetString("Enter First Name:\n")))
+        // if (employeeManager.EmployeeLogInNameId(TryGetInt("Please enter your ID: "), GetString("Enter First Name:\n")))
 
-            isLoggedIn = true;
+        //     isLoggedIn = true;
 
-        else
-            isLoggedIn = false;
-        //  int temp = 0;
-        // while (temp < 3)
+        // else
+        //     isLoggedIn = false;
+         int temp = 0;
+        while (temp < 3)
 
-        // {
-        // //     int id =TryGetInt("Please enter your ID: ");
-        //     string name=GetString("Enter First Name:\n");
-        //     if  (employeeManager.EmployeeLogInNameId(id, name))
-        //     {          
-        //        isLoggedIn =true ;  
-        //        break;                          
-        //     }      
-        //    else 
-        //     {
+        {
+            int id =TryGetInt("Please enter your ID: ");
+            string name=GetString("Enter First Name:\n");
+            if  (employeeManager.EmployeeLogInNameId(id, name))
+            {          
+               isLoggedIn =true ;  
+               break;                          
+            }      
+           else 
+            {
 
-        //        if(temp<2)
-        //        {
-        //        Console.Write("\nLoggin unsucced, try again!");
-        //        continue;
-        //        }
-        //        else
-        //        Console.Write("\nNO more try. Bye!");
-        //        isLoggedIn=false;
-        //     }
-        //     temp++;
+               if(temp<2)
+               Console.Write("\nLoggin unsucced, try again!\n");
+               
+               else
+               Console.Write("\nNO more try. Bye!");
+               
+            }
+            temp++;
 
 
 
-        // }
+        }
     }
 
     private static bool GetManagerLogIn()
