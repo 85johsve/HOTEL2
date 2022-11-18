@@ -259,8 +259,10 @@ internal class Program
         {
             case RegisterLoginChoiceUser.Register:
                 AddCustomerInput();
-                GetCustomerLogIn();
-                GetCustomerMenu();
+                if (GetCustomerLogIn())
+                {
+                    GetCustomerMenu();          //Warning. You will be logged in even if you insert wrong log in.
+                }
                 break;
             case RegisterLoginChoiceUser.LogIn:
                 if (GetCustomerLogIn())
