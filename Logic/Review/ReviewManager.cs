@@ -1,8 +1,9 @@
 using Dapper;
 using MySqlConnector;
-public class ReviewManager
+using System.Data;
+class ReviewManager
 {
-    private List<Review> reviews;
+    //private  List<Review> reviews=new();
     ReviewData newReviewData = new();
 
     public int WriteReview(int customerID, int reservationID, string content)
@@ -11,7 +12,7 @@ public class ReviewManager
 
         return InsertReviewID;
     }
-
+    
     public List<Review> ShowAllReviews()
     {
         return newReviewData.GetReviewList();

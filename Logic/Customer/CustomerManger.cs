@@ -17,17 +17,15 @@ public class CustomerManager
     public Customer SearchCustomerById(int sCustomerId)
     {
         
-            return newCustomerData.GetCustomerById(sCustomerId);
+         return newCustomerData.GetCustomerById(sCustomerId);
        
     }
 
     public List<Customer> ShowAllCustomers()
     {
-        if (newCustomerData.GetCustomerList() != null)
-        {
-            return newCustomerData.GetCustomerList();
-        }
-        return null;
+       
+        return newCustomerData.GetCustomerList();
+        
     }
 
     public void RemoveCustomerById(int rCustomerId)
