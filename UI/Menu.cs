@@ -66,286 +66,286 @@ class Menu
 
                 case MenuChoiceEmployee.CheckIn: //is done! Jessica// need more checkin detail
                     userInput.EmployeeCheckInUpdate();
-            break;
+                    break;
 
                 case MenuChoiceEmployee.CheckOut: //is done! Jessica// need more checkin detail
                     userInput.EmployeeCheckOutUpdate();
-            break;
+                    break;
 
 
 
                 case MenuChoiceEmployee.ShowReceiptOptions: //is done Jessica!// printing detail with receipt Nr
                     quit = userInput.ReceiptOptionInput(quit);
-            break;
+                    break;
 
                 case MenuChoiceEmployee.ShowPaymentOption:
                     quit = PaymentChoiceInput(quit);
-            break;
+                    break;
 
 
 
                 case MenuChoiceEmployee.UpdateReservationDate:// is done! Johan//need to Show more detail on the table
                     userInput.CheckInOutDateUpdateInput();
-            break;
+                    break;
 
                 case MenuChoiceEmployee.ReadReviews:
                     userInput.PrintAllReviews();
-            break;
+                    break;
 
 
                 case MenuChoiceEmployee.RemoveReview:
                     userInput.RemoveReviewByIdInput();
-            break;
+                    break;
 
                 case MenuChoiceEmployee.Quit:
 
                     quit = userInput.QuitMessage();
-            Environment.Exit(0);
-            break;
-
-            default:
+                    Environment.Exit(0);
                     break;
+
+                default:
+                    break;
+            }
         }
     }
-}
 
-    private void ShowSingleReservationByIdInput()
+    public void ShowSingleReservationByIdInput()
     {
-        Console.WriteLine ("******* Search Reseravtion by Id **********");
+        Console.WriteLine("******* Search Reseravtion by Id **********");
         int searchReservId = userInput.TryGetInt("Enter reservation id to search: ");
         try
         {
-             if (reservationManager.SearchReservationById(searchReservId) != null)
-        {
-            Console.WriteLine(reservationManager.SearchReservationById(searchReservId));
-        }
+            if (reservationManager.SearchReservationById(searchReservId) != null)
+            {
+                Console.WriteLine(reservationManager.SearchReservationById(searchReservId));
+            }
         }
         catch (Exception e)
         {
-            
-            throw new ArgumentNullException();;
+
+            throw new ArgumentNullException(); ;
         }
         Console.ReadLine();
     }
 
     public void GetCustomerMenu()
-{
-    bool quit = false;
-    while (!quit)
     {
-        MenuChoiceCustomer CustomerChoice = CustomerEnumSwitch();
-        Console.Clear();
-        Console.WriteLine("\n********* Customer Menu *********\n ");
-        switch (CustomerChoice)
+        bool quit = false;
+        while (!quit)
         {
+            MenuChoiceCustomer CustomerChoice = CustomerEnumSwitch();
+            Console.Clear();
+            Console.WriteLine("\n********* Customer Menu *********\n ");
+            switch (CustomerChoice)
+            {
 
-            case MenuChoiceCustomer.ShowRooms:
-                userInput.PrintAllRooms();
-                break;
+                case MenuChoiceCustomer.ShowRooms:
+                    userInput.PrintAllRooms();
+                    break;
 
-            case MenuChoiceCustomer.ShowAvailableRooms:
-                userInput.PrintAvailableRooms();
-                break;
+                case MenuChoiceCustomer.ShowAvailableRooms:
+                    userInput.PrintAvailableRooms();
+                    break;
 
-            case MenuChoiceCustomer.BookRoom://not working properlly
-                reservationManager.CustomerBookRoom();
-                break;
+                case MenuChoiceCustomer.BookRoom://not working properlly
+                    reservationManager.CustomerBookRoom();
+                    break;
 
-            case MenuChoiceCustomer.ReadReviews:
-                userInput.PrintAllReviews();
-                break;
+                case MenuChoiceCustomer.ReadReviews:
+                    userInput.PrintAllReviews();
+                    break;
 
-            case MenuChoiceCustomer.WriteReview:
-                userInput.WriteReviewInput();
-                break;
+                case MenuChoiceCustomer.WriteReview:
+                    userInput.WriteReviewInput();
+                    break;
 
-            case MenuChoiceCustomer.Quit:
-                quit = userInput.QuitMessage();
-                Environment.Exit(0);
-                break;
+                case MenuChoiceCustomer.Quit:
+                    quit = userInput.QuitMessage();
+                    Environment.Exit(0);
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
 
+            }
         }
     }
-}
 
-public void GetManagerMenu()
-{
-    bool quit = false;
-    while (!quit)
+    public void GetManagerMenu()
     {
-        MenuChoiceManager ManagerChoice = ManagerEnumSwitch();
-        Console.Clear();
-        Console.WriteLine("\n********* Manager Menu *********\n ");
-        switch (ManagerChoice)
+        bool quit = false;
+        while (!quit)
         {
-            case MenuChoiceManager.ShowRoom: //is done Tina!
-                userInput.PrintAllRooms();
-                break;
+            MenuChoiceManager ManagerChoice = ManagerEnumSwitch();
+            Console.Clear();
+            Console.WriteLine("\n********* Manager Menu *********\n ");
+            switch (ManagerChoice)
+            {
+                case MenuChoiceManager.ShowRoom: //is done Tina!
+                    userInput.PrintAllRooms();
+                    break;
 
-            case MenuChoiceManager.AddRoom: //is done Tina!
-                userInput.AddRoomInput();
-                break;
+                case MenuChoiceManager.AddRoom: //is done Tina!
+                    userInput.AddRoomInput();
+                    break;
 
-            case MenuChoiceManager.RemoveRoom:   //is done Tina!     
-                userInput.RemoveRoomByIdInput();
-                break;
+                case MenuChoiceManager.RemoveRoom:   //is done Tina!     
+                    userInput.RemoveRoomByIdInput();
+                    break;
 
-            case MenuChoiceManager.AddEmployee:// is done Tina!
-                userInput.AddEmployeeInput();
-                break;
+                case MenuChoiceManager.AddEmployee:// is done Tina!
+                    userInput.AddEmployeeInput();
+                    break;
 
-            case MenuChoiceManager.RemoveEmployee:// is done! Jessica
-                userInput.RemoveEmployeeByIdInput();
-                break;
+                case MenuChoiceManager.RemoveEmployee:// is done! Jessica
+                    userInput.RemoveEmployeeByIdInput();
+                    break;
 
-            case MenuChoiceManager.SearchEmployee: // works but without the job title name
-                userInput.SearchEmployeeByIdInput();
-                break;
+                case MenuChoiceManager.SearchEmployee: // works but without the job title name
+                    userInput.SearchEmployeeByIdInput();
+                    break;
 
-            case MenuChoiceManager.ShowEmployees: // is done! Jessica
-                userInput.PrintAllEmployees();
-                break;
+                case MenuChoiceManager.ShowEmployees: // is done! Jessica
+                    userInput.PrintAllEmployees();
+                    break;
 
-            case MenuChoiceManager.AddCustomer: // is done Tina!
-                userInput.AddCustomerInput();
-                break;
+                case MenuChoiceManager.AddCustomer: // is done Tina!
+                    userInput.AddCustomerInput();
+                    break;
 
-            case MenuChoiceManager.RemoveCustomer: // is done Tina
-                userInput.RemoveCustomerByIdInput();
-                break;
+                case MenuChoiceManager.RemoveCustomer: // is done Tina
+                    userInput.RemoveCustomerByIdInput();
+                    break;
 
-            case MenuChoiceManager.SearchCustomer: //is done Tina!
-                userInput.SearchCustomerByIdInput();
-                break;
+                case MenuChoiceManager.SearchCustomer: //is done Tina!
+                    userInput.SearchCustomerByIdInput();
+                    break;
 
-            case MenuChoiceManager.ShowCustomers: // is done Tina!
-                userInput.PrintAllCustomers();
-                break;
+                case MenuChoiceManager.ShowCustomers: // is done Tina!
+                    userInput.PrintAllCustomers();
+                    break;
 
-            case MenuChoiceManager.Quit: //is done!
-                quit = userInput.QuitMessage();
-                Environment.Exit(0);
+                case MenuChoiceManager.Quit: //is done!
+                    quit = userInput.QuitMessage();
+                    Environment.Exit(0);
 
-                break;
+                    break;
 
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
     }
-}
 
-public MenuChoiceEmployee EmployeeEnumSwitch()
-{
-    foreach (string c in Enum.GetNames(typeof(MenuChoiceEmployee)))
-        Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceEmployee), Enum.Parse(typeof(MenuChoiceEmployee), c), "d"));
-    MenuChoiceEmployee choice = (MenuChoiceEmployee)userInput.TryGetInt("Select one of the options:");
-    return choice;
-}
-
-public RegisterLoginChoiceUser RegisterLoginSwitch()
-{
-    foreach (string c in Enum.GetNames(typeof(RegisterLoginChoiceUser)))
-        Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(RegisterLoginChoiceUser), Enum.Parse(typeof(RegisterLoginChoiceUser), c), "d"));
-
-    Console.WriteLine("Select one of the options:");
-    int registerLoginInput = int.Parse(Console.ReadLine());
-    RegisterLoginChoiceUser choice = (RegisterLoginChoiceUser)registerLoginInput;
-    return choice;
-}
-
-public MenuChoiceCustomer CustomerEnumSwitch()
-{
-    foreach (string c in Enum.GetNames(typeof(MenuChoiceCustomer)))
-        Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceCustomer), Enum.Parse(typeof(MenuChoiceCustomer), c), "d"));
-    MenuChoiceCustomer CustomerChoice = (MenuChoiceCustomer)userInput.TryGetInt("Select one of the options:");
-    return CustomerChoice;
-}
-
-public MenuChoiceManager ManagerEnumSwitch()
-{
-    foreach (string c in Enum.GetNames(typeof(MenuChoiceManager)))
-        Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceManager), Enum.Parse(typeof(MenuChoiceManager), c), "d"));
-    MenuChoiceManager ManagerChoice = (MenuChoiceManager)userInput.TryGetInt("Select one of the options:");
-    return ManagerChoice;
-}
-
-public bool ReceiptOptionInput(bool quit)
-{
-    Console.Clear();
-    Console.WriteLine("********* Receipt option ********* ");
-    //AddPaymentInput();
-    Console.WriteLine("Do you want a receipt? Y/N");
-    string answer = Console.ReadLine().ToLower();
-    if (answer == "y")
+    public MenuChoiceEmployee EmployeeEnumSwitch()
     {
-        userInput.SearchPaymentByIdInput();
-        quit = false;
-    }
-    else if (answer == "n")
-    {
-        Console.WriteLine("No receipt chosen!");
-        quit = false;
-    }
-    else
-    {
-        Console.WriteLine("your choice does not exist!");
-
+        foreach (string c in Enum.GetNames(typeof(MenuChoiceEmployee)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceEmployee), Enum.Parse(typeof(MenuChoiceEmployee), c), "d"));
+        MenuChoiceEmployee choice = (MenuChoiceEmployee)userInput.TryGetInt("Select one of the options:");
+        return choice;
     }
 
-    return quit;
-}
+    public RegisterLoginChoiceUser RegisterLoginSwitch()
+    {
+        foreach (string c in Enum.GetNames(typeof(RegisterLoginChoiceUser)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(RegisterLoginChoiceUser), Enum.Parse(typeof(RegisterLoginChoiceUser), c), "d"));
 
-public bool PaymentChoiceInput(bool quit)
-{
-    Console.Clear();
-    Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
-    string option = Console.ReadLine();
-    if (option == "1")
-    {
-        userInput.PrintAllPayments();
-        quit = false;
+        Console.WriteLine("Select one of the options:");
+        int registerLoginInput = int.Parse(Console.ReadLine());
+        RegisterLoginChoiceUser choice = (RegisterLoginChoiceUser)registerLoginInput;
+        return choice;
     }
-    else if (option == "2")
-    {
-        userInput.AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
-        quit = false;
-    }
-    else if (option == "3")
-    {
-        userInput.SearchPaymentByIdInput();
-        quit = false;
-    }
-    else if (option == "4")
-    {
-        RemovePaymentInput();
-        quit = false;
-    }
-    else
-    {
-        Console.WriteLine("Select one of the number!");
-    }
-    Console.ReadLine();
-    return quit;
-}
 
-public void RemovePaymentInput()
-{
-    Console.WriteLine("\n******* Remove a payment ********\n");
-    Console.WriteLine("Payment Id to be removed: ");
-    if (int.TryParse(Console.ReadLine(), out int rPaymentId))
+    public MenuChoiceCustomer CustomerEnumSwitch()
     {
-        paymentManager.RemovePaymentById(rPaymentId);
-        Console.WriteLine("The payment has been removed!");
+        foreach (string c in Enum.GetNames(typeof(MenuChoiceCustomer)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceCustomer), Enum.Parse(typeof(MenuChoiceCustomer), c), "d"));
+        MenuChoiceCustomer CustomerChoice = (MenuChoiceCustomer)userInput.TryGetInt("Select one of the options:");
+        return CustomerChoice;
     }
-    else
+
+    public MenuChoiceManager ManagerEnumSwitch()
     {
-        Console.WriteLine("Input prayment ID number!");
+        foreach (string c in Enum.GetNames(typeof(MenuChoiceManager)))
+            Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceManager), Enum.Parse(typeof(MenuChoiceManager), c), "d"));
+        MenuChoiceManager ManagerChoice = (MenuChoiceManager)userInput.TryGetInt("Select one of the options:");
+        return ManagerChoice;
     }
-}
+
+    public bool ReceiptOptionInput(bool quit)
+    {
+        Console.Clear();
+        Console.WriteLine("********* Receipt option ********* ");
+        //AddPaymentInput();
+        Console.WriteLine("Do you want a receipt? Y/N");
+        string answer = Console.ReadLine().ToLower();
+        if (answer == "y")
+        {
+            userInput.SearchPaymentByIdInput();
+            quit = false;
+        }
+        else if (answer == "n")
+        {
+            Console.WriteLine("No receipt chosen!");
+            quit = false;
+        }
+        else
+        {
+            Console.WriteLine("your choice does not exist!");
+
+        }
+
+        return quit;
+    }
+
+    public bool PaymentChoiceInput(bool quit)
+    {
+        Console.Clear();
+        Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
+        string option = Console.ReadLine();
+        if (option == "1")
+        {
+            userInput.PrintAllPayments();
+            quit = false;
+        }
+        else if (option == "2")
+        {
+            userInput.AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
+            quit = false;
+        }
+        else if (option == "3")
+        {
+            userInput.SearchPaymentByIdInput();
+            quit = false;
+        }
+        else if (option == "4")
+        {
+            RemovePaymentInput();
+            quit = false;
+        }
+        else
+        {
+            Console.WriteLine("Select one of the number!");
+        }
+        Console.ReadLine();
+        return quit;
+    }
+
+    public void RemovePaymentInput()
+    {
+        Console.WriteLine("\n******* Remove a payment ********\n");
+        Console.WriteLine("Payment Id to be removed: ");
+        if (int.TryParse(Console.ReadLine(), out int rPaymentId))
+        {
+            paymentManager.RemovePaymentById(rPaymentId);
+            Console.WriteLine("The payment has been removed!");
+        }
+        else
+        {
+            Console.WriteLine("Input prayment ID number!");
+        }
+    }
 
     // public void PrintAllReservations()
     // {
