@@ -54,13 +54,13 @@ public class UserInput
             {
                 foreach (var item in customerManager.ShowAllCustomers())
                 {
-                    Console.WriteLine(item);
+                    Console.WriteLine(item + "\n\n");
                 }
             }
         }
         catch (Exception e)
         {
-            throw new ArgumentNullException();
+            Console.WriteLine("There are no customers!");
         }
         Console.ReadLine();
     }
@@ -69,7 +69,7 @@ public class UserInput
     {
         Console.WriteLine("\n******* Search customer by Id ********\n");
         Console.WriteLine("Customer Id:");
-        int searchCustomerId = int.Parse(Console.ReadLine());
+        int searchCustomerId = TryGetInt(Console.ReadLine());
         try
         {
             if (customerManager.SearchCustomerById(searchCustomerId) != null)
@@ -79,7 +79,9 @@ public class UserInput
         }
         catch (Exception e)
         {
-            throw new ArgumentNullException();
+            Console.WriteLine("Customer did not exist.");
+            
+
         }
         Console.ReadLine();
     }
@@ -233,6 +235,14 @@ public class UserInput
     public  void RemoveRoomByIdInput()
     {
         Console.WriteLine("\n******* Remove room by Id ********\n");
+        foreach (var item in roomManager.ShowAllRooms())
+        {
+            Console.WriteLine(item);
+        } 
+        if (true)
+        {
+            
+        }
         roomManager.RemoveRoomById(TryGetInt("Room Id: "));
         Console.WriteLine("Room has been deleted!");
         Console.ReadLine();
@@ -314,7 +324,7 @@ public class UserInput
     {
         Console.WriteLine("\n******* Search Employee by Id ********\n");
         Console.WriteLine("Employee Id:");
-        int searchEmployeeId = int.Parse(Console.ReadLine());
+        int searchEmployeeId = TryGetInt(Console.ReadLine());
         try
         {
             if (employeeManager.SearchEmployee(searchEmployeeId) != null)
@@ -324,7 +334,8 @@ public class UserInput
         }
         catch (Exception e)
         {
-            throw new ArgumentNullException();
+            Console.WriteLine("Did not exist");
+            SearchEmployeeByIdInput();
         }
         Console.ReadLine();
     }

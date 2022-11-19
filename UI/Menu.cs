@@ -166,7 +166,7 @@ class Menu
             Console.WriteLine("\n********* Manager Menu *********\n ");
             switch (ManagerChoice)
             {
-                case MenuChoiceManager.ShowRoom: //is done Tina!
+                case MenuChoiceManager.ShowRooms: //is done Tina!
                     userInput.PrintAllRooms();
                     break;
 
@@ -1046,7 +1046,7 @@ public enum MenuChoiceCustomer
 }
 public enum MenuChoiceManager
 {
-    ShowRoom = 1,
+    ShowRooms = 1,
     AddRoom,
     RemoveRoom,
     AddEmployee,
