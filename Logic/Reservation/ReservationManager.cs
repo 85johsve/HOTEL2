@@ -132,29 +132,39 @@ public class ReservationManager
         Console.WriteLine("Book room");
         int customerIdBooking = 1;
         int employee_id = 1;
+        DateTime userDateIn;
+        DateTime userDateOut;
 
         Console.WriteLine("Enter a from-date: ");
 
-        DateTime userDateIn;
-        if (DateTime.TryParse(Console.ReadLine(), out userDateIn))
+        while (true)
         {
-            Console.WriteLine("you choosed: " + userDateIn);
-        }
-        else
-        {
-            Console.WriteLine("You have entered an incorrect value.");
+
+            if (DateTime.TryParse(Console.ReadLine(), out userDateIn))
+            {
+                Console.WriteLine("you choosed: " + userDateIn);
+                break;
+            }
+            else
+            {
+                Console.WriteLine("You have entered an incorrect value.");
+
+            }
         }
 
 
-        Console.WriteLine("Enter a to-date: ");
-        DateTime userDateOut;
-        if (DateTime.TryParse(Console.ReadLine(), out userDateOut))
+        while (true)
         {
-            Console.WriteLine("you choosed: " + userDateOut);
-        }
-        else
-        {
-            Console.WriteLine("You have entered an incorrect value.");
+            Console.WriteLine("Enter a to-date: ");
+            if (DateTime.TryParse(Console.ReadLine(), out userDateOut))
+            {
+                Console.WriteLine("you choosed: " + userDateOut);
+                break;
+            }
+            else
+            {
+                Console.WriteLine("You have entered an incorrect value.");
+            }
         }
         Console.ReadLine();
 
@@ -221,11 +231,21 @@ public class ReservationManager
         DateTime todaysDate = DateTime.Now;
         double date_range = GetTimeSpanByDates(dateIn, dateOut);
         Console.WriteLine("Choose room to book: ");
-        int roomSelected = Int32.Parse(Console.ReadLine());
-        newReservationData.MakeReservationEmployee(customerIdBooking, employee_id, roomSelected, todaysDate, userDateIn, userDateOut, date_range);
-        Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
-        Console.ReadKey();
+        int roomSelected = TryGetInt(Console.ReadLine());
+        foreach (var room in availabeRooms)
+        {
+            if (roomSelected == room.room_id)
+            {
+                newReservationData.MakeReservationEmployee(customerIdBooking, employee_id, roomSelected, todaysDate, userDateIn, userDateOut, date_range);
+                Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
+                Console.ReadKey();
+                Console.Clear();
+                break;
+            }
+        }
         Console.Clear();
+        Console.WriteLine("selected room did not exist");
+        Console.ReadKey();
     }
 
     public Reservation SearchReservationById(int sReservationId)
@@ -248,7 +268,7 @@ public class ReservationManager
 
     public double CalculatingTotalRoomPay(int id) // Tina: for now try this under ShowReceiptOptions under employee menu, this is going to be used for the receipt printing later,  
     {
-        
+
         // IConvertible convert = newReservationData.GetRoomPrice(id) as IConvertible;
         //  var d = Convert.ToDouble(newReservationData.GetRoomPrice(id));
         // if (convert != null)
@@ -259,7 +279,7 @@ public class ReservationManager
         // {
         //    d = 0d;
         // }
-        return  newReservationData.GetRoomPrice(id)* GetTimeSpanById(id);
+        return newReservationData.GetRoomPrice(id) * GetTimeSpanById(id);
     }
 
 
