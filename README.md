@@ -117,6 +117,8 @@ FROM reservations
 INNER JOIN customers ON reservations.customer_id = customers.customer_id
 INNER JOIN employees ON reservations.employee_id = employees.employee_id;
 
+[x] Join tables get single reservation details ( Tina)
+SELECT reservation_id, customer_fname,customer_lname,employee_id,rooms.room_id,roomType_name,room_price, reservation_date, date_in, date_out FROM(((reservations INNER JOIN customers ON customers.customer_id = reservations.customer_id)INNER JOIN rooms ON rooms.room_id = reservations.room_id)INNER JOIN roomtype ON roomtype.roomType_id=rooms.roomType_id)WHERE reservations.reservation_id = {reservation_id}
 
 [x] List of Reviews                       
 
@@ -151,3 +153,7 @@ NOTES:
 TimeSpan
 DateOnly
 ;SELECT LAST_INSERT_ID() sen QuerySingle<int>(sql)
+
+Challenges need to be solved
+[]Get room price from table and conver to double type
+[]Method to make receipt list with receipt number

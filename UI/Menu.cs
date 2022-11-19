@@ -75,8 +75,13 @@ class Menu
 
                 case MenuChoiceEmployee.ShowReceiptOptions: //is done Jessica!// printing detail with receipt Nr
                     //quit = userInput.ReceiptOptionInput(quit);
-                    ReservationData reservationData = new();
-                    reservationData.GetRoomPrice(1);
+                    // Receipt receipt =new();
+                    // receipt.id =1;
+                    // Console.WriteLine (receipt);
+                    // ReservationData reservationData = new();
+                    // reservationData.GetRoomPrice(1);
+
+                     Console.WriteLine (reservationManager.CalculatingTotalRoomPay(1)); // Tina this is trying to print out total room payment of reservation_id 1
                     Console.ReadLine ();
                     break;
 

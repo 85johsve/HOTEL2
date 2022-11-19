@@ -6,27 +6,27 @@ public class ReservationManager
 {
     private List<Reservation> reservations;
     ReservationData newReservationData = new();
-        private TimeSpan timeSpan;
-        private DateTime dateIn;
-        private DateTime dateOut;
-        public double numberOfDays;
+    private TimeSpan timeSpan;
+    private DateTime dateIn;
+    private DateTime dateOut;
+    public double numberOfDays;
 
-    
-     public List<Reservation> ShowAllReservations()
+
+    public List<Reservation> ShowAllReservations()
     {
         return newReservationData.GetReservationList();
-    }   
+    }
 
-   
+
 
     public double GetTimeSpanByDates(DateTime dateIn, DateTime dateOut)
     {
-        timeSpan = dateOut - dateIn; 
+        timeSpan = dateOut - dateIn;
         numberOfDays = timeSpan.TotalDays;
         return numberOfDays;
     }
 
-   
+
 
     public void CustomerBookRoom()
     {
@@ -132,7 +132,7 @@ public class ReservationManager
         Console.WriteLine("Book room");
         int customerIdBooking = 1;
         int employee_id = 1;
-        
+
         Console.WriteLine("Enter a from-date: ");
 
         DateTime userDateIn;
@@ -228,31 +228,39 @@ public class ReservationManager
         Console.Clear();
     }
 
-     public Reservation SearchReservationById(int sReservationId)
+    public Reservation SearchReservationById(int sReservationId)
     {
         return newReservationData.GetSingleReservationById(sReservationId);
     }
 
-     public double GetTimeSpanById(int reservation_id)
+    public double GetTimeSpanById(int reservation_id)
     {
-        
+
         foreach (var item in newReservationData.GetTimeSpanData(reservation_id))
         {
             dateIn = item.date_in;
             dateOut = item.date_out;
         }
-        timeSpan = dateOut - dateIn; 
+        timeSpan = dateOut - dateIn;
         numberOfDays = timeSpan.TotalDays;
         return numberOfDays;
     }
 
-    //  public double CalculatingTotalRoomPay(int id)
-    // {
-    //     newReservationData.GetRoomPrice(id);
-    //     GetTimeSpanById (id);
-
-    //     double totalPay = newReservationData.GetRoomPrice(id)*GetTimeSpanById (id)  
-    // }
+    public double CalculatingTotalRoomPay(int id) // Tina: for now try this under ShowReceiptOptions under employee menu, this is going to be used for the receipt printing later,  
+    {
+        
+        // IConvertible convert = newReservationData.GetRoomPrice(id) as IConvertible;
+        //  var d = Convert.ToDouble(newReservationData.GetRoomPrice(id));
+        // if (convert != null)
+        // {
+        //     d = convert.ToDouble(null);
+        // }
+        // else
+        // {
+        //    d = 0d;
+        // }
+        return  newReservationData.GetRoomPrice(id)* GetTimeSpanById(id);
+    }
 
 
 
