@@ -269,8 +269,9 @@ public class ReservationManager
     public double CalculatingTotalRoomPay(int id) // Tina: for now try this under ShowReceiptOptions under employee menu, this is going to be used for the receipt printing later,  
     {
 
+        
         // IConvertible convert = newReservationData.GetRoomPrice(id) as IConvertible;
-        //  var d = Convert.ToDouble(newReservationData.GetRoomPrice(id));
+         var d = Convert.ToDouble(newReservationData.GetRoomPrice(id));
         // if (convert != null)
         // {
         //     d = convert.ToDouble(null);
@@ -279,7 +280,8 @@ public class ReservationManager
         // {
         //    d = 0d;
         // }
-        return newReservationData.GetRoomPrice(id) * GetTimeSpanById(id);
+       // return newReservationData.GetRoomPrice(id);
+        return d;
     }
 
 

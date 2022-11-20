@@ -444,18 +444,18 @@ public class UserInput
     {
         Console.WriteLine("******* Search Reseravtion by Id **********");
         int searchReservId = TryGetInt("Enter reservation id to search: ");
-        try
-        {
+        // try
+        // {
             if (reservationManager.SearchReservationById(searchReservId) != null)
             {
                 Console.WriteLine(reservationManager.SearchReservationById(searchReservId));
             }
-        }
-        catch (Exception e)
-        {
+        // }
+        // catch (Exception e)
+        // {
 
-            throw new ArgumentNullException(); ;
-        }
+        //     throw new ArgumentNullException(); ;
+        // }
         Console.ReadLine();
     }
 
