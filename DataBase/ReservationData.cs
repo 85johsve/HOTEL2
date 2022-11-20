@@ -74,12 +74,13 @@ public class ReservationData
         return getTimeSpan;
     }
 
-     public  double GetRoomPrice(int reservation_id) // this is return to reservationmanager CalculatingTotalRoomPay
+     public  Reservation GetRoomPrice(int reservation_id) // this is return to reservationmanager CalculatingTotalRoomPay
     {
         var result = connection.QuerySingle<Reservation> ($"SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id};");
-        var d = Convert.ToDouble(result);
+        // var d = Convert.ToDouble(result);
         
-        return d ;
+        // return d ;
+        return result;
     }
 
 
