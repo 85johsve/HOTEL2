@@ -282,7 +282,7 @@ public class ReservationManager
 
         
         // IConvertible convert = newReservationData.GetRoomPrice(id) as IConvertible;
-         var d = Convert.ToDouble(newReservationData.GetRoomPrice(id));
+         //var d = Convert.ToDouble(newReservationData.GetRoomPrice(id));
         // if (convert != null)
         // {
         //     d = convert.ToDouble(null);
@@ -292,7 +292,7 @@ public class ReservationManager
         //    d = 0d;
         // }
        // return newReservationData.GetRoomPrice(id);
-        return d;
+        return newReservationData.ReadRoomPrice(id);
     }
 
 

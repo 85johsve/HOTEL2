@@ -82,26 +82,30 @@ public class ReservationData
         return result;
     }
 
-    public void ReadMyData(int reservation_id)  // this is something we could try but still figuring out how to use it 
+    public double ReadRoomPrice(int reservation_id)  // this is something we could try but still figuring out how to use it 
     {
+
         string mySelectQuery = $"SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id};";
         // (MySqlConnection myConnection = new MySqlConnection(myConnString);)
         MySqlCommand myCommand = new MySqlCommand(mySelectQuery, connection);
         Open();
         MySqlDataReader myReader = myCommand.ExecuteReader();
         // (Always call Read before accessing data.)
+        Reservation reservation = new();
+        reservation.room_price = Convert.ToDouble(myReader["Room Price"]);
         while (myReader.Read())
         {
             Console.WriteLine(myReader.GetInt32(0) + ", " + myReader.GetString(3));//here we need to change according to out need
         }
-        MySqlCommand cmd = new MySqlCommand("SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id}", connection);
+        // MySqlCommand cmd = new MySqlCommand("SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id}", connection);
         MySqlDataReader reader = myCommand.ExecuteReader();
 
         if (reader.HasRows)
         {
             while (reader.Read())
             {
-               string price = double.Parse(reader.GetString("Price")).ToString();
+               
+              reservation.room_price = double.Parse(reader.GetString("Price"));
             }
         }
         //return reservation_id;
@@ -109,6 +113,8 @@ public class ReservationData
         myReader.Close();
         // (Close the connection when done with it.)
         connection.Close();
+        return reservation.room_price;
+    
     }
 
 

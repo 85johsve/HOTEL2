@@ -80,7 +80,8 @@ class Menu
                     // Console.WriteLine (receipt);
                     // ReservationData reservationData = new();
                     // reservationData.GetRoomPrice(1);
-
+                    Console.WriteLine (reservationManager.CalculatingTotalRoomPay(1));
+                    
                      Console.WriteLine (reservationManager.CalculatingTotalRoomPay(1)); // Tina this is trying to print out total room payment of reservation_id 1
                     Console.ReadLine ();
                     break;
