@@ -396,7 +396,8 @@ public class UserInput
             }
             Reservation myRoom = reservationData.GetSingleReservationById(resID);
             double newDateTime = reservationManager.GetTimeSpanByDates(userDateIn, myRoom.date_out);
-            reservationData.UpdateReservationDateIn(resID, userDateIn, newDateTime);
+            double newTotalPay = myRoom.room_price * newDateTime;
+            reservationData.UpdateReservationDateIn(resID, userDateIn, newDateTime, newTotalPay);
             Console.WriteLine($"You have updated reservation nr {resID} New check in date: {userDateIn}.");
             Console.ReadKey();
 

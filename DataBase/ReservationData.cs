@@ -38,10 +38,9 @@ public class ReservationData
     }
 
 
-    public void MakeReservationCustomer(int customer_id, int room_id, DateTime reservation_date, DateTime date_in, DateTime date_out, double date_range)
+    public void MakeReservationCustomer(int customer_id, int employeeIdBooking, int room_id, DateTime reservation_date, DateTime date_in, DateTime date_out, double date_range, double totalPay)
     {
-        var makeReservation = connection.Query<Reservation>($"INSERT INTO `reservations`( `customer_id`, `room_id`, `reservation_date`, `date_in`, `date_out`, date_range) VALUES ({customer_id}, {room_id}, '{reservation_date}','{date_in}','{date_out}', {date_range})");
-
+        var makeReservation = connection.Query<Reservation>($"INSERT INTO `reservations`(`customer_id`, `employee_id`, `room_id`, `reservation_date`, `date_in`, `date_out`, date_range, reservation_totalpay) VALUES ('{customer_id}',  '{employeeIdBooking}', '{room_id}', '{reservation_date}','{date_in}','{date_out}', {date_range}, {totalPay})");
     }
 
     public void MakeReservationEmployee(int customer_id, int employee_id, int room_id, DateTime reservation_date, DateTime date_in, DateTime date_out, double date_range)
@@ -52,9 +51,9 @@ public class ReservationData
 
 
 
-    public void UpdateReservationDateIn(int reservation_id, DateTime date_in, double date_range)
+    public void UpdateReservationDateIn(int reservation_id, DateTime date_in, double date_range, double newTotalPay)
     {
-        var updateReservation = connection.Query<Reservation>($"UPDATE `reservations` SET `date_in`='{date_in}', `date_range`={date_range} WHERE reservations.reservation_id = {reservation_id};");
+        var updateReservation = connection.Query<Reservation>($"UPDATE `reservations` SET `date_in`='{date_in}', `date_range`={date_range}, `reservation_totalpay`={newTotalPay} WHERE reservations.reservation_id = {reservation_id};");
     }
 
     public void UpdateReservationDateOut(int reservation_id, DateTime date_out, double date_range)

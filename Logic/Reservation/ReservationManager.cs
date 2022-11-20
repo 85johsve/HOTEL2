@@ -33,6 +33,7 @@ public class ReservationManager
         Console.WriteLine("Book room");
 
         int customerIdBooking = 1;
+        int employeeIdBooking = 1;
         Console.WriteLine("Enter a from-date: ");
         DateTime dateIn;
         if (DateTime.TryParse(Console.ReadLine(), out dateIn))
@@ -119,9 +120,19 @@ public class ReservationManager
         }
         DateTime todaysDate = DateTime.Now;
         double date_range = GetTimeSpanByDates(dateIn, dateOut);
+        double roomSelectedPrice = 0;
+        double totalPay;
         Console.WriteLine("Choose room to book: ");
         int roomSelected = Int32.Parse(Console.ReadLine());
-        newReservationData.MakeReservationCustomer(customerIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range);
+        foreach (var hh in availabeRooms)
+        {
+            if (hh.room_id == roomSelected)
+            {
+                roomSelectedPrice = hh.room_price;
+            }
+        }
+        totalPay = roomSelectedPrice * date_range;
+        newReservationData.MakeReservationCustomer(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
         Console.WriteLine($"You have booked room nr {roomSelected} from: {dateIn} to: {dateOut}.");
         Console.ReadKey();
         Console.Clear();
