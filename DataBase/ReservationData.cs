@@ -83,30 +83,29 @@ public class ReservationData
         return result;
     }
 
-    public void ReadMyData(int reservation_id)  // this is something we could try but still figuring out how to use it 
+    public double ReadMyData(int reservation_id)  // this is something we could try but still figuring out how to use it 
     {
         string mySelectQuery = $"SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id};";
         // (MySqlConnection myConnection = new MySqlConnection(myConnString);)
         MySqlCommand myCommand = new MySqlCommand(mySelectQuery, connection);
         Open();
-        MySqlDataReader myReader;
-        myReader = myCommand.ExecuteReader();
+        MySqlDataReader myReader = myCommand.ExecuteReader();
         // (Always call Read before accessing data.)
         while (myReader.Read())
         {
-            Console.WriteLine(myReader.GetInt32(0) + ", " + myReader.GetString(1));//here we need to change according to out need
+            Console.WriteLine(myReader.GetInt32(0) + ", " + myReader.GetString(3));//here we need to change according to out need
         }
+        MySqlCommand cmd = new MySqlCommand("SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id}", connection);
+        MySqlDataReader reader = myCommand.ExecuteReader();
 
-         MySqlCommand cmd = new MySqlCommand("SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id}", connection);
-    //    MySqlDataReader reader = cmd.ExecuteReaderEx();
-
-    //     if (reader.HasRows)
-    //     {
-    //         while (reader.Read())
-    //         {
-    //             price = double.Parse(reader["Price"]).ToString());
-    //         }
-    //     }
+        if (reader.HasRows)
+        {
+            while (reader.Read())
+            {
+               string price = double.Parse(reader.GetString("Price")).ToString();
+            }
+        }
+        return reservation_id;
         // (always call Close when done reading.)
         myReader.Close();
         // (Close the connection when done with it.)

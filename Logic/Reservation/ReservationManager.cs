@@ -271,7 +271,7 @@ public class ReservationManager
 
         
         // IConvertible convert = newReservationData.GetRoomPrice(id) as IConvertible;
-         var d = Convert.ToDouble(newReservationData.GetRoomPrice(id));
+         var d = Convert.ToDouble(newReservationData.ReadMyData(id));
         // if (convert != null)
         // {
         //     d = convert.ToDouble(null);
