@@ -82,8 +82,8 @@ class Menu
                     // reservationData.GetRoomPrice(1);
                     Console.WriteLine("\nTime span : ");
                     Console.WriteLine(reservationManager.GetTimeSpanById(1) + "Day(s)\n");
-                    Console.WriteLine("Room price : ");
-                    Console.WriteLine(reservationData.GetRoomPrice(1));
+                    Console.WriteLine($"Room price : ");
+                    Console.WriteLine(reservationData.GetRoomPrice(1)+"Kr");
                     // Console.WriteLine (reservationData.ReadRoomPrice(1));
 
                     // (Always call Read before accessing data.)
