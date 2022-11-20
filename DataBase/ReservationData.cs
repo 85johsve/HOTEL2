@@ -83,7 +83,7 @@ public class ReservationData
         return result;
     }
 
-    public double ReadMyData(int reservation_id)  // this is something we could try but still figuring out how to use it 
+    public void ReadMyData(int reservation_id)  // this is something we could try but still figuring out how to use it 
     {
         string mySelectQuery = $"SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id};";
         // (MySqlConnection myConnection = new MySqlConnection(myConnString);)
@@ -105,7 +105,7 @@ public class ReservationData
                string price = double.Parse(reader.GetString("Price")).ToString();
             }
         }
-        return reservation_id;
+        //return reservation_id;
         // (always call Close when done reading.)
         myReader.Close();
         // (Close the connection when done with it.)
