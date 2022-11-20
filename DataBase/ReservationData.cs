@@ -83,18 +83,18 @@ public class ReservationData
         return result;
     }
 
-    public void ReadMyData(string myConnString)  // this is something we could try but still figuring out how to use it 
+    public void ReadMyData(int reservation_id)  // this is something we could try but still figuring out how to use it 
     {
-        string mySelectQuery = "SELECT OrderID, CustomerID FROM Orders";
-        MySqlConnection myConnection = new MySqlConnection(myConnString);
-        MySqlCommand myCommand = new MySqlCommand(mySelectQuery, myConnection);
-        myConnection.Open();
+        string mySelectQuery = $"SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id};";
+        // (MySqlConnection myConnection = new MySqlConnection(myConnString);)
+        MySqlCommand myCommand = new MySqlCommand(mySelectQuery, connection);
+        Open();
         MySqlDataReader myReader;
         myReader = myCommand.ExecuteReader();
-        // Always call Read before accessing data.
+        // (Always call Read before accessing data.)
         while (myReader.Read())
         {
-            Console.WriteLine(myReader.GetInt32(0) + ", " + myReader.GetString(1));
+            Console.WriteLine(myReader.GetInt32(0) + ", " + myReader.GetString(1));//here we need to change according to out need
         }
 
          MySqlCommand cmd = new MySqlCommand("SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id}", connection);
@@ -107,10 +107,10 @@ public class ReservationData
     //             price = double.Parse(reader["Price"]).ToString());
     //         }
     //     }
-        // always call Close when done reading.
+        // (always call Close when done reading.)
         myReader.Close();
-        // Close the connection when done with it.
-        myConnection.Close();
+        // (Close the connection when done with it.)
+        connection.Close();
     }
 
 
