@@ -19,7 +19,7 @@ public class Reservation
 
     public override string ToString()
     {
-        return $"Reservation: " + reservation_id + "\nCustomer Name: " + customer_fname + " " + customer_lname + "\nEmployee Id: " + employee_id + "\nRoom Type: " + roomType_name+ "\nRoom:  " + room_id  + "\nPrice: " + room_price +"Kr"+ "\nReservation Date:  " + reservation_date + "\nChecking in Date:  " + date_in + "\nChecking out Date:  " + date_out +"\nStaying time span" + data_range + "\nRoom total payment" + reservation_totalpay;//+ "\nRange" + (date_out-date_in)
+        return $"Reservation: " + reservation_id + "\nCustomer Name: " + customer_fname + " " + customer_lname + "\nEmployee Id: " + employee_id + "\nRoom Type: " + roomType_name+ "\nRoom:  " + room_id  + "\nPrice: " + room_price +"Kr"+ "\nReservation Date:  " + reservation_date + "\nChecking in Date:  " + date_in + "\nChecking out Date:  " + date_out +"\nStaying time span: " + data_range + "\nRoom total payment: " + reservation_totalpay + "Kr";//+ "\nRange" + (date_out-date_in)
 
     }
     
