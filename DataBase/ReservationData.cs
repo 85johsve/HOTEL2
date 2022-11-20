@@ -76,9 +76,6 @@ public class ReservationData
     public double GetRoomPrice(int reservation_id) // this is return to reservationmanager CalculatingTotalRoomPay
     {
         var result = connection.QuerySingle<Reservation> ($"SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id};");
-        // var d = Convert.ToDouble(result);
-
-        //return d ;
         return result.room_price;
     }
 
