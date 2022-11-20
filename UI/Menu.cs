@@ -78,11 +78,18 @@ class Menu
                     // Receipt receipt =new();
                     // receipt.id =1;
                     // Console.WriteLine (receipt);
-                    // ReservationData reservationData = new();
+                   // ReservationData reservationData = new();
                     // reservationData.GetRoomPrice(1);
-                    Console.WriteLine (reservationManager.CalculatingTotalRoomPay(1));
+                    Console.WriteLine ("Time checked in : ");
+                     Console.WriteLine(reservationManager.GetTimeSpanById(1) + "Day(s)\n");
+                      Console.WriteLine ("Room price : ");
+                   Console.WriteLine (reservationData.GetRoomPrice(1));
+                  // Console.WriteLine (reservationData.ReadRoomPrice(1));
+                   
+        // (Always call Read before accessing data.)
+       
                     
-                     Console.WriteLine (reservationManager.CalculatingTotalRoomPay(1)); // Tina this is trying to print out total room payment of reservation_id 1
+                    // Console.WriteLine (reservationManager.CalculatingTotalRoomPay(1)); // //Tina this is trying to print out total room payment of reservation_id 1
                     Console.ReadLine ();
                     break;
 

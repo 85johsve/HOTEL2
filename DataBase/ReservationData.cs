@@ -73,13 +73,13 @@ public class ReservationData
         return getTimeSpan;
     }
 
-    public Reservation GetRoomPrice(int reservation_id) // this is return to reservationmanager CalculatingTotalRoomPay
+    public double GetRoomPrice(int reservation_id) // this is return to reservationmanager CalculatingTotalRoomPay
     {
         var result = connection.QuerySingle<Reservation> ($"SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id};");
         // var d = Convert.ToDouble(result);
 
         //return d ;
-        return result;
+        return result.room_price;
     }
 
     public double ReadRoomPrice(int reservation_id)  // this is something we could try but still figuring out how to use it 
@@ -92,11 +92,11 @@ public class ReservationData
         MySqlDataReader myReader = myCommand.ExecuteReader();
         // (Always call Read before accessing data.)
         Reservation reservation = new();
-        reservation.room_price = Convert.ToDouble(myReader["Room Price"]);
-        while (myReader.Read())
-        {
-            Console.WriteLine(myReader.GetInt32(0) + ", " + myReader.GetString(3));//here we need to change according to out need
-        }
+        // reservation.room_price = Convert.ToDouble(myReader["Room Price"]);
+        // while (myReader.Read())
+        // {
+        //     Console.WriteLine(myReader.GetInt32(0) + ", " + myReader.GetString(3));//here we need to change according to out need
+        // }
         // MySqlCommand cmd = new MySqlCommand("SELECT room_price FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id}", connection);
         MySqlDataReader reader = myCommand.ExecuteReader();
 
