@@ -95,7 +95,7 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.ShowPaymentOption:
-                    quit = PaymentChoiceInput(quit);
+                    quit = userInput.PaymentChoiceInput(quit);
                     break;
 
                 case MenuChoiceEmployee.UpdateReservationDate:// is done! Johan//need to Show more detail on the table

@@ -41,7 +41,7 @@ class PaymentData
         r.Add("@payment_date", date);
         r.Add("@payment_amount", amount);
          r.Add("@payment_roomPay", roompay);
-          r.Add("@payment_otherotherProducts", otherpay);
+          r.Add("@payment_otherProducts", otherpay);
         r.Add("@reservation_id", reservationID);
         r.Add("@payment_name", name);
         r.Add("@bankInfor",bank);
