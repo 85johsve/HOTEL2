@@ -3,7 +3,7 @@ public class Payment
     public int payment_id{get;set;}
     public int customer_id{get;set;}
     public DateTime payment_date{get;set;}
-    public double payment_amount{get;set;}
+    public double payment_amount{get;set;}// need to be insert from C#
     public int reservation_id{get;set;}
     public string? payment_name{get;set;}//user need to write down for example, room, texi, or food---
     public string? bankInfor{get;set;}

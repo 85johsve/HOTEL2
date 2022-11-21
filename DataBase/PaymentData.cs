@@ -31,7 +31,7 @@ class PaymentData
         return payments;
     }
 
-    public int InsertPayment(int customerID, DateTime date, double amount, int reservationID,string name,string bank)
+    public int InsertPayment(int customerID, DateTime date, double amount, int reservationID,string name,string bank)   // this amount = room total + others(since )
     {
         Open();
         //int id, 
@@ -55,7 +55,7 @@ class PaymentData
        var deletePayment = connection.Query<Payment>($"DELETE FROM `payments` WHERE payment_id={number}");      
     }
 
-     public Payment GetPaymentById(int idNr)
+     public Payment GetPaymentById(int idNr) //when we check out, that is when we pay, we need to calculate the payment_amount,this amount is including everything, room ,otherproducts. that means we need to insert the roomtotl pay here. 
     {
       Open();
        var payment = connection.QuerySingle<Payment>($"SELECT payment_id, customer_fname,customer_lname,payment_date, payment_amount, bankInfor, reservation_id, payment_name FROM payments INNER JOIN customers ON customers.customer_id = payments.customer_id WHERE payment_id = {idNr};");

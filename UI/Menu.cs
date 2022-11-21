@@ -74,7 +74,7 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.ShowReceiptOptions: //is done Jessica!// printing detail with receipt Nr
-                    // quit = userInput.ReceiptOptionInput(quit);
+                    quit = userInput.ReceiptOptionInput(quit);
                     // Receipt receipt = new();
                     // receipt.id = 1;
                     // Console.WriteLine(receipt);
