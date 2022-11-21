@@ -129,7 +129,7 @@ class Menu
         }
     }
 
-    public void GetCustomerMenu()
+    public void GetCustomerMenu(int customerId)
     {
         bool quit = false;
         while (!quit)
@@ -149,7 +149,7 @@ class Menu
                     break;
 
                 case MenuChoiceCustomer.BookRoom://not working properlly
-                    reservationManager.CustomerBookRoom();
+                    reservationManager.CustomerBookRoom(customerId);
                     break;
 
                 case MenuChoiceCustomer.ReadReviews:

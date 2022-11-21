@@ -30,11 +30,11 @@ public class ReservationManager
 
 
 
-    public void CustomerBookRoom()
+    public void CustomerBookRoom(int CustomerId)
     {
         Console.WriteLine("Book room");
-        int customerIdBooking = TryGetInt("enter customer ID: ");
-        int employee_id = TryGetInt("Enter employee ID: ");
+        int customerIdBooking = CustomerId;
+        int employee_id = 0;
 
         Console.WriteLine("Enter a from-date: ");
         DateTime dateIn;
@@ -329,7 +329,7 @@ public class ReservationManager
     public int TryGetInt(string prompt)
     {
 
-        Console.WriteLine(prompt);
+        
         if (int.TryParse(Console.ReadLine(), out int id))
         {
             return id;
