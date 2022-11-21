@@ -4,7 +4,7 @@ public class PaymentManger
 {
      //private List<Payment> payments;
     PaymentData newPaymentData = new();
-    Receipt receipt = new();
+    
 
      public List<Payment> ShowAllPayments()
     {  
@@ -29,19 +29,8 @@ public class PaymentManger
         newPaymentData.DeletePaymentById(rPaymentId);
     }
 
-<<<<<<< HEAD
     public Payment SearchPaymentByReservId(int sReservId)
     {
             return newPaymentData.GetPaymentById(sReservId); 
     }
-
-
-
-
-=======
->>>>>>> c1aaaf5d42415d2156619fb8d8a784062973230c
-    // public Payment PaymentCaculation()
-    // {
-        
-    // }
 }

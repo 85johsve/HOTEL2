@@ -43,11 +43,9 @@ class PaymentData
         r.Add("@reservation_id", reservationID);
         r.Add("@payment_name", name);
         r.Add("@bankInfor",bank);
-<<<<<<< HEAD
+
         string sql = $@"INSERT INTO payments (customer_id, payment_date,payment_amount,reservation_id,payment_name,payment_roomPay,payment_otherProducts,bankInfor) VALUES ( @customer_id, @payment_date,@payment_amount,@reservation_id,@payment_name,@payment_roomPay,@payment_otherProducts,@bankInfor); SELECT LAST_INSERT_ID() ";
-=======
-        string sql = $@"INSERT INTO payments (customer_id, payment_date,payment_amount,reservation_id,payment_name,bankInfor) VALUES ( @customer_id, @payment_date,@payment_amount,@reservation_id,@payment_name,@bankInfor); SELECT LAST_INSERT_ID() ";
->>>>>>> c1aaaf5d42415d2156619fb8d8a784062973230c
+
         int Id = connection.Query<int>(sql, r).First();
 
         return Id;

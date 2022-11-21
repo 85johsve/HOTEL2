@@ -1,7 +1,7 @@
 public class Receipt
 {
     public DateTime print_date{get;set;}
-<<<<<<< HEAD
+
     public  int receipt_nr{get;set;}
    // Reservation reservation {get;set;}
     Payment payment {get;set;}
