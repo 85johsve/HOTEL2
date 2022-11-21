@@ -664,7 +664,7 @@ public class UserInput
             {
                 if (input < 2)
                 {
-                    Console.WriteLine("Try again");
+                    Console.WriteLine("Enter a correct number,try again");
                 }
 
                 else

@@ -10,6 +10,7 @@ public class ReservationManager
     private DateTime dateIn;
     private DateTime dateOut;
     public double numberOfDays;
+    UserInput userInput = new();
 
 
     public List<Reservation> ShowAllReservations()
@@ -242,7 +243,7 @@ public class ReservationManager
         DateTime todaysDate = DateTime.Now;
         double date_range = GetTimeSpanByDates(dateIn, dateOut);
         Console.WriteLine("Choose room to book: ");
-        int roomSelected = TryGetInt(Console.ReadLine());
+        int roomSelected = userInput.TryGetInt(Console.ReadLine());
         foreach (var room in availabeRooms)
         {
             if (roomSelected == room.room_id)
@@ -277,8 +278,8 @@ public class ReservationManager
         return numberOfDays;
     }
 
-    public double CalculatingTotalRoomPay(int id) // Tina: for now try this under ShowReceiptOptions under employee menu, this is going to be used for the receipt printing later,  
-    {
+    //public double CalculatingTotalRoomPay(int id) // Tina: for now try this under ShowReceiptOptions under employee menu, this is going to be used for the receipt printing later,  
+    //{
 
         
         // IConvertible convert = newReservationData.GetRoomPrice(id) as IConvertible;
@@ -292,19 +293,19 @@ public class ReservationManager
         //    d = 0d;
         // }
        // return newReservationData.GetRoomPrice(id);
-        return newReservationData.ReadRoomPrice(id);
-    }
+        //return newReservationData.ReadRoomPrice(id);
+//}
 
 
 
-    public int TryGetInt(string prompt)
-    {
+    // public int TryGetInt(string prompt)
+    // {
 
-        Console.WriteLine(prompt);
-        if (int.TryParse(Console.ReadLine(), out int id))
-        {
-            return id;
-        }
-        return 0;
-    }
+    //     Console.WriteLine(prompt);
+    //     if (int.TryParse(Console.ReadLine(), out int id))
+    //     {
+    //         return id;
+    //     }
+    //     return 0;
+    // }
 }
