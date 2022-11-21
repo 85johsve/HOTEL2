@@ -523,14 +523,14 @@ public class UserInput
         int rId = TryGetInt("Reservation ID: ");
         int cId = TryGetInt("Customer ID: ");
         double roomPay = reservationManager.CalculatingTotalRoomPay(rId);
-        string payname= GetString("Payment name: ");
-        double otherPay = GetDouble("Payment amount:");
+        string payname= GetString("Other products: \n");
+        double otherPay = GetDouble("Payment:");
         string bank=GetString("Payment banInfor: ");
-        
          double amount = roomPay+ otherPay;
-         Console.WriteLine ("Added Payment Id: " + " "+paymentManager.AddPayment(cId,date,amount,roomPay,otherPay,rId,payname,bank));
-        
-        Console.WriteLine();
+         int addedPayId = paymentManager.AddPayment(cId,date,amount,roomPay,otherPay,rId,payname,bank);
+         Console.WriteLine ("Added Payment Id: " + " "+addedPayId);
+        Console.WriteLine(paymentManager.SearchPaymentByPaymentId(addedPayId));
+
         Console.ReadLine();
     }
 
@@ -538,22 +538,24 @@ public class UserInput
     {
         Console.Clear();
         Console.WriteLine("********* Receipt option ********* ");
-        AddPaymentInput(); // nake the payment, insert into databse, return a payment ID, use this ID in receipt to get out payment details to be printed., Link the room total pay method to the calculating of the payment_amount. (In the future will be also other products payment linked to this payment_amount) 
+       
         Console.WriteLine("Do you want a receipt? Y/N");
         string answer = Console.ReadLine().ToLower();
         if (answer == "y")
         {
-
+            
             DateTime now = DateTime.Now;
             List<Receipt> receipts = new();
-            int sReservId = TryGetInt("Enter Reservation Id: ");
-            int sPaymentId = TryGetInt("Enter Payment Id: ");
-            string otherproducts = GetString("Other products name: (Non)");// this will be a method to add to the payment databse
-            Receipt receipt = new(now, reservationManager.SearchReservationById(sReservId), paymentManager.SearchPaymentById(sPaymentId));
+            int reservId = TryGetInt("Enter Reservation Id: ");
+            //int sPaymentId = TryGetInt("Enter Payment Id: ");
+           // Console.WriteLine (paymentManager.SearchPaymentById(sPaymentId));
+            // this will be a method to add to the payment databse
+            //Receipt receipt = new(now, paymentManager.SearchPaymentByPaymentId(sPaymentId));
+            Console.WriteLine(reservationManager.SearchReservationById(reservId));
+            Receipt receipt = new(now, paymentManager.SearchPaymentByReservId(reservId));
 
-            ShowSingleReservationByIdInput();// booking details
 
-            SearchPaymentByIdInput();
+           
             receipts.Add(receipt);
             Console.WriteLine(receipt.receipt_nr);
             Console.WriteLine(receipt);
@@ -604,7 +606,7 @@ return quit;
     }
     else if (option == "3")
     {
-        SearchPaymentByIdInput();
+        SearchPaymentByPaymentIdInput();
         quit = false;
     }
     else if (option == "4")
@@ -635,7 +637,7 @@ public void RemovePaymentInput()
     }
 }
 
-public void SearchPaymentByIdInput()
+public void SearchPaymentByPaymentIdInput()
 {
     Console.WriteLine("\n******* Search a payment by Id ********\n");
     Console.WriteLine("Searching Payment ID: ");
@@ -644,9 +646,9 @@ public void SearchPaymentByIdInput()
 
         try
         {
-            if (paymentManager.SearchPaymentById(searchPaymentId) != null)
+            if (paymentManager.SearchPaymentByPaymentId(searchPaymentId) != null)
             {
-                Console.WriteLine(paymentManager.SearchPaymentById(searchPaymentId));
+                Console.WriteLine(paymentManager.SearchPaymentByPaymentId(searchPaymentId));
             }
         }
         catch (Exception e)
@@ -661,6 +663,31 @@ public void SearchPaymentByIdInput()
     Console.ReadLine();
 }
 
+public void SearchPaymentByReservIdInput()
+{
+    Console.WriteLine("\n******* Search a payment by Reservation Id ********\n");
+    Console.WriteLine("Reservation ID: ");
+    if (int.TryParse(Console.ReadLine(), out int searchPaymentId))
+    {
+
+        try
+        {
+            if (paymentManager.SearchPaymentByReservId(searchPaymentId) != null)
+            {
+                Console.WriteLine(paymentManager.SearchPaymentByReservId(searchPaymentId));
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentNullException();
+        }
+    }
+    else
+    {
+        Console.WriteLine("Input Id number!");
+    }
+    Console.ReadLine();
+}
 
 public double GetDouble(string message)
 {

@@ -45,7 +45,7 @@ class PaymentData
         r.Add("@payment_roomPay", rpay);
         r.Add("@payment_otherProducts", opay);
         r.Add("@bankInfor",bank);
-        string sql = $@"INSERT INTO payments (customer_id, payment_date,payment_amount,reservation_id,payment_name,bankInfor) VALUES ( @customer_id, @payment_date,@payment_amount,@reservation_id,@payment_name,@payment_roomPay,@payment_otherProducts,@bankInfor); SELECT LAST_INSERT_ID() ";
+        string sql = $@"INSERT INTO payments (customer_id, payment_date,payment_amount,reservation_id,payment_name,payment_roomPay,payment_otherProducts,bankInfor) VALUES ( @customer_id, @payment_date,@payment_amount,@reservation_id,@payment_name,@payment_roomPay,@payment_otherProducts,@bankInfor); SELECT LAST_INSERT_ID() ";
         int Id = connection.Query<int>(sql, r).First();
 
         return Id;
@@ -61,6 +61,14 @@ class PaymentData
     {
       Open();
        var payment = connection.QuerySingle<Payment>($"SELECT payment_id, customer_fname,customer_lname,payment_date, payment_amount, bankInfor, reservation_id, payment_name FROM payments INNER JOIN customers ON customers.customer_id = payments.customer_id WHERE payment_id = {idNr};");
+ 
+    return payment;      
+    }
+
+     public Payment GetPaymentByReservId(int idNr) //when we check out, that is when we pay, we need to calculate the payment_amount,this amount is including everything, room ,otherproducts. that means we need to insert the roomtotl pay here. 
+    {
+      Open();
+       var payment = connection.QuerySingle<Payment>($"SELECT payment_id, customer_fname,customer_lname,payment_date, payment_amount, bankInfor, reservation_id, payment_name FROM payments INNER JOIN customers ON customers.customer_id = payments.customer_id WHERE reservation_id = {idNr};");
  
     return payment;      
     }

@@ -281,7 +281,7 @@ class Menu
         string answer = Console.ReadLine().ToLower();
         if (answer == "y")
         {
-            userInput.SearchPaymentByIdInput();
+            userInput.SearchPaymentByPaymentIdInput();
             quit = false;
         }
         else if (answer == "n")
@@ -299,7 +299,7 @@ class Menu
     public bool PaymentChoiceInput(bool quit)
     {
         Console.Clear();
-        Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
+        Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment by PaymentId [4]Search payment by ReservId [5]Remove payment");
         string option = Console.ReadLine();
         if (option == "1")
         {
@@ -313,12 +313,17 @@ class Menu
         }
         else if (option == "3")
         {
-            userInput.SearchPaymentByIdInput();
+            userInput.SearchPaymentByPaymentIdInput();
             quit = false;
         }
         else if (option == "4")
         {
-            RemovePaymentInput();
+            userInput.SearchPaymentByReservIdInput();
+            quit = false;
+        }
+         else if (option == "5")
+        {
+            userInput.RemovePaymentInput();
             quit = false;
         }
         else
@@ -329,20 +334,20 @@ class Menu
         return quit;
     }
 
-    public void RemovePaymentInput()
-    {
-        Console.WriteLine("\n******* Remove a payment ********\n");
-        Console.WriteLine("Payment Id to be removed: ");
-        if (int.TryParse(Console.ReadLine(), out int rPaymentId))
-        {
-            paymentManager.RemovePaymentById(rPaymentId);
-            Console.WriteLine("The payment has been removed!");
-        }
-        else
-        {
-            Console.WriteLine("Input prayment ID number!");
-        }
-    }
+    // public void RemovePaymentInput()
+    // {
+    //     Console.WriteLine("\n******* Remove a payment ********\n");
+    //     Console.WriteLine("Payment Id to be removed: ");
+    //     if (int.TryParse(Console.ReadLine(), out int rPaymentId))
+    //     {
+    //         paymentManager.RemovePaymentById(rPaymentId);
+    //         Console.WriteLine("The payment has been removed!");
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("Input prayment ID number!");
+    //     }
+    // }
 
     // public void ShowSingleReservationByIdInput()
     // {
