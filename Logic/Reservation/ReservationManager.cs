@@ -10,7 +10,7 @@ public class ReservationManager
     private DateTime dateIn;
     private DateTime dateOut;
     public double numberOfDays;
-    UserInput userInput = new();
+    //UserInput userInput = new();
 
 
     public List<Reservation> ShowAllReservations()
@@ -243,7 +243,7 @@ public class ReservationManager
         DateTime todaysDate = DateTime.Now;
         double date_range = GetTimeSpanByDates(dateIn, dateOut);
         Console.WriteLine("Choose room to book: ");
-        int roomSelected = userInput.TryGetInt(Console.ReadLine());
+        int roomSelected = TryGetInt(Console.ReadLine());
         foreach (var room in availabeRooms)
         {
             if (roomSelected == room.room_id)
@@ -298,14 +298,14 @@ public class ReservationManager
 
 
 
-    // public int TryGetInt(string prompt)
-    // {
+    public int TryGetInt(string prompt)
+    {
 
-    //     Console.WriteLine(prompt);
-    //     if (int.TryParse(Console.ReadLine(), out int id))
-    //     {
-    //         return id;
-    //     }
-    //     return 0;
-    // }
+        Console.WriteLine(prompt);
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            return id;
+        }
+        return 0;
+    }
 }
