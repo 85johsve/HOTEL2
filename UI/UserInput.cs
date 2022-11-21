@@ -32,6 +32,9 @@ public class UserInput
 
     public  void EmployeeCheckInUpdate()
     {
+         Console.WriteLine("Reservation Id: ");
+         // print out the getsinglereservaion data
+         //confirm it, right or wring, yes, get information details from person who is staying in the room ; no, serach reservation again ;if want to change information ,like date in or out,  link to update reseravion. 
         Console.WriteLine("Update room status to Checked in");
         foreach (var item in roomManager.ShowAllRooms())
         {
@@ -522,14 +525,23 @@ public class UserInput
     {
         Console.Clear();
         Console.WriteLine("********* Receipt option ********* ");
-        //AddPaymentInput();
+        AddPaymentInput(); // nake the payment, insert into databse, return a payment ID, use this ID in receipt to get out payment details to be printed., Link the room total pay method to the calculating of the payment_amount. (In the future will be also other products payment linked to this payment_amount) 
         Console.WriteLine("Do you want a receipt? Y/N");
         string answer = Console.ReadLine().ToLower();
         if (answer == "y")
         {
+            Receipt receipt =new();
+            List<Receipt> receipts=new();
+            int receiptNr = 100000;
             
-            ShowSingleReservationByIdInput();
-            SearchPaymentByIdInput();
+            receipts.Add(receiptNr );
+            receipts.Add 
+               ShowSingleReservationByIdInput();// booking details
+               string otherproducts = GetString("Other products name: (Non)");// this will be a method to add to the payment databse
+               SearchPaymentByIdInput(); 
+
+            
+           
             quit = false;
         }
         else if (answer == "n")

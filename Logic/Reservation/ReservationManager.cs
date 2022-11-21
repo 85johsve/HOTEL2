@@ -278,8 +278,8 @@ public class ReservationManager
         return numberOfDays;
     }
 
-    //public double CalculatingTotalRoomPay(int id) // Tina: for now try this under ShowReceiptOptions under employee menu, this is going to be used for the receipt printing later,  
-    //{
+    public double CalculatingTotalRoomPay(int id) //When we update reservation time span, this need to be updated as well. 
+    {
 
         
         // IConvertible convert = newReservationData.GetRoomPrice(id) as IConvertible;
@@ -292,9 +292,9 @@ public class ReservationManager
         // {
         //    d = 0d;
         // }
-       // return newReservationData.GetRoomPrice(id);
+       return newReservationData.GetRoomPrice(id)*GetTimeSpanById(id);//insert into reservation totalRoompay
         //return newReservationData.ReadRoomPrice(id);
-//}
+  }
 
 
 
