@@ -266,67 +266,67 @@ class Menu
         return ManagerChoice;
     }
 
-    public bool ReceiptOptionInput(bool quit)
-    {
-        Console.Clear();
-        Console.WriteLine("********* Receipt option ********* ");
-        //AddPaymentInput();
-        Console.WriteLine("Do you want a receipt? Y/N");
-        string answer = Console.ReadLine().ToLower();
-        if (answer == "y")
-        {
-            userInput.SearchPaymentByPaymentIdInput();
-            quit = false;
-        }
-        else if (answer == "n")
-        {
-            Console.WriteLine("No receipt chosen!");
-            quit = false;
-        }
-        else
-        {
-            Console.WriteLine("your choice does not exist!");
-        }
-        return quit;
-    }
+    // public bool ReceiptOptionInput(bool quit)
+    // {
+    //     Console.Clear();
+    //     Console.WriteLine("********* Receipt option ********* ");
+    //     //AddPaymentInput();
+    //     Console.WriteLine("Do you want a receipt? Y/N");
+    //     string answer = Console.ReadLine().ToLower();
+    //     if (answer == "y")
+    //     {
+    //         userInput.SearchPaymentByPaymentIdInput();
+    //         quit = false;
+    //     }
+    //     else if (answer == "n")
+    //     {
+    //         Console.WriteLine("No receipt chosen!");
+    //         quit = false;
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("your choice does not exist!");
+    //     }
+    //     return quit;
+    // }
 
-    public bool PaymentChoiceInput(bool quit)
-    {
-        Console.Clear();
-        Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment by PaymentId [4]Search payment by ReservId [5]Remove payment");
-        string option = Console.ReadLine();
-        if (option == "1")
-        {
-            userInput.PrintAllPayments();
-            quit = false;
-        }
-        else if (option == "2")
-        {
-            userInput.AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
-            quit = false;
-        }
-        else if (option == "3")
-        {
-            userInput.SearchPaymentByPaymentIdInput();
-            quit = false;
-        }
-        else if (option == "4")
-        {
-            userInput.SearchPaymentByReservIdInput();
-            quit = false;
-        }
-         else if (option == "5")
-        {
-            userInput.RemovePaymentInput();
-            quit = false;
-        }
-        else
-        {
-            Console.WriteLine("Select one of the number!");
-        }
-        Console.ReadLine();
-        return quit;
-    }
+    // public bool PaymentChoiceInput(bool quit)
+    // {
+    //     Console.Clear();
+    //     Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment by PaymentId [4]Search payment by ReservId [5]Remove payment");
+    //     string option = Console.ReadLine();
+    //     if (option == "1")
+    //     {
+    //         userInput.PrintAllPayments();
+    //         quit = false;
+    //     }
+    //     else if (option == "2")
+    //     {
+    //         userInput.AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
+    //         quit = false;
+    //     }
+    //     else if (option == "3")
+    //     {
+    //         userInput.SearchPaymentByPaymentIdInput();
+    //         quit = false;
+    //     }
+    //     else if (option == "4")
+    //     {
+    //         userInput.SearchPaymentByReservIdInput();
+    //         quit = false;
+    //     }
+    //      else if (option == "5")
+    //     {
+    //         userInput.RemovePaymentInput();
+    //         quit = false;
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("Select one of the number!");
+    //     }
+    //     Console.ReadLine();
+    //     return quit;
+    // }
 
     // public void RemovePaymentInput()
     // {

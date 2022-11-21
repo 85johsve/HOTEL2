@@ -265,6 +265,8 @@ public class ReservationManager
         return newReservationData.GetSingleReservationById(sReservationId);
     }
 
+     
+
     public double GetTimeSpanById(int reservation_id)
     {
 
@@ -281,22 +283,9 @@ public class ReservationManager
     public double CalculatingTotalRoomPay(int id) //When we update reservation time span, this need to be updated as well. 
     {
 
-        
-        // IConvertible convert = newReservationData.GetRoomPrice(id) as IConvertible;
-         //var d = Convert.ToDouble(newReservationData.GetRoomPrice(id));
-        // if (convert != null)
-        // {
-        //     d = convert.ToDouble(null);
-        // }
-        // else
-        // {
-        //    d = 0d;
-        // }
-       return newReservationData.GetRoomPrice(id)*GetTimeSpanById(id);//insert into reservation totalRoompay
-        //return newReservationData.ReadRoomPrice(id);
-  }
+       return newReservationData.GetRoomPrice(id)*GetTimeSpanById(id);//insert into reservation 
 
-
+    }
 
     public int TryGetInt(string prompt)
     {

@@ -662,7 +662,7 @@ public class UserInput
     }
 
 
-    public double GetDouble(string message)
+   public bool ReceiptOptionInput(bool quit)
     {
         Console.Clear();
         Console.WriteLine("********* Receipt option ********* ");
@@ -687,20 +687,6 @@ public class UserInput
             receipts.Add(receipt);
             Console.WriteLine(receipt.receipt_nr);
             Console.WriteLine(receipt);
-
-            //         another way to do the receipt nr will be creacte a method that generate id nr
-            //           public class AutoIncrment
-            // {
-            //     private int id = 1;
-            //     public int GenerateId()
-            //     {
-            //         return id++;
-            //     }
-            // }
-            //var idState = new AutoIncrement();
-            //console.WriteLine(idState.GenerateId()); // Outputs 1
-
-
             quit = false;
         }
         else if (answer == "n")
@@ -792,34 +778,34 @@ public class UserInput
         Console.ReadLine();
     }
 
-    // public double GetDouble(string message)
-    // {
-    //     int input = 0;
-    //     while (input < 3)
-    //     {
-    //         Console.WriteLine(message);
-    //         if (double.TryParse(Console.ReadLine(), out double number))
-    //         {
-    //             return number;
-    //             //break;
-    //         }
-    //         else
-    //         {
+    public double GetDouble(string message)
+    {
+        int input = 0;
+        while (input < 3)
+        {
+            Console.WriteLine(message);
+            if (double.TryParse(Console.ReadLine(), out double number))
+            {
+                return number;
+                //break;
+            }
+            else
+            {
                 
-    //                 if (input < 2)
-    //                 {
-    //                     Console.WriteLine("Try again");
-    //                 }
+                    if (input < 2)
+                    {
+                        Console.WriteLine("Try again");
+                    }
 
-    //                 else
-    //                 {
-    //                     Console.WriteLine("No more try! Press enter to return to menu");
-    //                 }
-    //                 input++;
-    //             }
-    //         }
-    //         return 0;
-    //     }
+                    else
+                    {
+                        Console.WriteLine("No more try! Press enter to return to menu");
+                    }
+                    input++;
+                }
+            }
+            return 0;
+        }
 
         public int TryGetInt(string prompt)
         {
