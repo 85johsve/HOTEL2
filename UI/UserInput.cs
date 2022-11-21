@@ -712,53 +712,53 @@ public class UserInput
         return quit;
     }
 
-    public bool PaymentChoiceInput(bool quit)
-    {
-        Console.Clear();
-        Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
-        string option = Console.ReadLine();
-        if (option == "1")
-        {
-            PrintAllPayments();
-            quit = false;
-        }
-        else if (option == "2")
-        {
-            AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
-            quit = false;
-        }
-        else if (option == "3")
-        {
-            SearchPaymentByPaymentIdInput();
-            quit = false;
-        }
-        else if (option == "4")
-        {
-            RemovePaymentInput();
-            quit = false;
-        }
-        else
-        {
-            Console.WriteLine("Select one of the number!");
-        }
-        Console.ReadLine();
-        return quit;
-    }
+    // public bool PaymentChoiceInput(bool quit)
+    // {
+    //     Console.Clear();
+    //     Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
+    //     string option = Console.ReadLine();
+    //     if (option == "1")
+    //     {
+    //         PrintAllPayments();
+    //         quit = false;
+    //     }
+    //     else if (option == "2")
+    //     {
+    //         AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
+    //         quit = false;
+    //     }
+    //     else if (option == "3")
+    //     {
+    //         SearchPaymentByPaymentIdInput();
+    //         quit = false;
+    //     }
+    //     else if (option == "4")
+    //     {
+    //         RemovePaymentInput();
+    //         quit = false;
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("Select one of the number!");
+    //     }
+    //     Console.ReadLine();
+    //     return quit;
+    // }
 
-    public void RemovePaymentInput()
-    {
-        Console.WriteLine("\n******* Remove a payment ********\n");
-        Console.WriteLine("Payment Id to be removed: ");
-        if (int.TryParse(Console.ReadLine(), out int rPaymentId))
-        {
-            paymentManager.RemovePaymentById(rPaymentId);
-            Console.WriteLine("Payment has been removed!");
-        }
-        else
-        {
-            Console.WriteLine("Input prayment ID number!");
-        }
-    }
+    // public void RemovePaymentInput()
+    // {
+    //     Console.WriteLine("\n******* Remove a payment ********\n");
+    //     Console.WriteLine("Payment Id to be removed: ");
+    //     if (int.TryParse(Console.ReadLine(), out int rPaymentId))
+    //     {
+    //         paymentManager.RemovePaymentById(rPaymentId);
+    //         Console.WriteLine("Payment has been removed!");
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("Input prayment ID number!");
+    //     }
+    // }
 
     public void SearchPaymentByPaymentIdInput()
     {
@@ -812,51 +812,34 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public double GetDouble(string message)
-    {
-        int input = 0;
-        while (input < 3)
-        {
-            Console.WriteLine(message);
-            if (double.TryParse(Console.ReadLine(), out double number))
-            {
-                return number;
-                //break;
-            }
-            else
-            {
-                if (input < 2)
-                {
-                    Console.WriteLine("Try again");
-                }
+    // public double GetDouble(string message)
+    // {
+    //     int input = 0;
+    //     while (input < 3)
+    //     {
+    //         Console.WriteLine(message);
+    //         if (double.TryParse(Console.ReadLine(), out double number))
+    //         {
+    //             return number;
+    //             //break;
+    //         }
+    //         else
+    //         {
+                
+    //                 if (input < 2)
+    //                 {
+    //                     Console.WriteLine("Try again");
+    //                 }
 
-=======
-        int input = 0;
-        while (input < 3)
-        {
-            Console.WriteLine(message);
-            if (double.TryParse(Console.ReadLine(), out double number))
-            {
-                return number;
-                //break;
-            }
->>>>>>> c1aaaf5d42415d2156619fb8d8a784062973230c
-                else
-                {
-                    if (input < 2)
-                    {
-                        Console.WriteLine("Try again");
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("No more try! Press enter to return to menu");
-                    }
-                    input++;
-                }
-            }
-            return 0;
-        }
+    //                 else
+    //                 {
+    //                     Console.WriteLine("No more try! Press enter to return to menu");
+    //                 }
+    //                 input++;
+    //             }
+    //         }
+    //         return 0;
+    //     }
 
         public int TryGetInt(string prompt)
         {
@@ -914,4 +897,4 @@ public class UserInput
 
 
     }
-}
+

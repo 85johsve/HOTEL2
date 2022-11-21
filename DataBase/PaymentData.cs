@@ -31,7 +31,7 @@ class PaymentData
         return payments;
     }
 
-    public int InsertPayment(int customerID, DateTime date, double amount, int reservationID,string name,string bank)   // this amount = room total + others(since )
+    public int InsertPayment(int customerID, DateTime date, double amount,double roompay, double otherpay, int reservationID,string name,string bank)   // this amount = room total + others(since )
     {
         Open();
         //int id, 
@@ -40,6 +40,8 @@ class PaymentData
         r.Add("@customer_id", customerID);
         r.Add("@payment_date", date);
         r.Add("@payment_amount", amount);
+         r.Add("@payment_roomPay", roompay);
+          r.Add("@payment_otherotherProducts", otherpay);
         r.Add("@reservation_id", reservationID);
         r.Add("@payment_name", name);
         r.Add("@bankInfor",bank);
