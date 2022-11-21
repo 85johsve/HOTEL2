@@ -540,8 +540,33 @@ public class UserInput
         double amount = roomPay + otherPay;
         int addedPayId = paymentManager.AddPayment(cId, date, amount, roomPay, otherPay, rId, payname, bank);
         Console.WriteLine ("******** Payment Infor *********");
-        Console.WriteLine(addedPayId);
-        Console.WriteLine(paymentManager.SearchPaymentByPaymentId(addedPayId));
+        Console.WriteLine("Payment Id: " + addedPayId);
+       
+         Console.WriteLine("Do you want a receipt? Y/N");
+        string answer = Console.ReadLine().ToLower();
+        if (answer == "y")
+        {
+            Console.WriteLine ("\n*********** Receipt ********\n");
+           DateTime now = DateTime.Now;
+           Receipt receipt = new(now);
+           Console.WriteLine(receipt);
+           if (true)
+           {
+            
+           }
+           Console.WriteLine(paymentManager.SearchPaymentByPaymentId(addedPayId));
+           Console.ReadLine ();
+        }
+        else if (answer == "n")
+        {
+            Console.WriteLine("No receipt chosen!");
+    
+        }
+        else
+        {
+            Console.WriteLine("your choice does not exist!");
+
+        }
 
 
     }//cID, date, amount, rID,name,bank
@@ -594,7 +619,7 @@ public class UserInput
         }
         else if (option == "2")
         {
-            AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
+            AddPaymentInput(); 
             quit = false;
         }
         else if (option == "3")
@@ -680,15 +705,25 @@ public class UserInput
             // Console.WriteLine (paymentManager.SearchPaymentById(sPaymentId));
             // this will be a method to add to the payment databse
             //Receipt receipt = new(now, paymentManager.SearchPaymentByPaymentId(sPaymentId));
-            Console.WriteLine ("*********** Reservation Infor ****************");
+            
             int reservId = TryGetInt("Enter Reservation Id: ");
+            Console.WriteLine ("*********** Reservation Infor ****************");
             Console.WriteLine(reservationManager.SearchReservationById(reservId));
-            Receipt receipt = new(now, paymentManager.SearchPaymentByReservId(reservId));
-
+             Console.WriteLine ("*********** Payment Infor ********");
+             Receipt receipt = new(now);
+             Console.WriteLine(receipt);
+            if (paymentManager.SearchPaymentByReservId(reservId).Count!=0)
+            {
+               foreach (var item in paymentManager.SearchPaymentByReservId(reservId))
+               {
+                Console.WriteLine (item);
+               } 
+            }
+            
             receipts.Add(receipt);
-            Console.WriteLine ("*********** Payment Infor ********");
-            Console.WriteLine(receipt.receipt_nr);
-            Console.WriteLine(receipt);
+           
+            
+            
             quit = false;
         }
         else if (answer == "n")

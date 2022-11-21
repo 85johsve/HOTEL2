@@ -14,7 +14,12 @@ public class PaymentManger
 
     public Payment SearchPaymentByPaymentId(int sPaymentId)
     {
-            return newPaymentData.GetPaymentById(sPaymentId); 
+            return newPaymentData.GetPaymentByPaymentId(sPaymentId); 
+    }
+
+     public List<Payment> SearchPaymentByReservId(int sReservId)
+    {
+            return newPaymentData.GetPaymentByReservId(sReservId); 
     }
 
     public int AddPayment( int cID, DateTime date, double amount, double roomPay,double otherPay,int rID, string name,string bank)
@@ -29,8 +34,5 @@ public class PaymentManger
         newPaymentData.DeletePaymentById(rPaymentId);
     }
 
-    public Payment SearchPaymentByReservId(int sReservId)
-    {
-            return newPaymentData.GetPaymentById(sReservId); 
-    }
+   
 }
