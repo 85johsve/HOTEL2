@@ -161,7 +161,7 @@ public class UserInput
         return 0;
     }
 
-    public void GetCustomerLogIn()
+    public int GetCustomerLogIn()
     {
         Console.Clear();
         Console.WriteLine("********* Customer Log In ********* ");
@@ -173,7 +173,7 @@ public class UserInput
             if (customerManager.CustomerLogInNameId(id, name))
             {
                 customerIsLoggedIn = true;
-                break;
+                return id;
             }
             else
             {
@@ -188,6 +188,7 @@ public class UserInput
 
 
         }
+        return 0;
     }
 
     public void SearchRoomByIdInput()

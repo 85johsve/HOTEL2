@@ -10,6 +10,7 @@ internal class Program
         MenuChoiceUser choice = menu.MenuChoiceUserEnumSwitch();
         bool quit = false;
         int employeeId;
+        int customerId;
         while (true)
         {
             Console.WriteLine("\n********* Main Menu *********\n ");
@@ -32,10 +33,10 @@ internal class Program
 
                 case MenuChoiceUser.NewCustomer:
                     userInput.AddCustomerInput();
-                    userInput.GetCustomerLogIn();
+                    customerId = userInput.GetCustomerLogIn();
                     if (userInput.customerIsLoggedIn)
                     {
-                        menu.GetCustomerMenu();
+                        menu.GetCustomerMenu(customerId);
                         break;
                     }
                     else
@@ -45,10 +46,10 @@ internal class Program
                     break;
 
                 case MenuChoiceUser.CustomerLogIn:
-                    userInput.GetCustomerLogIn();
+                    customerId = userInput.GetCustomerLogIn();
                     if (userInput.customerIsLoggedIn)
                     {
-                        menu.GetCustomerMenu();
+                        menu.GetCustomerMenu(customerId);
                         break;
                     }
                     else
