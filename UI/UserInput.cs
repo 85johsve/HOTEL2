@@ -672,18 +672,21 @@ public class UserInput
         string answer = Console.ReadLine().ToLower();
         if (answer == "y")
         {
-
+            Console.WriteLine ("\n*********** Receipt ********\n");
             DateTime now = DateTime.Now;
             List<Receipt> receipts = new();
-            int reservId = TryGetInt("Enter Reservation Id: ");
+            
             //int sPaymentId = TryGetInt("Enter Payment Id: ");
             // Console.WriteLine (paymentManager.SearchPaymentById(sPaymentId));
             // this will be a method to add to the payment databse
             //Receipt receipt = new(now, paymentManager.SearchPaymentByPaymentId(sPaymentId));
+            Console.WriteLine ("*********** Reservation Infor ****************");
+            int reservId = TryGetInt("Enter Reservation Id: ");
             Console.WriteLine(reservationManager.SearchReservationById(reservId));
             Receipt receipt = new(now, paymentManager.SearchPaymentByReservId(reservId));
 
             receipts.Add(receipt);
+            Console.WriteLine ("*********** Payment Infor ********");
             Console.WriteLine(receipt.receipt_nr);
             Console.WriteLine(receipt);
             quit = false;
