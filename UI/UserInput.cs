@@ -519,8 +519,17 @@ public class UserInput
         Console.WriteLine("\n******* Add a payment ********\n");
         Console.WriteLine("Payment date: ");
         DateTime date = DateTime.Parse(Console.ReadLine());
-        //Console.WriteLine("Added new payment ID: ");
-        Console.WriteLine("Added new payment ID\n " + paymentManager.AddPayment(TryGetInt("Customer ID: "), date, GetDouble("Payment amount:"), TryGetInt("Reservation ID: "), GetString("Payment name: "), GetString("Bank information")));
+        int rId = TryGetInt("Reservation ID: ");
+        int cId = TryGetInt("Customer ID: ");
+        double roomPay = reservationManager.CalculatingTotalRoomPay(rId);
+        string payname= GetString("Payment name: ");
+        double otherPay = GetDouble("Payment amount:");
+        string bank=GetString("Payment banInfor: ");
+        
+         double amount = roomPay+ otherPay;
+         Console.WriteLine ("Added Payment Id: " + " "+paymentManager.AddPayment(cId,date,amount,roomPay,otherPay,rId,payname,bank));
+        
+        Console.WriteLine();
         Console.ReadLine();
     }
 
@@ -539,11 +548,7 @@ public class UserInput
             int sReservId = TryGetInt("Enter Reservation Id: ");
             int sPaymentId = TryGetInt("Enter Payment Id: ");
             string otherproducts = GetString("Other products name: (Non)");// this will be a method to add to the payment databse
-            Receipt receipt = new(now, reservationManager.SearchReservationById(sReservId), paymentManager.SearchPaymentById(sPaymentId), otherproducts);
-
-            // int  receiptNr = 0001;
-            // int Value = 2;
-            // string invoiceNo = Value.ToString().PadLeft(4,'0');
+            Receipt receipt = new(now, reservationManager.SearchReservationById(sReservId), paymentManager.SearchPaymentById(sPaymentId));
 
             ShowSingleReservationByIdInput();// booking details
 

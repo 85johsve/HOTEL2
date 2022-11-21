@@ -319,6 +319,11 @@ public class ReservationManager
         //return newReservationData.ReadRoomPrice(id);
   }
 
+ public double CalculatingOtherPay(string name, double pay) 
+    {
+       
+       return pay; 
+  }
 
 
     public int TryGetInt(string prompt)

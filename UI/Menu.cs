@@ -13,6 +13,7 @@ class Menu
 
     public MenuChoiceUser MenuChoiceUserEnumSwitch()
     {
+        Console.Clear();
         foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
             Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceUser), Enum.Parse(typeof(MenuChoiceUser), c), "d"));
         MenuChoiceUser choice = (MenuChoiceUser)userInput.TryGetInt("Select one of the options:");
@@ -22,11 +23,13 @@ class Menu
     public void GetEmployeeMenu(int employeeID)
     {
         
+        
         bool quit = false;
         while (!quit)
         {
+             Console.Clear();
             MenuChoiceEmployee choice = EmployeeEnumSwitch();
-            Console.Clear();
+            
             Console.WriteLine("\n********* Employee Menu *********\n ");
             switch (choice)
             {
@@ -72,7 +75,8 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.CheckOut: //is done! Jessica// need more checkin detail
-                    userInput.EmployeeCheckOutUpdate();
+                    userInput.EmployeeCheckOutUpdate();//do payment insert?
+                                                       //
                     break;
 
                 case MenuChoiceEmployee.ShowReceiptOptions: //is done Jessica!// printing detail with receipt Nr

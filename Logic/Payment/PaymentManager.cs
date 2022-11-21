@@ -17,9 +17,10 @@ public class PaymentManger
             return newPaymentData.GetPaymentById(sPaymentId); 
     }
 
-    public int AddPayment( int cID, DateTime date, double amount, int rID,string name,string bank)
+    public int AddPayment( int cID, DateTime date, double amount, double roompay, double otherpay, int rID,string name,string bank)
     {
-        int InsertPaymentID = newPaymentData.InsertPayment(cID, date, amount, rID,name,bank);
+       
+        int InsertPaymentID = newPaymentData.InsertPayment(cID, date, amount,roompay,otherpay, rID,name,bank);
 
         return InsertPaymentID;
     }
@@ -28,6 +29,8 @@ public class PaymentManger
     {
         newPaymentData.DeletePaymentById(rPaymentId);
     }
+
+
 
     // public Payment PaymentCaculation()
     // {
