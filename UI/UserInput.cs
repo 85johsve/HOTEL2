@@ -530,7 +530,7 @@ public class UserInput
         Console.WriteLine("\n******* Add a payment ********\n");
         Console.WriteLine("Payment date: ");
         DateTime date = DateTime.Parse(Console.ReadLine());
-<<<<<<< HEAD
+
         int rId = TryGetInt("Reservation ID: ");
         int cId = TryGetInt("Customer ID: ");
         double roomPay = reservationManager.CalculatingTotalRoomPay(rId);
@@ -542,10 +542,7 @@ public class UserInput
          Console.WriteLine ("Added Payment Id: " + " "+addedPayId);
         Console.WriteLine(paymentManager.SearchPaymentByPaymentId(addedPayId));
 
-=======
-        //Console.WriteLine("Added new payment ID: ");
-        Console.WriteLine("Added new payment ID\n " + paymentManager.AddPayment(TryGetInt("Customer ID: "), date, GetDouble("Payment amount:"), TryGetInt("Reservation ID: "), GetString("Payment name: "), GetString("Bank information")));
-        Console.ReadLine();
+
     }
     // public  bool ReceiptOptionInput(bool quit)
     // {
