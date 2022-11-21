@@ -63,6 +63,7 @@ class PaymentData
     {
       Open();
        var payment = connection.QuerySingle<Payment>($"SELECT payment_id, customer_fname,customer_lname,payment_date, payment_amount, bankInfor, reservation_id, payment_name FROM payments INNER JOIN customers ON customers.customer_id = payments.customer_id WHERE payment_id = {idNr};");
+       
  
     return payment;      
     }

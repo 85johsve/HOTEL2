@@ -539,22 +539,24 @@ public class UserInput
         string bank = GetString("Payment banInfor: ");
         double amount = roomPay + otherPay;
         int addedPayId = paymentManager.AddPayment(cId, date, amount, roomPay, otherPay, rId, payname, bank);
-        Console.WriteLine ("******** Payment Infor *********");
         Console.WriteLine("Payment Id: " + addedPayId);
-       
          Console.WriteLine("Do you want a receipt? Y/N");
-        string answer = Console.ReadLine().ToLower();
+         string answer = Console.ReadLine().ToLower();
         if (answer == "y")
         {
             Console.WriteLine ("\n*********** Receipt ********\n");
            DateTime now = DateTime.Now;
            Receipt receipt = new(now);
            Console.WriteLine(receipt);
-           if (true)
+           if (paymentManager.SearchPaymentByPaymentId(addedPayId)!=null)
            {
-            
+            Console.WriteLine(paymentManager.SearchPaymentByPaymentId(addedPayId));
            }
-           Console.WriteLine(paymentManager.SearchPaymentByPaymentId(addedPayId));
+           else
+           {
+            throw new FieldAccessException();
+           }
+           
            Console.ReadLine ();
         }
         else if (answer == "n")
