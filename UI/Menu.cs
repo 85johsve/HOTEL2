@@ -73,24 +73,10 @@ class Menu
                     userInput.EmployeeCheckOutUpdate();
                     break;
 
-                case MenuChoiceEmployee.ShowReceiptOptions: //is done Jessica!// printing detail with receipt Nr
-                    quit = userInput.ReceiptOptionInput(quit);
-                    // Receipt receipt = new();
-                    // receipt.id = 1;
-                    // Console.WriteLine(receipt);
-                    // ReservationData reservationData = new();
-                    // reservationData.GetRoomPrice(1);
-                    Console.WriteLine("\nTime span : ");
-                    Console.WriteLine(reservationManager.GetTimeSpanById(1) + " " + "day(s)\n");
-                    Console.WriteLine($"Room price : ");
-                    Console.WriteLine(reservationData.GetRoomPrice(1)+"Kr");
-                    Console.WriteLine ("\nTotal: " + reservationManager.GetTimeSpanById(1)*reservationData.GetRoomPrice(1));
-                    // Console.WriteLine (reservationData.ReadRoomPrice(1));
-
-                    // (Always call Read before accessing data.)
-
-
-                    // Console.WriteLine (reservationManager.CalculatingTotalRoomPay(1)); // //Tina this is trying to print out total room payment of reservation_id 1
+                case MenuChoiceEmployee.ShowReceiptOptions: // need to work on receipt Nr Tina
+                    quit = userInput.ReceiptOptionInput(quit); 
+                 
+                    
                     Console.ReadLine();
                     break;
 
