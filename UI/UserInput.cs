@@ -35,7 +35,7 @@ public class UserInput
         ShowSingleReservationByIdInput();
         // print out the getsinglereservaion data
         //confirm it, right or wring, yes, get information details from person who is staying in the room ; no, serach reservation again ;if want to change information ,like date in or out,  link to update reseravion. 
-        Console.WriteLine("Is the booking correct? Y/N");
+        Console.WriteLine("Do you want to change the reservation? Y/N");
         string CheckInAnswer = Console.ReadLine().ToLower();
         if (CheckInAnswer == "y")
         {

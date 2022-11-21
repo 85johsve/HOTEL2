@@ -19,7 +19,7 @@ public class Receipt
     public override string ToString()
     {
 
-        return $@"Date: " + print_date + "\nReceipt Nr: "  + payment ;
+        return $@"Date: " + print_date + "\nReceipt Nr: "  + fake_ID ;
 
       
 
