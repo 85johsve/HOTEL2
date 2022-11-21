@@ -20,7 +20,7 @@ public class RoomManager
 
         foreach (Room room in newRoomData.GetRoomList())
         {
-            if (room.roomStatus_name == "CheckOut")
+            if (room.roomStatus_name == "CheckedOut")
             {
                 availableRooms.Add(room);
             }
