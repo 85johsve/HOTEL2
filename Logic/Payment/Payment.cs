@@ -21,6 +21,6 @@ public class Payment
 
      public override string ToString()
      {
-        return $" \nPayment Id: " +payment_id + "\nReservation Nr: "+ reservation_id+ "\nPayment Detial:" + payment_name + "\n Other product payment: "+ payment_otherProducts + "Kr" + "\n Total room payment: " + payment_roomPay + "Kr" + "\nTotal : " + payment_amount + "Kr"+"\nPayment Date: "+ payment_date  + "\nCustomer Name: "+ customer_fname+" "+ customer_lname+ "\nBankInfor: " + bankInfor + "\nHotellet \nTel:033-133366\nAllégatan 13 \nBorås\n";
+        return $" \nPayment Id: " +payment_id + "\nReservation Nr: "+ reservation_id + "\nRoom payment: " + payment_roomPay +"Kr"+ "\nOther Products Detial:" + payment_name + "\nOther product payment: "+ payment_otherProducts   + "Kr" + "\nTotal : " + payment_amount + "Kr"+"\nPayment Date: "+ payment_date  + "\nCustomer Name: "+ customer_fname+" "+ customer_lname+ "\nBankInfor: " + bankInfor + "\nHotellet \nTel:033-133366\nAllégatan 13 \nBorås\n";
      }
 }
