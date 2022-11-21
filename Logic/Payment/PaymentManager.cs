@@ -4,7 +4,7 @@ public class PaymentManger
 {
      //private List<Payment> payments;
     PaymentData newPaymentData = new();
-    Receipt receipt = new();
+    
 
      public List<Payment> ShowAllPayments()
     {  
