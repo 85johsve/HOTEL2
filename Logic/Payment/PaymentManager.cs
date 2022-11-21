@@ -19,7 +19,7 @@ public class PaymentManger
 
     public int AddPayment( int cID, DateTime date, double amount, double roomPay,double otherPay,int rID, string name,string bank)
     {
-        int InsertPaymentID = newPaymentData.InsertPayment(cID, date, amount,roomPay,otherPay rID, name, bank);
+        int InsertPaymentID = newPaymentData.InsertPayment(cID, date, amount,roomPay,otherPay, rID, name, bank);
 
         return InsertPaymentID;
     }

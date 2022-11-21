@@ -584,7 +584,7 @@ public class UserInput
     public bool PaymentChoiceInput(bool quit)
     {
         Console.Clear();
-        Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
+        Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment by payment Id [4]Search paymment by Reservation ID [5]Remove payment");
         string option = Console.ReadLine();
         if (option == "1")
         {
@@ -598,10 +598,15 @@ public class UserInput
         }
         else if (option == "3")
         {
-            SearchPaymentByIdInput();
+            SearchPaymentByPaymentIdInput();
             quit = false;
         }
         else if (option == "4")
+        {
+            SearchPaymentByReservIdInput();
+            quit = false;
+        }
+         else if (option == "5")
         {
             RemovePaymentInput();
             quit = false;
@@ -629,7 +634,7 @@ public class UserInput
         }
     }
 
-    public void SearchPaymentByIdInput()
+    public void SearchPaymentByPaymentIdInput()
     {
         Console.WriteLine("\n******* Search a payment by Id ********\n");
         Console.WriteLine("Searching Payment ID: ");
@@ -638,9 +643,9 @@ public class UserInput
 
             try
             {
-                if (paymentManager.SearchPaymentById(searchPaymentId) != null)
+                if (paymentManager.SearchPaymentByPaymentId(searchPaymentId) != null)
                 {
-                    Console.WriteLine(paymentManager.SearchPaymentById(searchPaymentId));
+                    Console.WriteLine(paymentManager.SearchPaymentByPaymentId(searchPaymentId));
                 }
             }
             catch (Exception e)
@@ -760,31 +765,6 @@ public class UserInput
     //     }
     // }
 
-    public void SearchPaymentByPaymentIdInput()
-    {
-        Console.WriteLine("\n******* Search a payment by Id ********\n");
-        Console.WriteLine("Searching Payment ID: ");
-        if (int.TryParse(Console.ReadLine(), out int searchPaymentId))
-        {
-
-            try
-            {
-                if (paymentManager.SearchPaymentByPaymentId(searchPaymentId) != null)
-                {
-                    Console.WriteLine(paymentManager.SearchPaymentByPaymentId(searchPaymentId));
-                }
-            }
-            catch (Exception e)
-            {
-                throw new ArgumentNullException();
-            }
-        }
-        else
-        {
-            Console.WriteLine("Input Id number!");
-        }
-        Console.ReadLine();
-    }
 
     public void SearchPaymentByReservIdInput()
     {
