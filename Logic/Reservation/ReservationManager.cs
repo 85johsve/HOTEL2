@@ -280,6 +280,7 @@ public class ReservationManager
         return numberOfDays;
     }
 
+
     public double CalculatingTotalRoomPay(int id) //When we update reservation time span, this need to be updated as well. 
     {
 

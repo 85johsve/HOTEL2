@@ -17,38 +17,101 @@ public class UserInput
 
     public void EmployeeCheckOutUpdate()
     {
-        Console.WriteLine("Update room status to Checked out");
-        foreach (var item in roomManager.ShowAllRooms())
-        {
-            Console.WriteLine(item);
-        }
-        Console.WriteLine("Choose room to check out: ");
-        string roomToCheckOut = Console.ReadLine();
-        string newRoomCheckOutStatus = "2";
-        roomManager.CheckOutRoomStatusID(roomToCheckOut, newRoomCheckOutStatus);
-        Console.WriteLine("Room status has now changed to Checked Out!");
-        Console.WriteLine();
-    }
-
-    public void EmployeeCheckInUpdate()
-    {
+        Menu menu = new();
         ShowSingleReservationByIdInput();
-        // print out the getsinglereservaion data
-        //confirm it, right or wring, yes, get information details from person who is staying in the room ; no, serach reservation again ;if want to change information ,like date in or out,  link to update reseravion. 
-        Console.WriteLine("Do you want to change the reservation? Y/N");
-        string CheckInAnswer = Console.ReadLine().ToLower();
-        if (CheckInAnswer == "y")
+        Console.WriteLine("Do you want to change the check out date? Y/N");
+        string ChangeDateOutAnswer = Console.ReadLine().ToLower();
+        if (ChangeDateOutAnswer == "y")
         {
-            UpdateRoomStatusInput();
+            //UpdateRoomStatusInput();
+            //reservationData.UpdateReservationDateOut(reservation_id, date_in, date_range, newTotalPay); //This is what I want to do
         }
-        else if (CheckInAnswer == "n")
+        else if (ChangeDateOutAnswer == "n")
         {
-            ShowSingleReservationByIdInput();
+            Console.WriteLine("Do you want to change the status to checked in? Y/N");
+            string CheckOutAnswer = Console.ReadLine().ToLower();
+            if (CheckOutAnswer == "y")
+            {
+                Console.WriteLine("Update room status to Checked in");
+                foreach (var item in roomManager.ShowAllRooms())
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine("Choose room to check in: ");
+                string roomToCheckOut = Console.ReadLine();
+                string newRoomCheckOutStatus = "1";
+                roomManager.CheckInRoomStatusID(roomToCheckOut, newRoomCheckOutStatus);
+                Console.WriteLine("Room status has now changed to Checked in!");
+            }
+            else if (CheckOutAnswer == "n")
+            {
+                menu.GetEmployeeMenu();
+            }
+            else
+            {
+                Console.WriteLine("Something went wrong! Please try again!");
+            }
         }
         else
         {
             Console.WriteLine("No option found!");
         }
+        Console.ReadLine();
+        // Console.WriteLine("Update room status to Checked out");
+        // foreach (var item in roomManager.ShowAllRooms())
+        // {
+        //     Console.WriteLine(item);
+        // }
+        // Console.WriteLine("Choose room to check out: ");
+        // string roomToCheckOut = Console.ReadLine();
+        // string newRoomCheckOutStatus = "2";
+        // roomManager.CheckOutRoomStatusID(roomToCheckOut, newRoomCheckOutStatus);
+        // Console.WriteLine("Room status has now changed to Checked Out!");
+        // Console.WriteLine();
+    }
+
+    public void EmployeeCheckInUpdate()
+    {
+        Menu menu = new();
+        ShowSingleReservationByIdInput();
+        Console.WriteLine("Do you want to change the check in date? Y/N");
+        string ChangeDateInAnswer = Console.ReadLine().ToLower();
+        if (ChangeDateInAnswer == "y")
+        {
+            //UpdateRoomStatusInput();
+            //reservationData.UpdateReservationDateIn(); This is what I want to do
+        }
+        else if (ChangeDateInAnswer == "n")
+        {
+            Console.WriteLine("Do you want to change the status to checked in? Y/N");
+            string CheckInAnswer = Console.ReadLine().ToLower();
+            if (CheckInAnswer == "y")
+            {
+                Console.WriteLine("Update room status to Checked in");
+                foreach (var item in roomManager.ShowAllRooms())
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine("Choose room to check in: ");
+                string roomToCheckIn = Console.ReadLine();
+                string newRoomCheckInStatus = "1";
+                roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
+                Console.WriteLine("Room status has now changed to Checked in!");
+            }
+            else if (CheckInAnswer == "n")
+            {
+                menu.GetEmployeeMenu();
+            }
+            else
+            {
+                Console.WriteLine("Something went wrong! Please try again!");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No option found!");
+        }
+        Console.ReadLine();
         // Console.WriteLine("Update room status to Checked in");
         // foreach (var item in roomManager.ShowAllRooms())
         // {
@@ -59,7 +122,7 @@ public class UserInput
         // string newRoomCheckInStatus = "1";
         // roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
         // Console.WriteLine("Room status has now changed to Checked in!");
-        Console.ReadLine();
+
     }
 
     public void PrintAllCustomers()
