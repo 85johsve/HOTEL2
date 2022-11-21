@@ -538,12 +538,12 @@ public class UserInput
         double otherPay = GetDouble("Payment:");
         string bank=GetString("Payment banInfor: ");
          double amount = roomPay+ otherPay;
-         int addedPayId = paymentManager.AddPayment(cId,date,amount,roomPay,otherPay,rId,payname,bank);
+         int addedPayId = paymentManager.AddPayment(cId,date,amount,rId,name,bank);
          Console.WriteLine ("Added Payment Id: " + " "+addedPayId);
         Console.WriteLine(paymentManager.SearchPaymentByPaymentId(addedPayId));
 
 
-    }
+    }//cID, date, amount, rID,name,bank
     // public  bool ReceiptOptionInput(bool quit)
     // {
     //     Console.Clear();
@@ -652,186 +652,13 @@ public class UserInput
         {
             Console.WriteLine("Input Id number!");
         }
->>>>>>> c1aaaf5d42415d2156619fb8d8a784062973230c
+
         Console.ReadLine();
     }
 
 
     public  double GetDouble(string message)
     {
-<<<<<<< HEAD
-        Console.Clear();
-        Console.WriteLine("********* Receipt option ********* ");
-       
-        Console.WriteLine("Do you want a receipt? Y/N");
-        string answer = Console.ReadLine().ToLower();
-        if (answer == "y")
-        {
-            
-            DateTime now = DateTime.Now;
-            List<Receipt> receipts = new();
-            int reservId = TryGetInt("Enter Reservation Id: ");
-            //int sPaymentId = TryGetInt("Enter Payment Id: ");
-           // Console.WriteLine (paymentManager.SearchPaymentById(sPaymentId));
-            // this will be a method to add to the payment databse
-            //Receipt receipt = new(now, paymentManager.SearchPaymentByPaymentId(sPaymentId));
-            Console.WriteLine(reservationManager.SearchReservationById(reservId));
-            Receipt receipt = new(now, paymentManager.SearchPaymentByReservId(reservId));
-
-
-           
-            receipts.Add(receipt);
-            Console.WriteLine(receipt.receipt_nr);
-            Console.WriteLine(receipt);
-
-    //         another way to do the receipt nr will be creacte a method that generate id nr
-    //           public class AutoIncrment
-    // {
-    //     private int id = 1;
-    //     public int GenerateId()
-    //     {
-    //         return id++;
-    //     }
-    // }
-    //var idState = new AutoIncrement();
-    //console.WriteLine(idState.GenerateId()); // Outputs 1
-
-
-    quit = false;
-        }
-        else if (answer == "n")
-{
-    Console.WriteLine("No receipt chosen!");
-    quit = false;
-}
-else
-{
-    Console.WriteLine("your choice does not exist!");
-
-}
-
-return quit;
-    }
-
-    public bool PaymentChoiceInput(bool quit)
-{
-    Console.Clear();
-    Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
-    string option = Console.ReadLine();
-    if (option == "1")
-    {
-        PrintAllPayments();
-        quit = false;
-    }
-    else if (option == "2")
-    {
-        AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
-        quit = false;
-    }
-    else if (option == "3")
-    {
-        SearchPaymentByPaymentIdInput();
-        quit = false;
-    }
-    else if (option == "4")
-    {
-        RemovePaymentInput();
-        quit = false;
-    }
-    else
-    {
-        Console.WriteLine("Select one of the number!");
-    }
-    Console.ReadLine();
-    return quit;
-}
-
-public void RemovePaymentInput()
-{
-    Console.WriteLine("\n******* Remove a payment ********\n");
-    Console.WriteLine("Payment Id to be removed: ");
-    if (int.TryParse(Console.ReadLine(), out int rPaymentId))
-    {
-        paymentManager.RemovePaymentById(rPaymentId);
-        Console.WriteLine("Payment has been removed!");
-    }
-    else
-    {
-        Console.WriteLine("Input prayment ID number!");
-    }
-}
-
-public void SearchPaymentByPaymentIdInput()
-{
-    Console.WriteLine("\n******* Search a payment by Id ********\n");
-    Console.WriteLine("Searching Payment ID: ");
-    if (int.TryParse(Console.ReadLine(), out int searchPaymentId))
-    {
-
-        try
-        {
-            if (paymentManager.SearchPaymentByPaymentId(searchPaymentId) != null)
-            {
-                Console.WriteLine(paymentManager.SearchPaymentByPaymentId(searchPaymentId));
-            }
-        }
-        catch (Exception e)
-        {
-            throw new ArgumentNullException();
-        }
-    }
-    else
-    {
-        Console.WriteLine("Input Id number!");
-    }
-    Console.ReadLine();
-}
-
-public void SearchPaymentByReservIdInput()
-{
-    Console.WriteLine("\n******* Search a payment by Reservation Id ********\n");
-    Console.WriteLine("Reservation ID: ");
-    if (int.TryParse(Console.ReadLine(), out int searchPaymentId))
-    {
-
-        try
-        {
-            if (paymentManager.SearchPaymentByReservId(searchPaymentId) != null)
-            {
-                Console.WriteLine(paymentManager.SearchPaymentByReservId(searchPaymentId));
-            }
-        }
-        catch (Exception e)
-        {
-            throw new ArgumentNullException();
-        }
-    }
-    else
-    {
-        Console.WriteLine("Input Id number!");
-    }
-    Console.ReadLine();
-}
-
-public double GetDouble(string message)
-{
-    int input = 0;
-    while (input < 3)
-    {
-        Console.WriteLine(message);
-        if (double.TryParse(Console.ReadLine(), out double number))
-        {
-            return number;
-            //break;
-        }
-        else
-        {
-            if (input < 2)
-            {
-                Console.WriteLine("Try again");
-            }
-
-=======
         int input = 0;
         while (input < 3)
         {
@@ -841,7 +668,6 @@ public double GetDouble(string message)
                 return number;
                 //break;
             }
->>>>>>> c1aaaf5d42415d2156619fb8d8a784062973230c
             else
             {
                 if (input < 2)
