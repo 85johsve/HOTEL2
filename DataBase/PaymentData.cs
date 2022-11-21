@@ -31,7 +31,7 @@ class PaymentData
         return payments;
     }
 
-    public int InsertPayment(int customerID, DateTime date, double amount, double rpay, double opay, int reservationID,string name,string bank)   // this amount = room total + others(since )
+    public int InsertPayment(int customerID, DateTime date, double amount, int reservationID,string name,string bank)   // this amount = room total + others(since )
     {
         Open();
         //int id, 
@@ -42,10 +42,12 @@ class PaymentData
         r.Add("@payment_amount", amount);
         r.Add("@reservation_id", reservationID);
         r.Add("@payment_name", name);
-        r.Add("@payment_roomPay", rpay);
-        r.Add("@payment_otherProducts", opay);
         r.Add("@bankInfor",bank);
+<<<<<<< HEAD
         string sql = $@"INSERT INTO payments (customer_id, payment_date,payment_amount,reservation_id,payment_name,payment_roomPay,payment_otherProducts,bankInfor) VALUES ( @customer_id, @payment_date,@payment_amount,@reservation_id,@payment_name,@payment_roomPay,@payment_otherProducts,@bankInfor); SELECT LAST_INSERT_ID() ";
+=======
+        string sql = $@"INSERT INTO payments (customer_id, payment_date,payment_amount,reservation_id,payment_name,bankInfor) VALUES ( @customer_id, @payment_date,@payment_amount,@reservation_id,@payment_name,@bankInfor); SELECT LAST_INSERT_ID() ";
+>>>>>>> c1aaaf5d42415d2156619fb8d8a784062973230c
         int Id = connection.Query<int>(sql, r).First();
 
         return Id;

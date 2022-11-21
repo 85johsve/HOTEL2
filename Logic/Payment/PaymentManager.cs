@@ -4,7 +4,7 @@ public class PaymentManger
 {
      //private List<Payment> payments;
     PaymentData newPaymentData = new();
-    
+    Receipt receipt = new();
 
      public List<Payment> ShowAllPayments()
     {  
@@ -17,10 +17,9 @@ public class PaymentManger
             return newPaymentData.GetPaymentById(sPaymentId); 
     }
 
-    public int AddPayment( int cID, DateTime date, double amount, double roompay, double otherpay, int rID,string name,string bank)
+    public int AddPayment( int cID, DateTime date, double amount, int rID,string name,string bank)
     {
-       
-        int InsertPaymentID = newPaymentData.InsertPayment(cID, date, amount,roompay,otherpay, rID,name,bank);
+        int InsertPaymentID = newPaymentData.InsertPayment(cID, date, amount, rID,name,bank);
 
         return InsertPaymentID;
     }
@@ -30,6 +29,7 @@ public class PaymentManger
         newPaymentData.DeletePaymentById(rPaymentId);
     }
 
+<<<<<<< HEAD
     public Payment SearchPaymentByReservId(int sReservId)
     {
             return newPaymentData.GetPaymentById(sReservId); 
@@ -38,6 +38,8 @@ public class PaymentManger
 
 
 
+=======
+>>>>>>> c1aaaf5d42415d2156619fb8d8a784062973230c
     // public Payment PaymentCaculation()
     // {
         

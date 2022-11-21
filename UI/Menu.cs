@@ -9,27 +9,22 @@ class Menu
     public ReviewManager reviewManager = new();
     public UserInput userInput = new();
     public int customerID { get; set; }
-    
 
     public MenuChoiceUser MenuChoiceUserEnumSwitch()
     {
-        Console.Clear();
         foreach (string c in Enum.GetNames(typeof(MenuChoiceUser)))
             Console.WriteLine("{0,-11}= {1}", c, Enum.Format(typeof(MenuChoiceUser), Enum.Parse(typeof(MenuChoiceUser), c), "d"));
         MenuChoiceUser choice = (MenuChoiceUser)userInput.TryGetInt("Select one of the options:");
         return choice;
     }
 
-    public void GetEmployeeMenu(int employeeID)
+    public void GetEmployeeMenu()
     {
-        
-        
         bool quit = false;
         while (!quit)
         {
-             Console.Clear();
             MenuChoiceEmployee choice = EmployeeEnumSwitch();
-            
+            Console.Clear();
             Console.WriteLine("\n********* Employee Menu *********\n ");
             switch (choice)
             {
@@ -62,7 +57,7 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.MakingReservation://is done Tina!//Johan is going to look more into it
-                    reservationManager.EmployeeBookRoom(employeeID);
+                    reservationManager.EmployeeBookRoom();
                     break;
 
                 case MenuChoiceEmployee.ShowSingleReservation:
@@ -75,8 +70,7 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.CheckOut: //is done! Jessica// need more checkin detail
-                    userInput.EmployeeCheckOutUpdate();//do payment insert?
-                                                       //
+                    userInput.EmployeeCheckOutUpdate();
                     break;
 
                 case MenuChoiceEmployee.ShowReceiptOptions: //is done Jessica!// printing detail with receipt Nr
@@ -129,7 +123,7 @@ class Menu
         }
     }
 
-    public void GetCustomerMenu(int customerId)
+    public void GetCustomerMenu()
     {
         bool quit = false;
         while (!quit)
@@ -149,7 +143,7 @@ class Menu
                     break;
 
                 case MenuChoiceCustomer.BookRoom://not working properlly
-                    reservationManager.CustomerBookRoom(customerId);
+                    reservationManager.CustomerBookRoom();
                     break;
 
                 case MenuChoiceCustomer.ReadReviews:

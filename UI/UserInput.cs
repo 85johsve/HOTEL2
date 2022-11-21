@@ -1,22 +1,21 @@
 public class UserInput
 {
 
-    public RoomManager roomManager = new();
-    public CustomerManager customerManager = new();
-    public EmployeeManager employeeManager = new();
-    public PaymentManger paymentManager = new();
-    public ReservationData reservationData = new();
-    public ReservationManager reservationManager = new();
-    public ReviewManager reviewManager = new();
-    public ReviewData reviewData = new();
-
-
-    public bool employeeIsLoggedIn;
+    public  RoomManager roomManager = new();
+    public  CustomerManager customerManager = new();
+    public  EmployeeManager employeeManager = new();
+    public  PaymentManger paymentManager = new();
+    public  ReservationData reservationData = new();
+    public  ReservationManager reservationManager = new();
+    public  ReviewManager reviewManager = new();
+    public  ReviewData reviewData = new();
+    
+    
+    public  bool employeeIsLoggedIn;
     public bool managerIsLoggedIn;
     public bool customerIsLoggedIn;
-    public int employeeId {get; set;}
 
-    public void EmployeeCheckOutUpdate()
+    public  void EmployeeCheckOutUpdate()
     {
         Console.WriteLine("Update room status to Checked out");
         foreach (var item in roomManager.ShowAllRooms())
@@ -31,25 +30,39 @@ public class UserInput
         Console.WriteLine();
     }
 
-    public void EmployeeCheckInUpdate()
+    public  void EmployeeCheckInUpdate()
     {
-        Console.WriteLine("Reservation Id: ");
-        // print out the getsinglereservaion data
-        //confirm it, right or wring, yes, get information details from person who is staying in the room ; no, serach reservation again ;if want to change information ,like date in or out,  link to update reseravion. 
-        Console.WriteLine("Update room status to Checked in");
-        foreach (var item in roomManager.ShowAllRooms())
-        {
-            Console.WriteLine(item);
-        }
-        Console.WriteLine("Choose room to check in: ");
-        string roomToCheckIn = Console.ReadLine();
-        string newRoomCheckInStatus = "1";
-        roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
-        Console.WriteLine("Room status has now changed to Checked in!");
+         ShowSingleReservationByIdInput();
+         // print out the getsinglereservaion data
+         //confirm it, right or wring, yes, get information details from person who is staying in the room ; no, serach reservation again ;if want to change information ,like date in or out,  link to update reseravion. 
+         Console.WriteLine("Is the booking correct? Y/N");
+         string CheckInAnswer = Console.ReadLine().ToLower();
+         if (CheckInAnswer == "y")
+         {
+            UpdateRoomStatusInput();
+         }
+         else if (CheckInAnswer == "n")
+         {
+            ShowSingleReservationByIdInput();
+         }
+         else
+         {
+            Console.WriteLine("No option found!");
+         }
+        // Console.WriteLine("Update room status to Checked in");
+        // foreach (var item in roomManager.ShowAllRooms())
+        // {
+        //     Console.WriteLine(item);
+        // }
+        // Console.WriteLine("Choose room to check in: ");
+        // string roomToCheckIn = Console.ReadLine();
+        // string newRoomCheckInStatus = "1";
+        // roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
+        // Console.WriteLine("Room status has now changed to Checked in!");
         Console.ReadLine();
     }
 
-    public void PrintAllCustomers()
+    public  void PrintAllCustomers()
     {
         Console.WriteLine("\n******* Show all customers ********\n");
         try
@@ -69,7 +82,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void SearchCustomerByIdInput()
+    public  void SearchCustomerByIdInput()
     {
         Console.WriteLine("\n******* Search customer by Id ********\n");
         Console.WriteLine("Customer Id:");
@@ -84,20 +97,20 @@ public class UserInput
         catch (Exception e)
         {
             Console.WriteLine("Customer did not exist.");
-
+            
 
         }
         Console.ReadLine();
     }
 
-    public void RemoveCustomerByIdInput()
+    public  void RemoveCustomerByIdInput()
     {
         Console.WriteLine("********* Remove customer by Id ********* ");
         customerManager.RemoveCustomerById(TryGetInt("Customer Id: "));
         Console.ReadLine();
     }
 
-    public void AddCustomerInput()//Tina, change the formation, put all in one Console.Write()
+    public  void AddCustomerInput()//Tina, change the formation, put all in one Console.Write()
     {
         Console.WriteLine("*********\n Register New Customer \n********* ");
         Console.WriteLine("Added customer ID: " + customerManager.AddCustomer(GetString("First name: "), GetString("Last name: "), TryGetInt("Phone: "), GetString("Email: "), GetString("City: "), GetString("Country: "), GetString("Address: ")));
@@ -107,36 +120,36 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void GetManagerLogIn()
+    public  void GetManagerLogIn()
     {
         Console.Clear();
         Console.WriteLine("********* Manager Log In ********* ");
-        int temp = 0;
+         int temp = 0;
         while (temp < 3)
         {
-            int id = TryGetInt("Please enter your ID: ");
-            string name = GetString("Enter First Name:\n");
-            if (employeeManager.ManagerLogInNameId(id, name))
+            int id =TryGetInt("Please enter your ID: ");
+            string name=GetString("Enter First Name:\n");
+            if  (employeeManager.ManagerLogInNameId(id, name))
+            {          
+               managerIsLoggedIn =true ;  
+               break;                          
+            }      
+           else 
             {
-                managerIsLoggedIn = true;
-                break;
+               if(temp<2)
+               Console.Write("\nLoggin unsucced, try again!\n");      
+               else
+               Console.Write("\nNO more try. Bye!\n");
             }
-            else
-            {
-                if (temp < 2)
-                    Console.Write("\nLoggin unsucced, try again!\n");
-                else
-                    Console.Write("\nNO more try. Bye!\n");
-            }
-            temp++;
+            temp++;       
         }
     }
 
-    public int GetEmployeeLogIn()
+    public  void GetEmployeeLogIn()
     {
         Console.Clear();
         Console.WriteLine("*********Employee Log In ********* ");
-        int temp = 0;
+         int temp = 0;
         while (temp < 3)
         {
             int id =TryGetInt("Please enter your ID: ");
@@ -144,54 +157,51 @@ public class UserInput
             if  (employeeManager.EmployeeLogInNameId(id, name))
             {          
                employeeIsLoggedIn =true ;  
-               return id;                         
+               break;                          
             }      
            else 
             {
 
-                if (temp < 2)
-                    Console.Write("\nLoggin unsucced, try again!\n");
-
-                else
-                    Console.Write("\nNO more try. Bye!\n");
+               if(temp<2)
+               Console.Write("\nLoggin unsucced, try again!\n");
+               
+               else
+               Console.Write("\nNO more try. Bye!\n");
             }
-            temp++;
-            
+            temp++;        
         }
-        return 0;
     }
 
-    public int GetCustomerLogIn()
+    public  void GetCustomerLogIn()
     {
         Console.Clear();
         Console.WriteLine("********* Customer Log In ********* ");
         int temp = 0;
         while (temp < 3)
         {
-            int id = TryGetInt("Please enter your ID: ");
-            string name = GetString("Enter First Name:\n");
-            if (customerManager.CustomerLogInNameId(id, name))
+            int id =TryGetInt("Please enter your ID: ");
+            string name=GetString("Enter First Name:\n");
+            if  (customerManager.CustomerLogInNameId(id, name))
+            {          
+               customerIsLoggedIn =true ;  
+               break;                          
+            }      
+           else 
             {
-                customerIsLoggedIn = true;
-                return id;
-            }
-            else
-            {
-                if (temp < 2)
-                    Console.Write("\nLoggin unsucced, try again!\n");
-
-                else
-                    Console.Write("\nNO more try. Bye!\n");
+               if(temp<2)
+               Console.Write("\nLoggin unsucced, try again!\n");
+               
+               else
+               Console.Write("\nNO more try. Bye!\n");
             }
             temp++;
 
 
-
+         
         }
-        return 0;
     }
 
-    public void SearchRoomByIdInput()
+    public  void SearchRoomByIdInput()
     {
         Console.WriteLine("\n******* Search room by Id ********\n");
         Console.WriteLine("Room Id: ");
@@ -210,7 +220,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void UpdateRoomStatusInput()  //GETSTRING DOES NOT WORK
+    public  void UpdateRoomStatusInput()  //GETSTRING DOES NOT WORK
     {
         // TryGetInt("Room Id: ");
         // GetString("Choose room to update: ");
@@ -229,7 +239,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void AddRoomInput()//Tina, put in one Console.Write()
+    public  void AddRoomInput()//Tina, put in one Console.Write()
     {   // do not need room id, it will return added room id.
         Console.WriteLine("********* Add Room ********* ");
         Console.WriteLine("price");
@@ -239,23 +249,23 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void RemoveRoomByIdInput()
+    public  void RemoveRoomByIdInput()
     {
         Console.WriteLine("\n******* Remove room by Id ********\n");
         foreach (var item in roomManager.ShowAllRooms())
         {
             Console.WriteLine(item);
-        }
+        } 
         if (true)
         {
-
+            
         }
         roomManager.RemoveRoomById(TryGetInt("Room Id: "));
         Console.WriteLine("Room has been deleted!");
         Console.ReadLine();
     }
 
-    public void PrintAllRooms()
+    public  void PrintAllRooms()
     {
         Console.WriteLine("\n******* All Rooms ********\n");
         try
@@ -275,7 +285,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void PrintAvailableRooms()
+    public  void PrintAvailableRooms()
     {
         Console.WriteLine("\n******* All Available Rooms ********\n");
         try
@@ -296,7 +306,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void PrintAllPayments()
+    public  void PrintAllPayments()
     {
         Console.WriteLine("\n******* All Payments ********\n");// is done!
         try
@@ -316,7 +326,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void AddEmployeeInput()//Tina, change the formation, put all in one Console.Write()
+    public  void AddEmployeeInput()//Tina, change the formation, put all in one Console.Write()
     {
         Console.WriteLine("********* Add Employee ********* ");
         Console.WriteLine("Added employee ID: " + employeeManager.AddEmployee(TryGetInt("Job Title ID: "), GetString("First name"), GetString("Last name"), TryGetInt("Phone: "), GetString("Email: ")));
@@ -327,7 +337,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void SearchEmployeeByIdInput()
+    public  void SearchEmployeeByIdInput()
     {
         Console.WriteLine("\n******* Search Employee by Id ********\n");
         Console.WriteLine("Employee Id:");
@@ -347,7 +357,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void PrintAllEmployees()
+    public  void PrintAllEmployees()
     {
         Console.WriteLine("\n******* All Employees ********\n");
         try
@@ -367,7 +377,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void RemoveEmployeeByIdInput()
+    public  void RemoveEmployeeByIdInput()
     {
         Console.WriteLine("\n******* Remove a employee by Id ********\n");
         Console.WriteLine("Employee Id: ");
@@ -377,7 +387,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void CheckInOutDateUpdateInput()
+    public  void CheckInOutDateUpdateInput()
     {
         Console.WriteLine("\n******* Update Reservation ********\n");
         Console.WriteLine("[1]Update check in date \n[2]Update check out date ");
@@ -448,16 +458,16 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void ShowSingleReservationByIdInput()
+   public void ShowSingleReservationByIdInput()
     {
         Console.WriteLine("******* Search Reseravtion by Id **********");
         int searchReservId = TryGetInt("Enter reservation id to search: ");
         // try
         // {
-        if (reservationManager.SearchReservationById(searchReservId) != null)
-        {
-            Console.WriteLine(reservationManager.SearchReservationById(searchReservId));
-        }
+            if (reservationManager.SearchReservationById(searchReservId) != null)
+            {
+                Console.WriteLine(reservationManager.SearchReservationById(searchReservId));
+            }
         // }
         // catch (Exception e)
         // {
@@ -467,7 +477,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void RemoveReviewByIdInput()
+    public  void RemoveReviewByIdInput()
     {
         Console.Clear();
         Console.WriteLine("********* Remove review by Id ********* ");
@@ -483,7 +493,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void WriteReviewInput()
+    public  void WriteReviewInput()
     {
         Console.Clear();
         Console.WriteLine("********* Write Review ********* ");
@@ -491,7 +501,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void PrintAllReviews()
+    public  void PrintAllReviews()
     {
         Console.Clear();
         Console.WriteLine("********* All Reviews ********* ");
@@ -514,12 +524,13 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void AddPaymentInput()
+    public  void AddPaymentInput()
     {
 
         Console.WriteLine("\n******* Add a payment ********\n");
         Console.WriteLine("Payment date: ");
         DateTime date = DateTime.Parse(Console.ReadLine());
+<<<<<<< HEAD
         int rId = TryGetInt("Reservation ID: ");
         int cId = TryGetInt("Customer ID: ");
         double roomPay = reservationManager.CalculatingTotalRoomPay(rId);
@@ -531,11 +542,127 @@ public class UserInput
          Console.WriteLine ("Added Payment Id: " + " "+addedPayId);
         Console.WriteLine(paymentManager.SearchPaymentByPaymentId(addedPayId));
 
+=======
+        //Console.WriteLine("Added new payment ID: ");
+        Console.WriteLine("Added new payment ID\n " + paymentManager.AddPayment(TryGetInt("Customer ID: "), date, GetDouble("Payment amount:"), TryGetInt("Reservation ID: "), GetString("Payment name: "), GetString("Bank information")));
+        Console.ReadLine();
+    }
+    // public  bool ReceiptOptionInput(bool quit)
+    // {
+    //     Console.Clear();
+    //     Console.WriteLine("********* Receipt option ********* ");
+    //     AddPaymentInput(); // nake the payment, insert into databse, return a payment ID, use this ID in receipt to get out payment details to be printed., Link the room total pay method to the calculating of the payment_amount. (In the future will be also other products payment linked to this payment_amount) 
+    //     Console.WriteLine("Do you want a receipt? Y/N");
+    //     string answer = Console.ReadLine().ToLower();
+    //     if (answer == "y")
+    //     {
+    //         Receipt receipt =new();
+    //         List<Receipt> receipts=new();
+    //         int receiptNr = 100000;
+            
+    //         receipts.Add(receiptNr );
+    //         receipts.Add 
+    //            ShowSingleReservationByIdInput();// booking details
+    //            string otherproducts = GetString("Other products name: (Non)");// this will be a method to add to the payment databse
+    //            SearchPaymentByIdInput(); 
+
+            
+           
+    //         quit = false;
+    //     }
+    //     else if (answer == "n")
+    //     {
+    //         Console.WriteLine("No receipt chosen!");
+    //         quit = false;
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("your choice does not exist!");
+
+    //     }
+
+    //     return quit;
+    // }
+
+    public  bool PaymentChoiceInput(bool quit)
+    {
+        Console.Clear();
+        Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment [4]Remove payment");
+        string option = Console.ReadLine();
+        if (option == "1")
+        {
+            PrintAllPayments();
+            quit = false;
+        }
+        else if (option == "2")
+        {
+            AddPaymentInput(); //it does not inseart the customer Id, dont not know why Tina!
+            quit = false;
+        }
+        else if (option == "3")
+        {
+            SearchPaymentByIdInput();
+            quit = false;
+        }
+        else if (option == "4")
+        {
+            RemovePaymentInput();
+            quit = false;
+        }
+        else
+        {
+            Console.WriteLine("Select one of the number!");
+        }
+        Console.ReadLine();
+        return quit;
+    }
+
+    public  void RemovePaymentInput()
+    {
+        Console.WriteLine("\n******* Remove a payment ********\n");
+        Console.WriteLine("Payment Id to be removed: ");
+        if (int.TryParse(Console.ReadLine(), out int rPaymentId))
+        {
+            paymentManager.RemovePaymentById(rPaymentId);
+            Console.WriteLine ("Payment has been removed!");
+        }
+        else
+        {
+            Console.WriteLine("Input prayment ID number!");
+        }
+    }
+
+    public  void SearchPaymentByIdInput()
+    {
+        Console.WriteLine("\n******* Search a payment by Id ********\n");
+        Console.WriteLine("Searching Payment ID: ");
+        if (int.TryParse(Console.ReadLine(), out int searchPaymentId))
+        {
+
+            try
+            {
+                if (paymentManager.SearchPaymentById(searchPaymentId) != null)
+                {
+                    Console.WriteLine(paymentManager.SearchPaymentById(searchPaymentId));
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentNullException();
+            }
+        }
+        else
+        {
+            Console.WriteLine("Input Id number!");
+        }
+>>>>>>> c1aaaf5d42415d2156619fb8d8a784062973230c
         Console.ReadLine();
     }
 
-    public bool ReceiptOptionInput(bool quit)
+
+    public  double GetDouble(string message)
     {
+<<<<<<< HEAD
         Console.Clear();
         Console.WriteLine("********* Receipt option ********* ");
        
@@ -707,68 +834,86 @@ public double GetDouble(string message)
                 Console.WriteLine("Try again");
             }
 
+=======
+        int input = 0;
+        while (input < 3)
+        {
+            Console.WriteLine(message);
+            if (double.TryParse(Console.ReadLine(), out double number))
+            {
+                return number;
+                //break;
+            }
+>>>>>>> c1aaaf5d42415d2156619fb8d8a784062973230c
             else
             {
-                Console.WriteLine("No more try! Press enter to return to menu");
-            }
-            input++;
-        }
-    }
-    return 0;
-}
+                if (input < 2)
+                {
+                    Console.WriteLine("Try again");
+                }
 
-public int TryGetInt(string prompt)
-{
-    int input = 0;
-    while (input < 3)
+                else
+                {
+                    Console.WriteLine("No more try! Press enter to return to menu");
+                }
+                input++;
+            }
+        }
+        return 0;
+    }
+
+    public int TryGetInt(string prompt)
     {
-        Console.WriteLine(prompt);
-        if (int.TryParse(Console.ReadLine(), out int id))
+        int input = 0;
+        while (input < 3)
         {
-            return id;
-            //break;
-        }
-        else
-        {
-            if (input < 2)
+            Console.WriteLine(prompt);
+            if (int.TryParse(Console.ReadLine(), out int id))
             {
-                Console.WriteLine("Enter a correct number,try again");
+                return id;
+                //break;
             }
-
             else
             {
-                Console.WriteLine("No more try! Press enter to return to menu");
+                if (input < 2)
+                {
+                    Console.WriteLine("Enter a correct number,try again");
+                }
+
+                else
+                {
+                    Console.WriteLine("No more try! Press enter to return to menu");
+                }
+                input++;
             }
-            input++;
         }
+        return 0;
     }
-    return 0;
-}
 
-public string GetString(string prompt)
-{
-    Console.Write(prompt);
+    public  string GetString(string prompt)
+    {
+        Console.Write(prompt);
 
-    return Console.ReadLine();
-}
+        return Console.ReadLine();
+    }
 
-public void NoTryMessage()
-{
-    Console.Write("\nNO more try. Bye!");
-}
+  public  void NoTryMessage()
+    {
+        Console.Write("\nNO more try. Bye!");
+    }
 
-public void LoginWrongMessage()
-{
-    Console.Write("\nLoggin unsucced, try again!");
-}
+    public  void LoginWrongMessage()
+    {
+        Console.Write("\nLoggin unsucced, try again!");
+    }
 
-public bool QuitMessage()
-{
-    bool quit;
-    Console.WriteLine("You have chosen to quit the program");
-    quit = true;
-    return quit;
-}
+    public  bool QuitMessage()
+    {
+        bool quit;
+        Console.WriteLine("You have chosen to quit the program");
+        quit = true;
+        return quit;
+    }
 
 
 
