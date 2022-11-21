@@ -32,19 +32,33 @@ public class UserInput
 
     public  void EmployeeCheckInUpdate()
     {
-         Console.WriteLine("Reservation Id: ");
+         ShowSingleReservationByIdInput();
          // print out the getsinglereservaion data
          //confirm it, right or wring, yes, get information details from person who is staying in the room ; no, serach reservation again ;if want to change information ,like date in or out,  link to update reseravion. 
-        Console.WriteLine("Update room status to Checked in");
-        foreach (var item in roomManager.ShowAllRooms())
-        {
-            Console.WriteLine(item);
-        }
-        Console.WriteLine("Choose room to check in: ");
-        string roomToCheckIn = Console.ReadLine();
-        string newRoomCheckInStatus = "1";
-        roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
-        Console.WriteLine("Room status has now changed to Checked in!");
+         Console.WriteLine("Is the booking correct? Y/N");
+         string CheckInAnswer = Console.ReadLine().ToLower();
+         if (CheckInAnswer == "y")
+         {
+            UpdateRoomStatusInput();
+         }
+         else if (CheckInAnswer == "n")
+         {
+            ShowSingleReservationByIdInput();
+         }
+         else
+         {
+            Console.WriteLine("No option found!");
+         }
+        // Console.WriteLine("Update room status to Checked in");
+        // foreach (var item in roomManager.ShowAllRooms())
+        // {
+        //     Console.WriteLine(item);
+        // }
+        // Console.WriteLine("Choose room to check in: ");
+        // string roomToCheckIn = Console.ReadLine();
+        // string newRoomCheckInStatus = "1";
+        // roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
+        // Console.WriteLine("Room status has now changed to Checked in!");
         Console.ReadLine();
     }
 
@@ -520,43 +534,42 @@ public class UserInput
         Console.WriteLine("Added new payment ID\n " + paymentManager.AddPayment(TryGetInt("Customer ID: "), date, GetDouble("Payment amount:"), TryGetInt("Reservation ID: "), GetString("Payment name: "), GetString("Bank information")));
         Console.ReadLine();
     }
-
-    public  bool ReceiptOptionInput(bool quit)
-    {
-        Console.Clear();
-        Console.WriteLine("********* Receipt option ********* ");
-        AddPaymentInput(); // nake the payment, insert into databse, return a payment ID, use this ID in receipt to get out payment details to be printed., Link the room total pay method to the calculating of the payment_amount. (In the future will be also other products payment linked to this payment_amount) 
-        Console.WriteLine("Do you want a receipt? Y/N");
-        string answer = Console.ReadLine().ToLower();
-        if (answer == "y")
-        {
-            Receipt receipt =new();
-            List<Receipt> receipts=new();
-            int receiptNr = 100000;
+    // public  bool ReceiptOptionInput(bool quit)
+    // {
+    //     Console.Clear();
+    //     Console.WriteLine("********* Receipt option ********* ");
+    //     AddPaymentInput(); // nake the payment, insert into databse, return a payment ID, use this ID in receipt to get out payment details to be printed., Link the room total pay method to the calculating of the payment_amount. (In the future will be also other products payment linked to this payment_amount) 
+    //     Console.WriteLine("Do you want a receipt? Y/N");
+    //     string answer = Console.ReadLine().ToLower();
+    //     if (answer == "y")
+    //     {
+    //         Receipt receipt =new();
+    //         List<Receipt> receipts=new();
+    //         int receiptNr = 100000;
             
-            receipts.Add(receiptNr );
-            receipts.Add 
-               ShowSingleReservationByIdInput();// booking details
-               string otherproducts = GetString("Other products name: (Non)");// this will be a method to add to the payment databse
-               SearchPaymentByIdInput(); 
+    //         receipts.Add(receiptNr );
+    //         receipts.Add 
+    //            ShowSingleReservationByIdInput();// booking details
+    //            string otherproducts = GetString("Other products name: (Non)");// this will be a method to add to the payment databse
+    //            SearchPaymentByIdInput(); 
 
             
            
-            quit = false;
-        }
-        else if (answer == "n")
-        {
-            Console.WriteLine("No receipt chosen!");
-            quit = false;
-        }
-        else
-        {
-            Console.WriteLine("your choice does not exist!");
+    //         quit = false;
+    //     }
+    //     else if (answer == "n")
+    //     {
+    //         Console.WriteLine("No receipt chosen!");
+    //         quit = false;
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("your choice does not exist!");
 
-        }
+    //     }
 
-        return quit;
-    }
+    //     return quit;
+    // }
 
     public  bool PaymentChoiceInput(bool quit)
     {
