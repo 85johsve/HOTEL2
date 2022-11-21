@@ -45,7 +45,7 @@ public class ReservationData
 
     public void MakeReservationEmployee(int customer_id, int employeeIdBooking, int room_id, DateTime reservation_date, DateTime date_in, DateTime date_out, double date_range, double totalPay)
     {
-        var makeReservation = connection.Query<Reservation>($"INSERT INTO `reservations`(`customer_id`, `employee_id`, `room_id`, `reservation_date`, `date_in`, `date_out`, date_range, reservation_totalpay) VALUES ('{customer_id}',  '{employeeIdBooking}', '{room_id}', '{reservation_date}','{date_in}','{date_out}', {date_range}, {totalPay})");
+        var makeReservation = connection.Query<Reservation>($"INSERT INTO `reservations`(`customer_id`, `employee_id`, `room_id`, `reservation_date`, `date_in`, `date_out`, date_range, reservation_totalpay, checkingIn) VALUES ('{customer_id}',  '{employeeIdBooking}', '{room_id}', '{reservation_date}','{date_in}','{date_out}', {date_range}, {totalPay}, 0)");
 
     }
 

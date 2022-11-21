@@ -6,6 +6,7 @@ public class ReservationManager
 {
     private List<Reservation> reservations;
     ReservationData newReservationData = new();
+    EmployeeData newEmployeeData = new();
     private TimeSpan timeSpan;
     private DateTime dateIn;
     private DateTime dateOut;
@@ -153,8 +154,9 @@ public class ReservationManager
     public void EmployeeBookRoom()
     {
         Console.WriteLine("Book room");
-        int customerIdBooking = 1;
-        int employee_id = 1;
+        Console.WriteLine("enter customer ID: ");
+        int customerIdBooking = Int32.Parse(Console.ReadLine());
+        int employee_id = newEmployeeData.GetLogedInEmployeeID();
         DateTime userDateIn;
         DateTime userDateOut;
 
