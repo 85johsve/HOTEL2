@@ -9,6 +9,7 @@ internal class Program
         UserInput userInput = new();
         MenuChoiceUser choice = menu.MenuChoiceUserEnumSwitch();
         bool quit = false;
+        int employeeId;
         while (true)
         {
             Console.WriteLine("\n********* Main Menu *********\n ");

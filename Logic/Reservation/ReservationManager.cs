@@ -32,9 +32,9 @@ public class ReservationManager
     public void CustomerBookRoom()
     {
         Console.WriteLine("Book room");
-
         int customerIdBooking = 1;
         int employeeIdBooking = 1;
+
         Console.WriteLine("Enter a from-date: ");
         DateTime dateIn;
         if (DateTime.TryParse(Console.ReadLine(), out dateIn))
@@ -125,18 +125,29 @@ public class ReservationManager
         double totalPay;
         Console.WriteLine("Choose room to book: ");
         int roomSelected = Int32.Parse(Console.ReadLine());
-        foreach (var hh in availabeRooms)
+        foreach (var room in availabeRooms)
         {
-            if (hh.room_id == roomSelected)
+            if (room.room_id == roomSelected)
             {
-                roomSelectedPrice = hh.room_price;
+                roomSelectedPrice = room.room_price;
             }
         }
         totalPay = roomSelectedPrice * date_range;
-        newReservationData.MakeReservationCustomer(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
-        Console.WriteLine($"You have booked room nr {roomSelected} from: {dateIn} to: {dateOut}.");
-        Console.ReadKey();
+        foreach (var item in availabeRooms)
+        {
+            if (roomSelected == item.room_id)
+            {
+                newReservationData.MakeReservationEmployee(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
+                Console.WriteLine($"You have booked room nr {roomSelected} from: {dateIn} to: {dateOut}.");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+                
         Console.Clear();
+        Console.WriteLine("selected room did not exist");
+        Console.ReadKey();
+
     }
 
     public void EmployeeBookRoom()
@@ -241,20 +252,31 @@ public class ReservationManager
             Console.WriteLine("room nr: " + gg.room_id);
         }
         DateTime todaysDate = DateTime.Now;
-        double date_range = GetTimeSpanByDates(dateIn, dateOut);
+        double date_range = GetTimeSpanByDates(userDateIn, userDateOut);
+        double roomSelectedPrice = 0;
+        double totalPay;
         Console.WriteLine("Choose room to book: ");
-        int roomSelected = TryGetInt(Console.ReadLine());
+        int roomSelected = Int32.Parse(Console.ReadLine());
         foreach (var room in availabeRooms)
         {
             if (roomSelected == room.room_id)
             {
-                newReservationData.MakeReservationEmployee(customerIdBooking, employee_id, roomSelected, todaysDate, userDateIn, userDateOut, date_range);
+                roomSelectedPrice = room.room_price;
+            }
+        }
+        totalPay = roomSelectedPrice * date_range;
+
+        foreach (var item in availabeRooms)
+        {
+            if (roomSelected == item.room_id)
+            {
+                newReservationData.MakeReservationEmployee(customerIdBooking, employee_id, roomSelected, todaysDate, userDateIn, userDateOut, date_range, totalPay);
                 Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
                 Console.ReadKey();
                 Console.Clear();
-                break;
             }
         }
+                
         Console.Clear();
         Console.WriteLine("selected room did not exist");
         Console.ReadKey();

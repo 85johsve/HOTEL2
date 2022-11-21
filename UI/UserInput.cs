@@ -14,6 +14,7 @@ public class UserInput
     public  bool employeeIsLoggedIn;
     public bool managerIsLoggedIn;
     public bool customerIsLoggedIn;
+    public int employeeId {get; set;}
 
     public  void EmployeeCheckOutUpdate()
     {
@@ -135,12 +136,12 @@ public class UserInput
          int temp = 0;
         while (temp < 3)
         {
-            int id =TryGetInt("Please enter your ID: ");
+            int employeeId =TryGetInt("Please enter your ID: ");
             string name=GetString("Enter First Name:\n");
-            if  (employeeManager.EmployeeLogInNameId(id, name))
+            if  (employeeManager.EmployeeLogInNameId(employeeId, name))
             {          
                employeeIsLoggedIn =true ;  
-               break;                          
+               break;                     
             }      
            else 
             {
