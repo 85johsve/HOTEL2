@@ -9,6 +9,7 @@ class Menu
     public ReviewManager reviewManager = new();
     public UserInput userInput = new();
     public int customerID { get; set; }
+    
 
     public MenuChoiceUser MenuChoiceUserEnumSwitch()
     {
@@ -18,8 +19,9 @@ class Menu
         return choice;
     }
 
-    public void GetEmployeeMenu()
+    public void GetEmployeeMenu(int employeeID)
     {
+        
         bool quit = false;
         while (!quit)
         {
@@ -57,7 +59,7 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.MakingReservation://is done Tina!//Johan is going to look more into it
-                    reservationManager.EmployeeBookRoom();
+                    reservationManager.EmployeeBookRoom(employeeID);
                     break;
 
                 case MenuChoiceEmployee.ShowSingleReservation:

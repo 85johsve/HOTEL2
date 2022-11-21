@@ -132,7 +132,7 @@ public class UserInput
         }
     }
 
-    public void GetEmployeeLogIn()
+    public int GetEmployeeLogIn()
     {
         Console.Clear();
         Console.WriteLine("*********Employee Log In ********* ");
@@ -144,7 +144,7 @@ public class UserInput
             if  (employeeManager.EmployeeLogInNameId(id, name))
             {          
                employeeIsLoggedIn =true ;  
-               break;                          
+               return id;                         
             }      
            else 
             {
@@ -156,7 +156,9 @@ public class UserInput
                     Console.Write("\nNO more try. Bye!\n");
             }
             temp++;
+            
         }
+        return 0;
     }
 
     public void GetCustomerLogIn()

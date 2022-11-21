@@ -33,8 +33,8 @@ public class ReservationManager
     public void CustomerBookRoom()
     {
         Console.WriteLine("Book room");
-        int customerIdBooking = 1;
-        int employeeIdBooking = 1;
+        int customerIdBooking = TryGetInt("enter customer ID: ");
+        int employee_id = TryGetInt("Enter employee ID: ");
 
         Console.WriteLine("Enter a from-date: ");
         DateTime dateIn;
@@ -138,7 +138,7 @@ public class ReservationManager
         {
             if (roomSelected == item.room_id)
             {
-                newReservationData.MakeReservationEmployee(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
+                newReservationData.MakeReservationEmployee(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
                 Console.WriteLine($"You have booked room nr {roomSelected} from: {dateIn} to: {dateOut}.");
                 Console.ReadKey();
                 Console.Clear();
@@ -151,12 +151,11 @@ public class ReservationManager
 
     }
 
-    public void EmployeeBookRoom()
+    public void EmployeeBookRoom(int employeeId)
     {
         Console.WriteLine("Book room");
-        Console.WriteLine("enter customer ID: ");
-        int customerIdBooking = Int32.Parse(Console.ReadLine());
-        int employee_id = newEmployeeData.GetLogedInEmployeeID();
+        int customerIdBooking = TryGetInt("enter customer ID: ");
+        int employee_id = employeeId;
         DateTime userDateIn;
         DateTime userDateOut;
 

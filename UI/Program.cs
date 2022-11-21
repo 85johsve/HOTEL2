@@ -18,10 +18,10 @@ internal class Program
             {
                 case MenuChoiceUser.Employee:
 
-                    userInput.GetEmployeeLogIn();
+                    employeeId = userInput.GetEmployeeLogIn();
                     if (userInput.employeeIsLoggedIn)
                     {
-                        menu.GetEmployeeMenu();
+                        menu.GetEmployeeMenu(employeeId);
                         break;
                     }
                     else
