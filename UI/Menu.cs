@@ -81,7 +81,7 @@ class Menu
                     // ReservationData reservationData = new();
                     // reservationData.GetRoomPrice(1);
                     Console.WriteLine("\nTime span : ");
-                    Console.WriteLine(reservationManager.GetTimeSpanById(1) + "Day(s)\n");
+                    Console.WriteLine(reservationManager.GetTimeSpanById(1) + " " + "day(s)\n");
                     Console.WriteLine($"Room price : ");
                     Console.WriteLine(reservationData.GetRoomPrice(1)+"Kr");
                     Console.WriteLine ("Total: " + reservationManager.GetTimeSpanById(1)*reservationData.GetRoomPrice(1));
