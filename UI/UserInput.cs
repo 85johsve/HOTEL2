@@ -460,7 +460,7 @@ public class UserInput
             Console.Clear();
             foreach (var item in reservationData.GetReservationList())
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item + "\n");
             }
             Console.WriteLine("Choose reservation ID: ");
             int resID = Int32.Parse(Console.ReadLine());
@@ -488,7 +488,7 @@ public class UserInput
             Console.Clear();
             foreach (var item in reservationData.GetReservationList())
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item + "\n");
             }
             Console.WriteLine("Choose reservation ID: ");
             int resID = Int32.Parse(Console.ReadLine());
