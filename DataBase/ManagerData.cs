@@ -7,16 +7,13 @@ class ManagerData
     
     MySqlConnection connection;
     ManagerData newManagerData = new();
-    // public void Manager()
-    // {
-        
-    // }
 
     public ManagerData()
     {
         connection = new MySqlConnection(("Server=13.51.47.91;Database=hotelmg;Uid=root;Pwd=i-077e801baa9e32977;"));
     }
-      public void Open()
+
+    public void Open()
     {
          try
         {
@@ -24,12 +21,9 @@ class ManagerData
             connection.Open(); 
         }
         catch (Exception e)
-        {
-            
+        {    
             throw new FieldAccessException();
         }
-
-     
     }
 
  
