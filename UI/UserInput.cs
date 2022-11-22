@@ -1,4 +1,4 @@
-public class UserInput 
+public class UserInput
 {
 
     public RoomManager roomManager = new();
@@ -9,109 +9,143 @@ public class UserInput
     public ReservationManager reservationManager = new();
     public ReviewManager reviewManager = new();
     public ReviewData reviewData = new();
+   
 
 
     public bool employeeIsLoggedIn;
     public bool managerIsLoggedIn;
     public bool customerIsLoggedIn;
 
-    public void EmployeeCheckOutUpdate(int employeeId)
-    {
-        Menu menu = new();
-        ShowSingleReservationByIdInput();
-        Console.WriteLine("Do you want to change the check out date? Y/N");
-        string ChangeDateOutAnswer = Console.ReadLine().ToLower();
-        if (ChangeDateOutAnswer == "y")
-        {
-            //UpdateRoomStatusInput();
-            CheckInOutDateUpdateInput();  //you have an error in your SQL
-        }
-        else if (ChangeDateOutAnswer == "n")
-        {
-            Console.WriteLine("Do you want to change the status to checked in? Y/N");
-            string CheckOutAnswer = Console.ReadLine().ToLower();
-            if (CheckOutAnswer == "y")
-            {
-                Console.WriteLine("Update room status to Checked in");
-                foreach (var item in roomManager.ShowAllRooms())
-                {
-                    Console.WriteLine(item);
-                }
-                Console.WriteLine("Choose room to check in: ");
-                string roomToCheckOut = Console.ReadLine();
-                string newRoomCheckOutStatus = "1";
-                roomManager.CheckInRoomStatusID(roomToCheckOut, newRoomCheckOutStatus);
-                Console.WriteLine("Room status has now changed to Checked in!");
-            }
-            else if (CheckOutAnswer == "n")
-            {
-                menu.GetEmployeeMenu(employeeId);
-            }
-            else
-            {
-                Console.WriteLine("Something went wrong! Please try again!");
-            }
-        }
-        else
-        {
-            Console.WriteLine("No option found!");
-        }
-        Console.ReadLine();
-        // Console.WriteLine("Update room status to Checked out");
-        // foreach (var item in roomManager.ShowAllRooms())
-        // {
-        //     Console.WriteLine(item);
-        // }
-        // Console.WriteLine("Choose room to check out: ");
-        // string roomToCheckOut = Console.ReadLine();
-        // string newRoomCheckOutStatus = "2";
-        // roomManager.CheckOutRoomStatusID(roomToCheckOut, newRoomCheckOutStatus);
-        // Console.WriteLine("Room status has now changed to Checked Out!");
-        // Console.WriteLine();
-    }
+    // public void EmployeeCheckOutUpdate(int employeeId)
+    // {
+    //     Menu menu = new();
+    //     ShowSingleReservationByIdInput();
+    //     Console.WriteLine("Do you want to change the check out date? Y/N");
+    //     string ChangeDateOutAnswer = Console.ReadLine().ToLower();
+    //     if (ChangeDateOutAnswer == "y")
+    //     {
+    //         //UpdateRoomStatusInput();
+    //         CheckInOutDateUpdateInput();  //you have an error in your SQL
+    //     }
+    //     else if (ChangeDateOutAnswer == "n")
+    //     {
+    //         Console.WriteLine("Do you want to change the status to checked in? Y/N");
+    //         string CheckOutAnswer = Console.ReadLine().ToLower();
+    //         if (CheckOutAnswer == "y")
+    //         {
+    //             Console.WriteLine("Update room status to Checked in");
+    //             foreach (var item in roomManager.ShowAllRooms())
+    //             {
+    //                 Console.WriteLine(item);
+    //             }
+    //             Console.WriteLine("Choose room to check in: ");
+    //             string roomToCheckOut = Console.ReadLine();
+    //             string newRoomCheckOutStatus = "1";
+    //             roomManager.CheckInRoomStatusID(roomToCheckOut, newRoomCheckOutStatus);
+    //             Console.WriteLine("Room status has now changed to Checked in!");
+    //         }
+    //         else if (CheckOutAnswer == "n")
+    //         {
+    //             menu.GetEmployeeMenu(employeeId);
+    //         }
+    //         else
+    //         {
+    //             Console.WriteLine("Something went wrong! Please try again!");
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("No option found!");
+    //     }
+    //     Console.ReadLine();
+    //     // Console.WriteLine("Update room status to Checked out");
+    //     // foreach (var item in roomManager.ShowAllRooms())
+    //     // {
+    //     //     Console.WriteLine(item);
+    //     // }
+    //     // Console.WriteLine("Choose room to check out: ");
+    //     // string roomToCheckOut = Console.ReadLine();
+    //     // string newRoomCheckOutStatus = "2";
+    //     // roomManager.CheckOutRoomStatusID(roomToCheckOut, newRoomCheckOutStatus);
+    //     // Console.WriteLine("Room status has now changed to Checked Out!");
+    //     // Console.WriteLine();
+    // }
 
-    public void EmployeeCheckInUpdate(int employeeId)
+    public void EmployeeCheckInReservationUpdate(int employeeId)
     {
-        Menu menu = new();
-        ShowSingleReservationByIdInput();
-        Console.WriteLine("Do you want to change the check in date? Y/N");
-        string ChangeDateInAnswer = Console.ReadLine().ToLower();
-        if (ChangeDateInAnswer == "y")
+
+        int reservid = TryGetInt("Enter reservation id to search: ");
+        // try
+        // {
+        if (reservationManager.SearchReservationById(reservid) != null)
         {
-            //UpdateRoomStatusInput();
-            CheckInOutDateUpdateInput();
+            Console.WriteLine(reservationManager.SearchReservationById(reservid));
         }
-        else if (ChangeDateInAnswer == "n")
+        Console.WriteLine("Do you want to uppdate Reservation? Y/N");
+        string Answer = Console.ReadLine().ToLower();
+        
+        if (Answer == "y")
         {
-            Console.WriteLine("Do you want to change the status to checked in? Y/N");
-            string CheckInAnswer = Console.ReadLine().ToLower();
-            if (CheckInAnswer == "y")
-            {
-                Console.WriteLine("Update room status to Checked in");
-                foreach (var item in roomManager.ShowAllRooms())
-                {
-                    Console.WriteLine(item);
-                }
-                Console.WriteLine("Choose room to check in: ");
-                string roomToCheckIn = Console.ReadLine();
-                string newRoomCheckInStatus = "1";
-                roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
-                Console.WriteLine("Room status has now changed to Checked in!");
-            }
-            else if (CheckInAnswer == "n")
-            {
-                menu.GetEmployeeMenu(employeeId);
-            }
-            else
-            {
-                Console.WriteLine("Something went wrong! Please try again!");
-            }
+            Console.WriteLine ("Choose your option: [1]uppdate checking in or out date. [2]uppdate room");
+           string option = Console.ReadLine();
+           if (option=="1")
+           {
+             DateTime datein = DateTime.Parse(Console.ReadLine());
+            DateTime dateout = DateTime.Parse(Console.ReadLine());
+            double range = reservationManager.GetTimeSpanByDates(datein, dateout);
+            double totalPay = reservationManager.CalculatingTotalRoomPay(reservid);
+            reservationManager.UpdateReservationDate(reservid, datein, dateout, range, totalPay);
+            Console.WriteLine("*********** Updated Reservation *********");
+            Console.WriteLine(reservationManager.SearchReservationById(reservid));
+           }
+           if (option=="2")
+           {
+            roomManager.ShowAvailableRoom();
+            int roomid = TryGetInt ("Enter new room id: ");
+            reservationManager.UpdateReservationRoon(reservid,roomid);
+           }
+           
         }
-        else
-        {
-            Console.WriteLine("No option found!");
-        }
-        Console.ReadLine();
+
+
+        // Console.WriteLine("Do you want to change the check in date? Y/N");
+        // string ChangeDateInAnswer = Console.ReadLine().ToLower();
+        // if (ChangeDateInAnswer == "y")
+        // {
+        //     //UpdateRoomStatusInput();
+        //     CheckInOutDateUpdateInput();
+        // }
+        // else if (ChangeDateInAnswer == "n")
+        // {
+        //     Console.WriteLine("Do you want to change the status to checked in? Y/N");
+        //     string CheckInAnswer = Console.ReadLine().ToLower();
+        //     if (CheckInAnswer == "y")
+        //     {
+        //         Console.WriteLine("Update room status to Checked in");
+        //         foreach (var item in roomManager.ShowAllRooms())
+        //         {
+        //             Console.WriteLine(item);
+        //         }
+        //         Console.WriteLine("Choose room to check in: ");
+        //         string roomToCheckIn = Console.ReadLine();
+        //         string newRoomCheckInStatus = "1";
+        //         roomManager.CheckInRoomStatusID(roomToCheckIn, newRoomCheckInStatus);
+        //         Console.WriteLine("Room status has now changed to Checked in!");
+        //     }
+        //     else if (CheckInAnswer == "n")
+        //     {
+        //         menu.GetEmployeeMenu(employeeId);
+        //     }
+        //     else
+        //     {
+        //         Console.WriteLine("Something went wrong! Please try again!");
+        //     }
+        // }
+        // else
+        // {
+        //     Console.WriteLine("No option found!");
+        // }
+        // Console.ReadLine();
         // Console.WriteLine("Update room status to Checked in");
         // foreach (var item in roomManager.ShowAllRooms())
         // {
@@ -452,21 +486,21 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void CheckInOutDateUpdateInput()
-    {
-        Console.WriteLine("\n******* Update Reservation Checking date ********\n");
-         int id = TryGetInt("Reservation Id: ");
-         Console.WriteLine ("Checking in date: ");
+    // public void CheckInOutDateUpdateInput()
+    // {
+    //     Console.WriteLine("\n******* Update Reservation Checking date ********\n");
+    //     int id = TryGetInt("Reservation Id: ");
+    //     Console.WriteLine("Checking in date: ");
 
-         DateTime datein= DateTime.Parse(Console.ReadLine());
-         DateTime dateout= DateTime.Parse(Console.ReadLine());
-          double range = reservationManager.GetTimeSpanByDates(datein,dateout);
-        double totalPay = reservationManager.CalculatingTotalRoomPay(id);
-         reservationManager.UpdateReservationDate(id,datein,dateout,range,totalPay);
-         Console.WriteLine ("*********** Updated Reservation *********");
-         Console.WriteLine (reservationManager.SearchReservationById(id));
-  
-    }
+    //     DateTime datein = DateTime.Parse(Console.ReadLine());
+    //     DateTime dateout = DateTime.Parse(Console.ReadLine());
+    //     double range = reservationManager.GetTimeSpanByDates(datein, dateout);
+    //     double totalPay = reservationManager.CalculatingTotalRoomPay(id);
+    //     reservationManager.UpdateReservationDate(id, datein, dateout, range, totalPay);
+    //     Console.WriteLine("*********** Updated Reservation *********");
+    //     Console.WriteLine(reservationManager.SearchReservationById(id));
+
+    // }
 
     public void PrintAllReservations()
     {
@@ -560,29 +594,29 @@ public class UserInput
         double amount = roomPay + otherPay;
         int addedPayId = paymentManager.AddPayment(cId, date, amount, roomPay, otherPay, rId, payname, bank);
         Console.WriteLine("Payment Id: " + addedPayId);
-         Console.WriteLine("Do you want a receipt? Y/N");
-         string answer = Console.ReadLine().ToLower();
+        Console.WriteLine("Do you want a receipt? Y/N");
+        string answer = Console.ReadLine().ToLower();
         if (answer == "y")
         {
-            Console.WriteLine ("\n*********** Receipt ********\n");
-           DateTime now = DateTime.Now;
-           Receipt receipt = new(now);
-           Console.WriteLine(receipt);
-           if (paymentManager.SearchPaymentByPaymentId(addedPayId)!=null)
-           {
-            Console.WriteLine(paymentManager.SearchPaymentByPaymentId(addedPayId));
-           }
-           else
-           {
-            throw new FieldAccessException();
-           }
-           
-           Console.ReadLine ();
+            Console.WriteLine("\n*********** Receipt ********\n");
+            DateTime now = DateTime.Now;
+            Receipt receipt = new(now);
+            Console.WriteLine(receipt);
+            if (paymentManager.SearchPaymentByPaymentId(addedPayId) != null)
+            {
+                Console.WriteLine(paymentManager.SearchPaymentByPaymentId(addedPayId));
+            }
+            else
+            {
+                throw new FieldAccessException();
+            }
+
+            Console.ReadLine();
         }
         else if (answer == "n")
         {
             Console.WriteLine("No receipt chosen!");
-    
+
         }
         else
         {
@@ -641,7 +675,7 @@ public class UserInput
         }
         else if (option == "2")
         {
-            AddPaymentInput(); 
+            AddPaymentInput();
             quit = false;
         }
         else if (option == "3")
@@ -654,7 +688,7 @@ public class UserInput
             SearchPaymentByReservIdInput();
             quit = false;
         }
-         else if (option == "5")
+        else if (option == "5")
         {
             RemovePaymentInput();
             quit = false;
@@ -710,7 +744,7 @@ public class UserInput
     }
 
 
-   public bool ReceiptOptionInput(bool quit)
+    public bool ReceiptOptionInput(bool quit)
     {
         Console.Clear();
         Console.WriteLine("********* Receipt option ********* ");
@@ -719,33 +753,33 @@ public class UserInput
         string answer = Console.ReadLine().ToLower();
         if (answer == "y")
         {
-            Console.WriteLine ("\n*********** Receipt ********\n");
+            Console.WriteLine("\n*********** Receipt ********\n");
             DateTime now = DateTime.Now;
             List<Receipt> receipts = new();
-            
+
             //int sPaymentId = TryGetInt("Enter Payment Id: ");
             // Console.WriteLine (paymentManager.SearchPaymentById(sPaymentId));
             // this will be a method to add to the payment databse
             //Receipt receipt = new(now, paymentManager.SearchPaymentByPaymentId(sPaymentId));
-            
+
             int reservId = TryGetInt("Enter Reservation Id: ");
-            Console.WriteLine ("*********** Reservation Infor ****************");
+            Console.WriteLine("*********** Reservation Infor ****************");
             Console.WriteLine(reservationManager.SearchReservationById(reservId));
-             Console.WriteLine ("*********** Payment Infor ********");
-             Receipt receipt = new(now);
-             Console.WriteLine(receipt);
-            if (paymentManager.SearchPaymentByReservId(reservId).Count!=0)
+            Console.WriteLine("*********** Payment Infor ********");
+            Receipt receipt = new(now);
+            Console.WriteLine(receipt);
+            if (paymentManager.SearchPaymentByReservId(reservId).Count != 0)
             {
-               foreach (var item in paymentManager.SearchPaymentByReservId(reservId))
-               {
-                Console.WriteLine (item);
-               } 
+                foreach (var item in paymentManager.SearchPaymentByReservId(reservId))
+                {
+                    Console.WriteLine(item);
+                }
             }
-            
+
             receipts.Add(receipt);
-           
-            
-            
+
+
+
             quit = false;
         }
         else if (answer == "n")
@@ -802,76 +836,76 @@ public class UserInput
             }
             else
             {
-                
-                    if (input < 2)
-                    {
-                        Console.WriteLine("Try again");
-                    }
 
-                    else
-                    {
-                        Console.WriteLine("No more try! Press enter to return to menu");
-                    }
-                    input++;
-                }
-            }
-            return 0;
-        }
-
-        public int TryGetInt(string prompt)
-        {
-            int input = 0;
-            while (input < 3)
-            {
-                Console.WriteLine(prompt);
-                if (int.TryParse(Console.ReadLine(), out int id))
+                if (input < 2)
                 {
-                    return id;
-                    //break;
+                    Console.WriteLine("Try again");
                 }
+
                 else
                 {
-                    if (input < 2)
-                    {
-                        Console.WriteLine("Enter a correct number,try again");
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("No more try! Press enter to return to menu");
-                    }
-                    input++;
+                    Console.WriteLine("No more try! Press enter to return to menu");
                 }
+                input++;
             }
-            return 0;
         }
-
-        public string GetString(string prompt)
-        {
-            Console.Write(prompt);
-
-            return Console.ReadLine();
-        }
-
-        public void NoTryMessage()
-        {
-            Console.Write("\nNO more try. Bye!");
-        }
-
-        public void LoginWrongMessage()
-        {
-            Console.Write("\nLoggin unsucced, try again!");
-        }
-
-        public bool QuitMessage()
-        {
-            bool quit;
-            Console.WriteLine("You have chosen to quit the program");
-            quit = true;
-            return quit;
-        }
-
-
-
+        return 0;
     }
+
+    public int TryGetInt(string prompt)
+    {
+        int input = 0;
+        while (input < 3)
+        {
+            Console.WriteLine(prompt);
+            if (int.TryParse(Console.ReadLine(), out int id))
+            {
+                return id;
+                //break;
+            }
+            else
+            {
+                if (input < 2)
+                {
+                    Console.WriteLine("Enter a correct number,try again");
+                }
+
+                else
+                {
+                    Console.WriteLine("No more try! Press enter to return to menu");
+                }
+                input++;
+            }
+        }
+        return 0;
+    }
+
+    public string GetString(string prompt)
+    {
+        Console.Write(prompt);
+
+        return Console.ReadLine();
+    }
+
+    public void NoTryMessage()
+    {
+        Console.Write("\nNO more try. Bye!");
+    }
+
+    public void LoginWrongMessage()
+    {
+        Console.Write("\nLoggin unsucced, try again!");
+    }
+
+    public bool QuitMessage()
+    {
+        bool quit;
+        Console.WriteLine("You have chosen to quit the program");
+        quit = true;
+        return quit;
+    }
+
+
+
+}
 
