@@ -206,6 +206,7 @@ public class UserInput
     {
         Console.WriteLine("********* Remove customer by Id ********* ");
         customerManager.RemoveCustomerById(TryGetInt("Customer Id: "));
+        Console.WriteLine("Customer has been removed!");
         Console.ReadLine();
     }
 
@@ -324,8 +325,7 @@ public class UserInput
             Console.WriteLine(item);
         }
         int roomToUpdate = TryGetInt("Choose room to be updated: ");
-        int newRoomStatus = TryGetInt("Choose room to be updated: ");
-        Console.WriteLine("Choose room status: \n [1] checked in \n [2] check out \n [3] reserved \n [4] not in use");
+        int newRoomStatus = TryGetInt("Choose room status: \n [1] checked in \n [2] check out \n [3] reserved \n [4] not in use");
         roomManager.UpdateRoomStatusID(roomToUpdate, newRoomStatus);
         Console.WriteLine("Room is updated!");
         Console.ReadLine();
@@ -433,6 +433,7 @@ public class UserInput
             if (employeeManager.SearchEmployee(searchEmployeeId) != null)
             {
                 Console.WriteLine(employeeManager.SearchEmployee(searchEmployeeId));
+                Console.WriteLine("Press any key and hit enter to continue...");
             }
         }
         catch (Exception e)
