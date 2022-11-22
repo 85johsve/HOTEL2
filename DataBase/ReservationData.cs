@@ -61,6 +61,11 @@ public class ReservationData
         var updateReservation = connection.Query<Reservation>($"UPDATE `reservations` SET `date_in`='{date_in}',`date_out`='{date_out}', `date_range`={date_range}, `reservation_totalpay`={newTotalPay} WHERE reservations.reservation_id = {reservation_id};");
     }
 
+    public void UpdateReservationRoom(int reservation_id, int room_id)
+    {
+        var updateReservation = connection.Query<Reservation>($"UPDATE `reservations` SET room_id= {room_id} WHERE reservations.reservation_id ={reservation_id};");
+    }
+
 
     // public void UpdateReservationDateOut(int reservation_id, DateTime date_out, double date_range)
     // {

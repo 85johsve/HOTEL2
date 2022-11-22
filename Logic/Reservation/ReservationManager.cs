@@ -24,6 +24,13 @@ public class ReservationManager
         newReservationData.UpdateReservationDate(reservation_id, date_in, date_out, date_range, newTotalPay);
     }
 
+    public void UpdateReservationRoon(int reservation_id,int room_id)
+    {
+       
+        newReservationData.UpdateReservationRoom(reservation_id,room_id);
+    }
+
+
 
 
     public double GetTimeSpanByDates(DateTime dateIn, DateTime dateOut)
