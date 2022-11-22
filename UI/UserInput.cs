@@ -439,8 +439,7 @@ public class UserInput
     public void SearchEmployeeByIdInput()
     {
         Console.WriteLine("\n******* Search Employee by Id ********\n");
-        Console.WriteLine("Employee Id:");
-        int searchEmployeeId = TryGetInt(Console.ReadLine());
+        int searchEmployeeId = TryGetInt("Employee Id:");
         try
         {
             if (employeeManager.SearchEmployee(searchEmployeeId) != null)
@@ -465,7 +464,7 @@ public class UserInput
             {
                 foreach (var item in employeeManager.ShowEmployees())
                 {
-                    Console.WriteLine(item);
+                    Console.WriteLine(item + " \n \n");
                 }
             }
         }
