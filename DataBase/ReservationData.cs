@@ -61,17 +61,12 @@ public class ReservationData
         var updateReservation = connection.Query<Reservation>($"UPDATE `reservations` SET `date_in`='{date_in}',`date_out`='{date_out}', `date_range`={date_range}, `reservation_totalpay`={newTotalPay} WHERE reservations.reservation_id = {reservation_id};");
     }
 
-<<<<<<< HEAD
+
     // public void UpdateReservationDateOut(int reservation_id, DateTime date_out, double date_range)
     // {
     //     var updateReservation = connection.Query<Reservation>($"UPDATE `reservations` SET `date_out`='{date_out}', `date_range`={date_range} WHERE reservations.reservation_id = {reservation_id};");
     // }
-=======
-    public void UpdateReservationDateOut(int reservation_id, DateTime date_out, double date_range, double newTotalPay)
-    {
-        var updateReservation = connection.Query<Reservation>($"UPDATE `reservations` SET `date_out`='{date_out}', `date_range`={date_range}, `reservation_totalpay`={newTotalPay} WHERE reservations.reservation_id = {reservation_id};");
-    }
->>>>>>> 043efcdebe3f9f638ddd2fbd308e51da017075c6
+
 
     public Reservation GetSingleReservationById(int reservation_id)
     {

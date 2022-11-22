@@ -465,72 +465,7 @@ public class UserInput
          reservationManager.UpdateReservationDate(id,datein,dateout,range,totalPay);
          Console.WriteLine ("*********** Updated Reservation *********");
          Console.WriteLine (reservationManager.SearchReservationById(id));
-        // Console.WriteLine("[1]Update check in date \n[2]Update check out date ");
-        // string choice = Console.ReadLine();
-        // if (choice == "1")
-        // {
-        //     Console.Clear();
-        //     foreach (var item in reservationData.GetReservationList())
-        //     {
-        //         Console.WriteLine(item + "\n");
-        //     }
-        //     Console.WriteLine("Choose reservation ID: ");
-        //     int resID = Int32.Parse(Console.ReadLine());
-        //     Console.WriteLine("Choose new check in date: ");
-        //     DateTime userDateIn;
-        //     if (DateTime.TryParse(Console.ReadLine(), out userDateIn))
-        //     {
-        //         Console.WriteLine("you choosed: " + userDateIn);
-        //     }
-        //     else
-        //     {
-        //         Console.WriteLine("You have entered an incorrect value.");
-        //     }
-        //     Reservation myRoom = reservationData.GetSingleReservationById(resID);
-        //     double newDateTime = reservationManager.GetTimeSpanByDates(userDateIn, myRoom.date_out);
-        //     double newTotalPay = myRoom.room_price * newDateTime;
-        //     reservationData.UpdateReservationDateIn(resID, userDateIn, newDateTime, newTotalPay);
-        //     Console.WriteLine($"You have updated reservation nr {resID} New check in date: {userDateIn}.");
-        //     Console.ReadKey();
-
-        //}
-
-<<<<<<< HEAD
-        // if (choice == "2")
-        // {
-        //     Console.Clear();
-        //     foreach (var item in reservationData.GetReservationList())
-        //     {
-        //         Console.WriteLine(item + "\n");
-        //     }
-        //     Console.WriteLine("Choose reservation ID: ");
-        //     int resID = Int32.Parse(Console.ReadLine());
-        //     Console.WriteLine("Choose new check out date: ");
-        //     DateTime userDateOut;
-        //     if (DateTime.TryParse(Console.ReadLine(), out userDateOut))
-        //     {
-        //         Console.WriteLine("you choosed: " + userDateOut);
-        //     }
-        //     else
-        //     {
-        //         Console.WriteLine("You have entered an incorrect value.");
-        //     }
-
-        //     Reservation myRoom = reservationData.GetSingleReservationById(resID);
-        //     double newDateTime = reservationManager.GetTimeSpanByDates(myRoom.date_in, userDateOut);
-        //     reservationData.UpdateReservationDateOut(resID, userDateOut, newDateTime);
-        //     Console.WriteLine($"You have updated reservation nr {resID} New check out date: {userDateOut}.");
-        //     Console.ReadKey();
-        // }
-=======
-            Reservation myRoom = reservationData.GetSingleReservationById(resID);
-            double newDateTime = reservationManager.GetTimeSpanByDates(myRoom.date_in, userDateOut);
-            double newTotalPay = myRoom.room_price * newDateTime;
-            reservationData.UpdateReservationDateOut(resID, userDateOut, newDateTime, newTotalPay);
-            Console.WriteLine($"You have updated reservation nr {resID} New check out date: {userDateOut}.");
-            Console.ReadKey();
-        }
->>>>>>> 043efcdebe3f9f638ddd2fbd308e51da017075c6
+  
     }
 
     public void PrintAllReservations()
