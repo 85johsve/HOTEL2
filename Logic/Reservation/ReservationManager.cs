@@ -33,31 +33,40 @@ public class ReservationManager
     {
         Console.WriteLine("Book room");
 
-        
+
         int customerIdBooking = TryGetInt("Enter customer ID: ");
         int employeeIdBooking = employeeId;
         Console.WriteLine("Enter a from-date: ");
         DateTime dateIn;
-        if (DateTime.TryParse(Console.ReadLine(), out dateIn))
+        do
         {
-            Console.WriteLine("you choosed: " + dateIn);
-        }
-        else
-        {
-            Console.WriteLine("You have entered an incorrect value.");
-        }
+            if (DateTime.TryParse(Console.ReadLine(), out dateIn))
+            {
+                Console.WriteLine("you choosed: " + dateIn);
+                break;
+            }
+            else
+            {
+                Console.WriteLine("You have entered an incorrect value.");
+            }
+        } while (true);
 
 
         Console.WriteLine("Enter a to-date: ");
         DateTime dateOut;
-        if (DateTime.TryParse(Console.ReadLine(), out dateOut))
+        do
         {
-            Console.WriteLine("you choosed: " + dateOut);
-        }
-        else
-        {
-            Console.WriteLine("You have entered an incorrect value.");
-        }
+            if (DateTime.TryParse(Console.ReadLine(), out dateOut))
+            {
+                Console.WriteLine("you choosed: " + dateOut);
+                break;
+            }
+            else
+            {
+                Console.WriteLine("You have entered an incorrect value.");
+            }
+        } while (true);
+
         Console.ReadLine();
 
         List<Reservation> dateInList = new();
@@ -144,10 +153,8 @@ public class ReservationManager
                 Console.Clear();
                 break;
             }
+  
         }
-        Console.Clear();
-        Console.WriteLine("selected room did not exist");
-        Console.ReadKey();
     }
 
 
@@ -253,7 +260,7 @@ public class ReservationManager
             Console.WriteLine("room nr: " + gg.room_id);
         }
         DateTime todaysDate = DateTime.Now;
-        double date_range = GetTimeSpanByDates(dateIn, dateOut);
+        double date_range = GetTimeSpanByDates(userDateIn, userDateOut);
         double roomSelectedPrice = 0;
         double totalPay;
         int roomSelected = TryGetInt("Choose room to book:");
@@ -276,13 +283,8 @@ public class ReservationManager
                 Console.Clear();
                 break;
             }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("selected room did not exist");
-                Console.ReadKey();
-                
-            }
+            
+  
         }
     }
 
@@ -291,7 +293,7 @@ public class ReservationManager
         return newReservationData.GetSingleReservationById(sReservationId);
     }
 
-     
+
 
     public double GetTimeSpanById(int reservation_id)
     {
@@ -310,7 +312,7 @@ public class ReservationManager
     public double CalculatingTotalRoomPay(int id) //When we update reservation time span, this need to be updated as well. 
     {
 
-       return newReservationData.GetRoomPrice(id)*GetTimeSpanById(id);//insert into reservation 
+        return newReservationData.GetRoomPrice(id) * GetTimeSpanById(id);//insert into reservation 
 
     }
 
