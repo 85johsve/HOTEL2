@@ -25,8 +25,7 @@ public class EmployeeManager
 
     public Employee SearchEmployee(int sEmployeeId)
     {
-         return newEmployeeData.GetEmployeeById(sEmployeeId);
-       
+         return newEmployeeData.GetEmployeeById(sEmployeeId); 
     }
 
     public bool EmployeeLogInNameId(int id,string fname )
@@ -38,6 +37,4 @@ public class EmployeeManager
     {
        return newEmployeeData.GetManagerLogInNameId(id,fname);
     }
-
-
 }

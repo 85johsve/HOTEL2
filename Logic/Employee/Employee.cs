@@ -8,11 +8,6 @@ public class Employee
     public string employee_email { get; set; }
     public int jobTitle_name { get; set; }
 
-
-    public Employee()
-    {
-        
-    }
     public override string ToString()
     {
         return $"employee id: " + " " + employee_id + "\nemployee firstname: " + employee_fname + " " + "\nemployee lastname: " + employee_lname + " " + "\nemployee phone: " + employee_phone + " " + "\nemployee email: " + employee_email + " " + "\njobtitle: " + jobTitle_name;

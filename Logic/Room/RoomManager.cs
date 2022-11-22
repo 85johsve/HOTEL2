@@ -1,13 +1,10 @@
 using Dapper;
 using MySqlConnector;
 
-// dotnet add package dapper
-// dotnet add package mysqlconnector
 public class RoomManager
 {
     private List<Room> rooms;
     RoomData newRoomData = new();
-
 
     public List<Room> ShowAllRooms()
     {
@@ -42,6 +39,7 @@ public class RoomManager
     {
         newRoomData.UpdateRoomStatus(roomToCheckIn, newRoomCheckInStatus);
     }
+
     public void CheckOutRoomStatusID(string roomToCheckOut, string newRoomCheckOutStatus)
     {
         newRoomData.UpdateRoomStatus(roomToCheckOut, newRoomCheckOutStatus);
@@ -50,11 +48,10 @@ public class RoomManager
     public int AddRoom(int typeID, int statusID, double price)
     {
         int InsertRoomID = newRoomData.InsertRoom(typeID, statusID, price);
-
         return InsertRoomID;
     }
 
-    public void RemoveRoomById(int rRoomId)    // how to controll this, make sure if the id does not exist and try catch it?
+    public void RemoveRoomById(int rRoomId) 
     {
         newRoomData.DeleteRoomById(rRoomId);
     }
