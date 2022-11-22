@@ -10,7 +10,7 @@ public class ReservationManager
     private DateTime dateIn;
     private DateTime dateOut;
     public double numberOfDays;
-    //UserInput userInput = new();
+   
 
 
     public List<Reservation> ShowAllReservations()
@@ -26,12 +26,8 @@ public class ReservationManager
 
     public void UpdateReservationRoon(int reservation_id,int room_id)
     {
-       
         newReservationData.UpdateReservationRoom(reservation_id,room_id);
     }
-
-
-
 
     public double GetTimeSpanByDates(DateTime dateIn, DateTime dateOut)
     {
@@ -39,8 +35,6 @@ public class ReservationManager
         double numberOfDays = timeSpan.TotalDays;
         return numberOfDays;
     }
-
-
 
     public void EmployeeBookRoom(int employeeId)
     {
@@ -168,14 +162,12 @@ public class ReservationManager
         if (reservateRoom == true)
         {
                 Console.WriteLine("new reservation id: " + newReservationData.MakeReservation(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay));
-                // newReservationData.MakeReservationCustomer(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
                 Console.WriteLine($"You have booked room nr {roomSelected} from: {dateIn} to: {dateOut}.");
                 Console.ReadKey();
                 Console.Clear();
             
         }
     }
-
 
     public void CustomerBookRoom(int CustomerId)
     {
@@ -303,7 +295,6 @@ public class ReservationManager
         if (reservateRoom == true)
         {
             Console.WriteLine("new reservation id: " + newReservationData.MakeReservation(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay));
-            // newReservationData.MakeReservationCustomer(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
             Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
             Console.ReadKey();
             Console.Clear();
@@ -316,8 +307,6 @@ public class ReservationManager
     {
         return newReservationData.GetSingleReservationById(sReservationId);
     }
-
-
 
     public double GetTimeSpanById(int reservation_id)
     {
@@ -332,8 +321,7 @@ public class ReservationManager
         return numberOfDays;
     }
 
-
-    public double CalculatingTotalRoomPay(int id) //When we update reservation time span, this need to be updated as well. 
+    public double CalculatingTotalRoomPay(int id) 
     {
 
         return newReservationData.GetRoomPrice(id) * GetTimeSpanById(id);//insert into reservation 
@@ -342,7 +330,6 @@ public class ReservationManager
 
     public int TryGetInt(string prompt)
     {
-
         Console.WriteLine(prompt);
         if (int.TryParse(Console.ReadLine(), out int id))
         {
