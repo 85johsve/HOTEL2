@@ -184,13 +184,13 @@ public class UserInput
     public void SearchCustomerByIdInput()
     {
         Console.WriteLine("\n******* Search customer by Id ********\n");
-        Console.WriteLine("Customer Id:");
-        int searchCustomerId = TryGetInt(Console.ReadLine());
+        int searchCustomerId = TryGetInt("Customer Id:");
         try
         {
             if (customerManager.SearchCustomerById(searchCustomerId) != null)
             {
                 Console.WriteLine(customerManager.SearchCustomerById(searchCustomerId));
+                Console.ReadKey();
             }
         }
         catch (Exception e)

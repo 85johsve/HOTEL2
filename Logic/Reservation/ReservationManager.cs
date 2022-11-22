@@ -305,7 +305,7 @@ public class ReservationManager
 
         if (reservateRoom == true)
         {
-            Console.WriteLine("new reservation id: " + newReservationData.MakeReservation(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay));
+            Console.WriteLine("new reservation id: " + newReservationData.MakeReservation(customerIdBooking, employee_id, roomSelected, todaysDate, userDateIn, userDateOut, date_range, totalPay));
             Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
             Console.ReadKey();
             Console.Clear();
