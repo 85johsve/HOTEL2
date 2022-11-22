@@ -13,6 +13,106 @@ public class UserInput
     public bool managerIsLoggedIn;
     public bool customerIsLoggedIn;
 
+    public void EmployeeCheckinInput(int employeeId)
+    {
+
+        int reservid = TryGetInt("Enter reservation id: ");
+        if (reservationManager.SearchReservationById(reservid) != null)
+        {
+            Console.WriteLine(reservationManager.SearchReservationById(reservid));
+        }
+        else
+        {
+            throw new ArgumentNullException();
+        }
+
+        Console.WriteLine("Do you want to uppdate Reservation? Y/N");
+        string Answer = Console.ReadLine().ToLower();
+
+        if (Answer == "y")
+        {
+            Console.WriteLine("Choose your option: [1]uppdate checking in or out date. [2]uppdate room");
+            string option = Console.ReadLine();
+            if (option == "1")
+            {
+                Console.WriteLine("Enter new checkin date: ");
+                DateTime datein = DateTime.Parse(Console.ReadLine());
+                Console.WriteLine("Enter new checkout date: ");
+                DateTime dateout = DateTime.Parse(Console.ReadLine());
+                double range = reservationManager.GetTimeSpanByDates(datein, dateout);
+                double totalPay = reservationManager.CalculatingTotalRoomPay(reservid);
+                reservationManager.UpdateReservationDate(reservid, datein, dateout, range, totalPay);
+                Console.ReadLine();
+                Console.WriteLine("*********** Updated Reservation *********");
+                Console.WriteLine(reservationManager.SearchReservationById(reservid));
+                roomManager.CheckInRoomStatusRenewByRoomId(reservationManager.GetRoomIdByReservId(reservid));
+                Console.WriteLine("Check in done");
+            }
+            if (option == "2")
+            {
+                PrintAvailableRooms();
+                int roomid = TryGetInt("Enter new room id: ");
+                reservationManager.UpdateReservationRoon(reservid, roomid);
+                Console.WriteLine("*********** Updated Reservation *********");
+                Console.WriteLine(reservationManager.SearchReservationById(reservid));
+                Console.ReadLine();
+                roomManager.CheckInRoomStatusRenewByRoomId(reservationManager.GetRoomIdByReservId(reservid));
+                Console.WriteLine("Check in done");
+            }
+        }
+        else if (Answer == "n")
+        {
+            roomManager.CheckInRoomStatusRenewByRoomId(reservationManager.GetRoomIdByReservId(reservid));
+            Console.WriteLine("Check in done");
+        }
+
+    }
+
+    public void EmployeeCheckOutInput(int employeeId)
+    {
+        Console.WriteLine("Payment date: ");
+        DateTime date = DateTime.Parse(Console.ReadLine());
+        int checkOurRoomId = TryGetInt("Enter checking out room Id: ");
+        int checkOutReservId = TryGetInt("Enter Reservation Id");
+        roomManager.CheckOutRoomStatusRenewByRoomId(checkOurRoomId);
+        int rId = TryGetInt("Reservation ID: ");
+        int cId = TryGetInt("Customer ID: ");//may not need it in future
+        double roomPay = reservationManager.CalculatingTotalRoomPay(rId);
+        string payname = GetString("Other products: \n");
+        double otherPay = GetDouble("Payment:");
+        string bank = GetString("Payment banInfor: ");
+        double amount = roomPay + otherPay;
+        int addedPayId = paymentManager.AddPayment(cId, date, amount, roomPay, otherPay, rId, payname, bank);
+        Console.WriteLine("Payment Id: " + addedPayId);
+        Console.WriteLine("Do you want a receipt? Y/N");
+        string answer = Console.ReadLine().ToLower();
+        if (answer == "y")
+        {
+            Console.WriteLine("\n*********** Receipt ********\n");
+            DateTime now = DateTime.Now;
+            Receipt receipt = new(now);
+            Console.WriteLine(receipt);
+            if (paymentManager.SearchPaymentByPaymentId(addedPayId) != null)
+            {
+                Console.WriteLine(paymentManager.SearchPaymentByPaymentId(addedPayId));
+            }
+            else
+            {
+                throw new FieldAccessException();
+            }
+
+            Console.ReadLine();
+        }
+        else if (answer == "n")
+        {
+            Console.WriteLine("No receipt chosen!");
+        }
+        else
+        {
+            Console.WriteLine("your choice does not exist!");
+        }
+    }
+
     public void EmployeeReservationUpdate(int employeeId)
     {
         int reservid = TryGetInt("Enter reservation id: ");
@@ -27,33 +127,37 @@ public class UserInput
 
         Console.WriteLine("Do you want to uppdate Reservation? Y/N");
         string Answer = Console.ReadLine().ToLower();
-        
+
         if (Answer == "y")
         {
-            Console.WriteLine ("Choose your option: [1]uppdate checking in or out date. [2]uppdate room");
-           string option = Console.ReadLine();
-           if (option=="1")
-           {
-            Console.WriteLine("Enter new checkin date: ");
-             DateTime datein = DateTime.Parse(Console.ReadLine());
-             Console.WriteLine("Enter new checkout date: ");
-            DateTime dateout = DateTime.Parse(Console.ReadLine());
-            double range = reservationManager.GetTimeSpanByDates(datein, dateout);
-            double totalPay = reservationManager.CalculatingTotalRoomPay(reservid);
-            reservationManager.UpdateReservationDate(reservid, datein, dateout, range, totalPay);
-            Console.ReadLine ();
-            Console.WriteLine("*********** Updated Reservation *********");
-            Console.WriteLine(reservationManager.SearchReservationById(reservid));
-           }
-           if (option=="2")
-           {
-            PrintAvailableRooms();
-            int roomid = TryGetInt ("Enter new room id: ");
-            reservationManager.UpdateReservationRoon(reservid,roomid);
-            Console.WriteLine("*********** Updated Reservation *********");
-            Console.WriteLine (reservationManager.SearchReservationById(reservid));
-            Console.ReadLine ();
-           }
+            Console.WriteLine("Choose your option: [1]uppdate checking in or out date. [2]uppdate room");
+            string option = Console.ReadLine();
+            if (option == "1")
+            {
+                Console.WriteLine("Enter new checkin date: ");
+                DateTime datein = DateTime.Parse(Console.ReadLine());
+                Console.WriteLine("Enter new checkout date: ");
+                DateTime dateout = DateTime.Parse(Console.ReadLine());
+                double range = reservationManager.GetTimeSpanByDates(datein, dateout);
+                double totalPay = reservationManager.CalculatingTotalRoomPay(reservid);
+                reservationManager.UpdateReservationDate(reservid, datein, dateout, range, totalPay);
+                Console.ReadLine();
+                Console.WriteLine("*********** Updated Reservation *********");
+                Console.WriteLine(reservationManager.SearchReservationById(reservid));
+            }
+            if (option == "2")
+            {
+                PrintAvailableRooms();
+                int roomid = TryGetInt("Enter new room id: ");
+                reservationManager.UpdateReservationRoon(reservid, roomid);
+                Console.WriteLine("*********** Updated Reservation *********");
+                Console.WriteLine(reservationManager.SearchReservationById(reservid));
+                Console.ReadLine();
+            }
+        }
+        else if (Answer == "n")
+        {
+
         }
     }
 
@@ -211,7 +315,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-    public void UpdateRoomStatusInput()  
+    public void UpdateRoomStatusInput()
     {
         Console.WriteLine("\n******* Update room status ********\n");
 
@@ -219,17 +323,16 @@ public class UserInput
         {
             Console.WriteLine(item);
         }
-        Console.WriteLine("Choose room to update: ");
-        string roomToUpdate = Console.ReadLine();
+        int roomToUpdate = TryGetInt("Choose room to be updated: ");
+        int newRoomStatus = TryGetInt("Choose room to be updated: ");
         Console.WriteLine("Choose room status: \n [1] checked in \n [2] check out \n [3] reserved \n [4] not in use");
-        string newRoomStatus = Console.ReadLine();
         roomManager.UpdateRoomStatusID(roomToUpdate, newRoomStatus);
         Console.WriteLine("Room is updated!");
         Console.ReadLine();
     }
 
     public void AddRoomInput()
-    {  
+    {
         Console.WriteLine("********* Add Room ********* ");
         Console.WriteLine("price");
         double p = double.Parse(Console.ReadLine());
@@ -447,7 +550,7 @@ public class UserInput
         Console.WriteLine("Payment date: ");
         DateTime date = DateTime.Parse(Console.ReadLine());
         int rId = TryGetInt("Reservation ID: ");
-        int cId = TryGetInt("Customer ID: ");
+        int cId = TryGetInt("Customer ID: ");//may not need it in future
         double roomPay = reservationManager.CalculatingTotalRoomPay(rId);
         string payname = GetString("Other products: \n");
         double otherPay = GetDouble("Payment:");

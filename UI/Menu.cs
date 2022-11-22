@@ -59,14 +59,11 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.CheckIn: //need change room status
-                    userInput.EmployeeReservationUpdate(employeeId);
+                    userInput.EmployeeCheckinInput(employeeId);
                     break;
 
                 case MenuChoiceEmployee.CheckOut: //need change room status
-                                                  //     userInput.EmployeeCheckOutUpdate(employeeId);
-                                                  //     break;
-
-
+                    userInput.EmployeeCheckOutInput(employeeId);
                     Console.ReadLine();
                     break;
 

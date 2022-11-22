@@ -29,6 +29,17 @@ public class ReservationManager
         newReservationData.UpdateReservationRoom(reservation_id,room_id);
     }
 
+     public int GetRoomIdByReservId(int reservation_id)
+    {
+        return newReservationData.GetRoomByReservId(reservation_id);
+    }
+
+    
+    public int GetReservationIdByRoomId(int roomId)
+    {
+        return newReservationData.GetReservIdByRoomId(roomId);
+    }
+
     public double GetTimeSpanByDates(DateTime dateIn, DateTime dateOut)
     {
         timeSpan = dateOut - dateIn;

@@ -30,7 +30,7 @@ class EmployeeData
     public List<Employee> GetEmployeeList()
     {
         Open();
-        var employees = connection.Query<Employee>("SELECT * FROM employees;").ToList();
+        var employees = connection.Query<Employee>("SELECT employee_id,employee_fname, employee_lname, employee_phone, employee_email ,jobTitle_name FROM employees LEFT JOIN jobtitles ON employees.jobTitle_id = jobtitles.jobTitle_id").ToList();
         return employees;
     }
 

@@ -75,4 +75,15 @@ public class ReservationData
         return result.room_price;
     }
 
+    public int GetRoomByReservId(int reservation_id) 
+    {
+        var result = connection.QuerySingle<Reservation> ($"SELECT reservations.room_id FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.reservation_id = {reservation_id};");
+        return result.room_id;
+    }
+
+     public int GetReservIdByRoomId(int room_id) 
+    {
+        var result = connection.QuerySingle<Reservation> ($"SELECT reservation_id FROM  reservations INNER JOIN rooms ON reservations.room_id = rooms.room_id WHERE reservations.room_id = {room_id};");
+        return result.reservation_id;
+    }
 }

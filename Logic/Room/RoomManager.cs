@@ -30,19 +30,19 @@ public class RoomManager
         return newRoomData.GetRoomById(sRoomId);
     }
 
-    public void UpdateRoomStatusID(string roomToUpdate, string newRoomStatus)
+    public void UpdateRoomStatusID(int roomToUpdate, int newRoomStatus)
     {
         newRoomData.UpdateRoomStatus(roomToUpdate, newRoomStatus);
     }
 
-    public void CheckInRoomStatusID(string roomToCheckIn, string newRoomCheckInStatus)
+    public void CheckInRoomStatusRenewByRoomId(int roomToCheckIn)
     {
-        newRoomData.UpdateRoomStatus(roomToCheckIn, newRoomCheckInStatus);
+        newRoomData.CheckInRoomStatus(roomToCheckIn);
     }
 
-    public void CheckOutRoomStatusID(string roomToCheckOut, string newRoomCheckOutStatus)
+    public void CheckOutRoomStatusRenewByRoomId(int roomToCheckOut)
     {
-        newRoomData.UpdateRoomStatus(roomToCheckOut, newRoomCheckOutStatus);
+        newRoomData.CheckOutRoomStatus(roomToCheckOut);
     }
 
     public int AddRoom(int typeID, int statusID, double price)

@@ -32,18 +32,18 @@ class RoomData
         return rooms;
     }
 
-    public void UpdateRoomStatus(string roomToUpdate, string newRoomStatus)
+    public void UpdateRoomStatus(int roomToUpdate, int newRoomStatus)
     {
         Open();
         var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id={newRoomStatus} WHERE room_id = {roomToUpdate};");
     }
 
-    public void CheckInRoomStatus(string roomToCheckIn, string newRoomCheckInStatus)
+    public void CheckInRoomStatus(int roomToCheckIn)
     {
         var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id=1 WHERE room_id = {roomToCheckIn};");
     }
 
-    public void CheckOutRoomStatus(string roomToCheckOut, string newRoomCheckOutStatus)
+    public void CheckOutRoomStatus(int roomToCheckOut)
     {
         var updateRoom = connection.Query<Room>($"UPDATE rooms SET roomStatus_id=2 WHERE room_id = {roomToCheckOut};");
     }

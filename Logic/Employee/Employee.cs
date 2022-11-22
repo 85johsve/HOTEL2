@@ -6,7 +6,7 @@ public class Employee
     public string employee_lname { get; set; }
     public int employee_phone { get; set; }
     public string employee_email { get; set; }
-    public int jobTitle_name { get; set; }
+    public string jobTitle_name { get; set; }
 
     public override string ToString()
     {
