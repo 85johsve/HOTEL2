@@ -66,7 +66,7 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.CheckIn: //is done! Jessica// need more checkin detail
-                    userInput.EmployeeCheckInReservationUpdate(employeeId);
+                    userInput.EmployeeReservationUpdate(employeeId);
                     break;
 
                 // case MenuChoiceEmployee.CheckOut: //is done! Jessica// need more checkin detail
@@ -85,8 +85,9 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.UpdateReservationDate:// is done! Johan//need to Show more detail on the table
+                 userInput.EmployeeReservationUpdate(employeeId);
                    // userInput.CheckInOutDateUpdateInput();
-                   
+
                     break;
 
                 case MenuChoiceEmployee.ReadReviews:

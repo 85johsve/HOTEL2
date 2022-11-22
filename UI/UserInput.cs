@@ -71,16 +71,21 @@ public class UserInput
     //     // Console.WriteLine();
     // }
 
-    public void EmployeeCheckInReservationUpdate(int employeeId)
+    public void EmployeeReservationUpdate(int employeeId)
     {
 
-        int reservid = TryGetInt("Enter reservation id to search: ");
+        int reservid = TryGetInt("Enter reservation id: ");
         // try
         // {
         if (reservationManager.SearchReservationById(reservid) != null)
         {
             Console.WriteLine(reservationManager.SearchReservationById(reservid));
         }
+        else
+        {
+            throw new ArgumentNullException();
+        }
+
         Console.WriteLine("Do you want to uppdate Reservation? Y/N");
         string Answer = Console.ReadLine().ToLower();
         
@@ -90,19 +95,25 @@ public class UserInput
            string option = Console.ReadLine();
            if (option=="1")
            {
+            Console.WriteLine("Enter new checkin date: ");
              DateTime datein = DateTime.Parse(Console.ReadLine());
+             Console.WriteLine("Enter new checkout date: ");
             DateTime dateout = DateTime.Parse(Console.ReadLine());
             double range = reservationManager.GetTimeSpanByDates(datein, dateout);
             double totalPay = reservationManager.CalculatingTotalRoomPay(reservid);
             reservationManager.UpdateReservationDate(reservid, datein, dateout, range, totalPay);
+            Console.ReadLine ();
             Console.WriteLine("*********** Updated Reservation *********");
             Console.WriteLine(reservationManager.SearchReservationById(reservid));
            }
            if (option=="2")
            {
-            roomManager.ShowAvailableRoom();
+            PrintAvailableRooms();
             int roomid = TryGetInt ("Enter new room id: ");
             reservationManager.UpdateReservationRoon(reservid,roomid);
+            Console.WriteLine("*********** Updated Reservation *********");
+            Console.WriteLine (reservationManager.SearchReservationById(reservid));
+            Console.ReadLine ();
            }
            
         }
