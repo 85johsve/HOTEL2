@@ -15,6 +15,7 @@ class CustomerData
         connection = new MySqlConnection(("Server=13.51.47.91;Database=hotelmg;Uid=root;Pwd=i-077e801baa9e32977;"));
 
     }
+
     public void Open()
     {
         try
@@ -24,10 +25,8 @@ class CustomerData
         }
         catch (Exception e)
         {
-
             throw new FieldAccessException();
         }
-
     }
 
     public List<Customer> GetCustomerList()
@@ -35,14 +34,13 @@ class CustomerData
         Open();
         var customers = connection.Query<Customer>("SELECT * FROM customers;").ToList();
         return customers;
-
     }
+
     public Customer GetCustomerById(int idNr)
     {
         Open();
         var customer = connection.QuerySingle<Customer>($"SELECT * FROM customers WHERE customer_id  ={idNr};");
         return customer;
-
     }
 
     public int InsertCustomer(string fname, string lname, int phone, string email, string city, string country, string address)
@@ -58,62 +56,43 @@ class CustomerData
         r.Add("@customer_address", address);
         string sql = $@"INSERT INTO customers (customer_fname, customer_lname, customer_phone,customer_email,customer_city, customer_country, customer_address) VALUES (@customer_fname,@customer_lname,@customer_phone,@customer_email,@customer_city,@customer_country,@customer_address); SELECT LAST_INSERT_ID() ";
         int Id = connection.Query<int>(sql, r).First();
-
         return Id;
-
     }
 
     public void DeleteCustomerById(int number)
     {
         Open();
         var deleteCustomer = connection.Query<Customer>($"DELETE FROM `customers` WHERE customer_id = {number}");
-
     }
 
-    public bool GetCustomerLogInNameId(int accountNr,string pass)
+    public bool GetCustomerLogInNameId(int accountNr, string pass)
     {
         Open();
         string sql = $@"select * from customers where customer_fname = '{pass}' and customer_id={accountNr};";
-
         var result = connection.Query<Customer>(sql);
-
-       if (result.Count() > 0)
+        if (result.Count() > 0)
             return true;
         else
             return false;
     }
 
-public bool IsValidUser(string userName, int passWord)
-
-{
-    Open();
-bool loginSuccessful = false;
- string sql = $@"SELECT * from customers WHERE customer_fname ={userName} and customer_id={passWord}";
-
-MySqlCommand sqlCommand= new(sql, connection);
-sqlCommand.Parameters.Add(new MySqlParameter("customer_fname", userName));
-sqlCommand.Parameters.Add(new MySqlParameter("customer_id", passWord));
-MySqlDataReader rdr = sqlCommand.ExecuteReader();
-
-
-if (rdr!=null) 
-   loginSuccessful = true;
-
-return loginSuccessful ;
-}
-
-
-
-
-
-
-
-
+    public bool IsValidUser(string userName, int passWord)
+    {
+        Open();
+        bool loginSuccessful = false;
+        string sql = $@"SELECT * from customers WHERE customer_fname ={userName} and customer_id={passWord}";
+        MySqlCommand sqlCommand = new(sql, connection);
+        sqlCommand.Parameters.Add(new MySqlParameter("customer_fname", userName));
+        sqlCommand.Parameters.Add(new MySqlParameter("customer_id", passWord));
+        MySqlDataReader rdr = sqlCommand.ExecuteReader();
+        if (rdr != null)
+            loginSuccessful = true;
+        return loginSuccessful;
+    }
 
     public string GetCustomerLogInPass(int customerId)
     {
         var firsName = connection.QuerySingle<Customer>($@"SELECT customer_fname FROM customers WHERE customer_id={customerId}").ToString();
-
         return firsName;
     }
 }
