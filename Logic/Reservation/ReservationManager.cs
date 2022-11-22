@@ -18,6 +18,12 @@ public class ReservationManager
         return newReservationData.GetReservationList();
     }
 
+    public void UpdateReservationDate(int reservation_id, DateTime date_in, DateTime date_out,double date_range, double newTotalPay)
+    {
+       
+        newReservationData.UpdateReservationDate(reservation_id,date_in, date_out,date_range,newTotalPay);
+    }
+
 
 
     public double GetTimeSpanByDates(DateTime dateIn, DateTime dateOut)
