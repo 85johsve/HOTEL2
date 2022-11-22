@@ -18,10 +18,10 @@ public class ReservationManager
         return newReservationData.GetReservationList();
     }
 
-    public void UpdateReservationDate(int reservation_id, DateTime date_in, DateTime date_out,double date_range, double newTotalPay)
+    public void UpdateReservationDate(int reservation_id, DateTime date_in, DateTime date_out, double date_range, double newTotalPay)
     {
-       
-        newReservationData.UpdateReservationDate(reservation_id,date_in, date_out,date_range,newTotalPay);
+
+        newReservationData.UpdateReservationDate(reservation_id, date_in, date_out, date_range, newTotalPay);
     }
 
 
@@ -139,6 +139,7 @@ public class ReservationManager
         double date_range = GetTimeSpanByDates(dateIn, dateOut);
         double roomSelectedPrice = 0;
         double totalPay;
+        bool reservateRoom = false;
         int roomSelected = TryGetInt("Choose room to book:");
         foreach (var hh in availabeRooms)
         {
@@ -152,14 +153,19 @@ public class ReservationManager
         {
             if (roomSelected == room.room_id)
             {
+                reservateRoom = true;
+            }
+
+        }
+
+        if (reservateRoom == true)
+        {
                 Console.WriteLine("new reservation id: " + newReservationData.MakeReservation(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay));
                 // newReservationData.MakeReservationCustomer(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
                 Console.WriteLine($"You have booked room nr {roomSelected} from: {dateIn} to: {dateOut}.");
                 Console.ReadKey();
                 Console.Clear();
-                break;
-            }
-  
+            
         }
     }
 
@@ -269,6 +275,7 @@ public class ReservationManager
         double date_range = GetTimeSpanByDates(userDateIn, userDateOut);
         double roomSelectedPrice = 0;
         double totalPay;
+        bool reservateRoom = false;
         int roomSelected = TryGetInt("Choose room to book:");
         foreach (var hh in availabeRooms)
         {
@@ -282,15 +289,19 @@ public class ReservationManager
         {
             if (roomSelected == room.room_id)
             {
-                Console.WriteLine(newReservationData.MakeReservation(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay));
-                // newReservationData.MakeReservationCustomer(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
-                Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
-                Console.ReadKey();
-                Console.Clear();
-                break;
+                reservateRoom = true;
             }
-            
-  
+        }
+
+        if (reservateRoom == true)
+        {
+            Console.WriteLine("new reservation id: " + newReservationData.MakeReservation(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay));
+            // newReservationData.MakeReservationCustomer(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
+            Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
+            Console.ReadKey();
+            Console.Clear();
+
+
         }
     }
 
