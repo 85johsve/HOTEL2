@@ -439,7 +439,7 @@ public class UserInput
     public void AddEmployeeInput()//Tina, change the formation, put all in one Console.Write()
     {
         Console.WriteLine("********* Add Employee ********* ");
-        Console.WriteLine("Added employee ID: " + employeeManager.AddEmployee(TryGetInt("Job Title ID: "), GetString("First name"), GetString("Last name"), TryGetInt("Phone: "), GetString("Email: ")));
+        Console.WriteLine("Added employee ID: " + employeeManager.AddEmployee(TryGetInt("Job Title ID: "), GetString("First name: "), GetString("Last name: "), TryGetInt("Phone: "), GetString("Email: ")));
         // Console.WriteLine("Added customer ID: "))
         // int addEId = employeeManager.AddEmployee(TryGetInt("Job Title ID: "), GetString("First name"), GetString("Last name"), TryGetInt("Phone: "), GetString("Email: "));
         // Console.WriteLine("Added customer ID: ");
@@ -450,8 +450,7 @@ public class UserInput
     public void SearchEmployeeByIdInput()
     {
         Console.WriteLine("\n******* Search Employee by Id ********\n");
-        Console.WriteLine("Employee Id:");
-        int searchEmployeeId = TryGetInt(Console.ReadLine());
+        int searchEmployeeId = TryGetInt("Employee Id:");
         try
         {
             if (employeeManager.SearchEmployee(searchEmployeeId) != null)
@@ -476,7 +475,7 @@ public class UserInput
             {
                 foreach (var item in employeeManager.ShowEmployees())
                 {
-                    Console.WriteLine(item);
+                    Console.WriteLine(item + " \n \n");
                 }
             }
         }

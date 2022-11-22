@@ -158,6 +158,7 @@ class Menu
         bool quit = false;
         while (!quit)
         {
+            Console.Clear();
             MenuChoiceManager ManagerChoice = ManagerEnumSwitch();
             Console.Clear();
             Console.WriteLine("\n********* Manager Menu *********\n ");
