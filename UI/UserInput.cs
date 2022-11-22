@@ -495,6 +495,7 @@ public class UserInput
 
         //}
 
+<<<<<<< HEAD
         // if (choice == "2")
         // {
         //     Console.Clear();
@@ -521,6 +522,15 @@ public class UserInput
         //     Console.WriteLine($"You have updated reservation nr {resID} New check out date: {userDateOut}.");
         //     Console.ReadKey();
         // }
+=======
+            Reservation myRoom = reservationData.GetSingleReservationById(resID);
+            double newDateTime = reservationManager.GetTimeSpanByDates(myRoom.date_in, userDateOut);
+            double newTotalPay = myRoom.room_price * newDateTime;
+            reservationData.UpdateReservationDateOut(resID, userDateOut, newDateTime, newTotalPay);
+            Console.WriteLine($"You have updated reservation nr {resID} New check out date: {userDateOut}.");
+            Console.ReadKey();
+        }
+>>>>>>> 043efcdebe3f9f638ddd2fbd308e51da017075c6
     }
 
     public void PrintAllReservations()
