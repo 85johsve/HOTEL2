@@ -23,7 +23,7 @@ public class ReservationManager
     public double GetTimeSpanByDates(DateTime dateIn, DateTime dateOut)
     {
         timeSpan = dateOut - dateIn;
-        numberOfDays = timeSpan.TotalDays;
+        double numberOfDays = timeSpan.TotalDays;
         return numberOfDays;
     }
 
@@ -137,11 +137,12 @@ public class ReservationManager
         {
             if (roomSelected == room.room_id)
             {
-        newReservationData.MakeReservationCustomer(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
-        Console.WriteLine($"You have booked room nr {roomSelected} from: {dateIn} to: {dateOut}.");
-        Console.ReadKey();
-        Console.Clear();
-        break;
+                Console.WriteLine("new reservation id: " + newReservationData.MakeReservation(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay));
+                // newReservationData.MakeReservationCustomer(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
+                Console.WriteLine($"You have booked room nr {roomSelected} from: {dateIn} to: {dateOut}.");
+                Console.ReadKey();
+                Console.Clear();
+                break;
             }
         }
         Console.Clear();
@@ -268,16 +269,21 @@ public class ReservationManager
         {
             if (roomSelected == room.room_id)
             {
-                newReservationData.MakeReservationCustomer(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
+                Console.WriteLine(newReservationData.MakeReservation(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay));
+                // newReservationData.MakeReservationCustomer(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
                 Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
                 Console.ReadKey();
                 Console.Clear();
                 break;
             }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("selected room did not exist");
+                Console.ReadKey();
+                
+            }
         }
-        Console.Clear();
-        Console.WriteLine("selected room did not exist");
-        Console.ReadKey();
     }
 
     public Reservation SearchReservationById(int sReservationId)
