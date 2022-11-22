@@ -15,7 +15,7 @@ public class UserInput
     public bool managerIsLoggedIn;
     public bool customerIsLoggedIn;
 
-    public void EmployeeCheckOutUpdate()
+    public void EmployeeCheckOutUpdate(int employeeId)
     {
         Menu menu = new();
         ShowSingleReservationByIdInput();
@@ -45,7 +45,7 @@ public class UserInput
             }
             else if (CheckOutAnswer == "n")
             {
-                menu.GetEmployeeMenu();
+                menu.GetEmployeeMenu(employeeId);
             }
             else
             {
@@ -70,7 +70,7 @@ public class UserInput
         // Console.WriteLine();
     }
 
-    public void EmployeeCheckInUpdate()
+    public void EmployeeCheckInUpdate(int employeeId)
     {
         Menu menu = new();
         ShowSingleReservationByIdInput();
@@ -100,7 +100,7 @@ public class UserInput
             }
             else if (CheckInAnswer == "n")
             {
-                menu.GetEmployeeMenu();
+                menu.GetEmployeeMenu(employeeId);
             }
             else
             {
@@ -208,7 +208,7 @@ public class UserInput
         }
     }
 
-    public void GetEmployeeLogIn()
+    public int GetEmployeeLogIn()
     {
         Console.Clear();
         Console.WriteLine("*********Employee Log In ********* ");
@@ -220,7 +220,7 @@ public class UserInput
             if (employeeManager.EmployeeLogInNameId(id, name))
             {
                 employeeIsLoggedIn = true;
-                break;
+                return id;
             }
             else
             {
@@ -233,9 +233,10 @@ public class UserInput
             }
             temp++;
         }
+        return 0;
     }
 
-    public void GetCustomerLogIn()
+    public int GetCustomerLogIn()
     {
         Console.Clear();
         Console.WriteLine("********* Customer Log In ********* ");
@@ -247,7 +248,7 @@ public class UserInput
             if (customerManager.CustomerLogInNameId(id, name))
             {
                 customerIsLoggedIn = true;
-                break;
+                return id;
             }
             else
             {
@@ -262,6 +263,7 @@ public class UserInput
 
 
         }
+        return 0;
     }
 
     public void SearchRoomByIdInput()

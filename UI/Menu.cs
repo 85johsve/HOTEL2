@@ -18,7 +18,7 @@ class Menu
         return choice;
     }
 
-    public void GetEmployeeMenu()
+    public void GetEmployeeMenu(int employeeId)
     {
         bool quit = false;
         while (!quit)
@@ -57,7 +57,7 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.MakingReservation://is done Tina!//Johan is going to look more into it
-                    reservationManager.EmployeeBookRoom();
+                    reservationManager.EmployeeBookRoom(employeeId);
                     break;
 
                 case MenuChoiceEmployee.ShowSingleReservation:
@@ -66,11 +66,11 @@ class Menu
                     break;
 
                 case MenuChoiceEmployee.CheckIn: //is done! Jessica// need more checkin detail
-                    userInput.EmployeeCheckInUpdate();
+                    userInput.EmployeeCheckInUpdate(employeeId);
                     break;
 
                 case MenuChoiceEmployee.CheckOut: //is done! Jessica// need more checkin detail
-                    userInput.EmployeeCheckOutUpdate();
+                    userInput.EmployeeCheckOutUpdate(employeeId);
                     break;
 
                 case MenuChoiceEmployee.ShowReceiptOptions: // need to work on receipt Nr Tina
@@ -109,7 +109,7 @@ class Menu
         }
     }
 
-    public void GetCustomerMenu()
+    public void GetCustomerMenu(int customerId)
     {
         bool quit = false;
         while (!quit)
@@ -129,7 +129,7 @@ class Menu
                     break;
 
                 case MenuChoiceCustomer.BookRoom://not working properlly
-                    reservationManager.CustomerBookRoom();
+                    reservationManager.CustomerBookRoom(customerId);
                     break;
 
                 case MenuChoiceCustomer.ReadReviews:

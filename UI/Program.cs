@@ -17,10 +17,10 @@ internal class Program
             {
                 case MenuChoiceUser.Employee:
 
-                    userInput.GetEmployeeLogIn();
+                    int employeeId = userInput.GetEmployeeLogIn();
                     if (userInput.employeeIsLoggedIn)
                     {
-                        menu.GetEmployeeMenu();
+                        menu.GetEmployeeMenu(employeeId);
                         break;
                     }
                     else
@@ -31,10 +31,10 @@ internal class Program
 
                 case MenuChoiceUser.NewCustomer:
                     userInput.AddCustomerInput();
-                    userInput.GetCustomerLogIn();
+                    int customerId = userInput.GetCustomerLogIn();
                     if (userInput.customerIsLoggedIn)
                     {
-                        menu.GetCustomerMenu();
+                        menu.GetCustomerMenu(customerId);
                         break;
                     }
                     else
@@ -44,10 +44,10 @@ internal class Program
                     break;
 
                 case MenuChoiceUser.CustomerLogIn:
-                    userInput.GetCustomerLogIn();
+                    customerId = userInput.GetCustomerLogIn();
                     if (userInput.customerIsLoggedIn)
                     {
-                        menu.GetCustomerMenu();
+                        menu.GetCustomerMenu(customerId);
                         break;
                     }
                     else

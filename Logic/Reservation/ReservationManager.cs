@@ -29,12 +29,13 @@ public class ReservationManager
 
 
 
-    public void CustomerBookRoom()
+    public void EmployeeBookRoom(int employeeId)
     {
         Console.WriteLine("Book room");
 
-        int customerIdBooking = 1;
-        int employeeIdBooking = 1;
+        
+        int customerIdBooking = TryGetInt("Enter customer ID: ");
+        int employeeIdBooking = employeeId;
         Console.WriteLine("Enter a from-date: ");
         DateTime dateIn;
         if (DateTime.TryParse(Console.ReadLine(), out dateIn))
@@ -139,11 +140,12 @@ public class ReservationManager
         Console.Clear();
     }
 
-    public void EmployeeBookRoom()
+
+    public void CustomerBookRoom(int CustomerId)
     {
         Console.WriteLine("Book room");
-        int customerIdBooking = 1;
-        int employee_id = 1;
+        int customerIdBooking = CustomerId;
+        int employee_id = 0;
         DateTime userDateIn;
         DateTime userDateOut;
 
