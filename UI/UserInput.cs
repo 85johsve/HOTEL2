@@ -46,17 +46,20 @@ public class UserInput
                 Console.WriteLine("*********** Updated Reservation *********");
                 Console.WriteLine(reservationManager.SearchReservationById(reservid));
                 roomManager.CheckInRoomStatusRenewByRoomId(reservationManager.GetRoomIdByReservId(reservid));
-                Console.WriteLine("Check in done");
+                Console.WriteLine("CheckIn date is now updated");
+                Console.ReadLine();
             }
             if (option == "2")
             {
                 int roomid = TryGetInt("Enter the room id: ");
-                reservationManager.UpdateReservationRoon(reservid, roomid);
+                reservationManager.UpdateReservationRoom(reservid, roomid);
+                Console.WriteLine("Press enter to update the room status!");
                 Console.WriteLine("*********** Updated Reservation *********");
                 Console.WriteLine(reservationManager.SearchReservationById(reservid));
                 Console.ReadLine();
                 roomManager.CheckInRoomStatusRenewByRoomId(reservationManager.GetRoomIdByReservId(reservid));
-                Console.WriteLine("Check in done");
+                Console.WriteLine("Room status is now CheckedIn");
+                Console.ReadLine();
             }
         }
         else if (Answer == "n")
@@ -149,7 +152,7 @@ public class UserInput
             {
                 PrintAvailableRooms();
                 int roomid = TryGetInt("Enter new room id: ");
-                reservationManager.UpdateReservationRoon(reservid, roomid);
+                reservationManager.UpdateReservationRoom(reservid, roomid);
                 Console.WriteLine("*********** Updated Reservation *********");
                 Console.WriteLine(reservationManager.SearchReservationById(reservid));
                 Console.ReadLine();
@@ -694,6 +697,7 @@ public class UserInput
                 {
                     Console.WriteLine(item);
                 }
+                
             }
 
             receipts.Add(receipt);
@@ -709,7 +713,7 @@ public class UserInput
             Console.WriteLine("your choice does not exist!");
 
         }
-
+            
         return quit;
     }
 
