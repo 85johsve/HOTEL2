@@ -50,8 +50,7 @@ public class UserInput
             }
             if (option == "2")
             {
-                PrintAvailableRooms();
-                int roomid = TryGetInt("Enter new room id: ");
+                int roomid = TryGetInt("Enter the room id: ");
                 reservationManager.UpdateReservationRoon(reservid, roomid);
                 Console.WriteLine("*********** Updated Reservation *********");
                 Console.WriteLine(reservationManager.SearchReservationById(reservid));
@@ -64,6 +63,7 @@ public class UserInput
         {
             roomManager.CheckInRoomStatusRenewByRoomId(reservationManager.GetRoomIdByReservId(reservid));
             Console.WriteLine("Check in done");
+            Console.ReadLine();
         }
 
     }

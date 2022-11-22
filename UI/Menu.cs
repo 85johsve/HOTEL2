@@ -1,16 +1,15 @@
 class Menu
 {
-    public RoomManager roomManager = new();
-    public CustomerManager customerManager = new();
-    public EmployeeManager employeeManager = new();
-    public PaymentManger paymentManager = new();
-    public ReservationData reservationData = new();
+    //public RoomManager roomManager = new();
+    //public CustomerManager customerManager = new();
+    //public EmployeeManager employeeManager = new();
+    //public PaymentManger paymentManager = new();
+    //public ReservationData reservationData = new();
+    //public int customerID { get; set; }
+    //public ReviewManager reviewManager = new();
     public ReservationManager reservationManager = new();
-    public ReviewManager reviewManager = new();
     public UserInput userInput = new();
-    public int customerID { get; set; }
-
-
+    
     public void GetEmployeeMenu(int employeeId)
     {
         bool quit = false;
@@ -58,11 +57,11 @@ class Menu
 
                     break;
 
-                case MenuChoiceEmployee.CheckIn: //need change room status
+                case MenuChoiceEmployee.CheckIn: 
                     userInput.EmployeeCheckinInput(employeeId);
                     break;
 
-                case MenuChoiceEmployee.CheckOut: //need change room status
+                case MenuChoiceEmployee.CheckOut: 
                     userInput.EmployeeCheckOutInput(employeeId);
                     Console.ReadLine();
                     break;
