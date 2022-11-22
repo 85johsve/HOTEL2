@@ -1,4 +1,4 @@
-public class UserInput
+public class UserInput 
 {
 
     public RoomManager roomManager = new();
@@ -24,7 +24,7 @@ public class UserInput
         if (ChangeDateOutAnswer == "y")
         {
             //UpdateRoomStatusInput();
-            //reservationData.UpdateReservationDateOut(reservation_id, date_in, date_range, newTotalPay); //This is what I want to do
+            CheckInOutDateUpdateInput();  //you have an error in your SQL
         }
         else if (ChangeDateOutAnswer == "n")
         {
@@ -79,7 +79,7 @@ public class UserInput
         if (ChangeDateInAnswer == "y")
         {
             //UpdateRoomStatusInput();
-            //reservationData.UpdateReservationDateIn(); This is what I want to do
+            CheckInOutDateUpdateInput();
         }
         else if (ChangeDateInAnswer == "n")
         {
