@@ -124,8 +124,7 @@ public class ReservationManager
         double date_range = GetTimeSpanByDates(dateIn, dateOut);
         double roomSelectedPrice = 0;
         double totalPay;
-        Console.WriteLine("Choose room to book: ");
-        int roomSelected = Int32.Parse(Console.ReadLine());
+        int roomSelected = TryGetInt("Choose room to book:");
         foreach (var hh in availabeRooms)
         {
             if (hh.room_id == roomSelected)
@@ -134,10 +133,20 @@ public class ReservationManager
             }
         }
         totalPay = roomSelectedPrice * date_range;
+        foreach (var room in availabeRooms)
+        {
+            if (roomSelected == room.room_id)
+            {
         newReservationData.MakeReservationCustomer(customerIdBooking, employeeIdBooking, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
         Console.WriteLine($"You have booked room nr {roomSelected} from: {dateIn} to: {dateOut}.");
         Console.ReadKey();
         Console.Clear();
+        break;
+            }
+        }
+        Console.Clear();
+        Console.WriteLine("selected room did not exist");
+        Console.ReadKey();
     }
 
 
@@ -244,13 +253,22 @@ public class ReservationManager
         }
         DateTime todaysDate = DateTime.Now;
         double date_range = GetTimeSpanByDates(dateIn, dateOut);
-        Console.WriteLine("Choose room to book: ");
-        int roomSelected = TryGetInt(Console.ReadLine());
+        double roomSelectedPrice = 0;
+        double totalPay;
+        int roomSelected = TryGetInt("Choose room to book:");
+        foreach (var hh in availabeRooms)
+        {
+            if (hh.room_id == roomSelected)
+            {
+                roomSelectedPrice = hh.room_price;
+            }
+        }
+        totalPay = roomSelectedPrice * date_range;
         foreach (var room in availabeRooms)
         {
             if (roomSelected == room.room_id)
             {
-                newReservationData.MakeReservationEmployee(customerIdBooking, employee_id, roomSelected, todaysDate, userDateIn, userDateOut, date_range);
+                newReservationData.MakeReservationCustomer(customerIdBooking, employee_id, roomSelected, todaysDate, dateIn, dateOut, date_range, totalPay);
                 Console.WriteLine($"You have booked room nr {roomSelected} from: {userDateIn} to: {userDateOut}.");
                 Console.ReadKey();
                 Console.Clear();
