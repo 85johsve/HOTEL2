@@ -433,7 +433,7 @@ public class UserInput
             if (employeeManager.SearchEmployee(searchEmployeeId) != null)
             {
                 Console.WriteLine(employeeManager.SearchEmployee(searchEmployeeId));
-                Console.WriteLine("Press any key and hit enter to continue...");
+                Console.WriteLine("Press enter to continue...");
             }
         }
         catch (Exception e)
