@@ -394,7 +394,7 @@ public class UserInput
     public void AddEmployeeInput()//Tina, change the formation, put all in one Console.Write()
     {
         Console.WriteLine("********* Add Employee ********* ");
-        Console.WriteLine("Added employee ID: " + employeeManager.AddEmployee(TryGetInt("Job Title ID: "), GetString("First name"), GetString("Last name"), TryGetInt("Phone: "), GetString("Email: ")));
+        Console.WriteLine("Added employee ID: " + employeeManager.AddEmployee(TryGetInt("Job Title ID: "), GetString("First name: "), GetString("Last name: "), TryGetInt("Phone: "), GetString("Email: ")));
         // Console.WriteLine("Added customer ID: "))
         // int addEId = employeeManager.AddEmployee(TryGetInt("Job Title ID: "), GetString("First name"), GetString("Last name"), TryGetInt("Phone: "), GetString("Email: "));
         // Console.WriteLine("Added customer ID: ");
